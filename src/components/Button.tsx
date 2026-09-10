@@ -21,7 +21,7 @@ export function ButtonPrimary({
 }: BaseProps & { children: ReactNode }) {
   const classes = `group inline-flex items-center justify-center gap-2 rounded-[5px] border border-border-hairline bg-surface-bg px-8 py-2 transition-all hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:px-6 hover:py-1.5 ${className}`;
   const textClasses =
-    "text-body-lg-strong text-text-primary transition-all group-hover:text-body-reg-strong group-hover:text-inverse-text-primary";
+    "text-body-reg-strong sm:text-body-lg-strong text-text-primary transition-all group-hover:text-body-reg-strong group-hover:text-inverse-text-primary";
 
   if (href) {
     return (

@@ -137,24 +137,21 @@ body * {
   text-transform: uppercase;
 }
 
-/* Responsive typography — scale headings down on small screens.
-   No mobile Figma spec exists, so these ratios are our own judgment call,
-   applied consistently across the type scale rather than per-component. */
+/* Responsive typography overrides — confirmed against the file's actual
+   mobile frame (Home - Mobile), not guessed. H1 stays 48px on mobile.
+   H3/H3-bold swap to the Body Large Base/Strong metrics on mobile (a
+   different named style, not a scaled-down H3). */
 @media (max-width: 640px) {
-  .text-h1-bold {
-    font-size: 32px;
-    letter-spacing: -0.96px;
+  .text-h3 {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: -0.4px;
   }
-  .text-h2-bold {
-    font-size: 24px;
-    letter-spacing: -0.72px;
-  }
-  .text-h3,
   .text-h3-bold {
-    font-size: 18px;
-  }
-  .text-body-lg-strong,
-  .text-body-lg-base {
-    font-size: 17px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.4;
+    letter-spacing: -0.4px;
   }
 }

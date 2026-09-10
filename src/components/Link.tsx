@@ -41,9 +41,10 @@ export default function AppLink({
     );
   }
 
-  // email — Headings/H3 Bold (24px), per Figma spec
+  // email — Headings/H3 Bold (24px) on desktop, Body Large/Strong (20px) on
+  // mobile per the confirmed mobile frame spec.
   return (
-    <a href={`mailto:${href}`} className={`${baseClasses} text-h3-bold ${className}`}>
+    <a href={`mailto:${href}`} className={`${baseClasses} text-body-lg-strong sm:text-h3-bold ${className}`}>
       {children ?? `@${href}`}
     </a>
   );
