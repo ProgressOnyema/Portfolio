@@ -59,3 +59,25 @@ export function BehanceIcon({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+// MobileNav — matches Figma's MobileNav component (53.875 x 51.140625),
+// a simple 3-line hamburger icon.
+export function MobileNavIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      width="24"
+      height="18"
+      viewBox="0 0 24 18"
+      fill="none"
+      className={className}
+      aria-hidden="true"
+    >
+      <path
+        d="M0 1h24M0 9h24M0 17h24"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}

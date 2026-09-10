@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavItem from "./NavItem";
 import ThemeToggle from "./ThemeToggle";
+import { MobileNavIcon } from "./Icons";
 
 const LINKS = [
   { href: "/", label: "Home" },
@@ -23,7 +24,7 @@ export default function Navbar() {
 
   return (
     <header className="w-full bg-surface-bg">
-      <nav className="relative mx-auto flex h-[106px] max-w-[1440px] items-center justify-between px-6 sm:justify-center">
+      <nav className="relative mx-auto flex h-[106px] max-w-[1440px] items-center justify-end px-5 sm:justify-center sm:px-6">
         {/* Desktop links — centered, gap-12 (48px), matches Figma exactly */}
         <div className="hidden items-center gap-12 sm:flex">
           {LINKS.map(({ href, label }) => (
@@ -36,21 +37,26 @@ export default function Navbar() {
           </a>
         </div>
 
-        {/* Mobile: brand mark + hamburger (no Figma mobile spec — own judgment) */}
-        <p className="text-body-reg-strong sm:hidden">Menu</p>
+        {/* Mobile: real MobileNav component (53.875 x 51.140625) */}
         <button
           type="button"
           onClick={() => setMobileOpen((v) => !v)}
           aria-label="Toggle navigation menu"
           aria-expanded={mobileOpen}
-          className="flex size-9 flex-col items-center justify-center gap-1.5 sm:hidden"
+          className="flex h-[51px] w-[54px] items-center justify-center text-text-primary sm:hidden"
         >
-          <span
-            className={`h-px w-5 bg-text-primary transition-transform ${mobileOpen ? "translate-y-[3.5px] rotate-45" : ""}`}
-          />
-          <span
-            className={`h-px w-5 bg-text-primary transition-transform ${mobileOpen ? "-translate-y-[3.5px] -rotate-45" : ""}`}
-          />
+          {mobileOpen ? (
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+              <path
+                d="M1 1l16 16M17 1L1 17"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+              />
+            </svg>
+          ) : (
+            <MobileNavIcon />
+          )}
         </button>
 
         <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 sm:block">
