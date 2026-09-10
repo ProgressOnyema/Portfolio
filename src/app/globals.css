@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+:root {
+  /* Color tokens — from Figma variables (dark theme, the file's default) */
+  --color-surface-bg: #161513;
+  --color-surface-bg-alt: #363430;
+  --color-text-primary: #fcfcfb;
+  --color-text-muted: #b8b4ac;
+  --color-border-hairline: #4c4841;
+  --color-inverse-surface-bg: #fcfcfb;
+  --color-inverse-text-primary: #161513;
+
+  /* Radii + borders */
+  --radius-md: 5px;
+  --radius-csq: 12px;
+  --border-hairline: 1px;
+
+  --font-body: "Inter", sans-serif;
+}
+
+/*
+ * Light theme — pulled from the file's own light-mode variable values
+ * (found resolved on light-mode component instances in the Figma file),
+ * not estimated.
+ */
+[data-theme="light"] {
+  --color-surface-bg: #fcfcfb;
+  --color-surface-bg-alt: #e9e7e3;
+  --color-text-primary: #161513;
+  --color-text-muted: #6d685f;
+  --color-border-hairline: #d6d3cd;
+  --color-inverse-surface-bg: #161513;
+  --color-inverse-text-primary: #fcfcfb;
+}
+
+@theme inline {
+  --color-surface-bg: var(--color-surface-bg);
+  --color-surface-bg-alt: var(--color-surface-bg-alt);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-muted: var(--color-text-muted);
+  --color-border-hairline: var(--color-border-hairline);
+  --color-inverse-surface-bg: var(--color-inverse-surface-bg);
+  --color-inverse-text-primary: var(--color-inverse-text-primary);
+  --font-sans: "Inter", sans-serif;
+}
+
+body {
+  background: var(--color-surface-bg);
+  color: var(--color-text-primary);
+  font-family: var(--font-body), Arial, Helvetica, sans-serif;
+}
+
+body,
+body * {
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ---- Typography scale (from Figma text styles) ---- */
+.text-h1-bold {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 1.08;
+  letter-spacing: -1.44px;
+}
+
+.text-h2-bold {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.08;
+  letter-spacing: -0.96px;
+}
+
+.text-h3 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.45;
+  letter-spacing: 0.48px;
+}
+
+.text-h3-bold {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 1.08;
+  letter-spacing: -0.96px;
+}
+
+.text-body-lg-base {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+
+.text-body-lg-strong {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.4;
+  letter-spacing: -0.4px;
+}
+
+.text-body-reg-base {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.16px;
+}
+
+.text-body-reg-strong {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.16px;
+}
+
+.text-body-sm-base {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.4;
+  letter-spacing: -0.14px;
+}
+
+.text-label {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.52px;
+  text-transform: uppercase;
+}
+
+/* Responsive typography — scale headings down on small screens.
+   No mobile Figma spec exists, so these ratios are our own judgment call,
+   applied consistently across the type scale rather than per-component. */
+@media (max-width: 640px) {
+  .text-h1-bold {
+    font-size: 32px;
+    letter-spacing: -0.96px;
+  }
+  .text-h2-bold {
+    font-size: 24px;
+    letter-spacing: -0.72px;
+  }
+  .text-h3,
+  .text-h3-bold {
+    font-size: 18px;
+  }
+  .text-body-lg-strong,
+  .text-body-lg-base {
+    font-size: 17px;
+  }
+}
