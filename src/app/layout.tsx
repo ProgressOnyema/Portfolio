@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Navbar from "@/components/Navbar";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
 import "./globals.css";
 
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         />
       </head>
       <body className="min-h-full flex flex-col bg-surface-bg text-text-primary">
+        <Navbar />
         {children}
       </body>
     </html>
