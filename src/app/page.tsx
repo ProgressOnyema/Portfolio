@@ -39,18 +39,19 @@ export default function Home() {
         </div>
       </Grid>
 
-      {/* Featured projects — heading spans full width, 3 cards each span 4/12,
-          using a tighter gap so the widgets grow to fill the row */}
-      <Grid gap="gap-3 sm:gap-4" className="gap-y-16 pt-24 sm:gap-y-12 sm:pt-40">
+      {/* Featured projects — heading spans full width; widgets live in
+          their own container grid with a tighter internal gap than the
+          space between the heading and the container itself */}
+      <Grid className="gap-y-16 pt-24 sm:gap-y-12 sm:pt-40">
         <div className="col-span-4 flex items-center justify-between sm:col-span-12">
           <h2 className="text-body-lg-strong sm:text-h3-bold">Featured Projects</h2>
           <AppLink variant="view-work" href="/work" />
         </div>
-        {FEATURED_PROJECTS.map((project) => (
-          <div key={project.slug} className="col-span-4">
-            <ProjectWidget project={project} size="full" />
-          </div>
-        ))}
+        <div className="col-span-4 grid grid-cols-1 gap-3 sm:col-span-12 sm:grid-cols-3 sm:gap-4">
+          {FEATURED_PROJECTS.map((project) => (
+            <ProjectWidget key={project.slug} project={project} size="full" />
+          ))}
+        </div>
       </Grid>
 
       {/* Stats + credentials — 4:8 column ratio matches the 350:703 short:long widths */}
