@@ -75,7 +75,17 @@ export default function ProjectWidget({
 
       {/* project_meta */}
       <div className="flex h-[47px] items-center gap-2">
-        <div className="size-[39px] shrink-0 rounded-[12px] bg-surface-bg-alt" />
+        {/* project logo — placeholder using the same folder artwork until
+            each project has a real logo */}
+        <div className="relative size-[39px] shrink-0 overflow-hidden rounded-[12px] bg-surface-bg-alt">
+          <Image
+            src="/folder-assets/folder_image1.png"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="39px"
+          />
+        </div>
         <div className="flex flex-1 flex-col justify-center overflow-hidden">
           <p className="text-body-reg-strong truncate">{project.name}</p>
           <p className="text-body-sm-base truncate text-text-muted">
