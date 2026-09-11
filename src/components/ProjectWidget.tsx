@@ -10,8 +10,8 @@ export type ProjectWidgetData = {
 };
 
 const SIZE_CLASSES = {
-  default: "max-w-[347px]",
-  lg: "max-w-[386px]",
+  default: "sm:max-w-[347px]",
+  lg: "sm:max-w-[386px]",
 };
 
 // Layer positions as percentages of the 350x255 folder, so the same layout

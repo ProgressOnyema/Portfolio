@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
       {/* Hero */}
-      <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start gap-12 px-5 pt-16 sm:flex-row sm:px-6 sm:pt-24">
+      <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start gap-12 px-5 pt-16 sm:flex-row sm:justify-center sm:px-6 sm:pt-24">
         <div className="h-[104px] w-[123px] shrink-0 rounded-[5px] border-6 border-border-hairline bg-surface-bg-alt" />
         <div className="flex w-full max-w-[763px] flex-col items-start gap-8">
           <div className="flex flex-col gap-4">
@@ -41,7 +41,7 @@ export default function Home() {
           <h2 className="text-body-lg-strong sm:text-h3-bold">Featured Projects</h2>
           <AppLink variant="view-work" href="/work" />
         </div>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-center">
           {FEATURED_PROJECTS.map((project) => (
             <ProjectWidget key={project.slug} project={project} />
           ))}
@@ -49,7 +49,7 @@ export default function Home() {
       </section>
 
       {/* Stats + credentials */}
-      <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-5 pt-24 sm:flex-row sm:gap-6 sm:px-6 sm:pt-40">
+      <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-5 pt-24 sm:flex-row sm:justify-center sm:gap-6 sm:px-6 sm:pt-40">
         <div className="flex flex-col gap-4">
           {STATS.map((stat) => (
             <ListItem key={stat} type="short">{stat}</ListItem>
