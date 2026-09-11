@@ -47,7 +47,7 @@ export default function Home() {
         </div>
         {FEATURED_PROJECTS.map((project) => (
           <div key={project.slug} className="col-span-4">
-            <ProjectWidget project={project} />
+            <ProjectWidget project={project} size="lg" />
           </div>
         ))}
       </Grid>
