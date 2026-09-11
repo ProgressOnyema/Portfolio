@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export type ProjectWidgetData = {
@@ -8,8 +9,25 @@ export type ProjectWidgetData = {
 };
 
 const SIZE_CLASSES = {
-  default: { maxWidth: "max-w-[347px]", notchRadius: 22 },
-  lg: { maxWidth: "max-w-[386px]", notchRadius: 24 },
+  default: "max-w-[347px]",
+  lg: "max-w-[386px]",
+};
+
+// Layer positions as percentages of the 350x255 folder, so the same layout
+// scales correctly at both the default and lg widget sizes.
+const IMAGE2_STYLE = {
+  top: `${(23 / 255) * 100}%`,
+  height: `${(162 / 255) * 100}%`,
+  width: `${(318 / 350) * 100}%`,
+};
+const IMAGE1_STYLE = {
+  top: `${(57 / 255) * 100}%`,
+  height: `${(159 / 255) * 100}%`,
+  width: `${(318 / 350) * 100}%`,
+};
+const COVER_STYLE = {
+  top: `${(162 / 255) * 100}%`,
+  height: `${(93 / 255) * 100}%`,
 };
 
 export default function ProjectWidget({
@@ -19,35 +37,32 @@ export default function ProjectWidget({
   project: ProjectWidgetData;
   size?: "default" | "lg";
 }) {
-  const { maxWidth, notchRadius } = SIZE_CLASSES[size];
-
   return (
     <Link
       href={`/work/${project.slug}`}
-      className={`group flex w-full flex-col gap-4 ${maxWidth}`}
+      className={`group flex w-full flex-col gap-4 ${SIZE_CLASSES[size]}`}
     >
-      {/*
-        folder / folder_lg — same 350:255 aspect ratio at both sizes.
-        Reconstructed as two layers (folder_back + folder_cover) with a
-        circular notch cut into the cover's top edge, matching the real
-        Figma folder shape. Placeholder colors stand in for the illustrated
-        artwork (Figma's asset URLs aren't reachable from this sandbox) —
-        swap folder_back's gradient for a real project image per project.
-      */}
+      {/* folder / folder_lg — real layered artwork: folder_back, two
+          overlapping paint-texture images, then folder_cover on top */}
       <div className="relative aspect-[350/255] w-full overflow-hidden rounded-md border border-border-hairline transition-transform group-hover:-translate-y-1">
-        {/* folder_back — full-bleed illustration layer */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[#f28fb0] via-[#8fe3c0] to-[#a988e8]" />
-
-        {/* folder_cover — bottom flap with a circular notch cut from its top edge */}
-        <div
-          className="absolute inset-x-0 bottom-0 h-[36%] bg-surface-bg-alt"
-          style={{
-            maskImage: `radial-gradient(circle ${notchRadius}px at 50% 0%, transparent ${notchRadius}px, black ${notchRadius + 0.5}px)`,
-            WebkitMaskImage: `radial-gradient(circle ${notchRadius}px at 50% 0%, transparent ${notchRadius}px, black ${notchRadius + 0.5}px)`,
-          }}
+        <Image
+          src="/folder-assets/folder_back.svg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="(min-width: 640px) 400px, 100vw"
         />
+        <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE2_STYLE}>
+          <Image src="/folder-assets/folder_image2.png" alt="" fill className="object-contain" sizes="400px" />
+        </div>
+        <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE1_STYLE}>
+          <Image src="/folder-assets/folder_image1.png" alt="" fill className="object-contain" sizes="400px" />
+        </div>
+        <div className="absolute inset-x-0" style={COVER_STYLE}>
+          <Image src="/folder-assets/folder_cover.svg" alt="" fill sizes="400px" />
+        </div>
 
-        <div className="absolute bottom-4 left-4 flex gap-1">
+        <div className="absolute bottom-4 left-4 z-10 flex gap-1">
           {project.tags.map((tag) => (
             <span
               key={tag}
