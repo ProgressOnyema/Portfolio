@@ -12,6 +12,7 @@ export type ProjectWidgetData = {
 const SIZE_CLASSES = {
   default: "sm:max-w-[347px]",
   lg: "sm:max-w-[386px]",
+  full: "",
 };
 
 // Layer positions as percentages of the 350x255 folder, so the same layout
@@ -36,7 +37,7 @@ export default function ProjectWidget({
   size = "default",
 }: {
   project: ProjectWidgetData;
-  size?: "default" | "lg";
+  size?: "default" | "lg" | "full";
 }) {
   return (
     <Link

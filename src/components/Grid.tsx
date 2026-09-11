@@ -9,13 +9,16 @@ import type { ReactNode } from "react";
 export default function Grid({
   children,
   className = "",
+  gap = "gap-4 sm:gap-6",
 }: {
   children: ReactNode;
   className?: string;
+  /** Override the default gutter (e.g. a tighter gap for a specific row). */
+  gap?: string;
 }) {
   return (
     <div
-      className={`mx-auto grid w-full max-w-[1440px] grid-cols-4 gap-4 px-5 sm:grid-cols-12 sm:gap-6 sm:px-6 lg:px-[88px] ${className}`}
+      className={`mx-auto grid w-full max-w-[1440px] grid-cols-4 ${gap} px-5 sm:grid-cols-12 sm:px-6 lg:px-[88px] ${className}`}
     >
       {children}
     </div>
