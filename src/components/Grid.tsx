@@ -15,7 +15,7 @@ export default function Grid({
 }) {
   return (
     <div
-      className={`mx-auto grid w-full max-w-[1440px] grid-cols-4 gap-4 px-5 sm:grid-cols-12 sm:gap-6 sm:px-6 ${className}`}
+      className={`mx-auto grid w-full max-w-[1440px] grid-cols-4 gap-4 px-5 sm:grid-cols-12 sm:gap-6 sm:px-6 lg:px-[88px] ${className}`}
     >
       {children}
     </div>

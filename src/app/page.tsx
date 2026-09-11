@@ -17,24 +17,25 @@ const CREDENTIALS = ["'23 Google UX Design Professional Certificate", "'20 Diplo
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
-      {/* Hero — decorative box: col 1, text: cols 2-8 (leaves 9-12 as breathing room) */}
+      {/* Hero — box + text as a flex row within one full-width grid cell,
+          so the fixed-width decorative box never overflows a grid track */}
       <Grid className="items-start pt-16 sm:pt-24">
-        <div className="col-span-4 sm:col-span-1">
+        <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-row sm:gap-12">
           <div className="h-[104px] w-[123px] shrink-0 rounded-[5px] border-6 border-border-hairline bg-surface-bg-alt" />
-        </div>
-        <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-7">
-          <div className="flex flex-col gap-4">
-            <h1 className="text-h1-bold">
-              Onyema Miracle,
-              <br />a Product and Brand designer
-            </h1>
-            <p className="text-h3 text-text-primary">
-              For over 3 years, I&apos;ve worked across product design,
-              branding, and front-end development to build visually
-              compelling, high-performing web and mobile experiences.
-            </p>
+          <div className="flex w-full max-w-[763px] flex-col items-start gap-8">
+            <div className="flex flex-col gap-4">
+              <h1 className="text-h1-bold">
+                Onyema Miracle,
+                <br />a Product and Brand designer
+              </h1>
+              <p className="text-h3 text-text-primary">
+                For over 3 years, I&apos;ve worked across product design,
+                branding, and front-end development to build visually
+                compelling, high-performing web and mobile experiences.
+              </p>
+            </div>
+            <ButtonPrimary href="/about">More about me</ButtonPrimary>
           </div>
-          <ButtonPrimary href="/about">More about me</ButtonPrimary>
         </div>
       </Grid>
 

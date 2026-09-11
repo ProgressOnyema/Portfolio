@@ -24,7 +24,7 @@ export default function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 z-50 w-full bg-surface-bg">
-      <nav className="mx-auto flex h-[106px] max-w-[1440px] items-center justify-end px-5 sm:justify-center sm:px-6">
+      <nav className="mx-auto flex h-[106px] max-w-[1440px] items-center justify-end px-5 sm:justify-center sm:px-6 lg:px-[88px]">
         {/* Desktop links — centered, gap-12 (48px). Theme toggle is now
             part of this same row, not separately positioned. */}
         <div className="hidden items-center gap-12 sm:flex">
