@@ -1,5 +1,6 @@
 import { ButtonPrimary, ButtonSocial } from "@/components/Button";
 import AppLink from "@/components/Link";
+import Grid from "@/components/Grid";
 import ListItem from "@/components/ListItem";
 import ProjectWidget, { type ProjectWidgetData } from "@/components/ProjectWidget";
 import { LinkedInIcon, BehanceIcon } from "@/components/Icons";
@@ -16,10 +17,12 @@ const CREDENTIALS = ["'23 Google UX Design Professional Certificate", "'20 Diplo
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
-      {/* Hero */}
-      <section className="mx-auto flex w-full max-w-[1440px] flex-col items-start gap-12 px-5 pt-16 sm:flex-row sm:justify-center sm:px-6 sm:pt-24">
-        <div className="h-[104px] w-[123px] shrink-0 rounded-[5px] border-6 border-border-hairline bg-surface-bg-alt" />
-        <div className="flex w-full max-w-[763px] flex-col items-start gap-8">
+      {/* Hero — decorative box: col 1, text: cols 2-8 (leaves 9-12 as breathing room) */}
+      <Grid className="items-start pt-16 sm:pt-24">
+        <div className="col-span-4 sm:col-span-1">
+          <div className="h-[104px] w-[123px] shrink-0 rounded-[5px] border-6 border-border-hairline bg-surface-bg-alt" />
+        </div>
+        <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-7">
           <div className="flex flex-col gap-4">
             <h1 className="text-h1-bold">
               Onyema Miracle,
@@ -33,38 +36,38 @@ export default function Home() {
           </div>
           <ButtonPrimary href="/about">More about me</ButtonPrimary>
         </div>
-      </section>
+      </Grid>
 
-      {/* Featured projects */}
-      <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-16 px-5 pt-24 sm:gap-12 sm:px-6 sm:pt-40">
-        <div className="flex items-center justify-between">
+      {/* Featured projects — heading spans full width, 3 cards each span 4/12 */}
+      <Grid className="gap-y-16 pt-24 sm:gap-y-12 sm:pt-40">
+        <div className="col-span-4 flex items-center justify-between sm:col-span-12">
           <h2 className="text-body-lg-strong sm:text-h3-bold">Featured Projects</h2>
           <AppLink variant="view-work" href="/work" />
         </div>
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-center">
-          {FEATURED_PROJECTS.map((project) => (
-            <ProjectWidget key={project.slug} project={project} />
-          ))}
-        </div>
-      </section>
+        {FEATURED_PROJECTS.map((project) => (
+          <div key={project.slug} className="col-span-4">
+            <ProjectWidget project={project} />
+          </div>
+        ))}
+      </Grid>
 
-      {/* Stats + credentials */}
-      <section className="mx-auto flex w-full max-w-[1440px] flex-col gap-8 px-5 pt-24 sm:flex-row sm:justify-center sm:gap-6 sm:px-6 sm:pt-40">
-        <div className="flex flex-col gap-4">
+      {/* Stats + credentials — 4:8 column ratio matches the 350:703 short:long widths */}
+      <Grid className="gap-y-8 pt-24 sm:pt-40">
+        <div className="col-span-4 flex flex-col gap-4">
           {STATS.map((stat) => (
             <ListItem key={stat} type="short">{stat}</ListItem>
           ))}
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="col-span-4 flex flex-col gap-4 sm:col-span-8">
           {CREDENTIALS.map((credential) => (
             <ListItem key={credential} type="long">{credential}</ListItem>
           ))}
         </div>
-      </section>
+      </Grid>
 
-      {/* Contact */}
-      <section className="mx-auto flex w-full max-w-[996px] flex-col items-start gap-8 px-5 py-24 sm:flex-row sm:items-end sm:justify-between sm:px-6 sm:py-40">
-        <div className="flex flex-col gap-12">
+      {/* Contact — content: cols 1-8, socials: cols 9-12 aligned right */}
+      <Grid className="items-end gap-y-8 py-24 sm:py-40">
+        <div className="col-span-4 flex flex-col gap-12 sm:col-span-8">
           <p className="text-body-lg-strong sm:text-h3-bold">
             Available for
             <br />
@@ -78,7 +81,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex items-center gap-[15px]">
+        <div className="col-span-4 flex items-center gap-[15px] sm:col-span-4 sm:justify-end">
           <ButtonSocial href="https://linkedin.com" target="_blank" rel="noreferrer">
             <LinkedInIcon />
           </ButtonSocial>
@@ -86,7 +89,7 @@ export default function Home() {
             <BehanceIcon />
           </ButtonSocial>
         </div>
-      </section>
+      </Grid>
     </main>
   );
 }
