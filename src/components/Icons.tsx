@@ -59,6 +59,19 @@ export function MobileNavIcon({ className = "" }: { className?: string }) {
   );
 }
 
+// folder_back — its fill is also color/surface/bg-alt (same theme token as
+// folder_cover), not a hardcoded color. Inlined for the same reason.
+export function FolderBackIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg width="350" height="255" viewBox="0 0 350 255" fill="none" className={className} preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M0 20C0 8.9543 8.95431 0 20 0H330C341.046 0 350 8.95431 350 20V235C350 246.046 341.046 255 330 255H20C8.9543 255 0 246.046 0 235V20Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 // folder_cover — its fill is color/surface/bg-alt (a theme token), not a
 // hardcoded color, so it must invert with the site's theme. Inlined (not a
 // static <img>/next/image asset) so currentColor can bind to the

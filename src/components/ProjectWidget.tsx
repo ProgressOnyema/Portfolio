@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FolderCoverIcon } from "./Icons";
+import { FolderBackIcon, FolderCoverIcon } from "./Icons";
 
 export type ProjectWidgetData = {
   slug: string;
@@ -45,14 +45,11 @@ export default function ProjectWidget({
     >
       {/* folder / folder_lg — real layered artwork: folder_back, two
           overlapping paint-texture images, then folder_cover on top */}
-      <div className="relative aspect-[350/255] w-full overflow-hidden rounded-md border border-border-hairline transition-transform group-hover:-translate-y-1">
-        <Image
-          src="/folder-assets/folder_back.svg"
-          alt=""
-          fill
-          className="object-cover"
-          sizes="(min-width: 640px) 400px, 100vw"
-        />
+      <div className="relative aspect-[350/255] w-full overflow-hidden rounded-md transition-transform group-hover:-translate-y-1">
+        {/* folder_back — theme-aware (color/surface/bg-alt), not a static image */}
+        <div className="absolute inset-0 text-surface-bg-alt">
+          <FolderBackIcon className="h-full w-full" />
+        </div>
         <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE2_STYLE}>
           <Image src="/folder-assets/folder_image2.png" alt="" fill className="object-contain" sizes="400px" />
         </div>
