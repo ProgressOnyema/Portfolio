@@ -23,9 +23,10 @@ export default function Navbar() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="w-full bg-surface-bg">
-      <nav className="relative mx-auto flex h-[106px] max-w-[1440px] items-center justify-end px-5 sm:justify-center sm:px-6">
-        {/* Desktop links — centered, gap-12 (48px), matches Figma exactly */}
+    <header className="fixed top-0 left-0 z-50 w-full bg-surface-bg">
+      <nav className="mx-auto flex h-[106px] max-w-[1440px] items-center justify-end px-5 sm:justify-center sm:px-6">
+        {/* Desktop links — centered, gap-12 (48px). Theme toggle is now
+            part of this same row, not separately positioned. */}
         <div className="hidden items-center gap-12 sm:flex">
           {LINKS.map(({ href, label }) => (
             <Link key={href} href={href}>
@@ -35,6 +36,7 @@ export default function Navbar() {
           <a href={CONTACT_HREF}>
             <NavItem label="Contact" />
           </a>
+          <ThemeToggle />
         </div>
 
         {/* Mobile: real MobileNav component (53.875 x 51.140625) */}
@@ -58,15 +60,11 @@ export default function Navbar() {
             <MobileNavIcon />
           )}
         </button>
-
-        <div className="absolute right-6 top-1/2 hidden -translate-y-1/2 sm:block">
-          <ThemeToggle />
-        </div>
       </nav>
 
       {/* Mobile dropdown */}
       {mobileOpen && (
-        <div className="flex flex-col items-start gap-2 border-t border-border-hairline px-6 py-6 sm:hidden">
+        <div className="flex flex-col items-start gap-2 border-t border-border-hairline bg-surface-bg px-6 py-6 sm:hidden">
           {LINKS.map(({ href, label }) => (
             <Link key={href} href={href} onClick={() => setMobileOpen(false)}>
               <NavItem label={label} active={isActive(href)} />

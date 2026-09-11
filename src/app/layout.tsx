@@ -21,7 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-surface-bg text-text-primary">
+      <body className="min-h-full flex flex-col bg-surface-bg text-text-primary pt-[106px]">
         <Navbar />
         {children}
       </body>
