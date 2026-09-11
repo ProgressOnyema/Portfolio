@@ -47,7 +47,7 @@ export default function Home() {
           <h2 className="text-body-lg-strong sm:text-h3-bold">Featured Projects</h2>
           <AppLink variant="view-work" href="/work" />
         </div>
-        <div className="col-span-4 grid grid-cols-1 gap-3 sm:col-span-12 sm:grid-cols-3 sm:gap-4">
+        <div className="col-span-4 grid grid-cols-1 gap-12 sm:col-span-12 sm:grid-cols-3 sm:gap-4">
           {FEATURED_PROJECTS.map((project) => (
             <ProjectWidget key={project.slug} project={project} size="full" />
           ))}
