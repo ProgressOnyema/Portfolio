@@ -58,3 +58,18 @@ export function MobileNavIcon({ className = "" }: { className?: string }) {
     </svg>
   );
 }
+
+// folder_cover — its fill is color/surface/bg-alt (a theme token), not a
+// hardcoded color, so it must invert with the site's theme. Inlined (not a
+// static <img>/next/image asset) so currentColor can bind to the
+// surface-bg-alt CSS variable via the wrapping element's text color.
+export function FolderCoverIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg width="350" height="93" viewBox="0 0 350 93" fill="none" className={className} preserveAspectRatio="none" aria-hidden="true">
+      <path
+        d="M350 77C350 85.8366 342.837 93 334 93H16C7.16343 93 0 85.8366 0 77V16C0 7.16345 7.16344 0 16 0H118C126.837 0 133.704 7.50017 137.501 15.4791C143.818 28.7507 158.008 38 174.5 38C190.992 38 205.182 28.7507 211.499 15.4791C215.296 7.50018 222.163 0 231 0H334C342.837 0 350 7.16344 350 16V77Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}

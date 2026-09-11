@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FolderCoverIcon } from "./Icons";
 
 export type ProjectWidgetData = {
   slug: string;
@@ -58,8 +59,9 @@ export default function ProjectWidget({
         <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE1_STYLE}>
           <Image src="/folder-assets/folder_image1.png" alt="" fill className="object-contain" sizes="400px" />
         </div>
-        <div className="absolute inset-x-0" style={COVER_STYLE}>
-          <Image src="/folder-assets/folder_cover.svg" alt="" fill sizes="400px" />
+        {/* folder_cover — theme-aware (color/surface/bg-alt), not a static image */}
+        <div className="absolute inset-x-0 text-surface-bg-alt" style={COVER_STYLE}>
+          <FolderCoverIcon className="h-full w-full" />
         </div>
 
         <div className="absolute bottom-4 left-4 z-10 flex gap-1">
