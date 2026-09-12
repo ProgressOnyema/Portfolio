@@ -1,9 +1,9 @@
-import { ButtonPrimary, ButtonSocial } from "@/components/Button";
+import { ButtonPrimary } from "@/components/Button";
 import AppLink from "@/components/Link";
 import Grid from "@/components/Grid";
 import ListItem from "@/components/ListItem";
 import ProjectWidget, { type ProjectWidgetData } from "@/components/ProjectWidget";
-import { LinkedInIcon, BehanceIcon } from "@/components/Icons";
+import ContactSection from "@/components/ContactSection";
 
 const FEATURED_PROJECTS: ProjectWidgetData[] = [
   { slug: "project-one", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
@@ -80,31 +80,7 @@ export default function Home() {
         </div>
       </Grid>
 
-      {/* Contact — content: cols 1-8, socials: cols 9-12 aligned right */}
-      <Grid className="items-end gap-y-8 py-24 sm:py-40">
-        <div className="col-span-4 flex flex-col gap-12 sm:col-span-8">
-          <p className="text-body-lg-strong sm:text-h3-bold">
-            Available for
-            <br />
-            projects
-          </p>
-          <div className="flex flex-col gap-1">
-            <p className="text-body-lg-base sm:text-h3" style={{ color: "#858585" }}>
-              Write to me
-            </p>
-            <AppLink variant="email" href="progressonyema5@gmail.com" />
-          </div>
-        </div>
-
-        <div className="col-span-4 flex items-center gap-[15px] sm:col-span-4 sm:justify-end">
-          <ButtonSocial href="https://linkedin.com" target="_blank" rel="noreferrer">
-            <LinkedInIcon />
-          </ButtonSocial>
-          <ButtonSocial href="https://behance.net" target="_blank" rel="noreferrer">
-            <BehanceIcon />
-          </ButtonSocial>
-        </div>
-      </Grid>
+      <ContactSection />
     </main>
   );
 }
