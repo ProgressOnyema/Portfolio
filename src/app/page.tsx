@@ -9,7 +9,12 @@ const FEATURED_PROJECTS: ProjectWidgetData[] = [
   { slug: "project-one", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
   { slug: "project-two", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
   { slug: "project-three", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
+  { slug: "project-four", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
+  { slug: "project-five", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
+  { slug: "project-six", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
 ];
+
+const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Frontend Development"];
 
 const STATS = ["3+ Years Experience", "10+ Projects Completed", "4+ Design Systems"];
 const CREDENTIALS = ["'23 Google UX Design Professional Certificate", "'20 Diploma in Web Design & Development"];
@@ -26,13 +31,20 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <h1 className="text-h1-bold">
                 Onyema Miracle,
-                <br />a Product and Brand designer
+                <br />-  Product and Brand designer
               </h1>
               <p className="text-h3 text-text-primary">
                 For over 3 years, I&apos;ve worked across product design,
                 branding, and front-end development to build visually
                 compelling, high-performing web and mobile experiences.
               </p>
+              <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
+                {HERO_TAGS.map((tag) => (
+                  <p key={tag} className="text-body-reg-base text-text-muted">
+                    {tag}
+                  </p>
+                ))}
+              </div>
             </div>
             <ButtonPrimary href="/about">More about me</ButtonPrimary>
           </div>
@@ -45,7 +57,7 @@ export default function Home() {
       <Grid className="gap-y-16 pt-24 sm:gap-y-12 sm:pt-40">
         <div className="col-span-4 flex items-center justify-between sm:col-span-12">
           <h2 className="text-body-lg-strong sm:text-h3-bold">Featured Projects</h2>
-          <AppLink variant="view-work" href="/work" />
+          <AppLink variant="view-work" href="/work">All</AppLink>
         </div>
         <div className="col-span-4 grid grid-cols-1 gap-12 sm:col-span-12 sm:grid-cols-3 sm:gap-4">
           {FEATURED_PROJECTS.map((project) => (
