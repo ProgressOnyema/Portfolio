@@ -46,7 +46,7 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            <ButtonPrimary href="/about">More about me</ButtonPrimary>
+            {/* <ButtonPrimary href="/about">More about me</ButtonPrimary> */}
           </div>
         </div>
       </Grid>
