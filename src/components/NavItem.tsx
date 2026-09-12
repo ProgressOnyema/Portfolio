@@ -7,8 +7,8 @@ export default function NavItem({
 }) {
   return (
     <p
-      className={`text-body-reg-strong p-2 transition-colors ${
-        active ? "text-text-primary" : "text-text-muted hover:text-text-primary"
+      className={`p-2 transition-colors ${
+        active ? "text-text-primary text-body-reg-strong" : "text-text-muted text-body-reg-base hover:text-text-primary"
       }`}
     >
       {label}
