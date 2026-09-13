@@ -45,7 +45,69 @@ export type MediaTextBlock = {
   imagePosition?: "left" | "right" | "top";
 };
 
-export type Block = TextBlock | ImageGridBlock | MetaBlock | MediaTextBlock | GridBlock;
+// Embedded/looping video.
+export type VideoBlock = {
+  type: "video";
+  src: string;
+  poster?: string;
+  variant?: "fullWidth" | "contained";
+  /** Background-style: muted, looped, autoplaying. Otherwise click-to-play with controls. */
+  autoplay?: boolean;
+};
+
+// A row of key metrics/results.
+export type StatItem = {
+  value: string;
+  label: string;
+};
+
+export type StatsBlock = {
+  type: "stats";
+  items: StatItem[];
+};
+
+// A single full-bleed hero/cover image, distinct from ImageGridBlock which
+// implies a multi-image layout.
+export type CoverImageBlock = {
+  type: "coverImage";
+  src: string;
+  alt: string;
+  caption?: string;
+};
+
+// A testimonial/quote from someone else, with attribution - distinct from
+// TextBlock's pullQuote variant (which is just your own emphasized text).
+export type QuoteAttribution = {
+  name: string;
+  role?: string;
+  avatar?: string;
+};
+
+export type QuoteBlock = {
+  type: "quote";
+  body: Paragraph[];
+  attribution: QuoteAttribution;
+};
+
+// A button or link pointing to a live site, prototype, or repo.
+export type CtaBlock = {
+  type: "cta";
+  label: string;
+  href: string;
+  style?: "primary" | "link";
+};
+
+export type Block =
+  | TextBlock
+  | ImageGridBlock
+  | MetaBlock
+  | MediaTextBlock
+  | GridBlock
+  | VideoBlock
+  | StatsBlock
+  | CoverImageBlock
+  | QuoteBlock
+  | CtaBlock;
 
 // Generic layout wrapper: arranges any set of child blocks into columns.
 // Defined after Block so it can reference it (a grid's items can be any

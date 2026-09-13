@@ -17,6 +17,8 @@ export function ButtonPrimary({
   children,
   href,
   onClick,
+  target,
+  rel,
   className = "",
 }: BaseProps & { children: ReactNode }) {
   const classes = `group inline-flex items-center justify-center gap-2 rounded-[5px] border border-border-hairline bg-surface-bg px-8 py-2 transition-all hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:px-6 hover:py-1.5 ${className}`;
@@ -25,7 +27,7 @@ export function ButtonPrimary({
 
   if (href) {
     return (
-      <a href={href} className={classes}>
+      <a href={href} target={target} rel={rel} className={classes}>
         <span className={textClasses}>{children}</span>
       </a>
     );

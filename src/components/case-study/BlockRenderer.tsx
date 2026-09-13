@@ -4,6 +4,11 @@ import ImageGrid from "./ImageGrid";
 import MetaBlockView from "./MetaBlock";
 import MediaText from "./MediaText";
 import GridBlockView from "./GridBlock";
+import VideoBlockView from "./VideoBlock";
+import StatRow from "./StatRow";
+import CoverImage from "./CoverImage";
+import Quote from "./Quote";
+import Cta from "./Cta";
 
 // Dispatches a single block to its component. Shared by BlockRenderer (the
 // top-level list) and GridBlock (which renders arbitrary nested blocks),
@@ -20,6 +25,16 @@ export function renderBlock(block: Block, key: number | string) {
       return <MediaText key={key} block={block} />;
     case "grid":
       return <GridBlockView key={key} block={block} />;
+    case "video":
+      return <VideoBlockView key={key} block={block} />;
+    case "stats":
+      return <StatRow key={key} block={block} />;
+    case "coverImage":
+      return <CoverImage key={key} block={block} />;
+    case "quote":
+      return <Quote key={key} block={block} />;
+    case "cta":
+      return <Cta key={key} block={block} />;
     default:
       return null;
   }

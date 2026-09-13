@@ -11,6 +11,12 @@ export type CaseStudy = ProjectWidgetData & {
 // layout from generic, reusable primitives.
 const PLACEHOLDER_BLOCKS: Block[] = [
   {
+    type: "coverImage",
+    src: "/folder-assets/folder_image1.png",
+    alt: "Project cover",
+    caption: "Placeholder cover image caption.",
+  },
+  {
     type: "grid",
     columns: 2,
     items: [
@@ -54,9 +60,33 @@ const PLACEHOLDER_BLOCKS: Block[] = [
     imagePosition: "left",
   },
   {
+    type: "video",
+    src: "/folder-assets/placeholder-video.mp4",
+    variant: "contained",
+  },
+  {
+    type: "stats",
+    items: [
+      { value: "40%", label: "Increase in signups" },
+      { value: "2.3x", label: "Faster checkout" },
+      { value: "12", label: "Weeks to launch" },
+    ],
+  },
+  {
+    type: "quote",
+    body: [["This placeholder testimonial shows how a client quote with attribution renders."]],
+    attribution: { name: "Jane Doe", role: "Founder, Placeholder Co." },
+  },
+  {
     type: "text",
     variant: "pullQuote",
     body: [["A standout line or key result from the project goes here."]],
+  },
+  {
+    type: "cta",
+    label: "View live site",
+    href: "https://example.com",
+    style: "primary",
   },
 ];
 
