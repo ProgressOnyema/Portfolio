@@ -25,12 +25,15 @@ export default async function ProjectDetail({
     <main className="flex flex-1 flex-col">
       <Grid className="items-center gap-y-6 pt-16 text-center sm:pt-24">
         <h1 className="col-span-4 text-h1-bold sm:col-span-12">{project.name}</h1>
-        <div className="col-span-4 sm:col-span-12">
+        {/* <div className="col-span-4 sm:col-span-12">
           <Subnav active={project.category} />
-        </div>
+        </div> */}
       </Grid>
 
       <Grid className="pt-16 sm:pt-24">
+        <div className="col-span-4 sm:col-span-12">
+          <Subnav active={project.category} />
+        </div>
         <div className="col-span-4 sm:col-span-12">
           <BlockRenderer blocks={project.blocks} />
         </div>
