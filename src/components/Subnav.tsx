@@ -12,7 +12,7 @@ export default function Subnav({
   onSelect: (category: ProjectCategory) => void;
 }) {
   return (
-    <div className="text-body-reg-strong flex flex-wrap items-start justify-center gap-3">
+    <div className="text-body-reg-base flex flex-wrap items-start justify-center gap-3">
       {CATEGORIES.map((category, i) => (
         <span key={category} className="flex items-center gap-3">
           <button
@@ -20,7 +20,7 @@ export default function Subnav({
             onClick={() => onSelect(category)}
             aria-pressed={active === category}
             className={`transition-colors ${
-              active === category ? "text-text-primary" : "text-text-muted hover:text-text-primary"
+              active === category ? "text-text-primary text-body-reg-strong" : "text-text-muted hover:text-text-primary"
             }`}
           >
             {category}
