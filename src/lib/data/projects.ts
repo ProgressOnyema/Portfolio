@@ -1,17 +1,45 @@
 import type { ProjectWidgetData } from "@/components/ProjectWidget";
+import type { Block } from "@/lib/types/caseStudy";
 
-// Placeholder entries matching the 6 folder slots in Figma. Swap in real
-// project data (name, one-liner, tags, category) as case studies are
-// written. Category distribution below is a placeholder guess.
-export const projects: ProjectWidgetData[] = [
-  { slug: "project-one", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design" },
-  { slug: "project-two", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design" },
-  { slug: "project-three", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding" },
-  { slug: "project-four", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding" },
-  { slug: "project-five", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development" },
-  { slug: "project-six", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development" },
+export type CaseStudy = ProjectWidgetData & {
+  blocks: Block[];
+};
+
+// Placeholder blocks — same generic content for all 6 projects for now.
+// Swap in real per-project writing and imagery as case studies are ready.
+const PLACEHOLDER_BLOCKS: Block[] = [
+  {
+    type: "text",
+    heading: "Overview",
+    body: "A placeholder overview of the project — the problem it solved, who it was for, and the approach taken. Replace this with real case study writing.",
+  },
+  {
+    type: "imageGrid",
+    columns: 2,
+    images: [
+      { src: "/folder-assets/folder_image1.png", alt: "Project visual" },
+      { src: "/folder-assets/folder_image2.png", alt: "Project visual" },
+    ],
+  },
+  {
+    type: "text",
+    variant: "pullQuote",
+    body: "A standout line or key result from the project goes here.",
+  },
 ];
 
-export function getProject(slug: string): ProjectWidgetData | undefined {
+// Placeholder entries matching the 6 folder slots in Figma. Swap in real
+// project data (name, one-liner, tags, category, blocks) as case studies
+// are written. Category distribution below is a placeholder guess.
+export const projects: CaseStudy[] = [
+  { slug: "project-one", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-two", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-three", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-four", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-five", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-six", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development", blocks: PLACEHOLDER_BLOCKS },
+];
+
+export function getProject(slug: string): CaseStudy | undefined {
   return projects.find((p) => p.slug === slug);
 }
