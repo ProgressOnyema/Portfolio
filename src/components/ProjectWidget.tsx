@@ -24,12 +24,12 @@ const SIZE_CLASSES = {
 // the original 350x255 spec, just fresher/more precise source numbers.
 const IMAGE2_STYLE = {
   top: `${(25 / 295.5) * 100}%`,
-  height: `${(179 / 295.5) * 100}%`,
+  height: `${(183 / 295.5) * 100}%`,
   width: `${(373 / 405.5) * 100}%`,
 };
 const IMAGE1_STYLE = {
   top: `${(62 / 295.5) * 100}%`,
-  height: `${(176 / 295.5) * 100}%`,
+  height: `${(180 / 295.5) * 100}%`,
   width: `${(373 / 405.5) * 100}%`,
 };
 const COVER_STYLE = {
