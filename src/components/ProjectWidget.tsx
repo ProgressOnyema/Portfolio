@@ -33,8 +33,8 @@ const IMAGE1_STYLE = {
   width: `${(373 / 405.5) * 100}%`,
 };
 const COVER_STYLE = {
-  top: `${(179 / 295.5) * 100}%`,
-  height: `${(117 / 295.5) * 100}%`,
+  bottom: 0,
+  height: "25%",
 };
 
 export default function ProjectWidget({
@@ -44,6 +44,11 @@ export default function ProjectWidget({
   project: ProjectWidgetData;
   size?: "default" | "lg" | "full";
 }) {
+  // Development-category projects get an extra "DEV" tag automatically,
+  // derived from category rather than requiring it in each project's data.
+  const displayTags =
+    project.category === "Development" ? [...project.tags, "DEV"] : project.tags;
+
   return (
     <Link
       href={`/work/${project.slug}`}
@@ -68,7 +73,7 @@ export default function ProjectWidget({
         </div>
 
         <div className="absolute bottom-4 left-4 z-10 flex gap-1">
-          {project.tags.map((tag) => (
+          {displayTags.map((tag) => (
             <span
               key={tag}
               className="text-label rounded-[5px] bg-surface-bg px-2 py-1 text-text-muted"
