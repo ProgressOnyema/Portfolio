@@ -4,7 +4,7 @@ import RichText from "./RichText";
 
 export default function Quote({ block }: { block: QuoteBlock }) {
   return (
-    <div className="mx-auto flex max-w-[689px] flex-col items-center gap-6 text-center">
+    <div className="mx-auto flex max-w-[689px] flex-col gap-6">
       <div className="flex flex-col gap-4">
         <RichText paragraphs={block.body} className="text-h3 text-text-primary" />
       </div>
