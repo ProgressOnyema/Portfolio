@@ -34,7 +34,7 @@ const IMAGE1_STYLE = {
 };
 const COVER_STYLE = {
   bottom: 0,
-  height: "25%",
+  height: "33%",
 };
 
 export default function ProjectWidget({
@@ -47,7 +47,7 @@ export default function ProjectWidget({
   // Development-category projects get an extra "DEV" tag automatically,
   // derived from category rather than requiring it in each project's data.
   const displayTags =
-    project.category === "Development" ? [...project.tags, "DEV"] : project.tags;
+    project.category === "Development" ? [...project.tags, "/DEV"] : project.tags;
 
   return (
     <Link
