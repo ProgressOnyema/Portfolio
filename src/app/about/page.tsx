@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Grid from "@/components/Grid";
-import AppLink from "@/components/Link";
 import ContactSection from "@/components/ContactSection";
 import { EafcIcon } from "@/components/EafcIcon";
 
@@ -44,81 +43,68 @@ export default function About() {
         </div>
       </Grid>
 
-      {/* Fun facts — one flowing sentence mixing text and inline icons */}
+      {/* Fun facts — one flowing sentence: a single <p> with inline images,
+          not separate flex blocks (which was the cause of the scattered
+          look — each phrase/icon-group was wrapping as its own rigid unit
+          instead of reflowing together like real prose) */}
       <Grid className="pt-24 sm:pt-40">
-        <div className="col-span-4 flex flex-wrap items-center justify-center gap-x-1 gap-y-2 text-center sm:col-span-10 sm:col-start-2">
-          <p className="text-h1-bold sm:text-h1-bold">I am a 6&apos;2&quot; gorgeous male.</p>
-          <p className="text-h1-bold sm:text-h1-bold">I always look out for blues</p>
-          <Image src="/about_page_assets/theBlues.png" alt="Chelsea FC" width={50} height={50} className="rounded-full" />
-          <p className="text-h1-bold sm:text-h1-bold">when I&apos;m not playing, either physically</p>
+        <p className="col-span-4 text-h1-bold text-center [text-wrap:pretty] sm:col-span-10 sm:col-start-2">
+          I am a 6&apos;2&quot; gorgeous male. I always look out for blues{" "}
+          <Image
+            src="/about_page_assets/theBlues.png"
+            alt="Chelsea FC"
+            width={50}
+            height={50}
+            className="inline-block align-middle rounded-full mx-1"
+          />{" "}
+          when I&apos;m not playing, either physically{" "}
           <Image
             src="/about_page_assets/fifaBall.png"
             alt="Football"
             width={50}
             height={51}
-            className="scale-x-[-1] rounded-full"
-          />
-          <p className="text-h1-bold sm:text-h1-bold">or digitally</p>
-          <EafcIcon className="h-[44px] w-[89px] text-text-primary" />
-          <p className="text-h1-bold sm:text-h1-bold"> I also enjoy reading</p>
-          <div className="flex items-center">
-            {BOOKS.map((book, i) => (
-              <Image
-                key={book}
-                src={`/about_page_assets/${book}.png`}
-                alt=""
-                width={28}
-                height={35}
-                className="-mr-1"
-                style={{ transform: `rotate(${(i - 1.5) * 6}deg)` }}
-              />
-            ))}
-          </div>
-          <p className="text-h1-bold sm:text-h1-bold"> watching</p>
-          <div className="flex items-center">
-            {FILMS.map((film, i) => (
-              <Image
-                key={film}
-                src={`/about_page_assets/${film}.png`}
-                alt=""
-                width={26}
-                height={35}
-                className="-mr-1"
-                style={{ transform: `rotate(${(i - 1.5) * 7}deg)` }}
-              />
-            ))}
-          </div>
-          <p className="text-h1-bold sm:text-h1-bold">, and listening</p>
-          <div className="flex items-center">
-            {ARTISTS.map((artist) => (
-              <Image
-                key={artist}
-                src={`/about_page_assets/${artist}.png`}
-                alt=""
-                width={32}
-                height={32}
-                className="-mr-2 rounded-full"
-              />
-            ))}
-          </div>
-          <p className="text-h1-bold sm:text-h1-bold">to others&apos; perspectives.</p>
-        </div>
+            className="inline-block align-middle scale-x-[-1] rounded-full mx-1"
+          />{" "}
+          or digitally{" "}
+          <EafcIcon className="inline-block align-middle h-[44px] w-[89px] text-text-primary mx-1" />{" "}
+          I also enjoy reading{" "}
+          {BOOKS.map((book, i) => (
+            <Image
+              key={book}
+              src={`/about_page_assets/${book}.png`}
+              alt=""
+              width={28}
+              height={35}
+              className="inline-block align-middle -mr-1"
+              style={{ transform: `rotate(${(i - 1.5) * 6}deg)` }}
+            />
+          ))}
+          , watching{" "}
+          {FILMS.map((film, i) => (
+            <Image
+              key={film}
+              src={`/about_page_assets/${film}.png`}
+              alt=""
+              width={26}
+              height={35}
+              className="inline-block align-middle -mr-1"
+              style={{ transform: `rotate(${(i - 1.5) * 7}deg)` }}
+            />
+          ))}
+          , and listening{" "}
+          {ARTISTS.map((artist) => (
+            <Image
+              key={artist}
+              src={`/about_page_assets/${artist}.png`}
+              alt=""
+              width={32}
+              height={32}
+              className="inline-block align-middle rounded-full -mr-2"
+            />
+          ))}
+          {" "}to others&apos; perspectives.
+        </p>
       </Grid>
-
-      {/* Skills */}
-      {/* <Grid className="gap-y-8 pt-24 sm:pt-40">
-        <div className="col-span-4 flex flex-col gap-8 sm:col-span-8 sm:col-start-4">
-          <h2 className="text-h1-bold">Skills</h2>
-          <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
-            {SKILLS.map((skill) => (
-              <p key={skill} className="text-h3 text-text-primary">
-                {skill}
-              </p>
-            ))}
-          </div>
-          <AppLink variant="open-resume" href="/resume.pdf" />
-        </div>
-      </Grid> */}
 
       <ContactSection />
     </main>
