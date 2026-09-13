@@ -11,25 +11,27 @@ export type ProjectWidgetData = {
 
 const SIZE_CLASSES = {
   default: "sm:max-w-[347px]",
-  lg: "sm:max-w-[386px]",
+  lg: "sm:max-w-[405.5px]",
   full: "",
 };
 
-// Layer positions as percentages of the 350x255 folder, so the same layout
-// scales correctly at both the default and lg widget sizes.
+// Layer positions as percentages of the folder container, so the same
+// layout scales correctly across all widget sizes. Values re-derived from
+// the confirmed ProjectWidgetLg spec (405.5x295.5) — same aspect ratio as
+// the original 350x255 spec, just fresher/more precise source numbers.
 const IMAGE2_STYLE = {
-  top: `${(23 / 255) * 100}%`,
-  height: `${(162 / 255) * 100}%`,
-  width: `${(318 / 350) * 100}%`,
+  top: `${(25 / 295.5) * 100}%`,
+  height: `${(179 / 295.5) * 100}%`,
+  width: `${(373 / 405.5) * 100}%`,
 };
 const IMAGE1_STYLE = {
-  top: `${(57 / 255) * 100}%`,
-  height: `${(159 / 255) * 100}%`,
-  width: `${(318 / 350) * 100}%`,
+  top: `${(62 / 295.5) * 100}%`,
+  height: `${(176 / 295.5) * 100}%`,
+  width: `${(373 / 405.5) * 100}%`,
 };
 const COVER_STYLE = {
-  top: `${(162 / 255) * 100}%`,
-  height: `${(93 / 255) * 100}%`,
+  top: `${(179 / 295.5) * 100}%`,
+  height: `${(117 / 295.5) * 100}%`,
 };
 
 export default function ProjectWidget({

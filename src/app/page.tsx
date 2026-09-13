@@ -2,17 +2,9 @@ import { ButtonPrimary } from "@/components/Button";
 import AppLink from "@/components/Link";
 import Grid from "@/components/Grid";
 import ListItem from "@/components/ListItem";
-import ProjectWidget, { type ProjectWidgetData } from "@/components/ProjectWidget";
+import ProjectWidget from "@/components/ProjectWidget";
 import ContactSection from "@/components/ContactSection";
-
-const FEATURED_PROJECTS: ProjectWidgetData[] = [
-  { slug: "project-one", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
-  { slug: "project-two", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
-  { slug: "project-three", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
-  { slug: "project-four", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
-  { slug: "project-five", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
-  { slug: "project-six", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"] },
-];
+import { projects } from "@/lib/data/projects";
 
 const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Frontend Development"];
 
@@ -60,7 +52,7 @@ export default function Home() {
           <AppLink variant="view-work" href="/work">All</AppLink>
         </div>
         <div className="col-span-4 grid grid-cols-1 gap-12 sm:col-span-12 sm:grid-cols-3 sm:gap-4">
-          {FEATURED_PROJECTS.map((project) => (
+          {projects.map((project) => (
             <ProjectWidget key={project.slug} project={project} size="full" />
           ))}
         </div>
