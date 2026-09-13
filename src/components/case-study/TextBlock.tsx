@@ -1,16 +1,21 @@
 import type { TextBlock as TextBlockData } from "@/lib/types/caseStudy";
+import RichText from "./RichText";
 
 export default function TextBlock({ block }: { block: TextBlockData }) {
   if (block.variant === "pullQuote") {
     return (
-      <p className="text-h2-bold text-center">{block.body}</p>
+      <div className="flex flex-col gap-3 text-center">
+        <RichText paragraphs={block.body} className="text-h2-bold text-text-primary" />
+      </div>
     );
   }
 
   return (
     <div className="flex flex-col gap-3">
       {block.heading && <h3 className="text-h3-bold">{block.heading}</h3>}
-      <p className="text-body-reg-base text-text-muted">{block.body}</p>
+      <div className="flex flex-col gap-4">
+        <RichText paragraphs={block.body} />
+      </div>
     </div>
   );
 }

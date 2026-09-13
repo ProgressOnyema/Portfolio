@@ -7,11 +7,36 @@ export type CaseStudy = ProjectWidgetData & {
 
 // Placeholder blocks — same generic content for all 6 projects for now.
 // Swap in real per-project writing and imagery as case studies are ready.
+// Demonstrates the grid block reproducing a meta-sidebar-beside-text
+// layout from generic, reusable primitives.
 const PLACEHOLDER_BLOCKS: Block[] = [
   {
-    type: "text",
-    heading: "Overview",
-    body: "A placeholder overview of the project — the problem it solved, who it was for, and the approach taken. Replace this with real case study writing.",
+    type: "grid",
+    columns: 2,
+    items: [
+      {
+        type: "meta",
+        fields: [
+          { label: "Industry", value: "Placeholder industry / category" },
+          { label: "What I did", value: "Brand Identity, Digital Experience" },
+          { label: "Platform", value: "Mobile app + Web" },
+        ],
+      },
+      {
+        type: "text",
+        heading: "A placeholder heading goes here",
+        body: [
+          [
+            "A placeholder overview of the project — the problem it solved, who it was for, and the approach taken. This sentence has ",
+            { text: "inline emphasis", emphasis: true },
+            " to show rich text support.",
+          ],
+          [
+            "This is a second paragraph, on its own line, replacing the earlier single-string body with real multi-paragraph support.",
+          ],
+        ],
+      },
+    ],
   },
   {
     type: "imageGrid",
@@ -22,9 +47,16 @@ const PLACEHOLDER_BLOCKS: Block[] = [
     ],
   },
   {
+    type: "mediaText",
+    image: { src: "/folder-assets/folder_image1.png", alt: "Project visual" },
+    heading: "Image + text in one unit",
+    body: [["A placeholder paragraph pairing directly with the image beside it."]],
+    imagePosition: "left",
+  },
+  {
     type: "text",
     variant: "pullQuote",
-    body: "A standout line or key result from the project goes here.",
+    body: [["A standout line or key result from the project goes here."]],
   },
 ];
 
