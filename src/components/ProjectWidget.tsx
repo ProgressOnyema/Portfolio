@@ -2,11 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { FolderBackIcon, FolderCoverIcon } from "./Icons";
 
+export type ProjectCategory = "Product Design" | "Branding" | "Development";
+
 export type ProjectWidgetData = {
   slug: string;
   name: string;
   oneLiner: string;
   tags: string[];
+  category: ProjectCategory;
 };
 
 const SIZE_CLASSES = {
