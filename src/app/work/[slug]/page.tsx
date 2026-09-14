@@ -30,11 +30,11 @@ export default async function ProjectDetail({
         </div> */}
       </Grid>
 
-      <Grid className="pt-16 sm:pt-24">
+      <Grid className="pt-16 sm:pt-48">
         <div className="col-span-4 sm:col-span-12">
           <Subnav active={project.category} />
         </div>
-        <div className="col-span-4 sm:col-span-12">
+        <div className="col-span-4 sm:col-span-12 sm:pt-16">
           <BlockRenderer blocks={project.blocks} />
         </div>
       </Grid>
