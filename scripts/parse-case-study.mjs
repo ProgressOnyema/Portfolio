@@ -8,9 +8,9 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const OPEN_TAG = /^\[([A-Z-]+)(?::\s*(.*))?\]$/;
-const CLOSE_TAG = /^\[\/([A-Z-]+)\]$/;
-const META_KEYS = ["SLUG", "NAME", "ONE-LINER", "CATEGORY", "TAGS", "THUMBNAIL", "LOGO"];
+const OPEN_TAG = /^\[([A-Z0-9-]+)(?::\s*(.*))?\]$/;
+const CLOSE_TAG = /^\[\/([A-Z0-9-]+)\]$/;
+const META_KEYS = ["SLUG", "NAME", "ONE-LINER", "CATEGORY", "TAGS", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO"];
 
 function fail(msg, lineNum) {
   console.error(`Parse error${lineNum ? ` (line ${lineNum})` : ""}: ${msg}`);
@@ -264,13 +264,19 @@ function main() {
   const parser = new Parser(lines);
   const blocks = parser.parseBlockList(null);
 
+  if (meta["THUMBNAIL-1"] && !meta["THUMBNAIL-2"] || !meta["THUMBNAIL-1"] && meta["THUMBNAIL-2"]) {
+    console.warn("Warning: both [THUMBNAIL-1] and [THUMBNAIL-2] are needed — only one was provided, so neither will be used (falls back to placeholder).");
+  }
+
   const caseStudy = {
     slug: meta.SLUG,
     name: meta.NAME ?? "",
     oneLiner: meta["ONE-LINER"] ?? "",
     category: meta.CATEGORY ?? "Product Design",
     tags: (meta.TAGS ?? "").split(",").map((t) => t.trim()).filter(Boolean),
-    ...(meta.THUMBNAIL ? { thumbnail: meta.THUMBNAIL } : {}),
+    ...(meta["THUMBNAIL-1"] && meta["THUMBNAIL-2"]
+      ? { thumbnails: [meta["THUMBNAIL-1"], meta["THUMBNAIL-2"]] }
+      : {}),
     ...(meta.LOGO ? { logo: meta.LOGO } : {}),
     blocks,
   };
@@ -286,8 +292,10 @@ function main() {
   const publicDir = path.join(process.cwd(), "public");
   const jsonStr = JSON.stringify(caseStudy);
   const pathMatches = [
-    ...jsonStr.matchAll(/"(?:src|thumbnail|logo|avatar|poster)":"(\/[^"]+)"/g),
-  ].map((m) => m[1]);
+    ...jsonStr.matchAll(/"(?:src|thumbnails?|logo|avatar|poster)":\s*(?:"(\/[^"]+)"|\[([^\]]+)\])/g),
+  ]
+    .flatMap((m) => (m[2] ? m[2].match(/"(\/[^"]+)"/g)?.map((s) => s.slice(1, -1)) ?? [] : [m[1]]))
+    .filter(Boolean);
   for (const assetPath of pathMatches) {
     const filePath = path.join(publicDir, assetPath);
     if (!fs.existsSync(filePath)) {

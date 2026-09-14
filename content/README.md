@@ -16,8 +16,9 @@ Use the tags below. Every block needs an opening `[TAG]` and a matching
 [ONE-LINER: One sentence describing the project]
 [CATEGORY: Product Design]   (must be exactly: Product Design, Branding, or Development)
 [TAGS: UX/UI, Brand]
-[THUMBNAIL: /case-studies/project-slug/thumbnail.jpg]   (optional — the widget card's cover image; without it, the placeholder folder illustration is used)
-[LOGO: /case-studies/project-slug/logo.png]             (optional — the small logo next to the name on the widget card; without it, a placeholder is used)
+[THUMBNAIL-1: /case-studies/project-slug/thumbnail-1.jpg]  (optional — both are needed together, or neither is used)
+[THUMBNAIL-2: /case-studies/project-slug/thumbnail-2.jpg]  (the widget card shows these as two overlapping layers, same as the placeholder illustration; without them, the placeholder is used)
+[LOGO: /case-studies/project-slug/logo.png]                (optional — the small logo next to the name on the widget card; without it, a placeholder is used)
 ```
 
 **Blocks** (in the order you want them to appear on the page):

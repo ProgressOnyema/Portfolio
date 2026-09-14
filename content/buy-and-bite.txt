@@ -3,7 +3,8 @@
 [ONE-LINER: Connecting farmers and consumers]
 [CATEGORY: Product Design]
 [TAGS: UX/UI, Brand]
-[THUMBNAIL: /case-studies/buy-and-bite/thumbnail.jpg]
+[THUMBNAIL-1: /case-studies/buy-and-bite/thumbnail-1.jpg]
+[THUMBNAIL-2: /case-studies/buy-and-bite/thumbnail-2.jpg]
 [LOGO: /case-studies/buy-and-bite/logo.png]
 
 [COVER-IMAGE]
