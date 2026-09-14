@@ -7,6 +7,8 @@
     "UX/UI",
     "Brand"
   ],
+  "thumbnail": "/case-studies/buy-and-bite/thumbnail.jpg",
+  "logo": "/case-studies/buy-and-bite/logo.png",
   "blocks": [
     {
       "type": "coverImage",

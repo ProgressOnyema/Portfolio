@@ -10,6 +10,12 @@ export type ProjectWidgetData = {
   oneLiner: string;
   tags: string[];
   category: ProjectCategory;
+  /** Real cover image for the widget card. Falls back to the placeholder
+   *  paint-texture illustration when not provided. */
+  thumbnail?: string;
+  /** Real logo shown next to the name/one-liner. Falls back to a
+   *  placeholder image when not provided. */
+  logo?: string;
 };
 
 const SIZE_CLASSES = {
@@ -55,18 +61,28 @@ export default function ProjectWidget({
       className={`group flex w-full flex-col gap-4 ${SIZE_CLASSES[size]}`}
     >
       {/* folder / folder_lg — real layered artwork: folder_back, two
-          overlapping paint-texture images, then folder_cover on top */}
+          overlapping paint-texture images, then folder_cover on top.
+          When the project has a real thumbnail, that replaces the
+          placeholder illustration entirely (still framed by folder_cover). */}
       <div className="relative aspect-[350/255] w-full overflow-hidden rounded-md transition-transform group-hover:-translate-y-1">
-        {/* folder_back — theme-aware (color/surface/bg-alt), not a static image */}
-        <div className="absolute inset-0 text-surface-bg-alt">
-          <FolderBackIcon className="h-full w-full" />
-        </div>
-        <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE2_STYLE}>
-          <Image src="/folder-assets/folder_image2.png" alt="" fill className="object-contain" sizes="400px" />
-        </div>
-        <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE1_STYLE}>
-          <Image src="/folder-assets/folder_image1.png" alt="" fill className="object-contain" sizes="400px" />
-        </div>
+        {project.thumbnail ? (
+          <div className="absolute inset-0">
+            <Image src={project.thumbnail} alt={project.name} fill className="object-cover" sizes="400px" />
+          </div>
+        ) : (
+          <>
+            {/* folder_back — theme-aware (color/surface/bg-alt), not a static image */}
+            <div className="absolute inset-0 text-surface-bg-alt">
+              <FolderBackIcon className="h-full w-full" />
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE2_STYLE}>
+              <Image src="/folder-assets/folder_image2.png" alt="" fill className="object-contain" sizes="400px" />
+            </div>
+            <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE1_STYLE}>
+              <Image src="/folder-assets/folder_image1.png" alt="" fill className="object-contain" sizes="400px" />
+            </div>
+          </>
+        )}
         {/* folder_cover — theme-aware (color/surface/bg-alt), not a static image */}
         <div className="absolute inset-x-0 text-surface-bg-alt" style={COVER_STYLE}>
           <FolderCoverIcon className="h-full w-full" />
@@ -86,11 +102,11 @@ export default function ProjectWidget({
 
       {/* project_meta */}
       <div className="flex h-[47px] items-center gap-2">
-        {/* project logo — placeholder using the same folder artwork until
-            each project has a real logo */}
+        {/* project logo — falls back to placeholder artwork until the
+            project has a real logo */}
         <div className="relative size-[39px] shrink-0 overflow-hidden rounded-[12px] bg-surface-bg-alt">
           <Image
-            src="/folder-assets/folder_image1.png"
+            src={project.logo ?? "/folder-assets/folder_image1.png"}
             alt=""
             fill
             className="object-cover"
