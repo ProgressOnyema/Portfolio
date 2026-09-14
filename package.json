@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/parse-all-case-studies.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/parse-all-case-studies.mjs",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "parse-content": "node scripts/parse-all-case-studies.mjs"
   },
   "dependencies": {
     "next": "16.3.4",

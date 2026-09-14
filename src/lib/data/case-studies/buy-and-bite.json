@@ -1,0 +1,98 @@
+{
+  "slug": "buy-and-bite",
+  "name": "Buy and Bite",
+  "oneLiner": "Connecting farmers and consumers",
+  "category": "Product Design",
+  "tags": [
+    "UX/UI",
+    "Brand"
+  ],
+  "blocks": [
+    {
+      "type": "coverImage",
+      "src": "/case-studies/buy-and-bite/cover.jpg",
+      "alt": "Buy and Bite homepage",
+      "caption": "The Buy and Bite homepage"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "type": "meta",
+          "fields": [
+            {
+              "label": "Industry",
+              "value": "Agri-commerce / Logistics & Delivery"
+            },
+            {
+              "label": "What I did",
+              "value": "Brand Identity, Digital Experience, Marketing visuals"
+            },
+            {
+              "label": "Platform",
+              "value": "Mobile app + Print"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "body": [
+            [
+              "Buy and Bite exists to connect farmers and consumers. Rooted in the belief that ",
+              {
+                "text": "the right to be healthy",
+                "emphasis": true
+              },
+              " is fundamental, the platform challenges a system where people are priced out of the very things that sustain life."
+            ],
+            [
+              "Buy and Bite ensures that affordability and quality are no longer trade-offs, but standards, because ",
+              {
+                "text": "no one should be priced out of living well",
+                "emphasis": true
+              },
+              "."
+            ]
+          ],
+          "heading": "We can't be priced out of life"
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "40%",
+          "label": "Increase in signups"
+        },
+        {
+          "value": "2.3x",
+          "label": "Faster checkout"
+        },
+        {
+          "value": "12",
+          "label": "Weeks to launch"
+        }
+      ]
+    },
+    {
+      "type": "quote",
+      "body": [
+        [
+          "This changed how we shop for groceries entirely."
+        ]
+      ],
+      "attribution": {
+        "name": "Jane Doe",
+        "role": "Founder, Buy and Bite"
+      }
+    },
+    {
+      "type": "cta",
+      "label": "View live site",
+      "href": "https://buyandbite.example.com",
+      "style": "primary"
+    }
+  ]
+}
