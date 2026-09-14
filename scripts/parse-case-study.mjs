@@ -10,7 +10,7 @@ import path from "node:path";
 
 const OPEN_TAG = /^\[([A-Z-]+)(?::\s*(.*))?\]$/;
 const CLOSE_TAG = /^\[\/([A-Z-]+)\]$/;
-const META_KEYS = ["SLUG", "NAME", "ONE-LINER", "CATEGORY", "TAGS"];
+const META_KEYS = ["SLUG", "NAME", "ONE-LINER", "CATEGORY", "TAGS", "THUMBNAIL", "LOGO"];
 
 function fail(msg, lineNum) {
   console.error(`Parse error${lineNum ? ` (line ${lineNum})` : ""}: ${msg}`);
@@ -270,6 +270,8 @@ function main() {
     oneLiner: meta["ONE-LINER"] ?? "",
     category: meta.CATEGORY ?? "Product Design",
     tags: (meta.TAGS ?? "").split(",").map((t) => t.trim()).filter(Boolean),
+    ...(meta.THUMBNAIL ? { thumbnail: meta.THUMBNAIL } : {}),
+    ...(meta.LOGO ? { logo: meta.LOGO } : {}),
     blocks,
   };
 
@@ -278,14 +280,18 @@ function main() {
   const outPath = path.join(outDir, `${meta.SLUG}.json`);
   fs.writeFileSync(outPath, JSON.stringify(caseStudy, null, 2) + "\n");
 
-  // Warn about any referenced image paths that don't exist in public/
+  // Warn about any referenced local asset paths that don't exist in public/
+  // (matches src/thumbnail/logo/avatar/poster fields — any local path
+  // starting with "/", not an external URL).
   const publicDir = path.join(process.cwd(), "public");
   const jsonStr = JSON.stringify(caseStudy);
-  const srcMatches = [...jsonStr.matchAll(/"src":"([^"]+)"/g)].map((m) => m[1]);
-  for (const src of srcMatches) {
-    const filePath = path.join(publicDir, src);
+  const pathMatches = [
+    ...jsonStr.matchAll(/"(?:src|thumbnail|logo|avatar|poster)":"(\/[^"]+)"/g),
+  ].map((m) => m[1]);
+  for (const assetPath of pathMatches) {
+    const filePath = path.join(publicDir, assetPath);
     if (!fs.existsSync(filePath)) {
-      console.warn(`Warning: referenced image not found in public/: ${src}`);
+      console.warn(`Warning: referenced asset not found in public/: ${assetPath}`);
     }
   }
 
