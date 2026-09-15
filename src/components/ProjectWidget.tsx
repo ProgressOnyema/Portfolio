@@ -8,7 +8,6 @@ export type ProjectWidgetData = {
   slug: string;
   name: string;
   oneLiner: string;
-  tags: string[];
   category: ProjectCategory;
   /** Real cover images for the widget card, in the same two-layer
    *  arrangement as the placeholder paint-texture illustration. Falls
@@ -50,6 +49,16 @@ const COVER_STYLE = {
   height: "33%",
 };
 
+const CATEGORY_ORDER: ProjectCategory[] = ["Product Design", "Branding", "Development"];
+
+// Every widget's tag pills come strictly from category — never free-text
+// tags — so only these three labels can ever appear.
+const CATEGORY_PILL: Record<ProjectCategory, string> = {
+  "Product Design": "UX/UI",
+  Branding: "BRAND",
+  Development: "/DEV",
+};
+
 export default function ProjectWidget({
   project,
   size = "default",
@@ -57,13 +66,12 @@ export default function ProjectWidget({
   project: ProjectWidgetData;
   size?: "default" | "lg" | "full";
 }) {
-  // Development-category projects get an extra "DEV" tag automatically,
-  // derived from category rather than requiring it in each project's data.
   // For a merged multi-case-study widget, caseStudyCategories carries every
-  // category in the group, so the /DEV pill still shows even when the
-  // representative case study itself isn't the Development one.
+  // category in the group, so e.g. the /DEV pill still shows even when the
+  // representative case study itself isn't the Development one. Ordered and
+  // deduped so pills are always UX/UI, then BRAND, then /DEV.
   const categories = project.caseStudyCategories ?? [project.category];
-  const displayTags = categories.includes("Development") ? [...project.tags, "/DEV"] : project.tags;
+  const displayTags = CATEGORY_ORDER.filter((c) => categories.includes(c)).map((c) => CATEGORY_PILL[c]);
 
   return (
     <Link
