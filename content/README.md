@@ -12,6 +12,7 @@ Use the tags below. Every block needs an opening `[TAG]` and a matching
 
 ```
 [SLUG: project-slug]
+[PROJECT-ID: project-slug]  (optional — see "Multiple case studies per project" below)
 [NAME: Project Name]
 [ONE-LINER: One sentence describing the project]
 [CATEGORY: Product Design]   (must be exactly: Product Design, Branding, or Development)
@@ -53,6 +54,37 @@ doesn't fail) if any referenced image path doesn't exist yet in `public/`.
 `npm run dev`, check `/work/<slug>`, then commit and push as usual. If the
 slug matches one of the 6 placeholder projects, it replaces it; otherwise
 it's added as a new project automatically.
+
+## Multiple case studies per project
+
+A project can have more than one case study — e.g. Buy and Bite has a
+Product Design, a Branding, and a Development write-up. Each one is its
+own `.txt` file with its own `[SLUG]` and `[CATEGORY]`, but they share the
+same `[PROJECT-ID]`:
+
+```
+content/buy-and-bite.txt        [SLUG: buy-and-bite]        [CATEGORY: Product Design]
+content/buy-and-bite-brand.txt  [SLUG: buy-and-bite-brand]  [CATEGORY: Branding]
+content/buy-and-bite-dev.txt    [SLUG: buy-and-bite-dev]    [CATEGORY: Development]
+```
+
+...each with `[PROJECT-ID: buy-and-bite]`. That's what makes the subnav
+tabs on the case-study page link to each other instead of sitting there
+inert. Rules:
+
+- Every case study for the same project uses the **same `[PROJECT-ID]`**
+  (pick one slug and stick with it, usually the first case study's slug).
+- Each one still needs a **different `[CATEGORY]`** — one Product Design,
+  one Branding, one Development. Two case studies with the same
+  `PROJECT-ID` and the same `CATEGORY` will both parse, but only one is
+  reachable from the tabs (the parser logs a warning at build time if this
+  happens).
+- `[PROJECT-ID]` is optional. Leave it out and it defaults to that case
+  study's own `[SLUG]`, which is exactly the old single-case-study
+  behavior — nothing to change for existing case studies.
+- You don't need all three categories — one or two is fine. Categories
+  with no matching case study just show as greyed-out, non-clickable text
+  in the tabs instead of a link.
 
 ## Notes
 

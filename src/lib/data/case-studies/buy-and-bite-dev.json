@@ -1,0 +1,79 @@
+{
+  "slug": "buy-and-bite-dev",
+  "projectId": "buy-and-bite",
+  "name": "Buy and Bite",
+  "oneLiner": "Building the Buy and Bite mobile app",
+  "category": "Development",
+  "tags": [
+    "Development",
+    "Mobile"
+  ],
+  "thumbnails": [
+    "/case-studies/buy-and-bite/dev-thumbnail-1.jpg",
+    "/case-studies/buy-and-bite/dev-thumbnail-2.jpg"
+  ],
+  "logo": "/case-studies/buy-and-bite/logo.png",
+  "blocks": [
+    {
+      "type": "coverImage",
+      "src": "/case-studies/buy-and-bite/dev-cover.jpg",
+      "alt": "Buy and Bite app screens",
+      "caption": "The Buy and Bite mobile app"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "type": "meta",
+          "fields": [
+            {
+              "label": "Industry",
+              "value": "Agri-commerce / Logistics & Delivery"
+            },
+            {
+              "label": "What I did",
+              "value": "Frontend Development, API Integration"
+            },
+            {
+              "label": "Platform",
+              "value": "iOS + Android (React Native)"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "body": [
+            [
+              "Built the production app from the ground up, wiring the design system to a live checkout flow, real-time order tracking, and farmer inventory sync."
+            ]
+          ],
+          "heading": "From design file to shipped app"
+        }
+      ]
+    },
+    {
+      "type": "stats",
+      "items": [
+        {
+          "value": "99.9%",
+          "label": "Uptime since launch"
+        },
+        {
+          "value": "1.8s",
+          "label": "Median cold start"
+        },
+        {
+          "value": "4",
+          "label": "Weeks to ship v1"
+        }
+      ]
+    },
+    {
+      "type": "cta",
+      "label": "View live site",
+      "href": "https://buyandbite.example.com",
+      "style": "primary"
+    }
+  ]
+}

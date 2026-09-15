@@ -10,7 +10,7 @@ import path from "node:path";
 
 const OPEN_TAG = /^\[([A-Z0-9-]+)(?::\s*(.*))?\]$/;
 const CLOSE_TAG = /^\[\/([A-Z0-9-]+)\]$/;
-const META_KEYS = ["SLUG", "NAME", "ONE-LINER", "CATEGORY", "TAGS", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO"];
+const META_KEYS = ["SLUG", "PROJECT-ID", "NAME", "ONE-LINER", "CATEGORY", "TAGS", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO"];
 
 function fail(msg, lineNum) {
   console.error(`Parse error${lineNum ? ` (line ${lineNum})` : ""}: ${msg}`);
@@ -270,6 +270,11 @@ function main() {
 
   const caseStudy = {
     slug: meta.SLUG,
+    // Groups sibling case studies (UI/UX, Branding, Development) that
+    // belong to the same underlying project so the case-study page can
+    // tab between them. Defaults to the slug itself, so a case study with
+    // no siblings behaves exactly as before.
+    projectId: meta["PROJECT-ID"] || meta.SLUG,
     name: meta.NAME ?? "",
     oneLiner: meta["ONE-LINER"] ?? "",
     category: meta.CATEGORY ?? "Product Design",
