@@ -34,9 +34,16 @@ export default async function ProjectDetail({
 
   return (
     <main className="flex flex-1 flex-col">
-      <Grid className="items-center pt-16 sm:pt-24 sm:col-span-12">
-        {project.logo && <Image src={project.logo} alt={""} width={100} height={100} className="w-10 h-10" />}
-        <h1 className="text-h1-bold">{project.name}</h1>
+      <Grid className="items-start pt-16 sm:pt-24">
+        <div className="col-span-4 flex flex-col items-start gap-4 sm:col-span-12">
+          <div className="flex items-center gap-3">
+            {project.logo && (
+              <Image src={project.logo} alt={`${project.name} logo`} width={100} height={100} className="h-10 w-10" />
+            )}
+            <h1 className="text-h1-bold">{project.name}</h1>
+          </div>
+          {project.oneLiner && <p className="max-w-[763px] text-h3 text-text-primary">{project.oneLiner}</p>}
+        </div>
       </Grid>
 
       <Grid className="pt-16 sm:pt-48">
