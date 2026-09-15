@@ -1,0 +1,41 @@
+[SLUG: buy-and-bite-brand]
+[PROJECT-ID: buy-and-bite]
+[NAME: Buy and Bite]
+[ONE-LINER: Brand identity for a farmer-to-consumer marketplace]
+[CATEGORY: Branding]
+[TAGS: Brand, Identity]
+[THUMBNAIL-1: /case-studies/buy-and-bite/brand-thumbnail-1.jpg]
+[THUMBNAIL-2: /case-studies/buy-and-bite/brand-thumbnail-2.jpg]
+[LOGO: /case-studies/buy-and-bite/logo.png]
+
+[COVER-IMAGE]
+src: /case-studies/buy-and-bite/brand-cover.jpg
+alt: Buy and Bite brand identity
+caption: The Buy and Bite visual identity
+[/COVER-IMAGE]
+
+[GRID: 2]
+[META]
+Industry: Agri-commerce / Logistics & Delivery
+What I did: Brand Strategy, Identity, Visual System
+Platform: Print + Digital
+[/META]
+[TEXT]
+Heading: A brand that feels like the harvest
+Body:
+The identity draws from the produce Buy and Bite moves every day —
+warm, earthy tones and a wordmark built to work as small as a
+delivery sticker and as large as a market banner.
+[/TEXT]
+[/GRID]
+
+[IMAGE-GRID: 2]
+- src: /case-studies/buy-and-bite/brand-1.jpg | alt: Logo lockups
+- src: /case-studies/buy-and-bite/brand-2.jpg | alt: Packaging system
+[/IMAGE-GRID]
+
+[CTA]
+Label: View live site
+Href: https://buyandbite.example.com
+Style: primary
+[/CTA]

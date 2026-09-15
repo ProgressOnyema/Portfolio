@@ -4,6 +4,11 @@ import type { ProjectWidgetData } from "@/components/ProjectWidget";
 import type { Block } from "@/lib/types/caseStudy";
 
 export type CaseStudy = ProjectWidgetData & {
+  // Groups sibling case studies (UI/UX, Branding, Development) that belong
+  // to the same underlying project, so the case-study page can tab between
+  // them. Defaults to the case study's own slug when a project only has
+  // one case study, so existing single-case-study projects need no change.
+  projectId: string;
   blocks: Block[];
 };
 
@@ -94,12 +99,12 @@ const PLACEHOLDER_BLOCKS: Block[] = [
 
 // Placeholder entries matching the 6 folder slots in Figma.
 const placeholderProjects: CaseStudy[] = [
-  { slug: "project-one", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-two", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-three", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-four", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-five", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-six", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-one", projectId: "project-one", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-two", projectId: "project-two", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-three", projectId: "project-three", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-four", projectId: "project-four", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-five", projectId: "project-five", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-six", projectId: "project-six", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development", blocks: PLACEHOLDER_BLOCKS },
 ];
 
 // Load any real case study JSON files (written by scripts/parse-case-study.mjs)
@@ -112,7 +117,11 @@ function loadRealCaseStudies(): CaseStudy[] {
   return fs
     .readdirSync(dir)
     .filter((file) => file.endsWith(".json"))
-    .map((file) => JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8")) as CaseStudy);
+    .map((file) => JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8")) as CaseStudy)
+    // Older JSON generated before PROJECT-ID existed won't have projectId —
+    // fall back to the case study's own slug so it still behaves as a
+    // standalone project instead of crashing the tab-lookup logic.
+    .map((project) => ({ ...project, projectId: project.projectId || project.slug }));
 }
 
 function mergeProjects(placeholders: CaseStudy[], real: CaseStudy[]): CaseStudy[] {
@@ -122,6 +131,22 @@ function mergeProjects(placeholders: CaseStudy[], real: CaseStudy[]): CaseStudy[
     if (existingIndex >= 0) merged[existingIndex] = project;
     else merged.push(project);
   }
+
+  // Guard against two case studies in the same project accidentally sharing
+  // a category — the tab UI can only show one case study per category, so
+  // the second one would be unreachable from the subnav.
+  const seen = new Map<string, string>();
+  for (const project of merged) {
+    const key = `${project.projectId}:${project.category}`;
+    const clashingSlug = seen.get(key);
+    if (clashingSlug) {
+      console.warn(
+        `[projects] "${clashingSlug}" and "${project.slug}" share projectId "${project.projectId}" and category "${project.category}" — only one will be reachable from the case-study tabs.`
+      );
+    }
+    seen.set(key, project.slug);
+  }
+
   return merged;
 }
 
@@ -129,4 +154,16 @@ export const projects: CaseStudy[] = mergeProjects(placeholderProjects, loadReal
 
 export function getProject(slug: string): CaseStudy | undefined {
   return projects.find((p) => p.slug === slug);
+}
+
+// Canonical left-to-right order for the case-study tabs, independent of
+// whatever order projects happen to appear in the data.
+const CATEGORY_ORDER: CaseStudy["category"][] = ["Product Design", "Branding", "Development"];
+
+// All case studies belonging to the same underlying project (i.e. sharing
+// projectId), ordered for display in the case-study page's subnav tabs.
+export function getProjectCaseStudies(projectId: string): CaseStudy[] {
+  return projects
+    .filter((p) => p.projectId === projectId)
+    .sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category));
 }
