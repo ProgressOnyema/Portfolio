@@ -1,4 +1,5 @@
 [SLUG: buy-and-bite]
+[PROJECT-ID: buy-and-bite]
 [NAME: Buy and Bite]
 [ONE-LINER: Connecting farmers and consumers]
 [CATEGORY: Product Design]
