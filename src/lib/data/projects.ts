@@ -99,12 +99,12 @@ const PLACEHOLDER_BLOCKS: Block[] = [
 
 // Placeholder entries matching the 6 folder slots in Figma.
 const placeholderProjects: CaseStudy[] = [
-  { slug: "project-one", projectId: "project-one", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-two", projectId: "project-two", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-three", projectId: "project-three", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-four", projectId: "project-four", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Branding", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-five", projectId: "project-five", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development", blocks: PLACEHOLDER_BLOCKS },
-  { slug: "project-six", projectId: "project-six", name: "Project Name", oneLiner: "One liner describing project", tags: ["UX/UI", "Brand"], category: "Development", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-one", projectId: "project-one", name: "Project Name", oneLiner: "One liner describing project", category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-two", projectId: "project-two", name: "Project Name", oneLiner: "One liner describing project", category: "Product Design", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-three", projectId: "project-three", name: "Project Name", oneLiner: "One liner describing project", category: "Branding", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-four", projectId: "project-four", name: "Project Name", oneLiner: "One liner describing project", category: "Branding", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-five", projectId: "project-five", name: "Project Name", oneLiner: "One liner describing project", category: "Development", blocks: PLACEHOLDER_BLOCKS },
+  { slug: "project-six", projectId: "project-six", name: "Project Name", oneLiner: "One liner describing project", category: "Development", blocks: PLACEHOLDER_BLOCKS },
 ];
 
 // Load any real case study JSON files (written by scripts/parse-case-study.mjs)
@@ -166,4 +166,34 @@ export function getProjectCaseStudies(projectId: string): CaseStudy[] {
   return projects
     .filter((p) => p.projectId === projectId)
     .sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category));
+}
+
+// One card per project for the homepage's featured-projects grid — a
+// project with multiple case studies (UI/UX, Branding, Development)
+// collapses to a single widget instead of one per case study. The widget
+// links to the canonical (first in CATEGORY_ORDER) case study, and lists
+// every sibling's category via caseStudyCategories so ProjectWidget's tag
+// pills (UX/UI, BRAND, /DEV — derived from category, never free text)
+// cover the whole group, not just the representative case study.
+export function getFeaturedProjects(): CaseStudy[] {
+  const seenProjectIds = new Set<string>();
+  const featured: CaseStudy[] = [];
+
+  for (const project of projects) {
+    if (seenProjectIds.has(project.projectId)) continue;
+    seenProjectIds.add(project.projectId);
+
+    const siblings = getProjectCaseStudies(project.projectId);
+    if (siblings.length === 1) {
+      featured.push(project);
+      continue;
+    }
+
+    featured.push({
+      ...siblings[0],
+      caseStudyCategories: siblings.map((s) => s.category),
+    });
+  }
+
+  return featured;
 }

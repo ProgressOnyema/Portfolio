@@ -3,7 +3,6 @@
 [NAME: Buy and Bite]
 [ONE-LINER: Brand identity for a farmer-to-consumer marketplace]
 [CATEGORY: Branding]
-[TAGS: Brand, Identity]
 [THUMBNAIL-1: /case-studies/buy-and-bite/brand-thumbnail-1.jpg]
 [THUMBNAIL-2: /case-studies/buy-and-bite/brand-thumbnail-2.jpg]
 [LOGO: /case-studies/buy-and-bite/logo.png]

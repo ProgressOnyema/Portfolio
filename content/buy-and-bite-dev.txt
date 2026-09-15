@@ -3,7 +3,6 @@
 [NAME: Buy and Bite]
 [ONE-LINER: Building the Buy and Bite mobile app]
 [CATEGORY: Development]
-[TAGS: Development, Mobile]
 [THUMBNAIL-1: /case-studies/buy-and-bite/dev-thumbnail-1.jpg]
 [THUMBNAIL-2: /case-studies/buy-and-bite/dev-thumbnail-2.jpg]
 [LOGO: /case-studies/buy-and-bite/logo.png]

@@ -15,8 +15,7 @@ Use the tags below. Every block needs an opening `[TAG]` and a matching
 [PROJECT-ID: project-slug]  (optional — see "Multiple case studies per project" below)
 [NAME: Project Name]
 [ONE-LINER: One sentence describing the project]
-[CATEGORY: Product Design]   (must be exactly: Product Design, Branding, or Development)
-[TAGS: UX/UI, Brand]
+[CATEGORY: Product Design]   (must be exactly: Product Design, Branding, or Development — this also drives the widget card's tag pill: UX/UI, BRAND, or /DEV. There is no separate tags field.)
 [THUMBNAIL-1: /case-studies/project-slug/thumbnail-1.jpg]  (optional — both are needed together, or neither is used)
 [THUMBNAIL-2: /case-studies/project-slug/thumbnail-2.jpg]  (the widget card shows these as two overlapping layers, same as the placeholder illustration; without them, the placeholder is used)
 [LOGO: /case-studies/project-slug/logo.png]                (optional — the small logo next to the name on the widget card; without it, a placeholder is used)
@@ -85,6 +84,11 @@ inert. Rules:
 - You don't need all three categories — one or two is fine. Categories
   with no matching case study just show as greyed-out, non-clickable text
   in the tabs instead of a link.
+- The homepage's featured-projects grid shows one card per project, not
+  one per case study — it links to the first case study in Product
+  Design / Branding / Development order, and its tag pills show every
+  category the project has a case study for (e.g. Buy and Bite's card
+  shows all three: UX/UI, BRAND, /DEV), not just the one it links to.
 
 ## Notes
 
