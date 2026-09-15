@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { notFound } from "next/navigation";
 import Grid from "@/components/Grid";
 import Subnav from "@/components/Subnav";
@@ -34,15 +33,17 @@ export default async function ProjectDetail({
 
   return (
     <main className="flex flex-1 flex-col">
-      <Grid className="items-start pt-16 sm:pt-24">
-        <div className="col-span-4 flex flex-col items-center gap-4 sm:col-span-12">
-          <div className="flex items-center gap-3">
-            {project.logo && (
-              <Image src={project.logo} alt={`${project.name} logo`} width={100} height={100} className="h-10 w-10" />
-            )}
-            <h1 className="text-h1-bold">{project.name}</h1>
-          </div>
-          {project.oneLiner && <p className="max-w-[763px] text-h3 text-text-primary">{project.oneLiner}</p>}
+      <Grid className="pt-16 sm:pt-24">
+        <div className="col-span-4 flex flex-col gap-4 sm:col-span-12">
+          <h1 className="text-h1-bold">{project.name}</h1>
+          {/* Distinct from the shared .text-h3 (used by Home/About): this
+              one drops to Body Regular/Base (16px) on mobile rather than
+              Body Large/Base (20px), per the ProjectDetail - Mobile frame. */}
+          {project.oneLiner && (
+            <p className="max-w-[763px] text-[16px] leading-[1.4] tracking-[-0.16px] text-text-primary sm:text-[24px] sm:leading-[1.45] sm:tracking-[-0.48px]">
+              {project.oneLiner}
+            </p>
+          )}
         </div>
       </Grid>
 
