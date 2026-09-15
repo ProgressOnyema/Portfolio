@@ -150,15 +150,39 @@ function mergeProjects(placeholders: CaseStudy[], real: CaseStudy[]): CaseStudy[
   return merged;
 }
 
-export const projects: CaseStudy[] = mergeProjects(placeholderProjects, loadRealCaseStudies());
+// Canonical left-to-right order for tag pills and tabs, independent of
+// whatever order projects happen to appear in the data.
+const CATEGORY_ORDER: CaseStudy["category"][] = ["Product Design", "Branding", "Development"];
+
+// Stamps every case study with the full set of categories its project has
+// a case study for (caseStudyCategories), so any card showing that case
+// study anywhere on the site — its own page, the /work grid under any
+// category tab, or the homepage featured grid — shows all of that
+// project's tag pills, not just the one matching the card's own category.
+// A project with one case study just gets its own category back.
+function withCaseStudyCategories(list: CaseStudy[]): CaseStudy[] {
+  const categoriesByProjectId = new Map<string, CaseStudy["category"][]>();
+  for (const project of list) {
+    const existing = categoriesByProjectId.get(project.projectId) ?? [];
+    existing.push(project.category);
+    categoriesByProjectId.set(project.projectId, existing);
+  }
+
+  return list.map((project) => ({
+    ...project,
+    caseStudyCategories: CATEGORY_ORDER.filter((c) =>
+      categoriesByProjectId.get(project.projectId)!.includes(c)
+    ),
+  }));
+}
+
+export const projects: CaseStudy[] = withCaseStudyCategories(
+  mergeProjects(placeholderProjects, loadRealCaseStudies())
+);
 
 export function getProject(slug: string): CaseStudy | undefined {
   return projects.find((p) => p.slug === slug);
 }
-
-// Canonical left-to-right order for the case-study tabs, independent of
-// whatever order projects happen to appear in the data.
-const CATEGORY_ORDER: CaseStudy["category"][] = ["Product Design", "Branding", "Development"];
 
 // All case studies belonging to the same underlying project (i.e. sharing
 // projectId), ordered for display in the case-study page's subnav tabs.
@@ -171,10 +195,9 @@ export function getProjectCaseStudies(projectId: string): CaseStudy[] {
 // One card per project for the homepage's featured-projects grid — a
 // project with multiple case studies (UI/UX, Branding, Development)
 // collapses to a single widget instead of one per case study. The widget
-// links to the canonical (first in CATEGORY_ORDER) case study, and lists
-// every sibling's category via caseStudyCategories so ProjectWidget's tag
-// pills (UX/UI, BRAND, /DEV — derived from category, never free text)
-// cover the whole group, not just the representative case study.
+// links to the canonical (first in CATEGORY_ORDER) case study; its tag
+// pills already cover the whole group via caseStudyCategories (see
+// withCaseStudyCategories above).
 export function getFeaturedProjects(): CaseStudy[] {
   const seenProjectIds = new Set<string>();
   const featured: CaseStudy[] = [];
@@ -182,17 +205,7 @@ export function getFeaturedProjects(): CaseStudy[] {
   for (const project of projects) {
     if (seenProjectIds.has(project.projectId)) continue;
     seenProjectIds.add(project.projectId);
-
-    const siblings = getProjectCaseStudies(project.projectId);
-    if (siblings.length === 1) {
-      featured.push(project);
-      continue;
-    }
-
-    featured.push({
-      ...siblings[0],
-      caseStudyCategories: siblings.map((s) => s.category),
-    });
+    featured.push(getProjectCaseStudies(project.projectId)[0]);
   }
 
   return featured;
