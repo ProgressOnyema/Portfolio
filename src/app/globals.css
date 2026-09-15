@@ -72,12 +72,20 @@ body * {
   letter-spacing: -0.96px;
 }
 
+.text-h2 {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 1.08;
+  letter-spacing: -0.96px;
+}
+
 .text-h3 {
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 24px;
   line-height: 1.45;
-  letter-spacing: -0.96px;
+  letter-spacing: -0.48px;
 }
 
 .text-h3-bold {
@@ -85,7 +93,7 @@ body * {
   font-weight: 700;
   font-size: 24px;
   line-height: 1.08;
-  letter-spacing: -0.96px;
+  letter-spacing: -0.48px;
 }
 
 .text-body-lg-base {
@@ -138,10 +146,17 @@ body * {
 }
 
 /* Responsive typography overrides — confirmed against the file's actual
-   mobile frame (Home - Mobile), not guessed. H1 stays 48px on mobile.
-   H3/H3-bold swap to the Body Large Base/Strong metrics on mobile (a
-   different named style, not a scaled-down H3). */
+   mobile frames (Home - Mobile, About - Mobile, ProjectDetail - Mobile),
+   not guessed. H1 scales down to the H2 Bold metrics on mobile (a
+   different named style, not a scaled-down H1) — it does NOT stay 48px.
+   H3/H3-bold swap to the Body Large Base/Strong metrics on mobile (also
+   a different named style, not a scaled-down H3). */
 @media (max-width: 640px) {
+  .text-h1-bold {
+    font-size: 32px;
+    line-height: 1.08;
+    letter-spacing: -0.96px;
+  }
   .text-h3 {
     font-size: 20px;
     font-weight: 400;

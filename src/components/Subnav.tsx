@@ -21,7 +21,7 @@ export default function Subnav({
   hrefs?: Partial<Record<ProjectCategory, string>>;
 }) {
   return (
-    <div className="text-body-reg-base flex flex-wrap items-start justify-center gap-3">
+    <div className="text-body-reg-base flex flex-wrap items-start gap-3">
       {CATEGORIES.map((category, i) => {
         const isActive = active === category;
         const className = `transition-colors ${
