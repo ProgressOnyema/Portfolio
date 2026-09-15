@@ -8,7 +8,6 @@ export type ProjectWidgetData = {
   slug: string;
   name: string;
   oneLiner: string;
-  tags: string[];
   category: ProjectCategory;
   /** Real cover images for the widget card, in the same two-layer
    *  arrangement as the placeholder paint-texture illustration. Falls
@@ -17,6 +16,12 @@ export type ProjectWidgetData = {
   /** Real logo shown next to the name/one-liner. Falls back to a
    *  placeholder image when not provided. */
   logo?: string;
+  /** When a project has multiple case studies (UI/UX, Branding,
+   *  Development) collapsed into one featured-projects card, this lists
+   *  every category represented so the tag pills reflect all of them
+   *  (e.g. the /DEV pill shows even though `category` itself is Product
+   *  Design). Omit for a normal single-case-study widget. */
+  caseStudyCategories?: ProjectCategory[];
 };
 
 const SIZE_CLASSES = {
@@ -44,6 +49,16 @@ const COVER_STYLE = {
   height: "33%",
 };
 
+const CATEGORY_ORDER: ProjectCategory[] = ["Product Design", "Branding", "Development"];
+
+// Every widget's tag pills come strictly from category — never free-text
+// tags — so only these three labels can ever appear.
+const CATEGORY_PILL: Record<ProjectCategory, string> = {
+  "Product Design": "UX/UI",
+  Branding: "BRAND",
+  Development: "/DEV",
+};
+
 export default function ProjectWidget({
   project,
   size = "default",
@@ -51,10 +66,12 @@ export default function ProjectWidget({
   project: ProjectWidgetData;
   size?: "default" | "lg" | "full";
 }) {
-  // Development-category projects get an extra "DEV" tag automatically,
-  // derived from category rather than requiring it in each project's data.
-  const displayTags =
-    project.category === "Development" ? [...project.tags, "/DEV"] : project.tags;
+  // For a merged multi-case-study widget, caseStudyCategories carries every
+  // category in the group, so e.g. the /DEV pill still shows even when the
+  // representative case study itself isn't the Development one. Ordered and
+  // deduped so pills are always UX/UI, then BRAND, then /DEV.
+  const categories = project.caseStudyCategories ?? [project.category];
+  const displayTags = CATEGORY_ORDER.filter((c) => categories.includes(c)).map((c) => CATEGORY_PILL[c]);
 
   return (
     <Link

@@ -4,7 +4,7 @@ import Grid from "@/components/Grid";
 import ListItem from "@/components/ListItem";
 import ProjectWidget from "@/components/ProjectWidget";
 import ContactSection from "@/components/ContactSection";
-import { projects } from "@/lib/data/projects";
+import { getFeaturedProjects } from "@/lib/data/projects";
 
 const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Frontend Development"];
 
@@ -52,8 +52,8 @@ export default function Home() {
           <AppLink variant="view-work" href="/work">All</AppLink>
         </div>
         <div className="col-span-4 grid grid-cols-1 gap-8 sm:col-span-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12">
-          {projects.map((project) => (
-            <ProjectWidget key={project.slug} project={project} size="full" />
+          {getFeaturedProjects().map((project) => (
+            <ProjectWidget key={project.projectId} project={project} size="full" />
           ))}
         </div>
       </Grid>
