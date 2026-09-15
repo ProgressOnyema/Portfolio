@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Grid from "@/components/Grid";
 import Subnav from "@/components/Subnav";
@@ -33,8 +34,9 @@ export default async function ProjectDetail({
 
   return (
     <main className="flex flex-1 flex-col">
-      <Grid className="items-center gap-y-6 pt-16 text-center sm:pt-24">
-        <h1 className="col-span-4 text-h1-bold sm:col-span-12">{project.name}</h1>
+      <Grid className="items-center pt-16 sm:pt-24 sm:col-span-12">
+        {project.logo && <Image src={project.logo} alt={""} width={100} height={100} className="w-10 h-10" />}
+        <h1 className="text-h1-bold">{project.name}</h1>
       </Grid>
 
       <Grid className="pt-16 sm:pt-48">

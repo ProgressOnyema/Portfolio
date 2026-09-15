@@ -22,12 +22,11 @@ export default function Home() {
           <div className="flex w-full max-w-[763px] flex-col items-start gap-8">
             <div className="flex flex-col gap-4">
               <h1 className="text-h1-bold">
-                Onyema Miracle,
-                <br />-  Product and Brand designer
+                Product and Brand designer
               </h1>
               <p className="text-h3 text-text-primary">
-                For over 3 years, I&apos;ve worked across product design,
-                branding, and front-end development to build visually
+                Onyema Miracle —— has worked across product design,
+                branding, and front-end development building visually
                 compelling, high-performing web and mobile experiences.
               </p>
               <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
@@ -38,7 +37,6 @@ export default function Home() {
                 ))}
               </div>
             </div>
-            {/* <ButtonPrimary href="/about">More about me</ButtonPrimary> */}
           </div>
         </div>
       </Grid>

@@ -2,7 +2,7 @@ type ListItemType = "short" | "small" | "long";
 
 const TYPE_STYLES: Record<ListItemType, { maxWidth: string; text: string }> = {
   short: { maxWidth: "sm:max-w-[350px]", text: "text-body-lg-strong" },
-  long: { maxWidth: "sm:max-w-[703px]", text: "text-body-lg-strong" },
+  long: { maxWidth: "sm:max-w-full", text: "text-body-lg-strong" },
   small: { maxWidth: "sm:max-w-[356px]", text: "text-body-reg-base" },
 };
 
