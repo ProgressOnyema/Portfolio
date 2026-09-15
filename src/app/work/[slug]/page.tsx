@@ -35,7 +35,7 @@ export default async function ProjectDetail({
   return (
     <main className="flex flex-1 flex-col">
       <Grid className="items-start pt-16 sm:pt-24">
-        <div className="col-span-4 flex flex-col items-start gap-4 sm:col-span-12">
+        <div className="col-span-4 flex flex-col items-center gap-4 sm:col-span-12">
           <div className="flex items-center gap-3">
             {project.logo && (
               <Image src={project.logo} alt={`${project.name} logo`} width={100} height={100} className="h-10 w-10" />
@@ -50,7 +50,7 @@ export default async function ProjectDetail({
         <div className="col-span-4 sm:col-span-12">
           <Subnav active={project.category} hrefs={siblingHrefs} />
         </div>
-        <div className="col-span-4 sm:col-span-12 sm:pt-16">
+        <div className="col-span-4 sm:col-span-12 sm:pt-16 pt-8">
           <BlockRenderer blocks={project.blocks} />
         </div>
       </Grid>
