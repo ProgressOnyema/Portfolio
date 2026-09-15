@@ -108,16 +108,28 @@ const placeholderProjects: CaseStudy[] = [
 ];
 
 // Load any real case study JSON files (written by scripts/parse-case-study.mjs)
-// from src/lib/data/case-studies/. Each one overrides the placeholder with
-// the matching slug, or gets appended as a new project if the slug is new.
+// from src/lib/data/case-studies/, at any depth — a project with multiple
+// case studies groups them in src/lib/data/case-studies/<project-id>/,
+// mirroring content/<project-id>/, while a single-case-study project can
+// still sit flat as src/lib/data/case-studies/<slug>.json. Each one
+// overrides the placeholder with the matching slug, or gets appended as a
+// new project if the slug is new.
+function collectJsonFiles(dir: string): string[] {
+  const results: string[] = [];
+  for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+    const entryPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) results.push(...collectJsonFiles(entryPath));
+    else if (entry.isFile() && entry.name.endsWith(".json")) results.push(entryPath);
+  }
+  return results;
+}
+
 function loadRealCaseStudies(): CaseStudy[] {
   const dir = path.join(process.cwd(), "src/lib/data/case-studies");
   if (!fs.existsSync(dir)) return [];
 
-  return fs
-    .readdirSync(dir)
-    .filter((file) => file.endsWith(".json"))
-    .map((file) => JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8")) as CaseStudy)
+  return collectJsonFiles(dir)
+    .map((filePath) => JSON.parse(fs.readFileSync(filePath, "utf-8")) as CaseStudy)
     // Older JSON generated before PROJECT-ID existed won't have projectId —
     // fall back to the case study's own slug so it still behaves as a
     // standalone project instead of crashing the tab-lookup logic.

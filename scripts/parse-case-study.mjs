@@ -286,8 +286,15 @@ function main() {
   };
 
   const outDir = path.join(process.cwd(), "src/lib/data/case-studies");
-  fs.mkdirSync(outDir, { recursive: true });
-  const outPath = path.join(outDir, `${meta.SLUG}.json`);
+  // Mirror content/'s folder structure: content/<project-id>/<slug>.txt
+  // writes to src/lib/data/case-studies/<project-id>/<slug>.json, while a
+  // flat content/<slug>.txt still writes flat, same as before.
+  const contentDir = path.join(process.cwd(), "content");
+  const relFromContent = path.relative(contentDir, path.resolve(inputPath));
+  const relSubdir = path.dirname(relFromContent);
+  const targetDir = relSubdir === "." || relSubdir.startsWith("..") ? outDir : path.join(outDir, relSubdir);
+  fs.mkdirSync(targetDir, { recursive: true });
+  const outPath = path.join(targetDir, `${meta.SLUG}.json`);
   fs.writeFileSync(outPath, JSON.stringify(caseStudy, null, 2) + "\n");
 
   // Warn about any referenced local asset paths that don't exist in public/
