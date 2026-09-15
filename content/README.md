@@ -6,7 +6,23 @@ parser to generate the JSON the site actually reads.
 ## 1. Write the .txt file
 
 Use the tags below. Every block needs an opening `[TAG]` and a matching
-`[/TAG]`. See `content/buy-and-bite.txt` for a full working example.
+`[/TAG]`. See `content/buy-and-bite/buy-and-bite.txt` for a full working
+example.
+
+**Where the file goes:**
+
+- **One case study for this project?** A flat file works fine:
+  `content/your-slug.txt`.
+- **More than one case study for the same project** (see "Multiple case
+  studies per project" below)? Put them together in a folder named after
+  the project: `content/<project-id>/<slug>.txt`. The parser mirrors
+  whatever folder structure you use in `content/` into
+  `src/lib/data/case-studies/`, so `content/buy-and-bite/buy-and-bite-brand.txt`
+  produces `src/lib/data/case-studies/buy-and-bite/buy-and-bite-brand.json` —
+  keeping a project's generated JSON grouped the same way as its source.
+  It's fine to start a project flat and move its files into a folder
+  later once it grows a second case study; just delete the old flat
+  `.json` after moving the `.txt` so a stale copy doesn't linger.
 
 **Top-level metadata** (anywhere in the file, order doesn't matter):
 
@@ -45,8 +61,15 @@ Drop them in `public/case-studies/<slug>/...` and reference that path
 node scripts/parse-case-study.mjs content/your-file.txt
 ```
 
-This writes `src/lib/data/case-studies/<slug>.json`. It also warns (but
-doesn't fail) if any referenced image path doesn't exist yet in `public/`.
+This writes the matching `.json` file under `src/lib/data/case-studies/`,
+mirroring whatever folder `your-file.txt` is in under `content/` (flat
+stays flat, `content/<project-id>/...` becomes
+`src/lib/data/case-studies/<project-id>/...`). It also warns (but doesn't
+fail) if any referenced image path doesn't exist yet in `public/`.
+
+`npm run parse-content` (or just `npm run dev` / `npm run build`, which
+run it automatically via `predev`/`prebuild`) re-parses every `.txt` file
+under `content/`, at any depth, in one go.
 
 ## 4. Preview and ship
 
@@ -57,14 +80,13 @@ it's added as a new project automatically.
 ## Multiple case studies per project
 
 A project can have more than one case study — e.g. Buy and Bite has a
-Product Design, a Branding, and a Development write-up. Each one is its
-own `.txt` file with its own `[SLUG]` and `[CATEGORY]`, but they share the
-same `[PROJECT-ID]`:
+Product Design, a Branding, and a Development write-up, grouped together
+in `content/buy-and-bite/`:
 
 ```
-content/buy-and-bite.txt        [SLUG: buy-and-bite]        [CATEGORY: Product Design]
-content/buy-and-bite-brand.txt  [SLUG: buy-and-bite-brand]  [CATEGORY: Branding]
-content/buy-and-bite-dev.txt    [SLUG: buy-and-bite-dev]    [CATEGORY: Development]
+content/buy-and-bite/buy-and-bite.txt        [SLUG: buy-and-bite]        [CATEGORY: Product Design]
+content/buy-and-bite/buy-and-bite-brand.txt  [SLUG: buy-and-bite-brand]  [CATEGORY: Branding]
+content/buy-and-bite/buy-and-bite-dev.txt    [SLUG: buy-and-bite-dev]    [CATEGORY: Development]
 ```
 
 ...each with `[PROJECT-ID: buy-and-bite]`. That's what makes the subnav
@@ -72,7 +94,8 @@ tabs on the case-study page link to each other instead of sitting there
 inert. Rules:
 
 - Every case study for the same project uses the **same `[PROJECT-ID]`**
-  (pick one slug and stick with it, usually the first case study's slug).
+  (pick one slug and stick with it, usually the first case study's slug
+  — it doesn't have to match the folder name, but it's clearest if it does).
 - Each one still needs a **different `[CATEGORY]`** — one Product Design,
   one Branding, one Development. Two case studies with the same
   `PROJECT-ID` and the same `CATEGORY` will both parse, but only one is
@@ -86,9 +109,15 @@ inert. Rules:
   in the tabs instead of a link.
 - The homepage's featured-projects grid shows one card per project, not
   one per case study — it links to the first case study in Product
-  Design / Branding / Development order, and its tag pills show every
-  category the project has a case study for (e.g. Buy and Bite's card
-  shows all three: UX/UI, BRAND, /DEV), not just the one it links to.
+  Design / Branding / Development order. Its tag pills, and every other
+  card for this project on `/work` under any tab, show every category
+  the project has a case study for (e.g. Buy and Bite's card always shows
+  all three: UX/UI, BRAND, /DEV), not just the category of that one card.
+- Grouping into a folder (`content/<project-id>/`) is purely
+  organizational — it's `[PROJECT-ID]` that actually links the case
+  studies together, not the folder. But keeping them in one folder is
+  what keeps `content/` and `src/lib/data/case-studies/` browsable once
+  you have more than a couple of multi-case-study projects.
 
 ## Notes
 
