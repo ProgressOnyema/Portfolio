@@ -17,6 +17,12 @@ export type ProjectWidgetData = {
   /** Real logo shown next to the name/one-liner. Falls back to a
    *  placeholder image when not provided. */
   logo?: string;
+  /** When a project has multiple case studies (UI/UX, Branding,
+   *  Development) collapsed into one featured-projects card, this lists
+   *  every category represented so the tag pills reflect all of them
+   *  (e.g. the /DEV pill shows even though `category` itself is Product
+   *  Design). Omit for a normal single-case-study widget. */
+  caseStudyCategories?: ProjectCategory[];
 };
 
 const SIZE_CLASSES = {
@@ -53,8 +59,11 @@ export default function ProjectWidget({
 }) {
   // Development-category projects get an extra "DEV" tag automatically,
   // derived from category rather than requiring it in each project's data.
-  const displayTags =
-    project.category === "Development" ? [...project.tags, "/DEV"] : project.tags;
+  // For a merged multi-case-study widget, caseStudyCategories carries every
+  // category in the group, so the /DEV pill still shows even when the
+  // representative case study itself isn't the Development one.
+  const categories = project.caseStudyCategories ?? [project.category];
+  const displayTags = categories.includes("Development") ? [...project.tags, "/DEV"] : project.tags;
 
   return (
     <Link

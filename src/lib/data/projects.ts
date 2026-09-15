@@ -167,3 +167,36 @@ export function getProjectCaseStudies(projectId: string): CaseStudy[] {
     .filter((p) => p.projectId === projectId)
     .sort((a, b) => CATEGORY_ORDER.indexOf(a.category) - CATEGORY_ORDER.indexOf(b.category));
 }
+
+// One card per project for the homepage's featured-projects grid — a
+// project with multiple case studies (UI/UX, Branding, Development)
+// collapses to a single widget instead of one per case study. The widget
+// links to the canonical (first in CATEGORY_ORDER) case study, shows the
+// union of every sibling's tags, and lists every sibling's category via
+// caseStudyCategories so ProjectWidget's auto tag pills (like /DEV) cover
+// the whole group, not just the representative case study.
+export function getFeaturedProjects(): CaseStudy[] {
+  const seenProjectIds = new Set<string>();
+  const featured: CaseStudy[] = [];
+
+  for (const project of projects) {
+    if (seenProjectIds.has(project.projectId)) continue;
+    seenProjectIds.add(project.projectId);
+
+    const siblings = getProjectCaseStudies(project.projectId);
+    if (siblings.length === 1) {
+      featured.push(project);
+      continue;
+    }
+
+    const primary = siblings[0];
+    const mergedTags = [...new Set(siblings.flatMap((s) => s.tags))];
+    featured.push({
+      ...primary,
+      tags: mergedTags,
+      caseStudyCategories: siblings.map((s) => s.category),
+    });
+  }
+
+  return featured;
+}
