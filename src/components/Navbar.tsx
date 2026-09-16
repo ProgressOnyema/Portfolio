@@ -39,7 +39,11 @@ export default function Navbar() {
           <ThemeToggle />
         </div>
 
-        {/* Mobile: real MobileNav component (53.875 x 51.140625) */}
+        {/* Mobile: real MobileNav component (53.875 x 51.140625). Figma's
+            MobileNavCollasped shows the same hamburger icon in the open
+            state too — it doesn't swap to an X — so this button doesn't
+            either; only its aria-expanded state and the panel below
+            change. */}
         <button
           type="button"
           onClick={() => setMobileOpen((v) => !v)}
@@ -47,18 +51,7 @@ export default function Navbar() {
           aria-expanded={mobileOpen}
           className="flex h-[51px] w-[54px] items-center justify-center text-text-primary sm:hidden"
         >
-          {mobileOpen ? (
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
-              <path
-                d="M1 1l16 16M17 1L1 17"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-              />
-            </svg>
-          ) : (
-            <MobileNavIcon />
-          )}
+          <MobileNavIcon />
         </button>
       </nav>
 
