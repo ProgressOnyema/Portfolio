@@ -128,6 +128,23 @@ body * {
   letter-spacing: -0.16px;
 }
 
+/* Subnav's category tabs (Product Design / Branding / Development): the
+   whole row shares one weight (Semi Bold) at both breakpoints — only
+   color (primary vs. muted) distinguishes the active tab, confirmed
+   against both the desktop Subnav instance (88:740, Body Regular/Strong:
+   16px/600) and its mobile counterpart (162:870, Body Small/Strong:
+   14px/600). Kept as its own token rather than reusing
+   .text-body-reg-strong/.text-body-reg-base, since those are shared by
+   several other components (ProjectWidget names, MetaBlock labels,
+   Button text, etc.) that don't scale down to 14px on mobile. */
+.text-subnav {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.4;
+  letter-spacing: -0.16px;
+}
+
 .text-body-sm-base {
   font-family: var(--font-body);
   font-weight: 400;
@@ -146,11 +163,12 @@ body * {
 }
 
 /* Responsive typography overrides — confirmed against the file's actual
-   mobile frames (Home - Mobile, About - Mobile, ProjectDetail - Mobile),
-   not guessed. H1 scales down to the H2 Bold metrics on mobile (a
-   different named style, not a scaled-down H1) — it does NOT stay 48px.
-   H3/H3-bold swap to the Body Large Base/Strong metrics on mobile (also
-   a different named style, not a scaled-down H3). */
+   mobile frames (Home - Mobile, About - Mobile, ProjectDetail - Mobile,
+   Work - Mobile), not guessed. H1 scales down to the H2 Bold metrics on
+   mobile (a different named style, not a scaled-down H1) — it does NOT
+   stay 48px. H3/H3-bold swap to the Body Large Base/Strong metrics on
+   mobile (also a different named style, not a scaled-down H3). Subnav
+   drops from Body Regular/Strong (16px) to Body Small/Strong (14px). */
 @media (max-width: 640px) {
   .text-h1-bold {
     font-size: 32px;
@@ -168,5 +186,9 @@ body * {
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: -0.4px;
+  }
+  .text-subnav {
+    font-size: 14px;
+    letter-spacing: -0.14px;
   }
 }

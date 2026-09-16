@@ -21,11 +21,14 @@ export default function Subnav({
   hrefs?: Partial<Record<ProjectCategory, string>>;
 }) {
   return (
-    <div className="text-body-reg-base flex flex-wrap items-start gap-3">
+    <div className="text-subnav flex flex-wrap items-start gap-3">
       {CATEGORIES.map((category, i) => {
         const isActive = active === category;
+        // Weight (Semi Bold) and size are uniform across the whole row —
+        // set once on the container above via .text-subnav — only color
+        // distinguishes the active tab from the rest.
         const className = `transition-colors ${
-          isActive ? "text-text-primary text-body-reg-strong" : "text-text-muted hover:text-text-primary"
+          isActive ? "text-text-primary" : "text-text-muted hover:text-text-primary"
         }`;
         const href = hrefs?.[category];
 
