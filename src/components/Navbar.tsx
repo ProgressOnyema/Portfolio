@@ -59,16 +59,19 @@ export default function Navbar() {
           Home/Me/Work/Contact at Headings/H2 size (not the compact
           desktop nav size), gap-3 (12px), active item bold. */}
       {mobileOpen && (
-        <div className="flex flex-col items-start gap-3 border-t border-border-hairline bg-surface-bg px-6 py-6 sm:hidden">
-          {LINKS.map(({ href, label }) => (
-            <Link key={href} href={href} onClick={() => setMobileOpen(false)}>
-              <NavItem label={label} active={isActive(href)} size="lg" />
-            </Link>
-          ))}
-          <a href={CONTACT_HREF} onClick={() => setMobileOpen(false)}>
-            <NavItem label="Contact" size="lg" />
-          </a>
-          <div className="mt-2">
+        <div className="flex flex-col items-start gap-4 bg-surface-bg px-6 pt-1 pb-6 sm:hidden">
+          <div className="flex flex-col items-start gap-8 py-3">
+            {LINKS.map(({ href, label }) => (
+              <Link key={href} href={href} onClick={() => setMobileOpen(false)}>
+                <NavItem label={label} active={isActive(href)} size="lg" />
+              </Link>
+              ))}
+              <a href={CONTACT_HREF} onClick={() => setMobileOpen(false)}>
+                <NavItem label="Contact" size="lg" />
+              </a> 
+          </div>
+          
+          <div>
             <ThemeToggle />
           </div>
         </div>

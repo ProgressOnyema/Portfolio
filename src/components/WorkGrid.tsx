@@ -11,15 +11,15 @@ export default function WorkGrid({ projects }: { projects: ProjectWidgetData[] }
 
   return (
     <>
-      <Grid className="pt-16 sm:pt-24">
+      <Grid className="pt-8 sm:pt-12">
         <h1 className="col-span-4 text-h1-bold sm:col-span-12">Work /</h1>
       </Grid>
 
-      <Grid className="gap-y-12 pt-16 sm:pt-24">
+      <Grid className="gap-y-8 pt-16 sm:pt-16">
         <div className="col-span-4 sm:col-span-12">
           <Subnav active={active} onSelect={setActive} />
         </div>
-        <div className="col-span-4 grid grid-cols-1 gap-x-6 gap-y-12 pt-8 sm:col-span-12 sm:grid-cols-3">
+        <div className="col-span-4 grid grid-cols-1 gap-x-6 gap-y-12 sm:col-span-12 sm:grid-cols-3">
           {filtered.map((project) => (
             <ProjectWidget key={project.slug} project={project} size="lg" />
           ))}

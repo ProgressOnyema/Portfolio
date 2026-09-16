@@ -15,9 +15,9 @@ export default function ThemeToggle() {
       className="flex items-center justify-center p-2 text-text-muted transition-colors hover:text-text-primary"
     >
       {theme === "light" ? (
-        <DarkModeIcon className="h-4 w-4" />
+        <DarkModeIcon className="h-6 w-6 sm:h-4 w-4" />
       ) : (
-        <LightModeIcon className="h-3.5 w-auto" />
+        <LightModeIcon className="h-8 w-auto sm:h-4 w-auto" />
       )}
     </button>
   );

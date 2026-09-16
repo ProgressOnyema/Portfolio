@@ -16,7 +16,7 @@ export default function Home() {
       {/* Hero — box + text as a flex row within one full-width grid cell,
           so the fixed-width decorative box never overflows a grid track */}
       <Grid className="items-start pt-16 sm:pt-24">
-        <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-row sm:gap-12">
+        <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
           <div className="h-[104px] w-[123px] shrink-0 rounded-[5px] border-6 border-border-hairline bg-surface-bg-alt" />
           <div className="flex w-full max-w-[763px] flex-col items-start gap-8">
             <div className="flex flex-col gap-4">
@@ -48,7 +48,7 @@ export default function Home() {
           <h2 className="text-body-lg-strong sm:text-h3-bold">Featured Projects</h2>
           <AppLink variant="view-work" href="/work">All</AppLink>
         </div>
-        <div className="col-span-4 grid grid-cols-1 gap-8 sm:col-span-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12">
+        <div className="col-span-4 grid grid-cols-1 gap-y-12 sm:col-span-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12">
           {getFeaturedProjects().map((project) => (
             <ProjectWidget key={project.projectId} project={project} size="full" />
           ))}
