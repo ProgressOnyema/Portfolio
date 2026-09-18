@@ -23,7 +23,7 @@ export default function Navbar() {
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="fixed top-0 left-0 z-50 w-full bg-surface-bg/80 backdrop-blur-sm sm:bg-surface-bg sm:backdrop-blur-none">
+    <header className="fixed top-0 left-0 z-50 w-full bg-surface-bg/80 backdrop-blur-lg sm:bg-surface-bg sm:backdrop-blur-none">
       <nav className="mx-auto flex h-[106px] max-w-[1440px] items-center justify-end px-5 sm:px-6 lg:px-[88px]">
         {/* Desktop links — centered, gap-12 (48px). Theme toggle is now
             part of this same row, not separately positioned. */}
@@ -57,9 +57,14 @@ export default function Navbar() {
 
       {/* Mobile dropdown — matches Figma's MobileNavCollasped component:
           Home/Me/Work/Contact at Headings/H2 size (not the compact
-          desktop nav size), gap-3 (12px), active item bold. */}
+          desktop nav size), gap-3 (12px), active item bold. No
+          background of its own — it's a child of <header>, which
+          already provides the translucent, blurred surface; painting a
+          solid bg here would sit on top of that and hide the blur for
+          this whole region, so the header's own background just shows
+          through underneath it instead. */}
       {mobileOpen && (
-        <div className="flex flex-col items-start gap-4 bg-surface-bg px-6 pt-1 pb-6 sm:hidden">
+        <div className="flex flex-col items-start gap-4 px-6 pt-1 pb-6 sm:hidden">
           <div className="flex flex-col items-start gap-8 py-3">
             {LINKS.map(({ href, label }) => (
               <Link key={href} href={href} onClick={() => setMobileOpen(false)}>
