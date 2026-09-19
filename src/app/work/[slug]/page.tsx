@@ -40,11 +40,12 @@ export default async function ProjectDetail({
       <Grid className="pt-8 sm:pt-12">
         <div className="col-span-4 flex flex-col gap-2 sm:col-span-12">
           <h1 className="text-h1-bold">{project.name}</h1>
-          {/* Distinct from the shared .text-h3 (used by Home/About): this
-              one drops to Body Regular/Base (16px) on mobile rather than
-              Body Large/Base (20px), per the ProjectDetail - Mobile frame. */}
+          {/* .text-project-oneliner, not the shared .text-h3 (used by
+              Home/About): this one drops to Body Regular/Base (16px) on
+              mobile rather than Body Large/Base (20px), per the
+              ProjectDetail - Mobile frame. */}
           {project.oneLiner && (
-            <p className="text-text-primary text-h3">
+            <p className="text-text-primary text-project-oneliner">
               {project.oneLiner}
             </p>
           )}

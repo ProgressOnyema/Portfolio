@@ -63,7 +63,11 @@ a mobile override block (`max-width: 640px`) for `.text-h3`/`.text-h3-bold`
 specifically — on mobile these swap to the *Body Large Base/Strong*
 metrics (a different named Figma style), not a scaled-down H3. This was
 confirmed against the real mobile frame, not guessed. H1 does **not**
-scale down on mobile (confirmed: stays 48px).
+scale down on mobile (confirmed: stays 48px). `.text-project-oneliner`
+(the Project Detail page's subtitle) is its own token for the same
+reason as `.text-subnav` below — it shares `.text-h3`'s desktop metrics
+but drops further, to *Body Regular/Base* (16px), on mobile, which
+`.text-h3` itself doesn't do.
 
 Font: Inter, loaded via a `<link>` tag in `layout.tsx`, not `next/font`.
 This was a build-environment workaround (the original dev sandbox

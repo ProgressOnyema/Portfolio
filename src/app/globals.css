@@ -170,6 +170,21 @@ body * {
   text-transform: uppercase;
 }
 
+/* Project Detail's one-liner (the subtitle under the project name).
+   Confirmed against the ProjectDetail - Mobile frame: this is its own
+   named style, not a reuse of the shared .text-h3 scale — desktop
+   metrics match H3 (24px), but mobile drops all the way to Body
+   Regular/Base (16px) rather than the Body Large/Base (20px) that
+   .text-h3 falls back to elsewhere. Kept separate for that reason, same
+   as .text-subnav. */
+.text-project-oneliner {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.45;
+  letter-spacing: -0.48px;
+}
+
 /* Responsive typography overrides — confirmed against the file's actual
    mobile frames (Home - Mobile, About - Mobile, ProjectDetail - Mobile,
    Work - Mobile), not guessed. H1 scales down to the H2 Bold metrics on
@@ -194,6 +209,11 @@ body * {
     font-weight: 700;
     line-height: 1.4;
     letter-spacing: -0.4px;
+  }
+  .text-project-oneliner {
+    font-size: 16px;
+    line-height: 1.4;
+    letter-spacing: -0.16px;
   }
   .text-subnav {
     font-size: 14px;
