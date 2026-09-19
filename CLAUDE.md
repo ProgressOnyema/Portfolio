@@ -220,12 +220,15 @@ filtered out; renders nothing for a single-project site), in
 — the tag pills already carry the category, and clicking through is
 the point). The row is `overflow-x-auto` with `snap-x` at all
 viewports, since fitting every other project (`lg` cards, 405.5px each)
-overflows even a wide desktop; not just a mobile-only affordance. The
-row's own wrapper (not the scroll row itself) is `overflow-hidden`, so
-the horizontal list can never bleed past the page's own width — only
-the inner `overflow-x-auto` div scrolls. No Figma frame exists for this
-section (see "Project_detail has never had real content designed in
-Figma" above) — it was designed independently, same as the rest of the
+overflows even a wide desktop; not just a mobile-only affordance. It
+also carries `.no-scrollbar` (a small utility in `globals.css`) so the
+row stays scrollable — drag, trackpad, touch swipe — without showing
+the browser's own scrollbar chrome. The row's own wrapper (not the
+scroll row itself) is `overflow-hidden`, so the horizontal list can
+never bleed past the page's own width — only the inner
+`overflow-x-auto` div scrolls. No Figma frame exists for this section
+(see "Project_detail has never had real content designed in Figma"
+above) — it was designed independently, same as the rest of the
 case-study block system.
 
 **About's "Fun Facts" paragraph** (`src/app/about/page.tsx`) is built as

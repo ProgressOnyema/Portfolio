@@ -73,7 +73,7 @@ export default async function ProjectDetail({
                 point, not reading a second description here. The wrapper
                 is overflow-hidden so the row can never bleed past the
                 page's own width — only the inner overflow-x-auto scrolls. */}
-            <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 sm:snap-none">
+            <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 sm:snap-none">
               {otherProjects.map((otherProject) => (
                 <div
                   key={otherProject.slug}

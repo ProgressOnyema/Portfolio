@@ -220,3 +220,16 @@ body * {
     letter-spacing: -0.14px;
   }
 }
+
+/* Reusable utility for a scrollable row that should stay scrollable
+   (mouse drag, trackpad, touch swipe) without showing the browser's own
+   scrollbar chrome — used by the case-study page's "Next Project" list.
+   Needs both the standard property and the WebKit pseudo-element since
+   no single rule covers Firefox/Edge and Chrome/Safari. */
+.no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
