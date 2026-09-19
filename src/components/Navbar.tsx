@@ -37,7 +37,11 @@ export default function Navbar() {
         />
       )}
 
-      <header className="fixed top-0 left-0 z-50 w-full bg-surface-bg/80 backdrop-blur-lg sm:bg-surface-bg sm:backdrop-blur-none">
+      {/* Translucent + blurred at every breakpoint now, per direct
+          instruction — this used to switch to a solid bg-surface-bg with
+          no blur at sm+ (blur was mobile-only), but that distinction has
+          been removed. */}
+      <header className="fixed top-0 left-0 z-50 w-full bg-surface-bg/80 backdrop-blur-lg">
         <nav className="mx-auto flex h-[106px] max-w-[1440px] items-center justify-end px-5 sm:px-6 lg:px-[88px]">
           {/* Desktop links — centered, gap-12 (48px). Theme toggle is now
               part of this same row, not separately positioned. */}

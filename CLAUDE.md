@@ -122,15 +122,20 @@ All pulled from the Figma Components page unless noted:
 links are right-aligned (not centered — an explicit later change).
 Labels: Home, **Me** (routes to `/about` — relabeled from "About"),
 Work, Contact (`mailto:`, not a NavItem). `ThemeToggle` sits inline in
-the same link row, not positioned separately. Mobile: a real hamburger
-icon (`MobileNavIcon`, pulled from a Figma component that was added
-mid-build — don't hand-roll this) that toggles a dropdown. **Deviates
-from Figma's `MobileNavCollasped`** (which shows the same hamburger in
-the open state) **per direct instruction**: the icon swaps to a
-`CloseIcon` (X, in `Icons.tsx`) while open, and a fixed full-page
-overlay (`bg-black/50`, `z-40`, sits under the header's `z-50`) renders
-behind the dropdown, dimming the rest of the page and closing the menu
-on click.
+the same link row, not positioned separately. The header's
+translucent + blurred surface (`bg-surface-bg/80 backdrop-blur-lg`) is
+active at every breakpoint, per direct instruction — it used to switch
+to a solid `bg-surface-bg` with no blur at `sm+` (blur was mobile-only,
+matching the git history's "Add a subtle backdrop blur to the mobile
+navbar"), but that distinction has been removed; don't reintroduce it
+without checking first. Mobile: a real hamburger icon (`MobileNavIcon`,
+pulled from a Figma component that was added mid-build — don't
+hand-roll this) that toggles a dropdown. **Deviates from Figma's
+`MobileNavCollasped`** (which shows the same hamburger in the open
+state) **per direct instruction**: the icon swaps to a `CloseIcon` (X,
+in `Icons.tsx`) while open, and a fixed full-page overlay (`bg-black/50`,
+`z-40`, sits under the header's `z-50`) renders behind the dropdown,
+dimming the rest of the page and closing the menu on click.
 - `**Button.tsx`** — `ButtonPrimary` and `ButtonSocial`. Real hover
 states from Figma (e.g. `ButtonSocial` literally shrinks 79×69 →
 59.25×51.75 on hover, not just a color change).
@@ -295,6 +300,10 @@ that doesn't exist yet under `public/`.
 dark full-page overlay behind the dropdown — Figma's
 `MobileNavCollasped` keeps the hamburger icon in both states and has no
 overlay. Per direct instruction; don't revert to match Figma.
+- Navbar's translucent/blurred surface is active at every breakpoint —
+it was originally mobile-only (solid `bg-surface-bg`, no blur, at
+`sm+`). Per direct instruction; don't reintroduce the desktop-solid
+fallback without checking first.
 - Home's Featured Projects widgets use `size="full"` with a tight 12px/
 16px gap, filling the grid row edge-to-edge — Figma currently shows
 fixed-width `lg` cards there. Figma is meant to be updated to match
