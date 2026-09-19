@@ -4,30 +4,43 @@ import Grid from "./Grid";
 import { LinkedInIcon, BehanceIcon } from "./Icons";
 
 export default function ContactSection() {
-  return (
-    <Grid className="items-end gap-y-8 py-24 sm:py-40">
-      <div className="col-span-4 flex flex-col gap-12 sm:col-span-8">
-        <p className="text-body-lg-strong sm:text-h3-bold">
-          Available for
-          <br />
-          projects
-        </p>
-        <div className="flex flex-col gap-1">
-          <p className="text-body-lg-base sm:text-h3" style={{ color: "#858585" }}>
-            Write to me
-          </p>
-          <AppLink variant="email" href="progressonyema5@gmail.com" />
-        </div>
-      </div>
+  const year = new Date().getFullYear();
 
-      <div className="col-span-4 flex items-center gap-[15px] sm:col-span-4 sm:justify-end">
-        <ButtonSocial href="https://linkedin.com" target="_blank" rel="noreferrer">
-          <LinkedInIcon />
-        </ButtonSocial>
-        <ButtonSocial href="https://behance.net" target="_blank" rel="noreferrer">
-          <BehanceIcon />
-        </ButtonSocial>
-      </div>
-    </Grid>
+  return (
+    <>
+      <Grid className="items-end gap-y-8 pt-24 pb-8 sm:pt-40 sm:pb-12">
+        <div className="col-span-4 flex flex-col gap-12 sm:col-span-8">
+          <p className="text-body-lg-strong sm:text-h3-bold">
+            Available for
+            <br />
+            projects
+          </p>
+          <div className="flex flex-col gap-1">
+            <p className="text-body-lg-base sm:text-h3" style={{ color: "#858585" }}>
+              Write to me
+            </p>
+            <AppLink variant="email" href="progressonyema5@gmail.com" />
+          </div>
+        </div>
+
+        <div className="col-span-4 flex items-center gap-[15px] sm:col-span-4 sm:justify-end">
+          <ButtonSocial href="https://linkedin.com" target="_blank" rel="noreferrer">
+            <LinkedInIcon />
+          </ButtonSocial>
+          <ButtonSocial href="https://behance.net" target="_blank" rel="noreferrer">
+            <BehanceIcon />
+          </ButtonSocial>
+        </div>
+      </Grid>
+
+      {/* Site-wide footer line. ContactSection sits at the bottom of every
+          page, so this is where the copyright notice lives rather than a
+          separate Footer component. */}
+      <Grid className="pb-8 sm:pb-12">
+        <p className="text-label col-span-4 text-text-muted sm:col-span-12">
+          © {year} Onyema Miracle. All rights reserved.
+        </p>
+      </Grid>
+    </>
   );
 }

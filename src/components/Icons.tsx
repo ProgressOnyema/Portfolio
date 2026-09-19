@@ -83,6 +83,22 @@ export function MobileNavIcon({ className = "" }: { className?: string }) {
   );
 }
 
+// CloseIcon — X shown in place of the hamburger while the mobile nav is
+// open (see Navbar.tsx). Same stroke-based approach as the other
+// currentColor icons so it adapts with theme/hover for free.
+export function CloseIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" className={className} aria-hidden="true">
+      <path
+        d="M1 1L21 21M21 1L1 21"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
 // folder_back — its fill is also color/surface/bg-alt (same theme token as
 // folder_cover), not a hardcoded color. Inlined for the same reason.
 export function FolderBackIcon({ className = "" }: { className?: string }) {

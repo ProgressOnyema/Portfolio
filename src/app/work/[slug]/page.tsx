@@ -3,8 +3,8 @@ import Grid from "@/components/Grid";
 import Subnav from "@/components/Subnav";
 import ContactSection from "@/components/ContactSection";
 import BlockRenderer from "@/components/case-study/BlockRenderer";
-import type { ProjectCategory } from "@/components/ProjectWidget";
-import { getProject, getProjectCaseStudies, projects } from "@/lib/data/projects";
+import ProjectWidget, { type ProjectCategory } from "@/components/ProjectWidget";
+import { getNextProject, getProject, getProjectCaseStudies, projects } from "@/lib/data/projects";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -31,6 +31,11 @@ export default async function ProjectDetail({
     siblingHrefs[sibling.category] = `/work/${sibling.slug}`;
   }
 
+  // What to show the visitor once they're done with this case study.
+  // Wraps to the first project after the last, and is omitted entirely
+  // for a single-project site (see getNextProject).
+  const nextProject = getNextProject(project.projectId);
+
   return (
     <main className="flex flex-1 flex-col">
       <Grid className="pt-8 sm:pt-12">
@@ -55,6 +60,15 @@ export default async function ProjectDetail({
           <BlockRenderer blocks={project.blocks} />
         </div>
       </Grid>
+
+      {nextProject && (
+        <Grid className="gap-y-8 pt-24 sm:pt-32">
+          <h2 className="col-span-4 text-h2-bold sm:col-span-12">Next Project</h2>
+          <div className="col-span-4 sm:col-span-4">
+            <ProjectWidget project={nextProject} size="lg" />
+          </div>
+        </Grid>
+      )}
 
       <ContactSection />
     </main>

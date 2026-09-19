@@ -120,7 +120,13 @@ Labels: Home, **Me** (routes to `/about` — relabeled from "About"),
 Work, Contact (`mailto:`, not a NavItem). `ThemeToggle` sits inline in
 the same link row, not positioned separately. Mobile: a real hamburger
 icon (`MobileNavIcon`, pulled from a Figma component that was added
-mid-build — don't hand-roll this) that toggles a dropdown.
+mid-build — don't hand-roll this) that toggles a dropdown. **Deviates
+from Figma's `MobileNavCollasped`** (which shows the same hamburger in
+the open state) **per direct instruction**: the icon swaps to a
+`CloseIcon` (X, in `Icons.tsx`) while open, and a fixed full-page
+overlay (`bg-black/50`, `z-40`, sits under the header's `z-50`) renders
+behind the dropdown, dimming the rest of the page and closing the menu
+on click.
 - `**Button.tsx`** — `ButtonPrimary` and `ButtonSocial`. Real hover
 states from Figma (e.g. `ButtonSocial` literally shrinks 79×69 →
 59.25×51.75 on hover, not just a color change).
@@ -156,17 +162,23 @@ next to the name). Development-category projects automatically get a
 third tag chip, `"DEV"`, derived from `category` rather than requiring
 it in each project's `tags` array.
 - `**Icons.tsx`** — every icon (LinkedIn, Behance, arrow/chevron,
-document/PDF, hamburger, dark/light mode) is inlined as a React
+document/PDF, hamburger, close/X, dark/light mode) is inlined as a React
 component with `fill="currentColor"`, not referenced via `<img src>`.
 This is deliberate: an externally-loaded SVG can't inherit `currentColor`
 from the page, which breaks theme/hover adaptation. The original Figma
 assets were hardcoded to specific hex colors (that happened to match
 one theme's token value) and were patched to `currentColor` before
-being inlined. `EafcIcon.tsx` is separate (too complex to retype as
+being inlined. `CloseIcon` is the exception — it has no Figma source
+(added directly for the mobile nav's open state) and uses `stroke`
+rather than `fill`. `EafcIcon.tsx` is separate (too complex to retype as
 clean JSX) — it stores the raw SVG markup as a string and renders via
 `dangerouslySetInnerHTML`.
 - `**ContactSection.tsx**` — shared between Home and About (identical
-pattern in Figma), rather than duplicated.
+pattern in Figma), rather than duplicated. Also doubles as the site's
+footer — since it renders at the bottom of every page — and now carries
+a `© {year} Onyema Miracle. All rights reserved.` line beneath the main
+contact content (`.text-label`, `text-text-muted`). There's no separate
+`Footer.tsx`; this is deliberate rather than a gap.
 - `**WorkGrid.tsx**` — client component owning the Subnav tab state and
 the filtered project grid together, since they need to share state
 across what would otherwise be two separate page sections.
@@ -188,7 +200,14 @@ or Certifications section (removed from the design).
 `ProjectWidget` grid, `size="lg"`), `ContactSection`.
 - `**/work/[slug]**` — case study detail page. Statically generated via
 `generateStaticParams` from `src/lib/data/projects.ts`. Real 404 via
-`notFound()` for unknown slugs.
+`notFound()` for unknown slugs. Ends with a "Next Project" section (one
+`ProjectWidget`, `size="lg"`) before `ContactSection`, powered by
+`getNextProject()` in `src/lib/data/projects.ts` — walks the same
+one-card-per-project order as `getFeaturedProjects()` and wraps to the
+first project after the last; renders nothing for a single-project
+site. No Figma frame exists for this section (see "Project_detail has
+never had real content designed in Figma" above) — it was designed
+independently, same as the rest of the case-study block system.
 
 **About's "Fun Facts" paragraph** (`src/app/about/page.tsx`) is built as
 one real `<p>` with inline-block images mixed directly into the text
@@ -250,6 +269,10 @@ that doesn't exist yet under `public/`.
 ## Known deviations from Figma (intentional — don't "fix" without asking)
 
 - 88px wide-screen margin instead of Figma's 96px.
+- Mobile nav icon swaps hamburger → X (`CloseIcon`) when open, plus a
+dark full-page overlay behind the dropdown — Figma's
+`MobileNavCollasped` keeps the hamburger icon in both states and has no
+overlay. Per direct instruction; don't revert to match Figma.
 - Home's Featured Projects widgets use `size="full"` with a tight 12px/
 16px gap, filling the grid row edge-to-edge — Figma currently shows
 fixed-width `lg` cards there. Figma is meant to be updated to match
