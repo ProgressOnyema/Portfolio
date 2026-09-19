@@ -23,6 +23,16 @@ export type ImageGridBlock = {
   images: ImageGridImage[];
 };
 
+// Same shape as ImageGridBlock, rendered as a real static CSS grid
+// instead of the auto-scrolling marquee — kept as a separate block type
+// (rather than a variant flag on ImageGridBlock) so both remain
+// available as distinct authoring options.
+export type ImageGridStaticBlock = {
+  type: "imageGridStatic";
+  columns: 1 | 2 | 3;
+  images: ImageGridImage[];
+};
+
 // Label/value content (Industry, What I did, Platform, etc.) - just
 // content like any other block, no built-in layout/positioning of its own.
 export type MetaField = {
@@ -100,6 +110,7 @@ export type CtaBlock = {
 export type Block =
   | TextBlock
   | ImageGridBlock
+  | ImageGridStaticBlock
   | MetaBlock
   | MediaTextBlock
   | GridBlock

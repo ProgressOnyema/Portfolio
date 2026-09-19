@@ -226,17 +226,22 @@ category, and clicking through is the point). **No heading** and
 **genuinely full-bleed**, both per direct instruction: this section
 does not sit inside `<Grid>` (which caps at `max-w-1440` and centers),
 so the row can scroll edge-to-edge instead of being cropped at the
-page's own column width. It keeps `Grid`'s left gutter as padding
-(`pl-5 sm:pl-6 lg:pl-[88px]`) so the first card still lines up with the
-rest of the page at rest, has no right padding so scrolling runs to
-the actual viewport edge, and ends with a spacer div matching that same
-gutter so the last card gets equivalent breathing room on the way out.
-It also carries `.no-scrollbar` (a small utility in `globals.css`) so
-the row stays scrollable — drag, trackpad, touch swipe — without
-showing the browser's own scrollbar chrome. No Figma frame exists for
-this section (see "Project_detail has never had real content designed
-in Figma" above) — it was designed independently, same as the rest of
-the case-study block system.
+page's own column width. Left padding matches `Grid`'s *effective* left
+inset, not just its raw `88px` gutter at `lg`: `lg:pl-[max(88px,
+calc((100vw-1440px)/2+88px))]` — the same value `Grid` itself arrives
+at once `mx-auto` starts centering its `max-w-1440` box on screens
+wider than 1440px, so the first card lines up with the rest of the page
+at *any* width, not just below the 1440px cap (a plain `lg:pl-[88px]`
+would drift out of alignment on wide monitors). No right padding, so
+scrolling runs to the actual viewport edge, and the row ends with a
+spacer div using that same `max()`/`calc()` value so the last card gets
+equivalent breathing room on the way out. It also carries
+`.no-scrollbar` (a small utility in `globals.css`) so the row stays
+scrollable — drag, trackpad, touch swipe — without showing the
+browser's own scrollbar chrome. No Figma frame exists for this section
+(see "Project_detail has never had real content designed in Figma"
+above) — it was designed independently, same as the rest of the
+case-study block system.
 
 **About's "Fun Facts" paragraph** (`src/app/about/page.tsx`) is built as
 one real `<p>` with inline-block images mixed directly into the text
@@ -251,15 +256,16 @@ Since Figma has no real Project_detail design, case studies are built
 from a block schema designed independently (types in
 `src/lib/types/caseStudy.ts`, components in `src/components/case-study/`).
 
-**10 block types:** `text` (rich — `body` is `Paragraph[]`, each paragraph
+**11 block types:** `text` (rich — `body` is `Paragraph[]`, each paragraph
 an array of spans that are either plain strings or `{ text, emphasis }`
-for italics), `imageGrid`, `meta` (label/value pairs, e.g. Industry/What I
-did/Platform), `grid` (generic layout wrapper — arranges any other blocks,
-including nested grids, into N columns; this is what lets a `meta` block
-sit beside a `text` block instead of stacking), `mediaText` (image +
-heading + body as one unit), `video`, `stats`, `coverImage`, `quote`
-(testimonial with attribution — distinct from `text`'s `pullQuote`
-variant, which is just your own emphasized text), `cta`.
+for italics), `imageGrid`, `imageGridStatic`, `meta` (label/value pairs,
+e.g. Industry/What I did/Platform), `grid` (generic layout wrapper —
+arranges any other blocks, including nested grids, into N columns; this
+is what lets a `meta` block sit beside a `text` block instead of
+stacking), `mediaText` (image + heading + body as one unit), `video`,
+`stats`, `coverImage`, `quote` (testimonial with attribution — distinct
+from `text`'s `pullQuote` variant, which is just your own emphasized
+text), `cta`.
 
 `BlockRenderer.tsx` exports a `renderBlock()` dispatch function used both
 by itself (top-level list) and by `GridBlock.tsx` (nested items) — the two
@@ -281,13 +287,26 @@ fight with any column layout.
 grid**. Per direct instruction it's a continuously auto-scrolling
 horizontal marquee at every breakpoint (`.animate-marquee` in
 `globals.css`, paused on hover via
-`hover:[animation-play-state:paused]`). `block.columns` (`1 | 2 | 3`) is
-intentionally unused now — kept only so older content specifying it
-still validates against the type. The image list renders twice
-back-to-back so the CSS animation can loop seamlessly at `-50%`
-`translateX` instead of snapping back to the start; the second copy is
-`aria-hidden` with empty `alt` so screen readers don't announce every
-image twice.
+`hover:[animation-play-state:paused]`), with large images (360px
+mobile / 480px `sm+`) that scroll genuinely edge-to-edge on any
+viewport — not just to the edge of `Grid`'s own `max-w-1440` column.
+That needs the standard "break out of a centered container" trick
+(`relative left-1/2 right-1/2 mx-[-50vw] w-screen`), not a plain
+negative margin sized to `Grid`'s padding — a plain negative margin
+only cancels the local gutter and would still stop at the 1440 cap on
+wide screens. `block.columns` (`1 | 2 | 3`) is intentionally unused now
+— kept only so older content specifying it still validates against the
+type. The image list renders twice back-to-back so the CSS animation
+can loop seamlessly at `-50%` `translateX` instead of snapping back to
+the start; the second copy is `aria-hidden` with empty `alt` so screen
+readers don't announce every image twice.
+
+**`imageGridStatic`** (`ImageGridStatic.tsx`) — the classic layout
+`imageGrid` used before it became a marquee, kept as its own block type
+so both remain available as authoring options: a real CSS grid,
+`grid-cols-1` on mobile regardless of `columns`, then the requested
+column count (1/2/3) at `sm+`. Same `ImageGridImage[]` shape as
+`imageGrid`.
 
 ## Content authoring pipeline
 

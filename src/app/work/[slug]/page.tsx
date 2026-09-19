@@ -67,14 +67,18 @@ export default async function ProjectDetail({
               sit inside <Grid> (which caps at max-w-1440 and centers), so
               the row can scroll genuinely edge-to-edge instead of being
               cropped at the page's own column width. Left padding still
-              matches Grid's gutter so the first card lines up with the
-              rest of the page at rest; no right padding, so scrolling
-              runs to the actual viewport edge. The trailing spacer gives
-              the last card the same breathing room on the way out.
-              hideMeta drops the logo/name/one-liner row — the tag pills
-              already carry the category, and clicking through is the
-              point, not reading a second description here. */}
-          <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 pl-5 sm:snap-none sm:pl-6 lg:pl-[88px]">
+              matches Grid's *effective* left inset — not just its 88px
+              gutter, but max(88px, (100vw-1440px)/2 + 88px), the same
+              value Grid arrives at once mx-auto starts centering it on
+              screens wider than 1440px — so the first card lines up with
+              the rest of the page at any width, not just below the
+              1440px cap. No right padding, so scrolling runs to the
+              actual viewport edge. The trailing spacer gives the last
+              card that same breathing room on the way out. hideMeta
+              drops the logo/name/one-liner row — the tag pills already
+              carry the category, and clicking through is the point, not
+              reading a second description here. */}
+          <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 pl-5 sm:snap-none sm:pl-6 lg:pl-[max(88px,calc((100vw-1440px)/2+88px))]">
             {otherProjects.map((otherProject) => (
               <div
                 key={otherProject.slug}
@@ -83,7 +87,10 @@ export default async function ProjectDetail({
                 <ProjectWidget project={otherProject} size="lg" hideMeta />
               </div>
             ))}
-            <div className="w-5 shrink-0 sm:w-6 lg:w-[88px]" aria-hidden="true" />
+            <div
+              className="w-5 shrink-0 sm:w-6 lg:w-[max(88px,calc((100vw-1440px)/2+88px))]"
+              aria-hidden="true"
+            />
           </div>
         </div>
       )}
