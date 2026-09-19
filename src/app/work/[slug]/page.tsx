@@ -62,29 +62,30 @@ export default async function ProjectDetail({
       </Grid>
 
       {otherProjects.length > 0 && (
-        <Grid className="gap-y-8 pt-24 sm:pt-32">
-          <h3 className="col-span-4 text-h3-bold sm:col-span-12">Next Project</h3>
-          <div className="col-span-4 overflow-hidden sm:col-span-12">
-            {/* Horizontal list of every other project — scrolls on any
-                viewport where the cards don't all fit, mobile included
-                (snap-x makes that scroll land cleanly on a card). Cards
-                hide their name/logo row (hideMeta) since the tag pills
-                already identify the category and clicking through is the
-                point, not reading a second description here. The wrapper
-                is overflow-hidden so the row can never bleed past the
-                page's own width — only the inner overflow-x-auto scrolls. */}
-            <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 sm:snap-none">
-              {otherProjects.map((otherProject) => (
-                <div
-                  key={otherProject.slug}
-                  className="w-[260px] shrink-0 snap-start sm:w-[405.5px]"
-                >
-                  <ProjectWidget project={otherProject} size="lg" hideMeta />
-                </div>
-              ))}
-            </div>
+        <div className="pt-24 sm:pt-32">
+          {/* Full-bleed on purpose, per direct instruction — this doesn't
+              sit inside <Grid> (which caps at max-w-1440 and centers), so
+              the row can scroll genuinely edge-to-edge instead of being
+              cropped at the page's own column width. Left padding still
+              matches Grid's gutter so the first card lines up with the
+              rest of the page at rest; no right padding, so scrolling
+              runs to the actual viewport edge. The trailing spacer gives
+              the last card the same breathing room on the way out.
+              hideMeta drops the logo/name/one-liner row — the tag pills
+              already carry the category, and clicking through is the
+              point, not reading a second description here. */}
+          <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 pl-5 sm:snap-none sm:pl-6 lg:pl-[88px]">
+            {otherProjects.map((otherProject) => (
+              <div
+                key={otherProject.slug}
+                className="w-[260px] shrink-0 snap-start sm:w-[405.5px]"
+              >
+                <ProjectWidget project={otherProject} size="lg" hideMeta />
+              </div>
+            ))}
+            <div className="w-5 shrink-0 sm:w-6 lg:w-[88px]" aria-hidden="true" />
           </div>
-        </Grid>
+        </div>
       )}
 
       <ContactSection />

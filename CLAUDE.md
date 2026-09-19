@@ -216,25 +216,27 @@ or Certifications section (removed from the design).
 `ProjectWidget` grid, `size="lg"`), `ContactSection`.
 - `**/work/[slug]**` — case study detail page. Statically generated via
 `generateStaticParams` from `src/lib/data/projects.ts`. Real 404 via
-`notFound()` for unknown slugs. Ends with a "Next Project" section
-before `ContactSection`: a horizontal list of every *other* project
-(`getOtherProjects()` in `src/lib/data/projects.ts` — same
-one-card-per-project order as `getFeaturedProjects()`, current project
-filtered out; renders nothing for a single-project site), in
-`ProjectWidget`s with `hideMeta` set (hides the logo/name/one-liner row
-— the tag pills already carry the category, and clicking through is
-the point). The row is `overflow-x-auto` with `snap-x` at all
-viewports, since fitting every other project (`lg` cards, 405.5px each)
-overflows even a wide desktop; not just a mobile-only affordance. It
-also carries `.no-scrollbar` (a small utility in `globals.css`) so the
-row stays scrollable — drag, trackpad, touch swipe — without showing
-the browser's own scrollbar chrome. The row's own wrapper (not the
-scroll row itself) is `overflow-hidden`, so the horizontal list can
-never bleed past the page's own width — only the inner
-`overflow-x-auto` div scrolls. No Figma frame exists for this section
-(see "Project_detail has never had real content designed in Figma"
-above) — it was designed independently, same as the rest of the
-case-study block system.
+`notFound()` for unknown slugs. Ends with a "Next Project" list before
+`ContactSection`: every *other* project (`getOtherProjects()` in
+`src/lib/data/projects.ts` — same one-card-per-project order as
+`getFeaturedProjects()`, current project filtered out; renders nothing
+for a single-project site), in `ProjectWidget`s with `hideMeta` set
+(hides the logo/name/one-liner row — the tag pills already carry the
+category, and clicking through is the point). **No heading** and
+**genuinely full-bleed**, both per direct instruction: this section
+does not sit inside `<Grid>` (which caps at `max-w-1440` and centers),
+so the row can scroll edge-to-edge instead of being cropped at the
+page's own column width. It keeps `Grid`'s left gutter as padding
+(`pl-5 sm:pl-6 lg:pl-[88px]`) so the first card still lines up with the
+rest of the page at rest, has no right padding so scrolling runs to
+the actual viewport edge, and ends with a spacer div matching that same
+gutter so the last card gets equivalent breathing room on the way out.
+It also carries `.no-scrollbar` (a small utility in `globals.css`) so
+the row stays scrollable — drag, trackpad, touch swipe — without
+showing the browser's own scrollbar chrome. No Figma frame exists for
+this section (see "Project_detail has never had real content designed
+in Figma" above) — it was designed independently, same as the rest of
+the case-study block system.
 
 **About's "Fun Facts" paragraph** (`src/app/about/page.tsx`) is built as
 one real `<p>` with inline-block images mixed directly into the text
@@ -265,6 +267,27 @@ files import from each other. **This is intentional and safe** (a
 standard recursive-tree-renderer pattern); it works because both modules
 only reference each other's exports at render time, not at module-eval
 time. Don't "fix" this into a single file without reason.
+
+**`coverImage`** — full-bleed on mobile only, per direct instruction: a
+negative margin + extra width (`-mx-5 w-[calc(100%+2.5rem)]`, reverting
+to `mx-0 w-full` at `sm+`) cancels out `Grid`'s own `px-5` mobile gutter
+so the image touches both screen edges below `sm`. Rounded corners are
+`sm:rounded-md` only, for the same reason — rounding a full-bleed edge
+would look wrong. `coverImage` is always a top-level block in the real
+content (never nested inside a `grid` block's columns), so this doesn't
+fight with any column layout.
+
+**`imageGrid`** — despite the block/type name, this is **not a CSS
+grid**. Per direct instruction it's a continuously auto-scrolling
+horizontal marquee at every breakpoint (`.animate-marquee` in
+`globals.css`, paused on hover via
+`hover:[animation-play-state:paused]`). `block.columns` (`1 | 2 | 3`) is
+intentionally unused now — kept only so older content specifying it
+still validates against the type. The image list renders twice
+back-to-back so the CSS animation can loop seamlessly at `-50%`
+`translateX` instead of snapping back to the start; the second copy is
+`aria-hidden` with empty `alt` so screen readers don't announce every
+image twice.
 
 ## Content authoring pipeline
 
