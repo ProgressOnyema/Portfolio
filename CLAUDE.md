@@ -160,7 +160,9 @@ in the same two-layer position — **not one flat image**, matches the
 placeholder's two-layer arrangement) and `logo` (the small 39x39 image
 next to the name). Development-category projects automatically get a
 third tag chip, `"DEV"`, derived from `category` rather than requiring
-it in each project's `tags` array.
+it in each project's `tags` array. `hideMeta` (default `false`) hides
+the logo/name/one-liner row below the folder artwork — used by the
+case-study page's "Next Project" list.
 - `**Icons.tsx`** — every icon (LinkedIn, Behance, arrow/chevron,
 document/PDF, hamburger, close/X, dark/light mode) is inlined as a React
 component with `fill="currentColor"`, not referenced via `<img src>`.
@@ -200,14 +202,19 @@ or Certifications section (removed from the design).
 `ProjectWidget` grid, `size="lg"`), `ContactSection`.
 - `**/work/[slug]**` — case study detail page. Statically generated via
 `generateStaticParams` from `src/lib/data/projects.ts`. Real 404 via
-`notFound()` for unknown slugs. Ends with a "Next Project" section (one
-`ProjectWidget`, `size="lg"`) before `ContactSection`, powered by
-`getNextProject()` in `src/lib/data/projects.ts` — walks the same
-one-card-per-project order as `getFeaturedProjects()` and wraps to the
-first project after the last; renders nothing for a single-project
-site. No Figma frame exists for this section (see "Project_detail has
-never had real content designed in Figma" above) — it was designed
-independently, same as the rest of the case-study block system.
+`notFound()` for unknown slugs. Ends with a "Next Project" section
+before `ContactSection`: a horizontal list of every *other* project
+(`getOtherProjects()` in `src/lib/data/projects.ts` — same
+one-card-per-project order as `getFeaturedProjects()`, current project
+filtered out; renders nothing for a single-project site), in
+`ProjectWidget`s with `hideMeta` set (hides the logo/name/one-liner row
+— the tag pills already carry the category, and clicking through is
+the point). The row is `overflow-x-auto` with `snap-x` at all
+viewports, since fitting every other project (`lg` cards, 405.5px each)
+overflows even a wide desktop; not just a mobile-only affordance. No
+Figma frame exists for this section (see "Project_detail has never had
+real content designed in Figma" above) — it was designed independently,
+same as the rest of the case-study block system.
 
 **About's "Fun Facts" paragraph** (`src/app/about/page.tsx`) is built as
 one real `<p>` with inline-block images mixed directly into the text

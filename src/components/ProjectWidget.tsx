@@ -62,9 +62,14 @@ const CATEGORY_PILL: Record<ProjectCategory, string> = {
 export default function ProjectWidget({
   project,
   size = "default",
+  hideMeta = false,
 }: {
   project: ProjectWidgetData;
   size?: "default" | "lg" | "full";
+  /** Hides the logo/name/one-liner row below the folder artwork — used
+   *  by the case-study page's "Next Project" list, where the project
+   *  name is redundant with the tag pills already shown on the card. */
+  hideMeta?: boolean;
 }) {
   // For a merged multi-case-study widget, caseStudyCategories carries every
   // category in the group, so e.g. the /DEV pill still shows even when the
@@ -124,25 +129,27 @@ export default function ProjectWidget({
       </div>
 
       {/* project_meta */}
-      <div className="flex h-[47px] items-center gap-2">
-        {/* project logo — falls back to placeholder artwork until the
-            project has a real logo */}
-        <div className="relative size-[39px] shrink-0 overflow-hidden rounded-[12px] bg-surface-bg-alt">
-          <Image
-            src={project.logo ?? "/folder-assets/folder_image1.png"}
-            alt=""
-            fill
-            className="object-cover"
-            sizes="39px"
-          />
+      {!hideMeta && (
+        <div className="flex h-[47px] items-center gap-2">
+          {/* project logo — falls back to placeholder artwork until the
+              project has a real logo */}
+          <div className="relative size-[39px] shrink-0 overflow-hidden rounded-[12px] bg-surface-bg-alt">
+            <Image
+              src={project.logo ?? "/folder-assets/folder_image1.png"}
+              alt=""
+              fill
+              className="object-cover"
+              sizes="39px"
+            />
+          </div>
+          <div className="flex flex-1 flex-col justify-center overflow-hidden">
+            <p className="text-body-reg-strong truncate">{project.name}</p>
+            <p className="text-body-sm-base truncate text-text-muted">
+              {project.oneLiner}
+            </p>
+          </div>
         </div>
-        <div className="flex flex-1 flex-col justify-center overflow-hidden">
-          <p className="text-body-reg-strong truncate">{project.name}</p>
-          <p className="text-body-sm-base truncate text-text-muted">
-            {project.oneLiner}
-          </p>
-        </div>
-      </div>
+      )}
     </Link>
   );
 }

@@ -223,17 +223,10 @@ export function getFeaturedProjects(): CaseStudy[] {
   return featured;
 }
 
-// The project to link to from the bottom of a case-study page, so a
-// visitor who finishes reading has somewhere to go next. Walks the same
-// one-card-per-project order as getFeaturedProjects() and wraps back to
-// the first project after the last one. Returns undefined for a
-// single-project site, where there's nothing else to point to.
-export function getNextProject(projectId: string): CaseStudy | undefined {
-  const featured = getFeaturedProjects();
-  if (featured.length <= 1) return undefined;
-
-  const currentIndex = featured.findIndex((p) => p.projectId === projectId);
-  if (currentIndex === -1) return undefined;
-
-  return featured[(currentIndex + 1) % featured.length];
+// Every other project, for the horizontal "Next Project" list at the
+// bottom of a case-study page — the whole set to browse, not one single
+// pick. Same one-card-per-project order as getFeaturedProjects(), with
+// the current project filtered out. Empty for a single-project site.
+export function getOtherProjects(projectId: string): CaseStudy[] {
+  return getFeaturedProjects().filter((p) => p.projectId !== projectId);
 }
