@@ -84,16 +84,17 @@ export function MobileNavIcon({ className = "" }: { className?: string }) {
 }
 
 // CloseIcon — X shown in place of the hamburger while the mobile nav is
-// open (see Navbar.tsx). Same stroke-based approach as the other
-// currentColor icons so it adapts with theme/hover for free.
+// open (see Navbar.tsx). Same 3.5-unit bar thickness as MobileNavIcon
+// (22x20 viewBox, square line caps) so the two icons read as the same
+// weight when they swap.
 export function CloseIcon({ className = "" }: { className?: string }) {
   return (
-    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" className={className} aria-hidden="true">
+    <svg width="22" height="20" viewBox="0 0 22 20" fill="none" className={className} aria-hidden="true">
       <path
-        d="M1 1L21 21M21 1L1 21"
+        d="M1.5 1L20.5 19M20.5 1L1.5 19"
         stroke="currentColor"
-        strokeWidth="2"
-        strokeLinecap="round"
+        strokeWidth="3.5"
+        strokeLinecap="square"
       />
     </svg>
   );

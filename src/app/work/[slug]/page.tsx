@@ -63,8 +63,8 @@ export default async function ProjectDetail({
 
       {nextProject && (
         <Grid className="gap-y-8 pt-24 sm:pt-32">
-          <h2 className="col-span-4 text-h2-bold sm:col-span-12">Next Project</h2>
-          <div className="col-span-4 sm:col-span-4">
+          <h3 className="col-span-4 text-h3-bold sm:col-span-12">Next Project</h3>
+          <div className="col-span-4 flex sm:col-span-12 sm:justify-end">
             <ProjectWidget project={nextProject} size="lg" />
           </div>
         </Grid>
