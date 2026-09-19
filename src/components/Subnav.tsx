@@ -16,13 +16,21 @@ export default function Subnav({
   // onSelect wins.
   onSelect?: (category: ProjectCategory) => void;
   // Tab mode (used on a case-study page): each entry links to the sibling
-  // case study for that category. A category with no entry here has no
-  // case study for this project and renders inert.
+  // case study for that category. Only categories with an entry here are
+  // rendered at all — a project with one case study just shows its own
+  // category, not the other two grayed out.
   hrefs?: Partial<Record<ProjectCategory, string>>;
 }) {
+  // Filter mode always shows the full set (it's filtering across every
+  // project, not describing one project's own categories). Tab mode only
+  // shows what this project actually has.
+  const visibleCategories = onSelect
+    ? CATEGORIES
+    : CATEGORIES.filter((category) => hrefs?.[category] !== undefined);
+
   return (
     <div className="text-subnav flex flex-wrap items-start gap-3">
-      {CATEGORIES.map((category, i) => {
+      {visibleCategories.map((category, i) => {
         const isActive = active === category;
         // Weight (Semi Bold) and size are uniform across the whole row —
         // set once on the container above via .text-subnav — only color
@@ -42,16 +50,14 @@ export default function Subnav({
               <span className={className} aria-current="page">
                 {category}
               </span>
-            ) : href ? (
-              <Link href={href} className={className}>
+            ) : (
+              // href is guaranteed here: visibleCategories already excludes
+              // any category without one in tab mode.
+              <Link href={href!} className={className}>
                 {category}
               </Link>
-            ) : (
-              <span className={`${className} cursor-default opacity-40 hover:text-text-muted`} aria-disabled="true">
-                {category}
-              </span>
             )}
-            {i < CATEGORIES.length - 1 && <span className="text-text-muted">/</span>}
+            {i < visibleCategories.length - 1 && <span className="text-text-muted">/</span>}
           </span>
         );
       })}

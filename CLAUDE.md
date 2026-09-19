@@ -142,8 +142,13 @@ replicating that.
 - `**Subnav.tsx**` — **this is an interactive tab component, not a
 breadcrumb.** Clicking a category (Product Design / Branding /
 Development) filters the visible projects. `onSelect` is optional —
-when omitted, it renders as read-only text (used on the project detail
-page, where it shouldn't act as a filter).
+when omitted (tab mode, used on the project detail page), it renders as
+read-only links via `hrefs` instead of a filter, and **only shows the
+categories a project actually has a case study for** — a
+single-case-study project shows just its own category, not the other
+two grayed out. `onSelect` mode (`/work`) always shows all three, since
+it's filtering across every project rather than describing one
+project's own categories.
 - `**ListItem.tsx`** — Short/Small/Long width variants x active/inactive
 background state.
 - `**ExperienceDesc.tsx**` — not currently used anywhere (About's
@@ -215,10 +220,13 @@ filtered out; renders nothing for a single-project site), in
 — the tag pills already carry the category, and clicking through is
 the point). The row is `overflow-x-auto` with `snap-x` at all
 viewports, since fitting every other project (`lg` cards, 405.5px each)
-overflows even a wide desktop; not just a mobile-only affordance. No
-Figma frame exists for this section (see "Project_detail has never had
-real content designed in Figma" above) — it was designed independently,
-same as the rest of the case-study block system.
+overflows even a wide desktop; not just a mobile-only affordance. The
+row's own wrapper (not the scroll row itself) is `overflow-hidden`, so
+the horizontal list can never bleed past the page's own width — only
+the inner `overflow-x-auto` div scrolls. No Figma frame exists for this
+section (see "Project_detail has never had real content designed in
+Figma" above) — it was designed independently, same as the rest of the
+case-study block system.
 
 **About's "Fun Facts" paragraph** (`src/app/about/page.tsx`) is built as
 one real `<p>` with inline-block images mixed directly into the text

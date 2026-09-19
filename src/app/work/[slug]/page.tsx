@@ -64,13 +64,15 @@ export default async function ProjectDetail({
       {otherProjects.length > 0 && (
         <Grid className="gap-y-8 pt-24 sm:pt-32">
           <h3 className="col-span-4 text-h3-bold sm:col-span-12">Next Project</h3>
-          <div className="col-span-4 sm:col-span-12">
+          <div className="col-span-4 overflow-hidden sm:col-span-12">
             {/* Horizontal list of every other project — scrolls on any
                 viewport where the cards don't all fit, mobile included
                 (snap-x makes that scroll land cleanly on a card). Cards
                 hide their name/logo row (hideMeta) since the tag pills
                 already identify the category and clicking through is the
-                point, not reading a second description here. */}
+                point, not reading a second description here. The wrapper
+                is overflow-hidden so the row can never bleed past the
+                page's own width — only the inner overflow-x-auto scrolls. */}
             <div className="flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 sm:snap-none">
               {otherProjects.map((otherProject) => (
                 <div
