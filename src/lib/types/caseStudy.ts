@@ -23,12 +23,14 @@ export type ImageGridBlock = {
   images: ImageGridImage[];
 };
 
-// Same shape as ImageGridBlock, rendered as a real static CSS grid
-// instead of the auto-scrolling marquee — kept as a separate block type
-// (rather than a variant flag on ImageGridBlock) so both remain
-// available as distinct authoring options.
-export type ImageGridStaticBlock = {
-  type: "imageGridStatic";
+// Same shape as ImageGridBlock, rendered as a continuously
+// auto-scrolling horizontal marquee instead of a static grid — kept as
+// a separate block type (rather than a variant flag on ImageGridBlock)
+// so both remain available as distinct authoring options. `columns` is
+// carried over for parity/tag-argument compatibility with ImageGridBlock
+// but is intentionally unused by MarqueeGrid.tsx.
+export type MarqueeGridBlock = {
+  type: "marqueeGrid";
   columns: 1 | 2 | 3;
   images: ImageGridImage[];
 };
@@ -110,7 +112,7 @@ export type CtaBlock = {
 export type Block =
   | TextBlock
   | ImageGridBlock
-  | ImageGridStaticBlock
+  | MarqueeGridBlock
   | MetaBlock
   | MediaTextBlock
   | GridBlock

@@ -43,7 +43,8 @@ example.
 - `[GRID: 2] ... [/GRID]` — put any other blocks inside; they become that many columns
 - `[META] ... [/META]` — one `Label: Value` per line
 - `[TEXT] ... [/TEXT]` or `[TEXT: pullQuote] ... [/TEXT]` — optional `Heading:` line, then `Body:` followed by your paragraphs (blank line = new paragraph, `*word*` = italic emphasis)
-- `[IMAGE-GRID: 2] ... [/IMAGE-GRID]` — each image on its own line: `- src: ... | alt: ... | caption: ...`
+- `[IMAGE-GRID: 2] ... [/IMAGE-GRID]` — static grid layout, `columns` (1/2/3) controls how many columns at `sm+` (always 1 on mobile); each image on its own line: `- src: ... | alt: ... | caption: ...`
+- `[MARQUEE-GRID] ... [/MARQUEE-GRID]` — same image-line syntax as `IMAGE-GRID`, but renders as a continuously auto-scrolling horizontal marquee at every breakpoint instead of a static grid (an argument like `: 2` is accepted for consistency but ignored — there's no column count in a marquee)
 - `[MEDIA-TEXT] ... [/MEDIA-TEXT]` or `[MEDIA-TEXT: right]` / `[MEDIA-TEXT: top]` — fields `src`, `alt`, optional `Heading:`, then `Body:`
 - `[VIDEO] ... [/VIDEO]` — fields: `src`, `variant` (fullWidth/contained), `autoplay` (true/false)
 - `[STATS] ... [/STATS]` — one stat per line: `40% | Increase in signups`
@@ -105,8 +106,8 @@ inert. Rules:
   study's own `[SLUG]`, which is exactly the old single-case-study
   behavior — nothing to change for existing case studies.
 - You don't need all three categories — one or two is fine. Categories
-  with no matching case study just show as greyed-out, non-clickable text
-  in the tabs instead of a link.
+  with no matching case study are simply left out of the tabs instead of
+  showing as inert, greyed-out text.
 - The homepage's featured-projects grid shows one card per project, not
   one per case study — it links to the first case study in Product
   Design / Branding / Development order. Its tag pills, and every other

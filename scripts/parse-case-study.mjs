@@ -180,6 +180,24 @@ class Parser {
           });
         return { type: "imageGrid", columns, images };
       }
+      case "MARQUEE-GRID": {
+        const columns = Number(arg) || 2;
+        const body = this.collectUntilClose("MARQUEE-GRID");
+        const images = body
+          .map((l) => l.trim())
+          .filter((l) => l.startsWith("-"))
+          .map((l) => {
+            const raw = l.replace(/^-\s*/, "");
+            const parts = Object.fromEntries(
+              raw.split("|").map((p) => {
+                const [k, ...rest] = p.split(":");
+                return [k.trim().toLowerCase(), rest.join(":").trim()];
+              })
+            );
+            return { src: parts.src, alt: parts.alt ?? "", caption: parts.caption };
+          });
+        return { type: "marqueeGrid", columns, images };
+      }
       case "MEDIA-TEXT": {
         const body = this.collectUntilClose("MEDIA-TEXT");
         const bodyIdx = body.findIndex((l) => /^Body:/i.test(l.trim()));

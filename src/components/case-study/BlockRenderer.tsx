@@ -1,7 +1,7 @@
 import type { Block } from "@/lib/types/caseStudy";
 import TextBlock from "./TextBlock";
 import ImageGrid from "./ImageGrid";
-import ImageGridStatic from "./ImageGridStatic";
+import MarqueeGrid from "./MarqueeGrid";
 import MetaBlockView from "./MetaBlock";
 import MediaText from "./MediaText";
 import GridBlockView from "./GridBlock";
@@ -20,8 +20,8 @@ export function renderBlock(block: Block, key: number | string) {
       return <TextBlock key={key} block={block} />;
     case "imageGrid":
       return <ImageGrid key={key} block={block} />;
-    case "imageGridStatic":
-      return <ImageGridStatic key={key} block={block} />;
+    case "marqueeGrid":
+      return <MarqueeGrid key={key} block={block} />;
     case "meta":
       return <MetaBlockView key={key} block={block} />;
     case "mediaText":

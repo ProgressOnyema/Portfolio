@@ -258,7 +258,7 @@ from a block schema designed independently (types in
 
 **11 block types:** `text` (rich — `body` is `Paragraph[]`, each paragraph
 an array of spans that are either plain strings or `{ text, emphasis }`
-for italics), `imageGrid`, `imageGridStatic`, `meta` (label/value pairs,
+for italics), `imageGrid`, `marqueeGrid`, `meta` (label/value pairs,
 e.g. Industry/What I did/Platform), `grid` (generic layout wrapper —
 arranges any other blocks, including nested grids, into N columns; this
 is what lets a `meta` block sit beside a `text` block instead of
@@ -283,8 +283,18 @@ would look wrong. `coverImage` is always a top-level block in the real
 content (never nested inside a `grid` block's columns), so this doesn't
 fight with any column layout.
 
-**`imageGrid`** — despite the block/type name, this is **not a CSS
-grid**. Per direct instruction it's a continuously auto-scrolling
+**`imageGrid`** (`ImageGrid.tsx`) — the classic static layout: a real
+CSS grid, `grid-cols-1` on mobile regardless of `columns`, then the
+requested column count (1/2/3) at `sm+`. This is the block the
+`[IMAGE-GRID]` content tag produces (`scripts/parse-case-study.mjs`) —
+**don't repoint that tag at the marquee**; `[MARQUEE-GRID]` is the tag
+for that (see `content/README.md`). `imageGrid`/`imageGridStatic` were
+swapped back and forth once already during development — if older
+commit messages or comments mention "imageGrid is the marquee," they
+predate this naming and are wrong; `imageGrid` = static, `marqueeGrid` =
+marquee, full stop.
+
+**`marqueeGrid`** (`MarqueeGrid.tsx`) — continuously auto-scrolling
 horizontal marquee at every breakpoint (`.animate-marquee` in
 `globals.css`, paused on hover via
 `hover:[animation-play-state:paused]`), with large images (360px
@@ -294,19 +304,13 @@ That needs the standard "break out of a centered container" trick
 (`relative left-1/2 right-1/2 mx-[-50vw] w-screen`), not a plain
 negative margin sized to `Grid`'s padding — a plain negative margin
 only cancels the local gutter and would still stop at the 1440 cap on
-wide screens. `block.columns` (`1 | 2 | 3`) is intentionally unused now
-— kept only so older content specifying it still validates against the
-type. The image list renders twice back-to-back so the CSS animation
-can loop seamlessly at `-50%` `translateX` instead of snapping back to
-the start; the second copy is `aria-hidden` with empty `alt` so screen
+wide screens. `block.columns` (`1 | 2 | 3`) exists only for
+type/tag-argument parity with `ImageGridBlock` — it's intentionally
+unused by the component itself; there's no column count in a marquee.
+The image list renders twice back-to-back so the CSS animation can loop
+seamlessly at `-50%` `translateX` instead of snapping back to the
+start; the second copy is `aria-hidden` with empty `alt` so screen
 readers don't announce every image twice.
-
-**`imageGridStatic`** (`ImageGridStatic.tsx`) — the classic layout
-`imageGrid` used before it became a marquee, kept as its own block type
-so both remain available as authoring options: a real CSS grid,
-`grid-cols-1` on mobile regardless of `columns`, then the requested
-column count (1/2/3) at `sm+`. Same `ImageGridImage[]` shape as
-`imageGrid`.
 
 ## Content authoring pipeline
 
