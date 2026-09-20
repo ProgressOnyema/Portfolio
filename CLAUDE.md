@@ -274,6 +274,15 @@ standard recursive-tree-renderer pattern); it works because both modules
 only reference each other's exports at render time, not at module-eval
 time. Don't "fix" this into a single file without reason.
 
+`BlockRenderer`'s own top-level `.map()` (not `renderBlock()` itself)
+wraps a `text` block in `sm:mx-auto sm:w-3/4`, per direct instruction —
+prose reads better narrower and centered on wide screens; every other
+block type keeps the full column width. This is deliberately scoped to
+the top-level map rather than into `TextBlock.tsx` itself, so a `text`
+block nested inside a `grid` block (see the meta+text pairing above —
+`GridBlock.tsx` calls `renderBlock()` directly, bypassing this wrapper)
+still fills its own grid column instead of shrinking further.
+
 **`coverImage`** — full-bleed on mobile only, per direct instruction: a
 negative margin + extra width (`-mx-5 w-[calc(100%+2.5rem)]`, reverting
 to `mx-0 w-full` at `sm+`) cancels out `Grid`'s own `px-5` mobile gutter

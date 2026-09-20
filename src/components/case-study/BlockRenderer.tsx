@@ -46,7 +46,24 @@ export function renderBlock(block: Block, key: number | string) {
 export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
   return (
     <div className="flex flex-col gap-16">
-      {blocks.map((block, i) => renderBlock(block, i))}
+      {blocks.map((block, i) => {
+        const content = renderBlock(block, i);
+        // Top-level text sections only (prose reads better narrower and
+        // centered on wide screens) — everything else (images, grids,
+        // video, stats, etc.) still runs the full column width. A text
+        // block nested inside a `grid` block (see GridBlock.tsx, which
+        // calls renderBlock() directly rather than going through this
+        // map) is untouched, since it needs to fill its own grid column
+        // alongside whatever it's paired with, not shrink further.
+        if (block.type === "text") {
+          return (
+            <div key={i} className="sm:mx-auto sm:w-3/4">
+              {content}
+            </div>
+          );
+        }
+        return content;
+      })}
     </div>
   );
 }
