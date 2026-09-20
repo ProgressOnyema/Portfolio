@@ -52,7 +52,7 @@ export default async function ProjectDetail({
         </div>
       </Grid>
 
-      <Grid className="gap-y-8 pt-16 sm:pt-24">
+      <Grid className="gap-y-8 pt-8 sm:pt-16">
         <div className="col-span-4 sm:col-span-12">
           <Subnav active={project.category} hrefs={siblingHrefs} />
         </div>

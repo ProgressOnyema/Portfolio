@@ -45,7 +45,7 @@ export function renderBlock(block: Block, key: number | string) {
 
 export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
   return (
-    <div className="flex flex-col gap-12">
+    <div className="flex flex-col gap-16">
       {blocks.map((block, i) => renderBlock(block, i))}
     </div>
   );
