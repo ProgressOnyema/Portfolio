@@ -20,7 +20,7 @@ export default function ImageGrid({ block }: { block: ImageGridBlockData }) {
             <Image src={image.src} alt={image.alt} fill className="object-cover" />
           </div>
           {image.caption && (
-            <figcaption className="text-body-sm-base text-text-muted">
+            <figcaption className="text-body-sm-base text-text-body">
               {image.caption}
             </figcaption>
           )}

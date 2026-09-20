@@ -56,6 +56,31 @@ arbitrary values). **Both themes' colors are real values pulled from the
 Figma file's own variable definitions** (found by inspecting light-mode
 component instances), not estimated equivalents.
 
+**`text-body`** (`--color-text-body`, light `#3c3c3c` / dark `#d8d8d8`)
+is the one exception — it has no Figma variable behind it. Added per
+direct instruction as a third text color, alongside (not replacing)
+`text-primary`/`text-muted`: `text-primary` reads too
+stark/high-contrast for running body copy at that size, and `text-muted`
+is too desaturated/grey. The dark-mode value isn't a mirrored hex — it's
+derived to sit at the same *relative position* between `text-primary`
+and `text-muted` as `#3c3c3c` does in light mode (roughly 48% of the way
+from primary toward muted in HSL lightness; within half a point of that
+same fraction in contrast-ratio terms too — light: 10.75:1 vs primary's
+17.78 and muted's 5.39; dark: 12.8:1 vs primary's 17.78 and muted's
+8.83) — a straight mirror doesn't work here since `text-primary` and
+`text-muted` themselves aren't mirrored between the two themes either
+(confirmed against this file's own values: muted sits at 40% lightness
+in light mode but 70% in dark, not the ~60% a mirror would give).
+Applied to actual content copy — `RichText.tsx`'s default paragraph
+color (so a plain `text` block's body and `mediaText`'s body pick it up
+for free), `MetaBlock` field values, `StatRow`/`Quote` labels, image
+captions (`ImageGrid`/`MarqueeGrid`), `ProjectWidget`'s one-liner, and
+the footer copyright line. Left alone: headings, hero taglines and any
+other heading-scale (`text-h3`+) text, and UI chrome where
+`text-muted`/`text-primary` signal interactive state (nav links, Subnav
+tabs, ThemeToggle, tag pills) rather than content — those keep their
+existing colors.
+
 Typography is a set of plain CSS classes (`.text-h1-bold`, `.text-h3`,
 etc.) rather than Tailwind's default type scale, since the design uses a
 fixed named scale (Figma text styles) instead of arbitrary sizes. There's

@@ -37,7 +37,7 @@ export default function ContactSection() {
           page, so this is where the copyright notice lives rather than a
           separate Footer component. */}
       <Grid className="pb-8 sm:pb-12">
-        <p className="text-label col-span-4 text-text-muted sm:col-span-12">
+        <p className="text-label col-span-4 text-text-body sm:col-span-12">
           © {year} Onyema Miracle. All rights reserved.
         </p>
       </Grid>

@@ -6,7 +6,7 @@ export default function StatRow({ block }: { block: StatsBlock }) {
       {block.items.map((item, i) => (
         <div key={i} className="flex flex-col gap-2">
           <p className="text-h1-bold">{item.value}</p>
-          <p className="text-body-reg-base text-text-muted">{item.label}</p>
+          <p className="text-body-reg-base text-text-body">{item.label}</p>
         </div>
       ))}
     </div>

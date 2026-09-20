@@ -144,7 +144,7 @@ export default function ProjectWidget({
           </div>
           <div className="flex flex-1 flex-col justify-center overflow-hidden">
             <p className="text-body-reg-strong truncate">{project.name}</p>
-            <p className="text-body-sm-base truncate text-text-muted">
+            <p className="text-body-sm-base truncate text-text-body">
               {project.oneLiner}
             </p>
           </div>

@@ -14,7 +14,7 @@ export default function ExperienceDesc({ item }: { item: ExperienceItem }) {
           <p className="text-body-lg-strong">{item.role}</p>
           <p>{item.company}</p>
         </div>
-        <p className="text-body-reg-base text-text-primary">{item.description}</p>
+        <p className="text-body-reg-base text-text-body">{item.description}</p>
       </div>
     </div>
   );

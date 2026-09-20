@@ -11,7 +11,7 @@ export default function MetaBlock({ block }: { block: MetaBlockData }) {
         {block.fields.map((field) => (
           <div key={field.label} className="flex flex-col gap-1">
             <p className="text-body-reg-strong">{field.label}</p>
-            <p className="text-body-reg-base text-text-muted">{field.value}</p>
+            <p className="text-body-reg-base text-text-body">{field.value}</p>
           </div>
         ))}
       </div>

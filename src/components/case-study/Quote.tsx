@@ -21,7 +21,7 @@ export default function Quote({ block }: { block: QuoteBlock }) {
         <div className="flex flex-col text-left">
           <p className="text-body-reg-strong">{block.attribution.name}</p>
           {block.attribution.role && (
-            <p className="text-body-sm-base text-text-muted">{block.attribution.role}</p>
+            <p className="text-body-sm-base text-text-body">{block.attribution.role}</p>
           )}
         </div>
       </div>

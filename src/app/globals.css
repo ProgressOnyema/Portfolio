@@ -10,6 +10,22 @@
   --color-inverse-surface-bg: #fcfcfb;
   --color-inverse-text-primary: #161513;
 
+  /* Body copy and anything smaller (not headings) — added per direct
+     instruction because text-primary reads too stark/high-contrast for
+     running text at this size, and text-muted is too desaturated/grey.
+     Not a Figma variable (this file has no such token) and not a
+     replacement for either existing one — both stay as they were.
+     #D8D8D8 here is the dark-mode equivalent of light mode's #3C3C3C
+     (see below): both sit at the same relative position between
+     text-primary and text-muted — roughly 48% of the way from primary
+     toward muted in HSL lightness, and within half a point of that same
+     fraction in contrast-ratio terms (light: 10.75:1 vs primary's 17.78
+     and muted's 5.39; dark: 12.8:1 vs primary's 17.78 and muted's 8.83)
+     — rather than a straight mirror of the hex value, since
+     text-primary/text-muted aren't mirrored that way between themes
+     either (confirmed against this file's own values). */
+  --color-text-body: #d8d8d8;
+
   /* Radii + borders */
   --radius-md: 5px;
   --radius-csq: 12px;
@@ -31,6 +47,7 @@
   --color-border-hairline: #d6d3cd;
   --color-inverse-surface-bg: #161513;
   --color-inverse-text-primary: #fcfcfb;
+  --color-text-body: #3c3c3c;
 }
 
 @theme inline {
@@ -38,6 +55,7 @@
   --color-surface-bg-alt: var(--color-surface-bg-alt);
   --color-text-primary: var(--color-text-primary);
   --color-text-muted: var(--color-text-muted);
+  --color-text-body: var(--color-text-body);
   --color-border-hairline: var(--color-border-hairline);
   --color-inverse-surface-bg: var(--color-inverse-surface-bg);
   --color-inverse-text-primary: var(--color-inverse-text-primary);

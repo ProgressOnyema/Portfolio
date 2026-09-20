@@ -7,7 +7,7 @@ function renderSpan(span: RichSpan, i: number) {
 
 export default function RichText({
   paragraphs,
-  className = "text-body-reg-base",
+  className = "text-body-reg-base text-text-body",
 }: {
   paragraphs: Paragraph[];
   className?: string;
