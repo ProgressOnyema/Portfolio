@@ -1,9 +1,14 @@
-import Image from "next/image";
 import type { MarqueeGridBlock as MarqueeGridBlockData } from "@/lib/types/caseStudy";
 
 // Renders as a continuously auto-scrolling horizontal marquee at every
-// breakpoint. See ImageGrid.tsx for the classic static-grid alternative;
-// both remain available as separate block types (marqueeGrid / imageGrid).
+// breakpoint. A plain <img>, not next/image, on purpose: content-authored
+// images have no known width/height (they're referenced by path from a
+// .txt file, not statically imported), so next/image would need either
+// `fill` (forcing a crop into a fixed box) or authored dimensions per
+// image. A plain <img> lets the browser use each file's own natural size,
+// just capped by max-h/max-w so no single image can dominate the strip.
+// See ImageGrid.tsx for the classic static-grid alternative; both remain
+// available as separate block types (marqueeGrid / imageGrid).
 // block.columns is intentionally unused here — kept only for
 // type/tag-argument parity with ImageGridBlock.
 export default function MarqueeGrid({ block }: { block: MarqueeGridBlockData }) {
@@ -14,14 +19,14 @@ export default function MarqueeGrid({ block }: { block: MarqueeGridBlockData }) 
   // every image twice.
   const renderImages = (copy: "a" | "b") =>
     block.images.map((image, i) => (
-      <figure key={`${copy}-${i}`} className="flex w-[360px] shrink-0 flex-col gap-2 sm:w-[480px]">
-        <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-surface-bg-alt">
-          <Image
+      <figure key={`${copy}-${i}`} className="flex w-auto shrink-0 flex-col gap-2">
+        <div className="flex max-h-[280px] max-w-[600px] items-center justify-center overflow-hidden rounded-md bg-surface-bg-alt sm:max-h-[360px]">
+          {/* eslint-disable-next-line @next/next/no-img-element -- see comment above: dimensions are unknown at authoring time */}
+          <img
             src={image.src}
             alt={copy === "a" ? image.alt : ""}
-            fill
-            className="object-cover"
-            sizes="(min-width: 640px) 480px, 360px"
+            loading="lazy"
+            className="max-h-[280px] max-w-[600px] object-contain sm:max-h-[360px]"
           />
         </div>
         {copy === "a" && image.caption && (
