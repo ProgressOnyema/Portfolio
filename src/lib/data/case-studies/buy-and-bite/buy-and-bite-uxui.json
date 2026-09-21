@@ -1,18 +1,18 @@
 {
   "slug": "buy-and-bite-uxui",
   "projectId": "buy-and-bite",
-  "name": "Buy and Bite: UXUI",
-  "oneLiner": "One sentence describing the project",
+  "name": "Buy and Bite",
+  "oneLiner": "Cheapest farm produce to your plate",
   "category": "Product Design",
   "thumbnails": [
-    "/case-studies/buy-and-bite/thumbnail-1.jpg",
-    "/case-studies/buy-and-bite/thumbnail-2.jpg"
+    "/case-studies/buy-and-bite/thumbnail-1.png",
+    "/case-studies/buy-and-bite/thumbnail-2.png"
   ],
   "logo": "/case-studies/buy-and-bite/logo.png",
   "blocks": [
     {
       "type": "coverImage",
-      "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/cover.jpg",
+      "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/cover.png",
       "alt": "Buy and Bite homepage"
     },
     {
@@ -40,20 +40,15 @@
           "type": "text",
           "body": [
             [
-              "Buy and Bite exists to connect farmers and consumers. Rooted in the belief that the right to be healthy is fundamental, the platform challenges a system where people are priced out of the very things that sustain life."
+              "Buy and Bite exists to connect the best farm produce and consumers. Rooted in the belief that the right to be healthy is fundamental, the platform challenges a system where people are priced out of the very things that sustain life."
             ],
             [
-              "Buy and Bite ensures that affordability and quality are no longer trade-offs, but standards, because no one should be priced out of living well."
+              "Buy and Bite ensures that affordability and quality are no longer trade-offs, but standards. I decided to find out why farm produce prices in Lagos, Nigeria, were inflated, what kept people from accessing healthy products, and built a system to solve it."
             ]
           ],
-          "heading": "We can't be priced out of life"
+          "heading": "Good food, better distribution."
         }
       ]
-    },
-    {
-      "type": "coverImage",
-      "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-1.jpg",
-      "alt": "Buy and Bite homepage"
     },
     {
       "type": "text",
@@ -84,9 +79,6 @@
         ],
         [
           "Structural drivers cited by economists include insecurity on farms, high transportation and logistics costs, expensive energy and fertiliser, supply-chain disruptions, and imported inflation, with food, transportation, housing, utilities and energy together accounting for about 72 percent of current inflationary pressure."
-        ],
-        [
-          "Tomatoes specifically: Lagos recorded the highest average price of 1kg of tomatoes among all states in May 2026, at N1,974.81, while Ekiti had the lowest at N1,017 — In Lagos, we pay double what other states pay for the same commodity. So this isn't just a Lagos Island problem, it's a Lagos problem sitting on top of a national food inflation problem."
         ]
       ],
       "heading": "And this is getting worse"
@@ -95,22 +87,10 @@
       "type": "text",
       "body": [
         [
-          "Lagos Island sits at the most expensive end of an already-expensive city."
-        ]
-      ],
-      "variant": "pullQuote"
-    },
-    {
-      "type": "text",
-      "body": [
-        [
           "General rule of thumb across markets: retail sits 2–4x above farm-gate price; transport and spoilage account for 10–25% of that gap, with the rest being intermediary margin stacked at each handoff."
         ],
         [
-          "In Nigeria specifically, middlemen buy directly from farmers at a discount to market price and transport it to urban markets where they sell at a markup — the discount farmers accept is typically 10 to 15 percent below market price, a reasonable trade for speed and cash, though it can be worse."
-        ],
-        [
-          "Globally, farmgate price typically captures only 15–40% of final retail price for commodity crops moving through multiple intermediaries, and IFPRI estimates 60–80% of smallholder farmers in developing countries capture less than 30% of retail value. For Lagos Island, the \"hidden cost\" isn't primarily in the fields — it's stacked in the number of handoffs between the farm and our plate, and the Island adds one more handoff (mainland wholesaler → Island retailer) that mainland buyers skip entirely by going straight to Mile 12 or Oyingbo."
+          "In Nigeria specifically, middlemen buy directly from farmers at a discount to market price and transport it to urban markets where they sell at a markup — the discount farmers accept is typically 10-15% below market price, a reasonable trade for speed and cash, though it can be worse."
         ]
       ],
       "heading": "Where does the money go?"
@@ -118,7 +98,43 @@
     {
       "type": "marqueeGrid",
       "columns": 2,
-      "images": []
+      "images": [
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-1.jpg",
+          "alt": "Picture of bulk onions in Mile12 market",
+          "caption": "Shots of Mile12 market"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-2.jpg",
+          "alt": "Picture of tomato baskets in Mile12 market",
+          "caption": "Shots of Mile12 market"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-3.png",
+          "alt": "Competitive audit report",
+          "caption": "Competitive audit"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-4.png",
+          "alt": "Info. Architecture and sitemap",
+          "caption": "Info. Architecture & sitemap"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-5.png",
+          "alt": "Wireframes",
+          "caption": "HI-FI Wireframe"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-6.png",
+          "alt": "User journeys",
+          "caption": "User journeys"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-7.jpeg",
+          "alt": "Storyboard",
+          "caption": "Big-picture storyboard"
+        }
+      ]
     },
     {
       "type": "text",
@@ -128,68 +144,38 @@
         ],
         [
           "I picked 8 staples and priced them at 3 tiers (Lagos Island retail, Lagos Island's own markets (Sandgrouse, Sura), Mainland wholesale, e.g., Mile 12 or Oyingbo)."
-        ],
-        [
-          "Access adds to the markup; I timed and cost a real trip from a Lagos Island residential point to Mile 12. The transport fare, time in traffic, and time spent at the market all factored in to check the hidden cost if someone made that trip just to save money on produce — this will tell me whether the trip is even worth it for an average household, which is often the real reason people don't bother and just pay the Island premium."
-        ],
-        [
-          "— I engaged with the target demographics (traders, Residents) to cut out the middleman, as it were."
-        ],
-        [
-          "— I asked residents: how often do you buy, where, what would make you switch, would you join a group order?"
-        ],
-        [
-          "— I asked traders: what do they pay their own suppliers, and would they sell in bulk to a buying group at a discount for guaranteed volume?"
         ]
-      ],
-      "heading": "Validating the Island Premium"
+      ]
     },
     {
       "type": "text",
       "body": [
         [
-          "— Island retail markup over mainland wholesale exceeded ~40–50%, which means the problem is real and sizable (this is a plausible outcome given the 2–4x general retail-vs-farmgate spread cited above)"
+          "Island retail markup over mainland wholesale exceeded ~40–50%, which means the problem is real and sizable (this is a plausible outcome given the 2–4x general retail-vs-farmgate spread cited above)"
         ],
         [
-          "— A meaningful share of residents interviewed say they've skipped or reduced produce purchases due to price, which means demand for a fix is real, not hypothetical"
+          "A meaningful share of residents interviewed say they've skipped or reduced produce purchases due to price, which means demand for a fix is real, not hypothetical"
         ],
         [
-          "— At least 50% of traders were open to bulk/pre-order arrangements, which means a coordination-based fix (group buying, an aggregator run) has a supply-side partner, not just consumer interest"
+          "At least 50% of traders were open to bulk/pre-order arrangements, which means a coordination-based fix (group buying, an aggregator run) has a supply-side partner, not just consumer interest"
         ]
       ],
-      "heading": "Validating the threshold"
-    },
-    {
-      "type": "marqueeGrid",
-      "columns": 2,
-      "images": []
+      "heading": "The outcome"
     },
     {
       "type": "text",
       "body": [
         [
-          "I wanted to understand how Lagos Island residents actually approach grocery shopping: what they need, what influences their choices, and what makes the process convenient or inconvenient. For a resident balancing work, school, family, or other responsibilities, going to a market can mean navigating crowded areas, comparing prices across different sellers, carrying purchases, and fitting the trip around an already busy day. This made time, convenience, affordability, and reliability important considerations."
+          "I wanted to understand how Lagos Island residents actually approach grocery shopping: what they need, what influences their choices, and what makes the process convenient or inconvenient. For a resident balancing work, school, family, or other responsibilities, going to a market can mean navigating crowded areas, comparing prices across different sellers, carrying purchases, and fitting the trip around an already busy day."
         ],
         [
-          "Looking at the experience more closely showed that the problem went beyond simply delivering groceries. Even when online ordering is available, customers still doubt that they are getting a fair price, good-quality products, and reliable delivery. This is particularly relevant in Lagos, where traditional markets can offer competitive food prices while supermarkets provide greater convenience and consistency but higher prices."
+          "This led to a broader goal: make it easier for people to discover, purchase, and get fresh produce while reducing the time, effort, and uncertainty involved in grocery shopping."
         ],
         [
-          "This led to a broader goal: make it easier for people to discover, choose, purchase, and receive fresh produce while reducing the time, effort, and uncertainty involved in grocery shopping."
-        ],
-        [
-          "The opportunity for Buy and Bite was therefore to make everyday grocery shopping simpler, more affordable, and dependable—allowing someone on Lagos Island to find what they need, make informed choices, and have their groceries delivered without the effort of making a separate shopping trip."
+          "The opportunity for Buy and Bite was therefore to make everyday grocery shopping convenient and more affordable"
         ]
       ],
-      "heading": "Making sense of the research"
-    },
-    {
-      "type": "text",
-      "body": [
-        [
-          "...make it easier for people to discover, choose, purchase, and receive fresh produce while reducing the time, effort, and uncertainty involved in grocery shopping."
-        ]
-      ],
-      "variant": "pullQuote"
+      "heading": "Turned into insights"
     },
     {
       "type": "text",
@@ -198,13 +184,16 @@
           "Should this be another mobile app, a WhatsApp feature, an Instagram page, an iMessage feature, a physical warehouse, store, or shop? I asked myself. Going back to the research, users all spoke about a need for one thing — convenience. A mobile app would check the convenience box effectively; everyone uses a mobile app at work, home, and on the go. A mobile app would enable a feature-rich approach, which includes control for users selecting products, stress-free product discovery, a streamlined payment process, and transparency in order tracking."
         ]
       ],
-      "heading": "The Minimum Viable Product (MVP)"
+      "heading": "Minimum Viable Features"
     },
     {
       "type": "text",
       "body": [
         [
-          "I gave users more control over what they buy and how they buy it. Allowing customers to put together products according to their specific or dietary needs rather than being limited to fixed selections was the main reason behind the pick-it-yourself feature. To aid users in selection and to reduce cognitive load, products are grouped in categories, e.g., Greens, Nuts, Berries, Veggies, etc."
+          "I gave users more control over what they buy and how they buy it. Allowing customers to put together products according to their specific or dietary needs rather than being limited to fixed selections was the main reason behind the pick-it-yourself feature."
+        ],
+        [
+          "To aid users in selection and to reduce cognitive load, products are grouped in categories, e.g., Greens, Nuts, Berries, Veggies, etc."
         ]
       ],
       "heading": "People love shopping"
@@ -212,13 +201,27 @@
     {
       "type": "imageGrid",
       "columns": 2,
-      "images": []
+      "images": [
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-8.png",
+          "alt": "UI screen showing prepacked packages",
+          "caption": "Prepacked packages"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-9.png",
+          "alt": "UI screen for packing yourself",
+          "caption": "Pick them yourself"
+        }
+      ]
     },
     {
       "type": "text",
       "body": [
         [
-          "Buying farm produce was driven by dietary needs for a segment of users, i.e., consumers managing health issues. I translated this into making prepacked packages for specific health issues. Users can add or remove products from these prepacked packages to suit their needs or budget. I made the product visuals as clear and descriptive as possible; decision fatigue caused by cognitive load might affect buyers."
+          "Buying farm produce was driven by dietary needs for a segment of users, i.e., consumers managing health issues. I translated this into making prepacked packages for specific health issues."
+        ],
+        [
+          "Users can add or remove products from these prepacked packages to suit their needs or budget. I made the product visuals as clear and descriptive as possible; decision fatigue caused by cognitive load might affect buyers."
         ]
       ],
       "heading": "Designing for the health-conscious"
@@ -226,13 +229,27 @@
     {
       "type": "imageGrid",
       "columns": 2,
-      "images": []
+      "images": [
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-10.png",
+          "alt": "UI screen for health categories",
+          "caption": "Health category pills"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-11.png",
+          "alt": "UI screen for products in cart",
+          "caption": "Products in cart"
+        }
+      ]
     },
     {
       "type": "text",
       "body": [
         [
-          "Place your order and track it until it's delivered. We know Lagos and its traffic; users will have to spend a whole day to pick up their orders, so I decided to add an option to deliver or schedule the delivery. Payment is required before delivery to avoid complications. Multiple payment methods are supported, including cards, third-party payment gateways, and bank transfer."
+          "Place your order and track it until it's delivered. We know Lagos and its traffic; users will have to spend a whole day to pick up their orders, so I decided to add an option to deliver or schedule the delivery."
+        ],
+        [
+          "Payment is required before delivery to avoid complications. Multiple payment methods are supported, including cards, third-party payment gateways, and bank transfer."
         ]
       ],
       "heading": "Designing for convenience"
@@ -240,13 +257,27 @@
     {
       "type": "imageGrid",
       "columns": 2,
-      "images": []
+      "images": [
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-12.png",
+          "alt": "UI screen for delivery",
+          "caption": "Address details"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-13.png",
+          "alt": "UI screen for payment method",
+          "caption": "Payment options"
+        }
+      ]
     },
     {
       "type": "text",
       "body": [
         [
-          "Throughout the design of buy & bite, which is still evolving, I tinkered with design concepts and directions to meet the business goals. I always found myself going back to competitive audits I did to see how potential competitors solved a particular problem, from payment gateways to delivery methods to payment policies."
+          "Throughout the design of Buy & Bite, which is still evolving, I tinkered with design concepts and directions to meet the business goals."
+        ],
+        [
+          "I always found myself going back to competitive audits I did to see how potential competitors solved a particular problem, from payment gateways to delivery methods to payment policies."
         ]
       ],
       "heading": "The effort"
@@ -254,16 +285,51 @@
     {
       "type": "marqueeGrid",
       "columns": 2,
-      "images": []
+      "images": [
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-14.png",
+          "alt": "UI screens"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-15.png",
+          "alt": "UI screens"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-16.png",
+          "alt": "UI screens"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-17.png",
+          "alt": "UI screens"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-18.png",
+          "alt": "UI screens"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-19.png",
+          "alt": "UI screens"
+        },
+        {
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-20.png",
+          "alt": "UI screens"
+        }
+      ]
     },
     {
       "type": "text",
       "body": [
         [
-          "One challenge was deciding what the payment flow could look like, and what would be optimal for users. This led to another problem: what is the business model? Does Buy&Bite charge a monthly recurring subscription fee? Pay as you order? Should they have an in-app wallet? I had to go back to the buying habits I documented in the research and competitive audits to get an answer. Ultimately, I decided the platform should have multiple payment methods, and users should pay as they order."
+          "Deciding what the payment flow could look like, and what would be optimal for users, was a big challenge. This led to another problem: what is the business model? Does Buy and Bite charge a monthly recurring subscription fee? Pay as you order? Should they have an in-app wallet?"
+        ],
+        [
+          "I had to go back to the buying habits I found in the research and competitive audits to get an answer. Ultimately, I decided the platform should have multiple payment methods, and users should pay as they order."
+        ],
+        [
+          "That's all for now, thanks for reading 👍. Check out my other works"
         ]
       ],
-      "heading": "Learn. Refine."
+      "heading": "Learn. Refine. Iterate."
     }
   ]
 }

@@ -25,7 +25,7 @@ export default function MarqueeGrid({ block }: { block: MarqueeGridBlockData }) 
           />
         </div>
         {copy === "a" && image.caption && (
-          <figcaption className="text-body-sm-base text-text-body">
+          <figcaption className="text-body-sm-base text-text-muted">
             {image.caption}
           </figcaption>
         )}
