@@ -104,7 +104,7 @@ export default function ProjectWidget({
             src={project.thumbnails?.[1] ?? "/folder-assets/folder_image2.png"}
             alt=""
             fill
-            className="object-cover"
+            className="rounded-md object-cover"
             sizes="400px"
           />
         </div>
@@ -113,7 +113,7 @@ export default function ProjectWidget({
             src={project.thumbnails?.[0] ?? "/folder-assets/folder_image1.png"}
             alt=""
             fill
-            className="object-cover"
+            className="rounded-md object-cover"
             sizes="400px"
           />
         </div>
