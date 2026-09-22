@@ -39,7 +39,26 @@ export default async function ProjectDetail({
     <main className="flex flex-1 flex-col">
       <Grid className="pt-8 sm:pt-12">
         <div className="col-span-4 flex flex-col gap-2 sm:col-span-12">
-          <h1 className="text-h1-bold">{project.name}</h1>
+          <div className="flex items-center gap-3">
+            {/* logoAlternate — a second, distinct logo slot from the small
+                one in ProjectWidget's own meta row (see its type comment).
+                Optional with no placeholder fallback, so most projects
+                simply won't show one here. Plain <img>, not next/image:
+                this is authored as an SVG, and next/image's optimizer
+                refuses to serve SVGs unless dangerouslyAllowSVG is set in
+                next.config.ts (a site-wide security setting, not worth
+                enabling for one field). object-contain, not object-cover
+                like the other two logo/thumbnail images on this type —
+                those are photos meant to fill their box; this is a logo
+                mark, which should never get cropped. */}
+            {project.logoAlternate && (
+              <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-csq bg-surface-bg-alt">
+                {/* eslint-disable-next-line @next/next/no-img-element -- see comment above: SVG, next/image can't serve it without a site-wide config change */}
+                <img src={project.logoAlternate} alt="" className="max-h-full max-w-full object-contain" />
+              </div>
+            )}
+            <h1 className="text-h1-bold">{project.name}</h1>
+          </div>
           {/* .text-project-oneliner, not the shared .text-h3 (used by
               Home/About): this one drops to Body Regular/Base (16px) on
               mobile rather than Body Large/Base (20px), per the

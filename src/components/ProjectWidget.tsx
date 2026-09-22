@@ -16,6 +16,12 @@ export type ProjectWidgetData = {
   /** Real logo shown next to the name/one-liner. Falls back to a
    *  placeholder image when not provided. */
   logo?: string;
+  /** A second, distinct logo shown beside the project name on the
+   *  ProjectDetail page header (/work/[slug]) — not the same slot as
+   *  `logo` above (that one's the small icon in this widget's own
+   *  meta row). No placeholder fallback: unlike `logo`, most projects
+   *  won't have one, and the header simply omits it when absent. */
+  logoAlternate?: string;
   /** When a project has multiple case studies (UI/UX, Branding,
    *  Development) collapsed into one featured-projects card, this lists
    *  every category represented so the tag pills reflect all of them

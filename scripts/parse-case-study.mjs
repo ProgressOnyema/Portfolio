@@ -10,7 +10,7 @@ import path from "node:path";
 
 const OPEN_TAG = /^\[([A-Z0-9-]+)(?::\s*(.*))?\]$/;
 const CLOSE_TAG = /^\[\/([A-Z0-9-]+)\]$/;
-const META_KEYS = ["SLUG", "PROJECT-ID", "NAME", "ONE-LINER", "CATEGORY", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO"];
+const META_KEYS = ["SLUG", "PROJECT-ID", "NAME", "ONE-LINER", "CATEGORY", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO", "LOGO-ALTERNATE"];
 
 function fail(msg, lineNum) {
   console.error(`Parse error${lineNum ? ` (line ${lineNum})` : ""}: ${msg}`);
@@ -300,6 +300,10 @@ function main() {
       ? { thumbnails: [meta["THUMBNAIL-1"], meta["THUMBNAIL-2"]] }
       : {}),
     ...(meta.LOGO ? { logo: meta.LOGO } : {}),
+    // Distinct from LOGO above — see ProjectWidgetData's logoAlternate
+    // comment. Authored as an SVG in practice; rendered with a plain
+    // <img>, not next/image, by the ProjectDetail page that consumes it.
+    ...(meta["LOGO-ALTERNATE"] ? { logoAlternate: meta["LOGO-ALTERNATE"] } : {}),
     blocks,
   };
 
@@ -316,12 +320,12 @@ function main() {
   fs.writeFileSync(outPath, JSON.stringify(caseStudy, null, 2) + "\n");
 
   // Warn about any referenced local asset paths that don't exist in public/
-  // (matches src/thumbnail/logo/avatar/poster fields — any local path
-  // starting with "/", not an external URL).
+  // (matches src/thumbnail/logo/logoAlternate/avatar/poster fields — any
+  // local path starting with "/", not an external URL).
   const publicDir = path.join(process.cwd(), "public");
   const jsonStr = JSON.stringify(caseStudy);
   const pathMatches = [
-    ...jsonStr.matchAll(/"(?:src|thumbnails?|logo|avatar|poster)":\s*(?:"(\/[^"]+)"|\[([^\]]+)\])/g),
+    ...jsonStr.matchAll(/"(?:src|thumbnails?|logo|logoAlternate|avatar|poster)":\s*(?:"(\/[^"]+)"|\[([^\]]+)\])/g),
   ]
     .flatMap((m) => (m[2] ? m[2].match(/"(\/[^"]+)"/g)?.map((s) => s.slice(1, -1)) ?? [] : [m[1]]))
     .filter(Boolean);
