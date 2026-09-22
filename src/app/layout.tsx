@@ -21,7 +21,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col bg-surface-bg text-text-primary pt-[106px]">
+      {/* suppressHydrationWarning: browser extensions (Grammarly, etc.)
+          inject attributes like data-gr-ext-installed onto <body> before
+          React hydrates, which React otherwise flags as a hydration
+          mismatch even though nothing is actually wrong. Attribute-only,
+          and scoped to this one element — doesn't suppress mismatches
+          anywhere else in the tree, including real ones on this page. */}
+      <body
+        className="min-h-full flex flex-col bg-surface-bg text-text-primary pt-[106px]"
+        suppressHydrationWarning
+      >
         <Navbar />
         {children}
       </body>
