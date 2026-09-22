@@ -223,7 +223,11 @@ body * {
    mobile (a different named style, not a scaled-down H1) — it does NOT
    stay 48px. H3/H3-bold swap to the Body Large Base/Strong metrics on
    mobile (also a different named style, not a scaled-down H3). Subnav
-   drops from Body Regular/Strong (16px) to Body Small/Strong (14px). */
+   drops from Body Regular/Strong (16px) to Body Small/Strong (14px).
+   .text-label is the one exception here — not a Figma-confirmed frame
+   value like the rest, just a direct instruction (13px reads too large
+   on ProjectWidget's tag pills at mobile widths) — 11px, letter-spacing
+   scaled down proportionally same as Subnav's. */
 @media (max-width: 640px) {
   .text-h1-bold {
     font-size: 32px;
@@ -250,6 +254,10 @@ body * {
   .text-subnav {
     font-size: 14px;
     letter-spacing: -0.14px;
+  }
+  .text-label {
+    font-size: 11px;
+    letter-spacing: 0.44px;
   }
 }
 
