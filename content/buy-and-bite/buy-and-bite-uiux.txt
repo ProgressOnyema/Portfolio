@@ -140,13 +140,13 @@ I always found myself going back to competitive audits I did to see how potentia
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-14.png | alt: UI screens
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-15.png | alt: UI screens
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-16.png | alt: UI screens
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-17.png | alt: UI screens
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-18.png | alt: UI screens
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-19.png | alt: UI screens
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-20.png | alt: UI screens
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-14.png | alt: UI screens | caption: Confirm checkout
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-15.png | alt: UI screens | caption: Home screen
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-16.png | alt: UI screens | caption: Pick your own - Home screen
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-17.png | alt: UI screens | caption: Prepacked - Fitness pack
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-18.png | alt: UI screens | caption: Payment sheet
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-19.png | alt: UI screens | caption: Success message
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-20.png | alt: UI screens | caption: Track delivery
 [/MARQUEE-GRID]
 
 [TEXT]

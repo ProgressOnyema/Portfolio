@@ -144,7 +144,7 @@ export default function ProjectWidget({
               src={project.logo ?? "/folder-assets/folder_image1.png"}
               alt=""
               fill
-              className="object-cover"
+              className="object-cover rounded-md"
               sizes="39px"
             />
           </div>

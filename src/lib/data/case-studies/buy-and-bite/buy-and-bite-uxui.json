@@ -288,31 +288,38 @@
       "images": [
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-14.png",
-          "alt": "UI screens"
+          "alt": "UI screens",
+          "caption": "Confirm checkout"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-15.png",
-          "alt": "UI screens"
+          "alt": "UI screens",
+          "caption": "Home screen"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-16.png",
-          "alt": "UI screens"
+          "alt": "UI screens",
+          "caption": "Pick your own - Home screen"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-17.png",
-          "alt": "UI screens"
+          "alt": "UI screens",
+          "caption": "Prepacked - Fitness pack"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-18.png",
-          "alt": "UI screens"
+          "alt": "UI screens",
+          "caption": "Payment screen"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-19.png",
-          "alt": "UI screens"
+          "alt": "UI screens",
+          "caption": "Success message"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-20.png",
-          "alt": "UI screens"
+          "alt": "UI screens",
+          "caption": "Track delivery"
         }
       ]
     },
