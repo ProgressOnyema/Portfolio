@@ -189,19 +189,25 @@ case it returns.
 in the build), `full` (fills its grid column, used on Home). Internally
 it's a real layered illustration: `FolderBackIcon` + two overlapping
 "paint texture" images + `FolderCoverIcon`, all positioned by
-percentage so the layout scales across sizes. `**folder_back` and
+percentage so the layout scales across sizes. `**folder_back** and
 `folder_cover` are theme-aware inline SVG components** bound to
 `surface-bg-alt` via `currentColor` (their fill was originally assumed
 to be a static color; it's actually the theme token, so they invert
 with dark/light mode) — not static `<img>` assets. Supports optional
 per-project overrides: `thumbnails: [string, string]` (two real images
 in the same two-layer position — **not one flat image**, matches the
-placeholder's two-layer arrangement) and `logo` (the small 39x39 image
-next to the name). Development-category projects automatically get a
-third tag chip, `"DEV"`, derived from `category` rather than requiring
-it in each project's `tags` array. `hideMeta` (default `false`) hides
-the logo/name/one-liner row below the folder artwork — used by the
-case-study page's "Next Project" list.
+placeholder's two-layer arrangement, `object-cover` since a real
+thumbnail's aspect ratio won't naturally match the Figma slot's ~2:1
+box) and `logo` (the small 39x39 image next to the name, also
+`object-cover`). `logoAlternate` is a separate, unrelated field on the
+same type — not rendered by this component at all, only consumed by
+the ProjectDetail page header (`/work/[slug]`) where it sits beside
+`<h1>{project.name}</h1>`; no placeholder fallback, so it's simply
+omitted when a project doesn't set one. Development-category projects
+automatically get a third tag chip, `"DEV"`, derived from `category`
+rather than requiring it in each project's `tags` array. `hideMeta`
+(default `false`) hides the logo/name/one-liner row below the folder
+artwork — used by the case-study page's "Next Project" list.
 - `**Icons.tsx`** — every icon (LinkedIn, Behance, arrow/chevron,
 document/PDF, hamburger, close/X, dark/light mode) is inlined as a React
 component with `fill="currentColor"`, not referenced via `<img src>`.

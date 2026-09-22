@@ -35,6 +35,7 @@ example.
 [THUMBNAIL-1: /case-studies/project-slug/thumbnail-1.jpg]  (optional — both are needed together, or neither is used)
 [THUMBNAIL-2: /case-studies/project-slug/thumbnail-2.jpg]  (the widget card shows these as two overlapping layers, same as the placeholder illustration; without them, the placeholder is used)
 [LOGO: /case-studies/project-slug/logo.png]                (optional — the small logo next to the name on the widget card; without it, a placeholder is used)
+[LOGO-ALTERNATE: /case-studies/project-slug/logo-alt.svg]   (optional, separate from LOGO above — shown beside the project name on the ProjectDetail page header itself, not on the widget card. No placeholder fallback: omit it and the header just shows the plain name. Typically an SVG; rendered with a plain <img>, not next/image, since next/image won't optimize SVGs without a site-wide config change.)
 ```
 
 **Blocks** (in the order you want them to appear on the page):
