@@ -62,6 +62,20 @@
   --font-sans: "Inter", sans-serif;
 }
 
+/* Belt-and-suspenders guard against horizontal overflow: several sections
+   (e.g. MarqueeGrid's full-bleed track) intentionally render wider than
+   the viewport and rely on clipping to stay invisible. If any one of them
+   ever escapes its own overflow-hidden wrapper - or genuinely does need
+   to be exactly 100vw on a device where that unit doesn't perfectly match
+   the visual viewport - this stops it from pushing out the whole page
+   and creating unwanted horizontal scroll site-wide.
+   See also: /work/[slug] case studies with a marqueeGrid block, which is
+   the block type most likely to hit this. */
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--color-surface-bg);
   color: var(--color-text-primary);

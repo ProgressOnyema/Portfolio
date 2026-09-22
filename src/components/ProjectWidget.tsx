@@ -87,7 +87,13 @@ export default function ProjectWidget({
           overlapping images, then folder_cover on top. When the project
           has real thumbnails, they replace the placeholder paint-texture
           images in the same two positions (folder_back stays as the
-          base layer either way). */}
+          base layer either way). Both layers use object-cover, not
+          object-contain: IMAGE1_STYLE/IMAGE2_STYLE are precise pixel
+          slots from the Figma spec (~2.04-2.07:1), and a real thumbnail
+          (e.g. a 16:9 screenshot) won't naturally match that ratio.
+          object-cover fills the exact intended slot, cropping any excess,
+          instead of leaving letterboxed gaps down the sides. Matches the
+          same treatment already used for the logo below. */}
       <div className="relative aspect-[350/255] w-full overflow-hidden rounded-md transition-transform group-hover:-translate-y-1">
         {/* folder_back — theme-aware (color/surface/bg-alt), not a static image */}
         <div className="absolute inset-0 text-surface-bg-alt">
@@ -98,7 +104,7 @@ export default function ProjectWidget({
             src={project.thumbnails?.[1] ?? "/folder-assets/folder_image2.png"}
             alt=""
             fill
-            className="object-contain"
+            className="object-cover"
             sizes="400px"
           />
         </div>
@@ -107,7 +113,7 @@ export default function ProjectWidget({
             src={project.thumbnails?.[0] ?? "/folder-assets/folder_image1.png"}
             alt=""
             fill
-            className="object-contain"
+            className="object-cover"
             sizes="400px"
           />
         </div>
