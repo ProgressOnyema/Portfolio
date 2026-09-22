@@ -5,7 +5,7 @@ export default function MetaBlock({ block }: { block: MetaBlockData }) {
   return (
     <div className="flex flex-col gap-6">
       {block.logo && (
-        <div className="relative size-12 shrink-0 overflow-hidden rounded-[12px] bg-surface-bg-alt">
+        <div className="relative size-12 shrink-0 overflow-hidden rounded-csq bg-surface-bg-alt">
           <Image src={block.logo.src} alt={block.logo.alt} fill className="object-contain p-2" />
         </div>
       )}

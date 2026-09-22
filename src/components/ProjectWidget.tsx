@@ -139,7 +139,7 @@ export default function ProjectWidget({
         <div className="flex h-[47px] items-center gap-2">
           {/* project logo — falls back to placeholder artwork until the
               project has a real logo */}
-          <div className="relative size-[39px] shrink-0 overflow-hidden rounded-[12px] bg-surface-bg-alt">
+          <div className="relative size-[39px] shrink-0 overflow-hidden rounded-csq bg-surface-bg-alt">
             <Image
               src={project.logo ?? "/folder-assets/folder_image1.png"}
               alt=""
