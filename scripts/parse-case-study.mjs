@@ -17,32 +17,79 @@ function fail(msg, lineNum) {
   process.exit(1);
 }
 
-// Split "Body:" free text into paragraphs (blank-line separated), joining
-// wrapped lines within a paragraph, then split each into plain/emphasis
-// spans on *asterisk* markers.
+// Split plain text into RichSpan[] on *asterisk* markers for inline
+// emphasis (italics).
+function parseSpans(text) {
+  const spans = [];
+  const parts = text.split(/\*(.+?)\*/g);
+  parts.forEach((part, i) => {
+    if (part === "") return;
+    if (i % 2 === 1) spans.push({ text: part, emphasis: true });
+    else spans.push(part);
+  });
+  return spans;
+}
+
+// Split "Body:" free text into a TextNode[] - a mix of paragraphs
+// (blank-line separated, wrapped lines within one joined together) and
+// lists. A line starting with "- " begins/continues a bullet list; a
+// line starting with "1. " (any digit) begins/continues a numbered one -
+// standard Markdown-ish list markers, consistent with *asterisk*
+// emphasis above. Unlike paragraphs, list items don't support wrapped
+// continuation lines - each item is exactly one line - so keep them
+// short or split into more items.
 function parseParagraphs(bodyLines) {
-  const paragraphs = [];
-  let current = [];
-  for (const line of bodyLines) {
-    if (line.trim() === "") {
-      if (current.length) paragraphs.push(current.join(" "));
-      current = [];
+  const nodes = [];
+  let currentParagraph = [];
+  let currentList = null;
+
+  const flushParagraph = () => {
+    if (currentParagraph.length) {
+      nodes.push(currentParagraph.join(" "));
+      currentParagraph = [];
+    }
+  };
+  const flushList = () => {
+    if (currentList) {
+      nodes.push(currentList);
+      currentList = null;
+    }
+  };
+
+  for (const rawLine of bodyLines) {
+    const line = rawLine.trim();
+    if (line === "") {
+      flushParagraph();
+      flushList();
+      continue;
+    }
+    const bulletMatch = line.match(/^-\s+(.*)$/);
+    const numberedMatch = line.match(/^\d+\.\s+(.*)$/);
+    if (bulletMatch || numberedMatch) {
+      flushParagraph();
+      const ordered = Boolean(numberedMatch);
+      const text = (bulletMatch ?? numberedMatch)[1];
+      if (!currentList || currentList.ordered !== ordered) {
+        // A new list starts if there wasn't one yet, or if the marker
+        // style switched (bullet <-> numbered) - that's two lists, not
+        // one mixed one.
+        flushList();
+        currentList = { ordered, items: [] };
+      }
+      currentList.items.push(text);
     } else {
-      current.push(line.trim());
+      flushList();
+      currentParagraph.push(line);
     }
   }
-  if (current.length) paragraphs.push(current.join(" "));
+  flushParagraph();
+  flushList();
 
-  return paragraphs.map((paragraph) => {
-    const spans = [];
-    const parts = paragraph.split(/\*(.+?)\*/g);
-    parts.forEach((part, i) => {
-      if (part === "") return;
-      if (i % 2 === 1) spans.push({ text: part, emphasis: true });
-      else spans.push(part);
-    });
-    return spans;
-  });
+  return nodes.map((node) =>
+    typeof node === "string"
+      ? parseSpans(node)
+      : { type: "list", ordered: node.ordered, items: node.items.map(parseSpans) }
+  );
 }
 
 // Collect "Label: value" fields from lines until we hit a line starting a

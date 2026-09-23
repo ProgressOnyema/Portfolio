@@ -43,7 +43,7 @@ example.
 - `[COVER-IMAGE] ... [/COVER-IMAGE]` — fields: `src`, `alt`, `caption` (optional)
 - `[GRID: 2] ... [/GRID]` — put any other blocks inside; they become that many columns
 - `[META] ... [/META]` — one `Label: Value` per line
-- `[TEXT] ... [/TEXT]` or `[TEXT: pullQuote] ... [/TEXT]` — optional `Heading:` line, then `Body:` followed by your paragraphs (blank line = new paragraph, `*word*` = italic emphasis)
+- `[TEXT] ... [/TEXT]` or `[TEXT: pullQuote] ... [/TEXT]` — optional `Heading:` line, then `Body:` followed by your paragraphs (blank line = new paragraph, `*word*` = italic emphasis, lists as below). Same `Body:` syntax is shared by `MEDIA-TEXT` and `QUOTE` further down.
 - `[IMAGE-GRID: 2] ... [/IMAGE-GRID]` — static grid layout, `columns` (1/2/3) controls how many columns at `sm+` (always 1 on mobile); each image on its own line: `- src: ... | alt: ... | caption: ...`
 - `[MARQUEE-GRID] ... [/MARQUEE-GRID]` — same image-line syntax as `IMAGE-GRID`, but renders as a continuously auto-scrolling horizontal marquee at every breakpoint instead of a static grid (an argument like `: 2` is accepted for consistency but ignored — there's no column count in a marquee)
 - `[MEDIA-TEXT] ... [/MEDIA-TEXT]` or `[MEDIA-TEXT: right]` / `[MEDIA-TEXT: top]` — fields `src`, `alt`, optional `Heading:`, then `Body:`
@@ -51,6 +51,19 @@ example.
 - `[STATS] ... [/STATS]` — one stat per line: `40% | Increase in signups`
 - `[QUOTE] ... [/QUOTE]` — `Body:`, `Name:`, `Role:` (optional), `Avatar:` (optional)
 - `[CTA] ... [/CTA]` — `Label:`, `Href:`, `Style:` (primary/link)
+
+**Lists inside a `Body:`** (TEXT, MEDIA-TEXT, QUOTE all share this): a line starting with `- ` is a bullet item, a line starting with `1. ` (any digit) is a numbered item — consecutive lines of the same marker style become one list; a blank line, a plain paragraph line, or switching marker style (bullet <-> numbered) ends it. Unlike paragraphs, list items don't wrap — keep each one to a single line.
+
+```
+Body:
+Some intro text.
+
+- First point
+- Second point
+
+1. Step one
+2. Step two
+```
 
 ## 2. Add the real images
 

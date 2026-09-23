@@ -4,10 +4,27 @@
 export type RichSpan = string | { text: string; emphasis?: boolean };
 export type Paragraph = RichSpan[];
 
+// A bullet or numbered list, authored as a sibling to Paragraph within a
+// body's TextNode[] rather than a Paragraph variant - it needs its own
+// shape (a plain object, not a bare array) so RichText.tsx can tell a
+// list apart from an ordinary paragraph at render time with a simple
+// Array.isArray check (see RichText.tsx's renderNode).
+export type ListBlock = {
+  type: "list";
+  ordered: boolean;
+  items: RichSpan[][];
+};
+
+// What a text body is made of: any mix of paragraphs and lists, in
+// authored order. TextBlock/MediaTextBlock/QuoteBlock's `body` is this,
+// not Paragraph[] - a rename would ripple further than it's worth, so
+// the field is still called `body` everywhere it's used.
+export type TextNode = Paragraph | ListBlock;
+
 export type TextBlock = {
   type: "text";
   heading?: string;
-  body: Paragraph[];
+  body: TextNode[];
   variant?: "default" | "pullQuote";
 };
 
@@ -53,7 +70,7 @@ export type MediaTextBlock = {
   type: "mediaText";
   image: { src: string; alt: string };
   heading?: string;
-  body: Paragraph[];
+  body: TextNode[];
   imagePosition?: "left" | "right" | "top";
 };
 
@@ -97,7 +114,7 @@ export type QuoteAttribution = {
 
 export type QuoteBlock = {
   type: "quote";
-  body: Paragraph[];
+  body: TextNode[];
   attribution: QuoteAttribution;
 };
 
