@@ -27,7 +27,7 @@ export default function ImageGrid({ block }: { block: ImageGridBlockData }) {
               src={image.src}
               alt={image.alt}
               loading="lazy"
-              className="max-h-[500px] max-w-full object-contain"
+              className="max-h-[500px] max-w-full object-fit"
             />
           </div>
           {image.caption && (

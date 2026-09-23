@@ -99,7 +99,7 @@ When a user inputs a destination that requires a transfer, the system automatica
 [/TEXT]
 
 [IMAGE-GRID: 1]
-- src: /case-studies/wey/wey-uxui/multi_leg.gif | alt: Image of a multi-leg logic | caption: Multi-leg logic
+- src: /case-studies/wey/wey-uxui/multi_leg.png | alt: Image of a multi-leg logic | caption: Multi-leg logic
 [/IMAGE-GRID]
 
 [TEXT]

@@ -11,7 +11,7 @@ export default function CoverImage({ block }: { block: CoverImageBlock }) {
           included — rounding a full-bleed edge-to-edge image would look
           wrong, so that's mobile-only too. */}
       <div className="relative -mx-5 aspect-[16/9] w-[calc(100%+2.5rem)] overflow-hidden bg-surface-bg-alt sm:mx-0 sm:w-full sm:rounded-md">
-        <Image src={block.src} alt={block.alt} fill className="object-cover" />
+        <Image src={block.src} alt={block.alt} fill className="object-fit" />
       </div>
     </figure>
   );
