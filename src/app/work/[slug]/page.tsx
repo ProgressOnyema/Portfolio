@@ -51,13 +51,7 @@ export default async function ProjectDetail({
                 like the other two logo/thumbnail images on this type —
                 those are photos meant to fill their box; this is a logo
                 mark, which should never get cropped. */}
-            {project.logoAlternate && (
-              <div className="relative flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-csq bg-surface-bg-alt">
-                {/* eslint-disable-next-line @next/next/no-img-element -- see comment above: SVG, next/image can't serve it without a site-wide config change */}
-                <img src={project.logoAlternate} alt="" className="max-h-full max-w-full object-contain" />
-              </div>
-            )}
-            <h1 className="text-h1-bold">{project.name}</h1>
+            <h1 className="text-h2-bold sm:text-h1-bold">{project.name}</h1>
           </div>
           {/* .text-project-oneliner, not the shared .text-h3 (used by
               Home/About): this one drops to Body Regular/Base (16px) on
