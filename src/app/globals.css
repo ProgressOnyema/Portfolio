@@ -88,13 +88,17 @@ html.lenis body {
   pointer-events: none;
 }
 
-/* Custom rainbow difference-blend cursor (Cursor.tsx) replaces the
-   native one - only for devices with a real mouse, matching that
-   component's own (hover: hover) and (pointer: fine) check. Touch
-   devices keep the platform default untouched. */
+/* Custom difference-blend cursor (Cursor.tsx) replaces the native
+   one - only for devices with a real mouse, matching that component's
+   own (hover: hover) and (pointer: fine) check. Touch devices keep
+   the platform default untouched. Force none on every element so
+   browser defaults (hand on links/buttons) and any cursor-pointer
+   utilities can't override body's cursor and flash the system icon. */
 @media (hover: hover) and (pointer: fine) {
-  body {
-    cursor: none;
+  *,
+  *::before,
+  *::after {
+    cursor: none !important;
   }
 }
 

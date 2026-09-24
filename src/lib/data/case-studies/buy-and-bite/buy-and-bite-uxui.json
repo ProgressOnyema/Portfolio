@@ -166,16 +166,21 @@
       "type": "text",
       "body": [
         [
-          "I wanted to understand how Lagos Island residents actually approach grocery shopping: what they need, what influences their choices, and what makes the process convenient or inconvenient. For a resident balancing work, school, family, or other responsibilities, going to a market can mean navigating crowded areas, comparing prices across different sellers, carrying purchases, and fitting the trip around an already busy day."
+          "For a resident balancing work, school, family, or other responsibilities, going to a market can mean navigating crowded areas, comparing prices across different sellers, carrying purchases, and fitting the trip around an already busy day."
         ],
         [
           "This led to a broader goal: make it easier for people to discover, purchase, and get fresh produce while reducing the time, effort, and uncertainty involved in grocery shopping."
-        ],
+        ]
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
         [
-          "The opportunity for Buy and Bite was therefore to make everyday grocery shopping convenient and more affordable"
+          "Make it easier for people to discover, purchase, and get fresh produce while reducing the time, effort, and uncertainty involved in grocery shopping."
         ]
       ],
-      "heading": "Turned into insights"
+      "variant": "pullQuote"
     },
     {
       "type": "text",
@@ -221,7 +226,7 @@
           "Buying farm produce was driven by dietary needs for a segment of users, i.e., consumers managing health issues. I translated this into making prepacked packages for specific health issues."
         ],
         [
-          "Users can add or remove products from these prepacked packages to suit their needs or budget. I made the product visuals as clear and descriptive as possible; decision fatigue caused by cognitive load might affect buyers."
+          "Users can add or remove products from these prepacked packages to suit their needs or budget. I made the product visuals as clear and descriptive as possible; cognitive load from decision fatigue might affect buyers."
         ]
       ],
       "heading": "Designing for the health-conscious"
@@ -246,7 +251,7 @@
       "type": "text",
       "body": [
         [
-          "Place your order and track it until it's delivered. We know Lagos and its traffic; users will have to spend a whole day to pick up their orders, so I decided to add an option to deliver or schedule the delivery."
+          "Place your order and track it until it's delivered. We know Lagos and its traffic; users may need a full day to pick up their orders, so I added an option to deliver or schedule delivery."
         ],
         [
           "Payment is required before delivery to avoid complications. Multiple payment methods are supported, including cards, third-party payment gateways, and bank transfer."

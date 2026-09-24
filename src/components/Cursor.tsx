@@ -2,25 +2,30 @@
 
 import { useEffect, useRef } from "react";
 
-/* A circular cursor with a rainbow gradient fill and mix-blend-mode:
-   difference. Difference computes |source - backdrop| per pixel, so
-   against black text (0,0,0) the gradient shows its true colors
-   unchanged, and against a white background (255,255,255) it shows the
-   inverted complementary colors - either way, the result is always a
-   vivid, varying color, never invisible against its background the way
-   a flat-color cursor could be.
+/* A circular cursor with a white fill and mix-blend-mode: difference.
+   Difference computes |source - backdrop| per pixel, so white against
+   dark areas stays bright and against light areas inverts to dark —
+   always visible without a gradient.
+
+   Grows when the pointer is over a clickable target (links, buttons,
+   form controls, etc.). Native hand/pointer cursors are suppressed in
+   globals.css under the same media query so only this circle shows.
 
    Only active on devices with a real mouse (hover: hover and
    pointer: fine, matched in both this component and the cursor: none
    rule in globals.css) - on touch devices there's no cursor to
    replace, and the effect wouldn't mean anything.
 
-   Position is smoothed with a simple lerp toward the real mouse
-   position each frame, rather than snapping 1:1, for a slight trailing
+   Position (and scale) are smoothed with a simple lerp toward the real
+   mouse each frame, rather than snapping 1:1, for a slight trailing
    feel - not gated behind prefers-reduced-motion since it only moves in
    direct response to the user's own mouse input, unlike Lenis's
    autoplaying inertia (SmoothScroll.tsx) which continues after input
    stops. */
+
+const CLICKABLE =
+  'a, button, input, select, textarea, label, summary, [role="button"], [role="link"], [tabindex]:not([tabindex="-1"])';
+
 export default function Cursor() {
   const dotRef = useRef<HTMLDivElement>(null);
 
@@ -32,14 +37,21 @@ export default function Cursor() {
 
     let targetX = 0;
     let targetY = 0;
+    let targetScale = 1;
     let x = 0;
     let y = 0;
+    let scale = 1;
     let hasMoved = false;
     let frameId: number;
+
+    function isClickable(target: EventTarget | null) {
+      return target instanceof Element && Boolean(target.closest(CLICKABLE));
+    }
 
     function handleMove(e: MouseEvent) {
       targetX = e.clientX;
       targetY = e.clientY;
+      targetScale = isClickable(e.target) ? 2 : 1;
       if (!hasMoved) {
         // Jump to position on the very first move instead of lerping in
         // from wherever x/y defaulted to (0,0), so there's no visible
@@ -47,8 +59,12 @@ export default function Cursor() {
         x = targetX;
         y = targetY;
         hasMoved = true;
-        dot!.style.opacity = "1";
       }
+      // Always restore — handleLeave sets opacity to 0 when the pointer
+      // leaves the document (browser chrome, another window, iframes),
+      // and without this the cursor stayed hidden after coming back
+      // because the opacity=1 write used to live only inside !hasMoved.
+      dot!.style.opacity = "1";
     }
 
     function handleLeave() {
@@ -56,12 +72,14 @@ export default function Cursor() {
       // chrome or another monitor) instead of leaving it stuck at the
       // last known position.
       dot!.style.opacity = "0";
+      targetScale = 1;
     }
 
     function raf() {
       x += (targetX - x) * 0.2;
       y += (targetY - y) * 0.2;
-      dot!.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
+      scale += (targetScale - scale) * 0.2;
+      dot!.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
       frameId = requestAnimationFrame(raf);
     }
 
@@ -80,11 +98,7 @@ export default function Cursor() {
     <div
       ref={dotRef}
       aria-hidden="true"
-      className="pointer-events-none fixed top-0 left-0 z-[100] size-8 rounded-full opacity-0 mix-blend-difference transition-opacity duration-200"
-      style={{
-        background:
-          "conic-gradient(from 0deg, #ff0000, #ff9900, #ffee00, #33ff00, #00fff9, #0066ff, #cc00ff, #ff0000)",
-      }}
+      className="pointer-events-none fixed top-0 left-0 z-[100] size-8 rounded-full bg-white opacity-0 mix-blend-difference transition-opacity duration-200"
     />
   );
 }
