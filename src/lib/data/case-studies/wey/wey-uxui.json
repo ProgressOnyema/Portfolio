@@ -72,8 +72,29 @@
       "type": "text",
       "body": [
         [
-          "To understand how Lagos commuters plan journeys to unfamiliar destinations or to any destination at all, how they choose between different routes, what challenges they encounter, and how they currently solve those challenges. To answer these questions, I had to ask a few questions: 1. How frequently do Lagos commuters travel to unfamiliar areas? 2. How do they currently figure out how to get there? 3. What makes choosing a route difficult? 4. What happens when they choose the wrong or inefficient route? 5. What information would make unfamiliar journeys easier?"
+          "To understand how Lagos commuters plan journeys to unfamiliar destinations or to any destination at all, how they choose between different routes, what challenges they encounter, and how they currently solve those challenges. To answer these questions, I had to ask a few questions:"
         ],
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            [
+              "How frequently do Lagos commuters travel to unfamiliar areas?"
+            ],
+            [
+              "How do they currently figure out how to get there?"
+            ],
+            [
+              "What makes choosing a route difficult?"
+            ],
+            [
+              "What happens when they choose the wrong or inefficient route?"
+            ],
+            [
+              "What information would make unfamiliar journeys easier?"
+            ]
+          ]
+        },
         [
           "Participants were between 15 and 35 years old and regularly moved around Lagos using public and private transportation. 12 participants took part in a semi-structured interview."
         ],
@@ -115,9 +136,24 @@
     {
       "type": "text",
       "body": [
-        [
-          "1. Travelling to unfamiliar areas is common. 2. People rarely rely on one source of information. 3. Fastest is not always best. 4. People rely heavily on other people."
-        ],
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            [
+              "Travelling to unfamiliar areas is common."
+            ],
+            [
+              "People rarely rely on one source of information."
+            ],
+            [
+              "Fastest is not always best."
+            ],
+            [
+              "People rely heavily on other people."
+            ]
+          ]
+        },
         [
           "Before leaving, most used Google Maps to locate their destination and understand what area it was in, following a simple process of ",
           {
@@ -160,8 +196,38 @@
       "type": "text",
       "body": [
         [
-          "This presents an opportunity to create a journey-planning experience designed specifically around the realities of moving through Lagos. Instead of simply answering “Where is this place?\", the experience should help commuters understand “What exactly should I do to get there?” by providing practical information such as 1. Which transport to take 2. Where to board, where to change, where to get off 3. Approximate journey time 4. Estimated cost 5. Number of transfers 6. Walking distance 7. Alternative routes 8. Current route conditions"
+          "This presents an opportunity to create a journey-planning experience designed specifically around the realities of moving through Lagos. Instead of simply answering “Where is this place?\", the experience should help commuters understand “What exactly should I do to get there?” by providing practical information such as"
         ],
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            [
+              "Which transport to take"
+            ],
+            [
+              "Where to board, where to change, where to get off"
+            ],
+            [
+              "Approximate journey time"
+            ],
+            [
+              "Estimated cost"
+            ],
+            [
+              "Number of transfers"
+            ],
+            [
+              "Walking distance"
+            ],
+            [
+              "Alternative routes"
+            ],
+            [
+              "Current route conditions"
+            ]
+          ]
+        },
         [
           "Rather than presenting one universally “best” route, the experience could offer options based on what matters most to the commuter, such as"
         ],
