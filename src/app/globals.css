@@ -88,6 +88,16 @@ html.lenis body {
   pointer-events: none;
 }
 
+/* Custom rainbow difference-blend cursor (Cursor.tsx) replaces the
+   native one - only for devices with a real mouse, matching that
+   component's own (hover: hover) and (pointer: fine) check. Touch
+   devices keep the platform default untouched. */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
+}
+
 html,
 body {
   overflow-x: hidden;

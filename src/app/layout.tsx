@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
 import "./globals.css";
@@ -33,6 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         suppressHydrationWarning
       >
         <SmoothScroll />
+        <Cursor />
         <Navbar />
         {children}
       </body>
