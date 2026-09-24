@@ -57,7 +57,7 @@ export default function BlockRenderer({ blocks }: { blocks: Block[] }) {
         // alongside whatever it's paired with, not shrink further.
         if (block.type === "text") {
           return (
-            <div key={i} className="sm:mx-auto sm:w-3/4">
+            <div key={i} className="sm:mx-auto sm:w-13/20">
               {content}
             </div>
           );

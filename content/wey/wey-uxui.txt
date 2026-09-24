@@ -55,8 +55,6 @@ Participants included students, full-time employees, and freelancers living in a
 
 [MARQUEE-GRID]
 - src: /case-studies/wey/wey-uxui/Danfo.png | alt: Image of a Danfo | caption: Danfo
-- src: /case-studies/wey/wey-uxui/Data_modelling.png | alt: Image of data modelling | caption: Data model
-- src: /case-studies/wey/wey-uxui/IA_Sitemap.png | alt: Image of a Sitemap | caption: Info. Architecture & Sitemap
 - src: /case-studies/wey/wey-uxui/keke.jpg | alt: Image of a tricycle | caption: Tricycle (Keke)
 - src: /case-studies/wey/wey-uxui/user_flow.png | alt: Image of a user flow | caption: User flow
 - src: /case-studies/wey/wey-uxui/user_research.png | alt: Image of a user research | caption: User research
@@ -146,10 +144,8 @@ Body: Most Lagos commuters plan their trips in what they often refer to as *blen
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/wey/wey-uxui/home.png | alt: Image of a ui screen | caption: Home page
+- src: /case-studies/wey/wey-uxui/screens.png | alt: Image of a ui screen | caption: Screens
 - src: /case-studies/wey/wey-uxui/components.png | alt: Image of a ui components | caption: Components
-- src: /case-studies/wey/wey-uxui/404_page.png | alt: Image of a ui screen | caption: 404 page
-- src: /case-studies/wey/wey-uxui/home.png | alt: Image of a ui screen | caption: update_fare
 [/MARQUEE-GRID]
 
 [TEXT]

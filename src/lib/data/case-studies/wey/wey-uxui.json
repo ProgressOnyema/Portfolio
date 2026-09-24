@@ -96,16 +96,6 @@
           "caption": "Danfo"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/Data_modelling.png",
-          "alt": "Image of data modelling",
-          "caption": "Data model"
-        },
-        {
-          "src": "/case-studies/wey/wey-uxui/IA_Sitemap.png",
-          "alt": "Image of a Sitemap",
-          "caption": "Info. Architecture & Sitemap"
-        },
-        {
           "src": "/case-studies/wey/wey-uxui/keke.jpg",
           "alt": "Image of a tricycle",
           "caption": "Tricycle (Keke)"
@@ -313,24 +303,14 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/home.png",
+          "src": "/case-studies/wey/wey-uxui/screens.png",
           "alt": "Image of a ui screen",
-          "caption": "Home page"
+          "caption": "Screens"
         },
         {
           "src": "/case-studies/wey/wey-uxui/components.png",
           "alt": "Image of a ui components",
           "caption": "Components"
-        },
-        {
-          "src": "/case-studies/wey/wey-uxui/404_page.png",
-          "alt": "Image of a ui screen",
-          "caption": "404 page"
-        },
-        {
-          "src": "/case-studies/wey/wey-uxui/home.png",
-          "alt": "Image of a ui screen",
-          "caption": "update_fare"
         }
       ]
     },
