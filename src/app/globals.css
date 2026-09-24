@@ -71,6 +71,23 @@
    and creating unwanted horizontal scroll site-wide.
    See also: /work/[slug] case studies with a marqueeGrid block, which is
    the block type most likely to hit this. */
+/* Lenis (smooth scroll, see SmoothScroll.tsx) — its own recommended base
+   styles. html.lenis/lenis-smooth etc. are classes Lenis toggles on <html>
+   itself at runtime, not ones anything in this codebase applies manually. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
 html,
 body {
   overflow-x: hidden;

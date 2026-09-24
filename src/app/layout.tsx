@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
+import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
 import "./globals.css";
 
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         className="min-h-full flex flex-col bg-surface-bg text-text-primary pt-[106px]"
         suppressHydrationWarning
       >
+        <SmoothScroll />
         <Navbar />
         {children}
       </body>
