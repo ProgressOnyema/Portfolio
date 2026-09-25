@@ -22,9 +22,9 @@ export function ButtonPrimary({
   rel,
   className = "",
 }: BaseProps & { children: ReactNode }) {
-  const classes = `group inline-flex origin-center transform-gpu will-change-transform items-center justify-center gap-2 rounded-[5px] border border-border-hairline bg-surface-bg px-8 py-2 transition-[transform,border-radius,border-color,background-color] duration-300 ease-out hover:scale-[0.75] hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg ${className}`;
+  const classes = `group inline-flex origin-center transform-gpu will-change-transform items-center justify-center gap-2 rounded-[5px] border border-border-hairline bg-surface-bg px-8 py-2 transition-[transform,border-radius,border-color,background-color] duration-300 ease-in-out hover:scale-[0.75] hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg ${className}`;
   const textClasses =
-    "text-body-reg-strong sm:text-body-lg-strong text-text-primary transition-colors duration-300 ease-out group-hover:text-inverse-text-primary";
+    "text-body-reg-strong sm:text-body-lg-strong text-text-primary transition-colors duration-300 ease-in-out group-hover:text-inverse-text-primary";
 
   if (href) {
     return (
@@ -54,7 +54,7 @@ export function ButtonSocial({
   rel,
   className = "",
 }: BaseProps & { children: ReactNode }) {
-  const classes = `flex h-[69px] w-[79px] origin-center transform-gpu will-change-transform items-center justify-center rounded-[5px] border border-border-hairline bg-surface-bg text-text-primary transition-[transform,border-radius,border-color,background-color,color] duration-300 ease-out hover:scale-[0.75] hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary ${className}`;
+  const classes = `flex h-[69px] w-[79px] origin-center transform-gpu will-change-transform items-center justify-center rounded-[5px] border border-border-hairline bg-surface-bg text-text-primary transition-[transform,border-radius,border-color,background-color,color] duration-300 ease-in-out hover:scale-[0.75] hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary ${className}`;
 
   if (href) {
     return (
