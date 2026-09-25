@@ -37,9 +37,9 @@ export function ButtonPrimary({
   // `border-radius` at all (they aren't in its property list) — hence the snap.
   const outerClasses = `group inline-flex items-center justify-center ${className}`;
   const innerClasses =
-    "inline-flex origin-center transform-gpu will-change-[scale] items-center justify-center gap-2 rounded-[5px] border border-border-hairline bg-surface-bg px-8 py-2 !transition-[scale,border-radius,border-color,background-color] !duration-500 !ease-in-out group-hover:scale-[0.75] group-hover:rounded-[3px] group-hover:border-transparent group-hover:bg-inverse-surface-bg";
+    "inline-flex origin-center transform-gpu will-change-[scale] items-center justify-center gap-2 rounded-[5px] border border-border-hairline bg-surface-bg px-8 py-2 !transition-[scale,border-radius,border-color,background-color] !duration-300 !ease-in-out group-hover:scale-[0.75] group-hover:rounded-[3px] group-hover:border-transparent group-hover:bg-inverse-surface-bg";
   const textClasses =
-    "text-body-reg-strong sm:text-body-lg-strong text-text-primary !transition-colors !duration-500 !ease-in-out group-hover:text-inverse-text-primary";
+    "text-body-reg-strong sm:text-body-lg-strong text-text-primary !transition-colors !duration-300 !ease-in-out group-hover:text-inverse-text-primary";
 
   if (href) {
     return (
@@ -81,7 +81,7 @@ export function ButtonSocial({
   // Same `!important` requirement as ButtonPrimary above — see that comment.
   const outerClasses = `group flex h-[69px] w-[79px] items-center justify-center ${className}`;
   const innerClasses =
-    "flex h-full w-full origin-center transform-gpu will-change-[scale] items-center justify-center rounded-[5px] border border-border-hairline bg-surface-bg text-text-primary !transition-[scale,border-radius,border-color,background-color,color] !duration-500 !ease-in-out group-hover:scale-[0.75] group-hover:rounded-[3px] group-hover:border-transparent group-hover:bg-inverse-surface-bg group-hover:text-inverse-text-primary";
+    "flex h-full w-full origin-center transform-gpu will-change-[scale] items-center justify-center rounded-[5px] border border-border-hairline bg-surface-bg text-text-primary !transition-[scale,border-radius,border-color,background-color,color] !duration-300 !ease-in-out group-hover:scale-[0.75] group-hover:rounded-[3px] group-hover:border-transparent group-hover:bg-inverse-surface-bg group-hover:text-inverse-text-primary";
 
   if (href) {
     return (
