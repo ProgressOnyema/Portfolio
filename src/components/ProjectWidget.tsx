@@ -99,13 +99,26 @@ export default function ProjectWidget({
           (e.g. a 16:9 screenshot) won't naturally match that ratio.
           object-cover fills the exact intended slot, cropping any excess,
           instead of leaving letterboxed gaps down the sides. Matches the
-          same treatment already used for the logo below. */}
-      <div className="relative aspect-[350/255] w-full overflow-hidden rounded-md transition-transform group-hover:-translate-y-1">
+          same treatment already used for the logo below.
+
+          Hover animation: per direct instruction, the two thumbnails are
+          the ONLY things that move on hover — they rotate in opposite
+          directions (image1/front +4deg, image2/back -4deg), nothing else
+          in the widget (not the folder box, not the tag pills) moves.
+          `!important` on the transition utilities is required here for the
+          same reason as Button.tsx: an unlayered global rule in
+          globals.css (`body, body * { transition: ... }`) always beats
+          Tailwind's layered utility classes and doesn't mention `rotate`,
+          so without it the rotation would snap instead of easing. */}
+      <div className="relative aspect-[350/255] w-full overflow-hidden rounded-md">
         {/* folder_back — theme-aware (color/surface/bg-alt), not a static image */}
         <div className="absolute inset-0 text-surface-bg-alt">
           <FolderBackIcon className="h-full w-full" />
         </div>
-        <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE2_STYLE}>
+        <div
+          className="absolute left-1/2 -translate-x-1/2 origin-center !transition-transform !duration-300 !ease-in-out group-hover:-rotate-[4deg]"
+          style={IMAGE2_STYLE}
+        >
           <Image
             src={project.thumbnails?.[1] ?? "/folder-assets/folder_image2.png"}
             alt=""
@@ -114,7 +127,10 @@ export default function ProjectWidget({
             sizes="400px"
           />
         </div>
-        <div className="absolute left-1/2 -translate-x-1/2" style={IMAGE1_STYLE}>
+        <div
+          className="absolute left-1/2 -translate-x-1/2 origin-center !transition-transform !duration-300 !ease-in-out group-hover:rotate-[4deg]"
+          style={IMAGE1_STYLE}
+        >
           <Image
             src={project.thumbnails?.[0] ?? "/folder-assets/folder_image1.png"}
             alt=""
