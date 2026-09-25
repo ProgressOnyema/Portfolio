@@ -69,9 +69,9 @@ export default function About() {
               key={book}
               src={`/about_page_assets/${book}.png`}
               alt=""
-              width={18}
-              height={25}
-              className="inline-block align-middle -mr-1 sm:w-[28px] sm:h-[35px]"
+              width={28}
+              height={35}
+              className="inline-block align-middle -mr-1 sm:w-[38px] sm:h-[45px]"
               style={{ transform: `rotate(${(i - 1.5) * 6}deg)` }}
             />
           ))}
@@ -81,9 +81,9 @@ export default function About() {
               key={film}
               src={`/about_page_assets/${film}.png`}
               alt=""
-              width={16}
-              height={25}
-              className="inline-block align-middle -mr-1 sm:w-[26x] sm:h-[35px]"
+              width={26}
+              height={35}
+              className="inline-block align-middle -mr-1 sm:w-[36x] sm:h-[45px]"
               style={{ transform: `rotate(${(i - 1.5) * 7}deg)` }}
             />
           ))}
@@ -93,9 +93,9 @@ export default function About() {
               key={artist}
               src={`/about_page_assets/${artist}.png`}
               alt=""
-              width={22}
-              height={22}
-              className="inline-block align-middle rounded-full -mr-2 sm:w-[32px] sm:h-[32px]"
+              width={32}
+              height={32}
+              className="inline-block align-middle rounded-full -mr-2 sm:w-[42px] sm:h-[42px]"
             />
           ))}
           {" "}to others&apos; perspectives.

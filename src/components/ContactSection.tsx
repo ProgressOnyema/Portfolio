@@ -16,8 +16,8 @@ export default function ContactSection() {
             projects
           </p>
           <div className="flex flex-col gap-1">
-            <p className="text-body-lg-base sm:text-h3" style={{ color: "#858585" }}>
-              Write to me
+            <p className="text-body-reg-base text-text-body sm:text-h3">
+              Write to me:
             </p>
             <AppLink variant="email" href="progressonyema5@gmail.com" />
           </div>
@@ -37,8 +37,8 @@ export default function ContactSection() {
           page, so this is where the copyright notice lives rather than a
           separate Footer component. */}
       <Grid className="pb-8 sm:pb-12">
-        <p className="text-label col-span-4 text-text-body sm:col-span-12">
-          © {year} Onyema Miracle. All rights reserved.
+        <p className="text-body-sm-base col-span-4 text-text-primary sm:col-span-12">
+          ©{year} Onyema Miracle.
         </p>
       </Grid>
     </>
