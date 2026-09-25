@@ -22,20 +22,30 @@ export function ButtonPrimary({
   rel,
   className = "",
 }: BaseProps & { children: ReactNode }) {
-  const classes = `group inline-flex origin-center transform-gpu will-change-transform items-center justify-center gap-2 rounded-[5px] border border-border-hairline bg-surface-bg px-8 py-2 transition-[transform,border-radius,border-color,background-color] duration-300 ease-in-out hover:scale-[0.75] hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg ${className}`;
+  // The hit target (`group`) never resizes — only its inner visual layer
+  // scales via `group-hover`. Scaling the same element that owns `:hover`
+  // shrinks its own hit box, so the cursor falls outside it, hover drops,
+  // it snaps back, the cursor re-enters, and it flickers/jitters in a loop.
+  const outerClasses = `group inline-flex items-center justify-center ${className}`;
+  const innerClasses =
+    "inline-flex origin-center transform-gpu will-change-transform items-center justify-center gap-2 rounded-[5px] border border-border-hairline bg-surface-bg px-8 py-2 transition-[transform,border-radius,border-color,background-color] duration-300 ease-in-out group-hover:scale-[0.75] group-hover:rounded-[3px] group-hover:border-transparent group-hover:bg-inverse-surface-bg";
   const textClasses =
     "text-body-reg-strong sm:text-body-lg-strong text-text-primary transition-colors duration-300 ease-in-out group-hover:text-inverse-text-primary";
 
   if (href) {
     return (
-      <a href={href} target={target} rel={rel} className={classes}>
-        <span className={textClasses}>{children}</span>
+      <a href={href} target={target} rel={rel} className={outerClasses}>
+        <span className={innerClasses}>
+          <span className={textClasses}>{children}</span>
+        </span>
       </a>
     );
   }
   return (
-    <button type="button" onClick={onClick} className={classes}>
-      <span className={textClasses}>{children}</span>
+    <button type="button" onClick={onClick} className={outerClasses}>
+      <span className={innerClasses}>
+        <span className={textClasses}>{children}</span>
+      </span>
     </button>
   );
 }
@@ -54,18 +64,23 @@ export function ButtonSocial({
   rel,
   className = "",
 }: BaseProps & { children: ReactNode }) {
-  const classes = `flex h-[69px] w-[79px] origin-center transform-gpu will-change-transform items-center justify-center rounded-[5px] border border-border-hairline bg-surface-bg text-text-primary transition-[transform,border-radius,border-color,background-color,color] duration-300 ease-in-out hover:scale-[0.75] hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary ${className}`;
+  // Same hit-target/visual split as ButtonPrimary, and for the same reason:
+  // the outer 79x69 box (`group`) stays fixed so its hover hit area never
+  // shrinks; only the inner layer scales via `group-hover`.
+  const outerClasses = `group flex h-[69px] w-[79px] items-center justify-center ${className}`;
+  const innerClasses =
+    "flex h-full w-full origin-center transform-gpu will-change-transform items-center justify-center rounded-[5px] border border-border-hairline bg-surface-bg text-text-primary transition-[transform,border-radius,border-color,background-color,color] duration-300 ease-in-out group-hover:scale-[0.75] group-hover:rounded-[3px] group-hover:border-transparent group-hover:bg-inverse-surface-bg group-hover:text-inverse-text-primary";
 
   if (href) {
     return (
-      <a href={href} target={target} rel={rel} className={classes}>
-        {children}
+      <a href={href} target={target} rel={rel} className={outerClasses}>
+        <span className={innerClasses}>{children}</span>
       </a>
     );
   }
   return (
-    <button type="button" className={classes}>
-      {children}
+    <button type="button" className={outerClasses}>
+      <span className={innerClasses}>{children}</span>
     </button>
   );
 }
