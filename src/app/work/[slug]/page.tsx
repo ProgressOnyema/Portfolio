@@ -3,7 +3,8 @@ import Grid from "@/components/Grid";
 import Subnav from "@/components/Subnav";
 import ContactSection from "@/components/ContactSection";
 import BlockRenderer from "@/components/case-study/BlockRenderer";
-import ProjectWidget, { type ProjectCategory } from "@/components/ProjectWidget";
+import { type ProjectCategory } from "@/components/ProjectWidget";
+import NextProjectsCarousel from "@/components/NextProjectsCarousel";
 import { getOtherProjects, getProject, getProjectCaseStudies, projects } from "@/lib/data/projects";
 
 export function generateStaticParams() {
@@ -74,45 +75,7 @@ export default async function ProjectDetail({
         </div>
       </Grid>
 
-      {otherProjects.length > 0 && (
-        <div className="pt-24 sm:pt-32">
-          {/* Full-bleed on purpose, per direct instruction — this doesn't
-              sit inside <Grid> (which caps at max-w-1440 and centers), so
-              the row can scroll genuinely edge-to-edge instead of being
-              cropped at the page's own column width. Left padding still
-              matches Grid's *effective* left inset — not just its 88px
-              gutter, but max(88px, (100vw-1440px)/2 + 88px), the same
-              value Grid arrives at once mx-auto starts centering it on
-              screens wider than 1440px — so the first card lines up with
-              the rest of the page at any width, not just below the
-              1440px cap. No right padding, so scrolling runs to the
-              actual viewport edge. The trailing spacer gives the last
-              card that same breathing room on the way out. hideMeta
-              drops the logo/name/one-liner row — the tag pills already
-              carry the category, and clicking through is the point, not
-              reading a second description here. */}
-          <div className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 pl-5 sm:snap-none sm:pl-6 lg:pl-[max(88px,calc((100vw-1440px)/2+88px))]">
-            {otherProjects.map((otherProject) => (
-              <div
-                key={otherProject.slug}
-                // Mobile width matches Home's Featured Projects card size
-                // exactly: Home's card fills its Grid cell at full content
-                // width (100vw minus Grid's 20px side margins, since it's
-                // grid-cols-1 there). This row isn't inside <Grid> (see the
-                // full-bleed comment above), so that same width is
-                // reproduced directly with calc() rather than inherited.
-                className="w-[calc(100vw-40px)] shrink-0 snap-start sm:w-[405.5px]"
-              >
-                <ProjectWidget project={otherProject} size="lg" hideMeta />
-              </div>
-            ))}
-            <div
-              className="w-5 shrink-0 sm:w-6 lg:w-[max(88px,calc((100vw-1440px)/2+88px))]"
-              aria-hidden="true"
-            />
-          </div>
-        </div>
-      )}
+      {otherProjects.length > 0 && <NextProjectsCarousel projects={otherProjects} />}
 
       <ContactSection />
     </main>
