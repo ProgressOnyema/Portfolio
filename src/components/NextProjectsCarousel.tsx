@@ -22,9 +22,11 @@ export default function NextProjectsCarousel({
 
   return (
     <div className="pt-24 sm:pt-32">
-      {/* Prev/next controls, right-aligned with the same inset as the
-          card row below (mirrored to the right side) */}
-      <div className="flex items-center justify-end gap-3 pb-6 pr-5 sm:pr-6 lg:pr-[max(88px,calc((100vw-1440px)/2+88px))]">
+      {/* Prev/next controls, right-aligned, with the page's full side
+          margin on both edges (matching Grid's own px-5/sm:px-6/
+          lg:px-[88px] pattern) rather than just the one side the
+          buttons happen to sit against */}
+      <div className="flex items-center justify-end gap-3 pb-6 pl-5 pr-5 sm:pl-6 sm:pr-6 lg:pl-[max(88px,calc((100vw-1440px)/2+88px))] lg:pr-[max(88px,calc((100vw-1440px)/2+88px))]">
         <button
           type="button"
           onClick={() => scrollByCard(-1)}
