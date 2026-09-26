@@ -22,9 +22,9 @@ export default function NextProjectsCarousel({
 
   return (
     <div className="pt-24 sm:pt-32">
-      {/* Prev/next controls, flush to the left edge of the container
+      {/* Prev/next controls, flush to the right edge of the container
           (not indented to match the card row below) */}
-      <div className="flex items-center gap-3 pb-6">
+      <div className="flex items-center justify-end gap-3 pb-6">
         <button
           type="button"
           onClick={() => scrollByCard(-1)}
