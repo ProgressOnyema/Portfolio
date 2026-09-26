@@ -95,7 +95,13 @@ export default async function ProjectDetail({
             {otherProjects.map((otherProject) => (
               <div
                 key={otherProject.slug}
-                className="w-[260px] shrink-0 snap-start sm:w-[405.5px]"
+                // Mobile width matches Home's Featured Projects card size
+                // exactly: Home's card fills its Grid cell at full content
+                // width (100vw minus Grid's 20px side margins, since it's
+                // grid-cols-1 there). This row isn't inside <Grid> (see the
+                // full-bleed comment above), so that same width is
+                // reproduced directly with calc() rather than inherited.
+                className="w-[calc(100vw-40px)] shrink-0 snap-start sm:w-[405.5px]"
               >
                 <ProjectWidget project={otherProject} size="lg" hideMeta />
               </div>
