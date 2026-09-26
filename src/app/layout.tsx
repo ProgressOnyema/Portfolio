@@ -6,7 +6,7 @@ import { ThemeInitScript } from "@/components/ThemeInitScript";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Onyema Miracle — Portfolio",
+  title: "Onyema Miracle — Brand + Product Designer",
   description:
     "I conceptualize, ideate, and design brand identities from the ground up, then bring that same attention to detail into product design and code.",
 };
