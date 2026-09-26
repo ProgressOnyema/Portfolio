@@ -21,12 +21,16 @@ export default function NextProjectsCarousel({
   }
 
   return (
-    <div className="pt-24 sm:pt-32">
-      {/* Prev/next controls, right-aligned, with the page's full side
-          margin on both edges (matching Grid's own px-5/sm:px-6/
-          lg:px-[88px] pattern) rather than just the one side the
-          buttons happen to sit against */}
-      <div className="flex items-center justify-end gap-3 pb-6 pl-5 pr-5 sm:pl-6 sm:pr-6 lg:pl-[max(88px,calc((100vw-1440px)/2+88px))] lg:pr-[max(88px,calc((100vw-1440px)/2+88px))]">
+    // Left inset matches Grid's own left margin (pl-5/sm:pl-6/lg:pl-[88px]
+    // formula), applied once here on the container itself rather than
+    // duplicated on each child row. No right padding on the container —
+    // that's what lets the scroll row below bleed to the true right edge;
+    // the arrow row instead sets its own matching right inset since it
+    // doesn't bleed.
+    <div className="pt-24 sm:pt-32 pl-5 sm:pl-6 lg:pl-[max(88px,calc((100vw-1440px)/2+88px))]">
+      {/* Prev/next controls, right-aligned. Right inset matches Grid's
+          own right margin; left inset comes from the container above. */}
+      <div className="flex items-center justify-end gap-3 pb-6 pr-5 sm:pr-6 lg:pr-[max(88px,calc((100vw-1440px)/2+88px))]">
         <button
           type="button"
           onClick={() => scrollByCard(-1)}
@@ -48,21 +52,17 @@ export default function NextProjectsCarousel({
       {/* Full-bleed on purpose, per direct instruction — this doesn't
           sit inside <Grid> (which caps at max-w-1440 and centers), so
           the row can scroll genuinely edge-to-edge instead of being
-          cropped at the page's own column width. Left padding still
-          matches Grid's *effective* left inset — not just its 88px
-          gutter, but max(88px, (100vw-1440px)/2 + 88px), the same
-          value Grid arrives at once mx-auto starts centering it on
-          screens wider than 1440px — so the first card lines up with
-          the rest of the page at any width, not just below the
-          1440px cap. No right padding, so scrolling runs to the
-          actual viewport edge. The trailing spacer gives the last
-          card that same breathing room on the way out. hideMeta
-          drops the logo/name/one-liner row — the tag pills already
-          carry the category, and clicking through is the point, not
-          reading a second description here. */}
+          cropped at the page's own column width. Its left inset now
+          comes from the container's own padding above (not repeated
+          here). No right padding, so scrolling runs to the actual
+          viewport edge. The trailing spacer gives the last card that
+          same breathing room on the way out. hideMeta drops the
+          logo/name/one-liner row — the tag pills already carry the
+          category, and clicking through is the point, not reading a
+          second description here. */}
       <div
         ref={scrollerRef}
-        className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 pl-5 sm:snap-none sm:pl-6 lg:pl-[max(88px,calc((100vw-1440px)/2+88px))]"
+        className="no-scrollbar flex snap-x snap-mandatory gap-6 overflow-x-auto pb-2 sm:snap-none"
       >
         {projects.map((project) => (
           <div
