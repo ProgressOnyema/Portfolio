@@ -22,13 +22,14 @@ export default function NextProjectsCarousel({
 
   return (
     <div className="pt-24 sm:pt-32">
-      {/* Prev/next controls, top-left of the container, above the row */}
-      <div className="flex items-center gap-3 pb-6 pl-5 sm:pl-6 lg:pl-[max(88px,calc((100vw-1440px)/2+88px))]">
+      {/* Prev/next controls, flush to the left edge of the container
+          (not indented to match the card row below) */}
+      <div className="flex items-center gap-3 pb-6">
         <button
           type="button"
           onClick={() => scrollByCard(-1)}
           aria-label="Previous project"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-border-hairline text-text-primary !transition-colors !duration-300 !ease-in-out hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary"
+          className="flex h-9 w-9 items-center justify-center rounded-[5px] border border-border-hairline text-text-primary !transition-[border-radius,border-color,background-color,color] !duration-300 !ease-in-out hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary"
         >
           <ArrowIcon className="rotate-180" />
         </button>
@@ -36,7 +37,7 @@ export default function NextProjectsCarousel({
           type="button"
           onClick={() => scrollByCard(1)}
           aria-label="Next project"
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-border-hairline text-text-primary !transition-colors !duration-300 !ease-in-out hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary"
+          className="flex h-9 w-9 items-center justify-center rounded-[5px] border border-border-hairline text-text-primary !transition-[border-radius,border-color,background-color,color] !duration-300 !ease-in-out hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary"
         >
           <ArrowIcon />
         </button>
@@ -65,13 +66,12 @@ export default function NextProjectsCarousel({
           <div
             key={project.slug}
             data-carousel-card
-            // Mobile width leaves a visible peek of the next card at rest,
-            // rather than exactly filling the viewport: 100vw minus Grid's
-            // 20px side margin, minus roughly one more card's worth of
-            // breathing room. On a 375px phone this works out to ~44px of
-            // the next card showing past the right edge — enough to signal
-            // "there's more" without relying only on the arrows above.
-            className="w-[calc(100vw-96px)] shrink-0 snap-start sm:w-[405.5px]"
+            // Mobile width matches Home's Featured Projects card size
+            // exactly: Home's card fills its Grid cell at full content
+            // width (100vw minus Grid's 20px side margins, since it's
+            // grid-cols-1 there). This row isn't inside <Grid>, so that
+            // same width is reproduced directly with calc().
+            className="w-[calc(100vw-40px)] shrink-0 snap-start sm:w-[405.5px]"
           >
             <ProjectWidget project={project} size="lg" hideMeta />
           </div>
