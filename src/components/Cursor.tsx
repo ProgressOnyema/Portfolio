@@ -98,7 +98,7 @@ export default function Cursor() {
     <div
       ref={dotRef}
       aria-hidden="true"
-      className="pointer-events-none fixed top-0 left-0 z-[100] size-8 rounded-full bg-white opacity-0 mix-blend-difference transition-opacity duration-200"
+      className="pointer-events-none fixed top-0 left-0 z-[100] size-6 rounded-full bg-white opacity-0 mix-blend-difference transition-opacity duration-200"
     />
   );
 }
