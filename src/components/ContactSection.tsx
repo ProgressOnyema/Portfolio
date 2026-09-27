@@ -24,10 +24,10 @@ export default function ContactSection() {
         </div>
 
         <div className="col-span-4 flex items-center gap-[15px] sm:col-span-4 sm:justify-end">
-          <ButtonSocial href="https://linkedin.com" target="_blank" rel="noreferrer">
+          <ButtonSocial href="https://linkedin.com/in/onyemamiracle" target="_blank" rel="noreferrer">
             <LinkedInIcon />
           </ButtonSocial>
-          <ButtonSocial href="https://behance.net" target="_blank" rel="noreferrer">
+          <ButtonSocial href="https://behance.net/miracleonyema" target="_blank" rel="noreferrer">
             <BehanceIcon />
           </ButtonSocial>
         </div>

@@ -15,7 +15,7 @@ export default function WorkGrid({ projects }: { projects: ProjectWidgetData[] }
         <h1 className="col-span-4 text-h1-bold sm:col-span-12">Work /</h1>
       </Grid>
 
-      <Grid className="gap-y-8 pt-16 sm:pt-16">
+      <Grid className="gap-y-8 pt-16 sm:pt-16 sm:gap-y-12">
         <div className="col-span-4 sm:col-span-12">
           <Subnav active={active} onSelect={setActive} />
         </div>
