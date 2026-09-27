@@ -38,15 +38,21 @@ export default function ListItem({
       {children}
       {image && (
         <div
-          className="pointer-events-none absolute right-0 bottom-full z-10 mb-2 aspect-video w-[240px] origin-bottom-right scale-95 opacity-0 !transition-[opacity,scale] !duration-300 !ease-in-out group-hover:scale-100 group-hover:opacity-100"
+          className="pointer-events-none absolute right-0 bottom-full z-10 mb-2 origin-bottom-right scale-95 opacity-0 !transition-[opacity,scale] !duration-300 !ease-in-out group-hover:scale-100 group-hover:opacity-100"
           aria-hidden="true"
         >
+          {/* No `fill`/fixed aspect box here on purpose: credential
+              documents vary in orientation (a landscape certificate vs.
+              a tall portrait diploma), so height is fixed and width left
+              to `auto` — the browser sizes it from each image's own
+              natural aspect ratio once loaded, rather than cropping
+              every credential into one shape. */}
           <Image
             src={image}
             alt={imageAlt}
-            fill
-            sizes="240px"
-            className="rounded-md border border-border-hairline object-cover shadow-lg"
+            width={400}
+            height={300}
+            className="h-[280px] w-auto rounded-md border border-border-hairline shadow-lg"
           />
         </div>
       )}

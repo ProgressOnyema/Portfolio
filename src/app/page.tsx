@@ -8,11 +8,10 @@ import { getFeaturedProjects } from "@/lib/data/projects";
 const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Frontend Development"];
 
 const STATS = ["3+ Years Experience", "10+ Projects Completed", "4+ Design Systems"];
-// `image` is the credential's preview shown on hover (see ListItem) — not
-// set yet since no credential screenshots have been provided.
+// `image` is the credential's preview shown on hover (see ListItem).
 const CREDENTIALS: { text: string; image?: string }[] = [
-  { text: "'23 Google UX Design Professional Certificate" },
-  { text: "'20 Diploma in Web Design & Development" },
+  { text: "'23 Google UX Design Professional Certificate", image: "/credentials/Google%20UX%20Design%20Certificate.jpg" },
+  { text: "'20 Diploma in Web Design & Development", image: "/credentials/Diploma%20in%20web%20design.jpg" },
 ];
 
 export default function Home() {
