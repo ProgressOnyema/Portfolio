@@ -38,7 +38,7 @@ export default function ListItem({
       {children}
       {image && (
         <div
-          className="pointer-events-none absolute right-0 bottom-full z-10 mb-2 origin-bottom-right scale-95 opacity-0 !transition-[opacity,scale] !duration-300 !ease-in-out group-hover:scale-100 group-hover:opacity-100"
+          className="pointer-events-none absolute top-0 right-0 z-10 origin-top-right scale-95 opacity-0 !transition-[opacity,scale] !duration-300 !ease-in-out group-hover:scale-100 group-hover:opacity-100"
           aria-hidden="true"
         >
           {/* No `fill`/fixed aspect box here on purpose: credential
@@ -52,7 +52,7 @@ export default function ListItem({
             alt={imageAlt}
             width={400}
             height={300}
-            className="h-[280px] w-auto rounded-md border border-border-hairline shadow-lg"
+            className="h-[100px] w-auto rounded-md border border-border-hairline shadow-lg"
           />
         </div>
       )}
