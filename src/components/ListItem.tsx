@@ -38,7 +38,7 @@ export default function ListItem({
       {children}
       {image && (
         <div
-          className="pointer-events-none absolute bottom-full left-0 z-10 mb-2 aspect-video w-[240px] origin-bottom-left scale-95 opacity-0 !transition-[opacity,scale] !duration-300 !ease-in-out group-hover:scale-100 group-hover:opacity-100"
+          className="pointer-events-none absolute right-0 bottom-full z-10 mb-2 aspect-video w-[240px] origin-bottom-right scale-95 opacity-0 !transition-[opacity,scale] !duration-300 !ease-in-out group-hover:scale-100 group-hover:opacity-100"
           aria-hidden="true"
         >
           <Image
