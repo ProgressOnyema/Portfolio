@@ -21,8 +21,9 @@ export default function ListItem({
   active?: boolean;
   /** Credential preview image, shown on hover. Absolutely positioned
    *  (against this item's own `relative`) so revealing it never affects
-   *  this row's layout or pushes sibling rows — it just overlaps them,
-   *  above the row, while hovered. */
+   *  this row's layout or pushes sibling rows — it overlays the row
+   *  itself, vertically centered against it, folding open/closed
+   *  (scaleY) rather than fading. */
   image?: string;
   imageAlt?: string;
   className?: string;
@@ -38,7 +39,7 @@ export default function ListItem({
       {children}
       {image && (
         <div
-          className="pointer-events-none absolute top-0 right-0 z-10 origin-top-right scale-95 opacity-0 !transition-[opacity,scale] !duration-300 !ease-in-out group-hover:scale-100 group-hover:opacity-100"
+          className="pointer-events-none absolute top-1/2 right-0 z-10 origin-center -translate-y-1/2 scale-y-0 !transition-[scale] !duration-300 !ease-in-out group-hover:scale-y-100"
           aria-hidden="true"
         >
           {/* No `fill`/fixed aspect box here on purpose: credential
