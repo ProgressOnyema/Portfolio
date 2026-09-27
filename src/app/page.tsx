@@ -8,7 +8,12 @@ import { getFeaturedProjects } from "@/lib/data/projects";
 const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Frontend Development"];
 
 const STATS = ["3+ Years Experience", "10+ Projects Completed", "4+ Design Systems"];
-const CREDENTIALS = ["'23 Google UX Design Professional Certificate", "'20 Diploma in Web Design & Development"];
+// `image` is the credential's preview shown on hover (see ListItem) — not
+// set yet since no credential screenshots have been provided.
+const CREDENTIALS: { text: string; image?: string }[] = [
+  { text: "'23 Google UX Design Professional Certificate" },
+  { text: "'20 Diploma in Web Design & Development" },
+];
 
 export default function Home() {
   return (
@@ -64,7 +69,9 @@ export default function Home() {
         </div>
         <div className="col-span-4 flex flex-col gap-4 sm:col-span-8">
           {CREDENTIALS.map((credential) => (
-            <ListItem key={credential} type="long">{credential}</ListItem>
+            <ListItem key={credential.text} type="long" image={credential.image} imageAlt={credential.text}>
+              {credential.text}
+            </ListItem>
           ))}
         </div>
       </Grid>
