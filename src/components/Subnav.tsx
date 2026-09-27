@@ -11,9 +11,9 @@ export default function Subnav({
   hrefs,
 }: {
   active: ProjectCategory;
-  // Filter mode (used on /work): clicking a category re-filters the grid
-  // in place. Mutually exclusive with `hrefs` — if both are passed,
-  // onSelect wins.
+  // Filter mode (used on the home page's Work section): clicking a
+  // category re-filters the grid in place. Mutually exclusive with
+  // `hrefs` — if both are passed, onSelect wins.
   onSelect?: (category: ProjectCategory) => void;
   // Tab mode (used on a case-study page): each entry links to the sibling
   // case study for that category. Only categories with an entry here are

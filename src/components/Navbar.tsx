@@ -10,7 +10,9 @@ import { MobileNavIcon, CloseIcon } from "./Icons";
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "Me" },
-  { href: "/work", label: "Work" },
+  // /work was dissolved into the home page's Work section — this now
+  // scrolls there instead of navigating to a separate page.
+  { href: "/#work", label: "Work" },
 ];
 
 const CONTACT_HREF = "mailto:progressonyema5@gmail.com";

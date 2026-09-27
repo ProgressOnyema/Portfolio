@@ -136,8 +136,7 @@ explicit instruction — don't "fix" it back to 96 without checking with
 the person first.
 
 `Grid` takes an optional `gap` prop to override the default gutter for a
-specific section (e.g. Home's Featured Projects uses a tighter gap than
-the page default).
+specific section.
 
 ## Component library — `src/components/`
 
@@ -146,7 +145,10 @@ All pulled from the Figma Components page unless noted:
 - `**Navbar` + `NavItem`** — fixed to the top (`position: fixed`). Desktop
 links are right-aligned (not centered — an explicit later change).
 Labels: Home, **Me** (routes to `/about` — relabeled from "About"),
-Work, Contact (`mailto:`, not a NavItem). `ThemeToggle` sits inline in
+Work (`/#work` — scrolls to Home's Work section since the standalone
+`/work` page was dissolved; no longer highlights as active via
+`isActive`, which only tracks `pathname`, not the hash), Contact
+(`mailto:`, not a NavItem). `ThemeToggle` sits inline in
 the same link row, not positioned separately. The header's
 translucent + blurred surface (`bg-surface-bg/80 backdrop-blur-lg`) is
 active at every breakpoint, per direct instruction — it used to switch
@@ -176,7 +178,8 @@ when omitted (tab mode, used on the project detail page), it renders as
 read-only links via `hrefs` instead of a filter, and **only shows the
 categories a project actually has a case study for** — a
 single-case-study project shows just its own category, not the other
-two grayed out. `onSelect` mode (`/work`) always shows all three, since
+two grayed out. `onSelect` mode (the home page's Work section) always
+shows all three, since
 it's filtering across every project rather than describing one
 project's own categories.
 - `**ListItem.tsx`** — Short/Small/Long width variants x active/inactive
@@ -186,7 +189,10 @@ Experience section was removed from the design), but built and kept in
 case it returns.
 - `**ProjectWidget.tsx**` — the project "folder" card. Sizes: `default`
 (347px), `lg` (405.5px — **not 386px**, a spec correction applied late
-in the build), `full` (fills its grid column, used on Home). Internally
+in the build). `full` (fills its grid column) exists in `SIZE_CLASSES`
+but is currently unused — Home used it for the old Featured Projects
+section, which has been dissolved into the Work section (`size="lg"`,
+same as the rest of Work). Internally
 it's a real layered illustration: `FolderBackIcon` + two overlapping
 "paint texture" images + `FolderCoverIcon`, all positioned by
 percentage so the layout scales across sizes. `**folder_back** and
@@ -228,23 +234,26 @@ contact content (`.text-label`, `text-text-muted`). There's no separate
 `Footer.tsx`; this is deliberate rather than a gap.
 - `**WorkGrid.tsx**` — client component owning the Subnav tab state and
 the filtered project grid together, since they need to share state
-across what would otherwise be two separate page sections.
+across what would otherwise be two separate page sections. Was the
+standalone `/work` page's own component; that page has been dissolved
+and WorkGrid now renders as Home's Work section instead (replacing the
+old Featured Projects preview), under `id="work"` so Navbar's Work
+link (`/#work`) can scroll to it.
 
 ## Pages
 
 - `**/**` (Home) — Hero (with a hero tag row: Strategy, Brand Design,
-UX/UI Design, Interaction, Frontend Development), Featured Projects (6
-widgets, `size="full"`, tighter gap than the page default — **a
-deliberate deviation from Figma's fixed-width `lg` cards**, to be
-ported back into the Figma file once confirmed), stats/credentials
-(`ListItem` short/long columns), `ContactSection`.
+UX/UI Design, Interaction, Frontend Development), Work (`WorkGrid` —
+Subnav tabs + filtered `ProjectWidget` grid, `size="lg"`; this is the
+former standalone `/work` page, dissolved into Home in place of what
+used to be a "Featured Projects" preview linking out to it — see
+WorkGrid.tsx above), stats/credentials (`ListItem` short/long
+columns), `ContactSection`.
 - `**/about`** — Bio, then one flowing paragraph mixing text and inline
 icon images ("Fun Facts" — no heading, just prose; see below), Skills
 tags (now inline in the hero section, not a separate block — moved
 there directly by the project owner), `ContactSection`. No Experience
 or Certifications section (removed from the design).
-- `**/work**` — heading, `WorkGrid` (Subnav tabs + filtered
-`ProjectWidget` grid, `size="lg"`), `ContactSection`.
 - `**/work/[slug]**` — case study detail page. Statically generated via
 `generateStaticParams` from `src/lib/data/projects.ts`. Real 404 via
 `notFound()` for unknown slugs. Ends with a "Next Project" list before
@@ -390,10 +399,12 @@ overlay. Per direct instruction; don't revert to match Figma.
 it was originally mobile-only (solid `bg-surface-bg`, no blur, at
 `sm+`). Per direct instruction; don't reintroduce the desktop-solid
 fallback without checking first.
-- Home's Featured Projects widgets use `size="full"` with a tight 12px/
-16px gap, filling the grid row edge-to-edge — Figma currently shows
-fixed-width `lg` cards there. Figma is meant to be updated to match
-this once confirmed, not the other way around.
+- Home's old Featured Projects section (`size="full"` widgets, tight
+12px/16px gap, filling the grid row edge-to-edge) has been dissolved —
+see WorkGrid.tsx and the Pages section above. Home now shows the same
+`size="lg"` Work section as the rest of the site, so this deviation
+from Figma's fixed-width `lg` cards no longer applies; no Figma update
+needed for it.
 - `folder_image1.png`/`folder_image2.png` (the placeholder paint-texture
 illustration) are generic assets, not exported from Figma per se —
 the real illustrated artwork couldn't be downloaded from Figma's

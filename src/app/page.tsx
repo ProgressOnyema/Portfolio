@@ -1,9 +1,8 @@
-import AppLink from "@/components/Link";
 import Grid from "@/components/Grid";
 import ListItem from "@/components/ListItem";
-import ProjectWidget from "@/components/ProjectWidget";
+import WorkGrid from "@/components/WorkGrid";
 import ContactSection from "@/components/ContactSection";
-import { getFeaturedProjects } from "@/lib/data/projects";
+import { projects } from "@/lib/data/projects";
 
 const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Frontend Development"];
 
@@ -44,20 +43,16 @@ export default function Home() {
         </div>
       </Grid>
 
-      {/* Featured projects — heading spans full width; widgets live in
-          their own container grid with a tighter internal gap than the
-          space between the heading and the container itself */}
-      <Grid className="gap-y-16 pt-24 sm:gap-y-12 sm:pt-40">
-        <div className="col-span-4 flex items-center justify-between sm:col-span-12">
-          <h2 className="text-body-lg-strong sm:text-h3-bold">Featured Projects</h2>
-          <AppLink variant="view-work" href="/work">All</AppLink>
-        </div>
-        <div className="col-span-4 grid grid-cols-1 gap-y-12 sm:col-span-12 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12">
-          {getFeaturedProjects().map((project) => (
-            <ProjectWidget key={project.projectId} project={project} size="full" />
-          ))}
-        </div>
-      </Grid>
+      {/* Work — replaces the old "Featured Projects" preview. The
+          standalone /work page has been dissolved; its full
+          category-filterable project listing (WorkGrid) now lives here
+          instead, so this is the site's one project listing rather than
+          a preview linking out to a second one. scroll-mt offsets the
+          fixed h-[106px] header so Navbar's "Work" link (/#work) lands
+          below it, not underneath it. */}
+      <div id="work" className="scroll-mt-[106px]">
+        <WorkGrid projects={projects} />
+      </div>
 
       {/* Stats + credentials — 4:8 column ratio matches the 350:703 short:long widths */}
       <Grid className="gap-y-8 pt-24 sm:pt-40">
