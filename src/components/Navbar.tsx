@@ -10,12 +10,13 @@ import { MobileNavIcon, CloseIcon } from "./Icons";
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "Me" },
-  // /work was dissolved into the home page's Work section — this now
-  // scrolls there instead of navigating to a separate page.
-  { href: "/#work", label: "Work" },
 ];
 
 const CONTACT_HREF = "mailto:progressonyema5@gmail.com";
+// Opens in a new tab rather than routing, like Contact — not a page.
+// TODO: upload the actual PDF to public/resume.pdf; this link 404s until
+// then.
+const RESUME_HREF = "/resume.pdf";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -53,6 +54,9 @@ export default function Navbar() {
                 <NavItem label={label} active={isActive(href)} />
               </Link>
             ))}
+            <a href={RESUME_HREF} target="_blank" rel="noreferrer">
+              <NavItem label="Resume" />
+            </a>
             <a href={CONTACT_HREF}>
               <NavItem label="Contact" />
             </a>
@@ -75,7 +79,7 @@ export default function Navbar() {
         </nav>
 
         {/* Mobile dropdown — matches Figma's MobileNavCollasped component:
-            Home/Me/Work/Contact at Headings/H2 size (not the compact
+            Home/Me/Resume/Contact at Headings/H2 size (not the compact
             desktop nav size), gap-3 (12px), active item bold. No
             background of its own — it's a child of <header>, which
             already provides the translucent, blurred surface; painting a
@@ -90,6 +94,9 @@ export default function Navbar() {
                   <NavItem label={label} active={isActive(href)} size="lg" />
                 </Link>
               ))}
+              <a href={RESUME_HREF} target="_blank" rel="noreferrer" onClick={() => setMobileOpen(false)}>
+                <NavItem label="Resume" size="lg" />
+              </a>
               <a href={CONTACT_HREF} onClick={() => setMobileOpen(false)}>
                 <NavItem label="Contact" size="lg" />
               </a>
