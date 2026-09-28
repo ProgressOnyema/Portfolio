@@ -13,12 +13,11 @@ export default function About() {
   return (
     <main className="flex flex-1 flex-col">
       {/* Bio */}
-      <Grid className="items-start pt-16 sm:pt-24">
+      <Grid className="items-start pt-12 sm:pt-16">
         <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
-          <div className="h-[104px] w-[123px] shrink-0 rounded-[5px] border-6 border-border-hairline bg-surface-bg-alt" />
-          <div className="flex w-full max-w-[763px] flex-col gap-4">
+          <div className="flex w-full max-w-[800px] flex-col gap-4">
             <h1 className="text-h1-bold">
-              I brand, design and code
+              I take <em>it</em> personal
             </h1>
             <p className="text-h3 text-text-primary">
               I conceptualize, ideate, and design brand identities from the
@@ -28,9 +27,9 @@ export default function About() {
               but how it&apos;s built, lets me design with implementation in
               mind.
             </p>
-            <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2 pt-4">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-2 pt-4">
               {SKILLS.map((skill) => (
-                <p key={skill} className="text-h3 text-text-muted">
+                <p key={skill} className="text-body-lg-base text-text-muted">
                   {skill}
                 </p>
               ))}
@@ -51,18 +50,18 @@ export default function About() {
             alt="Chelsea FC"
             width={40}
             height={40}
-            className="inline-block align-middle rounded-full mx-1 sm:w-[50px] sm:h-[50px]"
+            className="inline-block align-middle rounded-full sm:w-[50px] sm:h-[50px]"
           />{" "}
-          when I&apos;m not playing, either physically{" "}
+          when I&apos;m not playing either physically{" "}
           <Image
             src="/about_page_assets/fifaBall.png"
             alt="Football"
             width={40}
             height={41}
-            className="inline-block align-middle scale-x-[-1] rounded-full mx-1 sm:w-[50px] sm:h-[51px]"
+            className="inline-block align-middle scale-x-[-1] rounded-full sm:w-[50px] sm:h-[51px]"
           />{" "}
           or digitally{" "}
-          <EafcIcon className="inline-block align-middle mx-1 h-[34px] w-[69px] text-text-primary sm:h-[44px] sm:w-[89px]" />{" "}
+          <EafcIcon className="inline-block align-middle h-[34px] w-[69px] text-text-primary sm:h-[44px] sm:w-[89px]" />{" "}
           I also enjoy reading{" "}
           {BOOKS.map((book, i) => (
             <Image

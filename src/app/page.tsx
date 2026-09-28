@@ -18,18 +18,16 @@ export default function Home() {
     <main className="flex flex-1 flex-col">
       {/* Hero — box + text as a flex row within one full-width grid cell,
           so the fixed-width decorative box never overflows a grid track */}
-      <Grid className="items-start pt-16 sm:pt-24">
+      <Grid className="items-start pt-12 sm:pt-16">
         <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
-          <div className="h-[104px] w-[123px] shrink-0 rounded-[5px] border-6 border-border-hairline bg-surface-bg-alt" />
           <div className="flex w-full max-w-[763px] flex-col items-start gap-8">
             <div className="flex flex-col gap-4">
               <h1 className="text-h1-bold">
                 Product and Brand designer
               </h1>
               <p className="text-h3 text-text-primary">
-                Onyema Miracle —— has worked across product design,
-                branding, and front-end development building visually
-                compelling, high-performing web and mobile experiences.
+                Onyema Miracle —— I build products from the ground up;
+                from research, brand identity, uxui to prototype.
               </p>
               <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
                 {HERO_TAGS.map((tag) => (
@@ -56,12 +54,12 @@ export default function Home() {
 
       {/* Stats + credentials — 4:8 column ratio matches the 350:703 short:long widths */}
       <Grid className="gap-y-8 pt-24 sm:pt-40">
-        <div className="col-span-4 flex flex-col gap-4">
+        <div className="col-span-4 flex flex-col">
           {STATS.map((stat) => (
             <ListItem key={stat} type="short">{stat}</ListItem>
           ))}
         </div>
-        <div className="col-span-4 flex flex-col gap-4 sm:col-span-8">
+        <div className="col-span-4 flex flex-col sm:col-span-8">
           {CREDENTIALS.map((credential) => (
             <ListItem key={credential.text} type="long" image={credential.image} imageAlt={credential.text}>
               {credential.text}
