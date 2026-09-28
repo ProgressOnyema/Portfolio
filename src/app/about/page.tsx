@@ -20,12 +20,8 @@ export default function About() {
               I take <em>it</em> personal
             </h1>
             <p className="text-h3 text-text-primary">
-              I conceptualize, ideate, and design brand identities from the
-              ground up, then bring that same attention to detail into
-              product design and code by building components for design
-              systems. Understanding not just how something is perceived,
-              but how it&apos;s built, lets me design with implementation in
-              mind.
+              Whatever stage of the game the product is in, I guarantee
+              to bring in a set skills to contribute to its growth.
             </p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-2 pt-4">
               {SKILLS.map((skill) => (

@@ -39,7 +39,7 @@ export default function ListItem({
       {children}
       {image && (
         <div
-          className="pointer-events-none absolute top-1/2 right-0 z-10 origin-center -translate-y-1/2 scale-y-0 !transition-[scale] !duration-300 !ease-out group-hover:scale-y-100"
+          className="pointer-events-none absolute top-1/2 right-0 z-10 origin-center -translate-y-1/2 scale-y-0 !transition-[scale] !duration-200 !ease-out group-hover:scale-y-100"
           aria-hidden="true"
         >
           {/* No `fill`/fixed aspect box here on purpose: credential

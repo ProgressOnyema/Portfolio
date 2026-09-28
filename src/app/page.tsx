@@ -26,8 +26,8 @@ export default function Home() {
                 Product and Brand designer
               </h1>
               <p className="text-h3 text-text-primary">
-                Onyema Miracle —— I build products from the ground up;
-                from research, brand identity, uxui to prototype.
+                Onyema Miracle —— I build products from the ground up, 
+                taking ideas from initial research through design to prototyping.
               </p>
               <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
                 {HERO_TAGS.map((tag) => (
