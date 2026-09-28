@@ -145,10 +145,15 @@ All pulled from the Figma Components page unless noted:
 - `**Navbar` + `NavItem`** — fixed to the top (`position: fixed`). Desktop
 links are right-aligned (not centered — an explicit later change).
 Labels: Home, **Me** (routes to `/about` — relabeled from "About"),
-Work (`/#work` — scrolls to Home's Work section since the standalone
-`/work` page was dissolved; no longer highlights as active via
-`isActive`, which only tracks `pathname`, not the hash), Contact
-(`mailto:`, not a NavItem). `ThemeToggle` sits inline in
+**Resume** (`/resume.pdf`, `target="_blank"` — opens the PDF rather
+than routing, same as Contact; not yet uploaded, so this 404s until
+`public/resume.pdf` exists. Replaced the earlier "Work" nav item,
+which briefly linked to `/#work` after `/work` was dissolved into
+Home's Work section — that in-page anchor link has since been
+dropped in favor of this), Contact (`mailto:`, not a NavItem). Neither
+Resume nor Contact highlights as active via `isActive`, which only
+tracks routed `pathname` — appropriate here since neither is really a
+"page" you're currently on. `ThemeToggle` sits inline in
 the same link row, not positioned separately. The header's
 translucent + blurred surface (`bg-surface-bg/80 backdrop-blur-lg`) is
 active at every breakpoint, per direct instruction — it used to switch
@@ -237,8 +242,10 @@ the filtered project grid together, since they need to share state
 across what would otherwise be two separate page sections. Was the
 standalone `/work` page's own component; that page has been dissolved
 and WorkGrid now renders as Home's Work section instead (replacing the
-old Featured Projects preview), under `id="work"` so Navbar's Work
-link (`/#work`) can scroll to it.
+old Featured Projects preview). Still wrapped in `id="work"` in
+page.tsx (harmless, currently unlinked) — Navbar briefly pointed a
+"Work" item at `/#work` for this, but that nav item has since been
+replaced by "Resume" (see Navbar entry above).
 
 ## Pages
 
