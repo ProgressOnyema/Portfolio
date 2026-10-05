@@ -25,7 +25,7 @@ export default function NavItem({
   return (
     <p
       className={`p-2 transition-colors ${
-        active ? "text-text-primary text-body-reg-strong" : "text-text-muted text-body-reg-base hover:text-text-primary"
+        active ? "text-text-primary text-mono-nav-strong" : "text-text-muted text-mono-nav hover:text-text-primary"
       }`}
     >
       {label}
