@@ -118,11 +118,6 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/talkam/talkam-uxui/talkam_image.png",
-          "alt": "Image of a users",
-          "caption": "Talkam"
-        },
-        {
           "src": "/case-studies/talkam/talkam-uxui/user_flow.png",
           "alt": "Image of user flow",
           "caption": "User flow"
@@ -136,6 +131,16 @@
           "src": "/case-studies/talkam/talkam-uxui/system_architecture.png",
           "alt": "Image of system architecture",
           "caption": "System Architecture"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/sequence.png",
+          "alt": "Image of sequence diagram",
+          "caption": "Sequence diagram"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/usecase.png",
+          "alt": "Image of use case diagram",
+          "caption": "Use case"
         }
       ]
     },

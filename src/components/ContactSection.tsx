@@ -6,7 +6,7 @@ import { LinkedInIcon, BehanceIcon, GitHubIcon } from "./Icons";
 const EMAIL = "progressonyema5@gmail.com";
 
 export default function ContactSection() {
-  const year = new Date().getFullYear();
+  const year = new Date().getFullYear() % 100;
 
   return (
     <>
@@ -45,7 +45,7 @@ export default function ContactSection() {
           separate Footer component. */}
       <Grid className="pb-8 sm:pb-12">
         <p className="text-body-sm-base col-span-4 text-text-primary sm:col-span-12">
-          ©{year} Onyema Miracle.
+          ©'{year} Onyema Miracle.
         </p>
       </Grid>
     </>
