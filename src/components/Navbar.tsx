@@ -14,8 +14,6 @@ const LINKS = [
 
 const CONTACT_HREF = "mailto:progressonyema5@gmail.com";
 // Opens in a new tab rather than routing, like Contact — not a page.
-// TODO: upload the actual PDF to public/resume.pdf; this link 404s until
-// then.
 const RESUME_HREF = "/resume.pdf";
 
 export default function Navbar() {

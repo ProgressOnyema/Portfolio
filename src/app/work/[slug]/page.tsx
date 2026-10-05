@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Grid from "@/components/Grid";
 import Subnav from "@/components/Subnav";
@@ -9,6 +10,22 @@ import { getOtherProjects, getProject, getProjectCaseStudies, projects } from "@
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProject(slug);
+  if (!project) return {};
+
+  const title = `${project.name} — ${project.category} case study | Onyema Miracle`;
+  const description =
+    project.oneLiner ?? `${project.name}: a ${project.category.toLowerCase()} case study by Onyema Miracle.`;
+
+  return { title, description, openGraph: { title, description } };
 }
 
 export default async function ProjectDetail({

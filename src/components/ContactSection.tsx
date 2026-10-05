@@ -3,6 +3,8 @@ import AppLink from "./Link";
 import Grid from "./Grid";
 import { LinkedInIcon, BehanceIcon, GitHubIcon } from "./Icons";
 
+const EMAIL = "progressonyema5@gmail.com";
+
 export default function ContactSection() {
   const year = new Date().getFullYear();
 
@@ -19,7 +21,9 @@ export default function ContactSection() {
             <p className="text-body-reg-base text-text-body sm:text-h3">
               Write to me:
             </p>
-            <AppLink variant="email" href="progressonyema5@gmail.com" />
+            <AppLink variant="email" href={EMAIL}>
+              {EMAIL}
+            </AppLink>
           </div>
         </div>
 
@@ -30,8 +34,6 @@ export default function ContactSection() {
           <ButtonSocial href="https://behance.net/miracleonyema" target="_blank" rel="noreferrer">
             <BehanceIcon />
           </ButtonSocial>
-          {/* Handle assumed from the repo owner (github.com/ProgressOnyema) —
-              swap if there's a different GitHub profile to link to. */}
           <ButtonSocial href="https://github.com/ProgressOnyema" target="_blank" rel="noreferrer">
             <GitHubIcon />
           </ButtonSocial>
