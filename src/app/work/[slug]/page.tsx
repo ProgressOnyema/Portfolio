@@ -69,7 +69,7 @@ export default async function ProjectDetail({
                 like the other two logo/thumbnail images on this type —
                 those are photos meant to fill their box; this is a logo
                 mark, which should never get cropped. */}
-            <h1 className="text-h2-bold sm:text-h1-bold">{project.name}</h1>
+            {/* <h1 className="text-h2-bold sm:text-h1-bold">{project.name}</h1> */}
           </div>
           {/* .text-project-oneliner, not the shared .text-h3 (used by
               Home/About): this one drops to Body Regular/Base (16px) on
@@ -77,7 +77,7 @@ export default async function ProjectDetail({
               ProjectDetail - Mobile frame. */}
           {project.oneLiner && (
             <p className="text-text-primary text-project-oneliner">
-              {project.oneLiner}
+              {project.name}{" —— "}{project.oneLiner}
             </p>
           )}
         </div>

@@ -208,12 +208,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-8.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/packed_1.png",
           "alt": "UI screen showing prepacked packages",
           "caption": "Prepacked packages"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-9.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/packed_2.png",
           "alt": "UI screen for packing yourself",
           "caption": "Pick them yourself"
         }
@@ -236,12 +236,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-10.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_1.png",
           "alt": "UI screen for health categories",
           "caption": "Health category pills"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-11.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_2.png",
           "alt": "UI screen for products in cart",
           "caption": "Products in cart"
         }
@@ -264,12 +264,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-12.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/delivery_1.png",
           "alt": "UI screen for delivery",
           "caption": "Address details"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-13.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/delivery_2.png",
           "alt": "UI screen for payment method",
           "caption": "Payment options"
         }
@@ -292,37 +292,37 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-14.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/confirm_checkout.png",
           "alt": "UI screens",
           "caption": "Confirm checkout"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-15.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/home.png",
           "alt": "UI screens",
           "caption": "Home screen"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-16.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/pack_your_own.png",
           "alt": "UI screens",
           "caption": "Pick your own - Home screen"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-17.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/prepacked.png",
           "alt": "UI screens",
           "caption": "Prepacked - Fitness pack"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-18.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/payment_sheet.png",
           "alt": "UI screens",
           "caption": "Payment sheet"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-19.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/success.png",
           "alt": "UI screens",
           "caption": "Success message"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-20.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/track_delivery.png",
           "alt": "UI screens",
           "caption": "Track delivery"
         }

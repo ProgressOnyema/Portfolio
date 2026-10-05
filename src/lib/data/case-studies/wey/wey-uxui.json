@@ -72,7 +72,7 @@
       "type": "text",
       "body": [
         [
-          "To understand how Lagos commuters plan journeys to unfamiliar destinations or to any destination at all, how they choose between different routes, what challenges they encounter, and how they currently solve those challenges. To answer these questions, I had to ask a few questions:"
+          "I wanted to understand how Lagos commuters plan journeys to unfamiliar destinations or to any destination at all, how they choose between different routes, what challenges they encounter, and how they currently solve those challenges. To answer these, I asked a few questions:"
         ],
         {
           "type": "list",
@@ -117,7 +117,7 @@
           "caption": "Danfo"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/keke.jpg",
+          "src": "/case-studies/wey/wey-uxui/Keke.jpg",
           "alt": "Image of a tricycle",
           "caption": "Tricycle (Keke)"
         },
@@ -184,7 +184,7 @@
           },
           ", or ",
           {
-            "text": "“Where do I stop?\"",
+            "text": "\"Where do I stop?\"",
             "emphasis": true
           },
           " This shows that route discovery isn't a one-time activity that happens before a journey, but an ongoing process that continues as commuters navigate unfamiliar routes and locations."
@@ -196,7 +196,7 @@
       "type": "text",
       "body": [
         [
-          "This presents an opportunity to create a journey-planning experience designed specifically around the realities of moving through Lagos. Instead of simply answering “Where is this place?\", the experience should help commuters understand “What exactly should I do to get there?” by providing practical information such as"
+          "This presents an opportunity to create a journey-planning experience designed specifically around the realities of moving through Lagos. Instead of simply answering “Where is this place?”, the experience should help commuters understand “What exactly should I do to get there?” by providing practical information such as"
         ],
         {
           "type": "list",
@@ -270,7 +270,7 @@
           "Leveraging the multi-leg logic, the system determines whether a second leg of the journey is needed and provides a comprehensive map of the entire trip."
         ],
         [
-          "Alternative routes, Approximate journey time, estimated cost, Number of transfers, and Walking distance are available to the user. Users can then choose which option fits there need at the present."
+          "Alternative routes, Approximate journey time, estimated cost, Number of transfers, and Walking distance are available to the user. Users can then choose which option fits their need at the present."
         ],
         [
           "Users who prioritize convenience can check out third-party rides."
@@ -359,7 +359,7 @@
             "text": "blended commutes.",
             "emphasis": true
           },
-          " They start with public transport and end with a ride-hailing service, in a bid to save money and afford some sort of convenience. Designing the multi-leg logic to mirror this real-life scenario, fitting all that information on a page and not overwhelming the user, was a challenge"
+          " They start with public transport and end with a ride-hailing service, in a bid to save money and afford some sort of convenience. Designing the multi-leg logic to mirror this real-life scenario, fitting all that information on a page and not overwhelming the user, was a challenge."
         ]
       ],
       "heading": "Challenges"
@@ -377,6 +377,16 @@
           "src": "/case-studies/wey/wey-uxui/components.png",
           "alt": "Image of a ui components",
           "caption": "Components"
+        },
+        {
+          "src": "/case-studies/wey/wey-uxui/updating_fare.png",
+          "alt": "Image of a ui ui screen",
+          "caption": "Updating fare"
+        },
+        {
+          "src": "/case-studies/wey/wey-uxui/create_post.png",
+          "alt": "Image of a ui screen",
+          "caption": "Creating post"
         }
       ]
     },

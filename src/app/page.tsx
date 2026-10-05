@@ -22,9 +22,6 @@ export default function Home() {
         <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
           <div className="flex w-full max-w-[763px] flex-col items-start gap-8">
             <div className="flex flex-col gap-4">
-              <h1 className="text-h1-bold">
-                Product and Brand designer
-              </h1>
               <p className="text-h3 text-text-primary">
                 Onyema Miracle —— I build products from the ground up, 
                 taking ideas from initial research through design to prototyping.

@@ -1,0 +1,345 @@
+{
+  "slug": "talkam-uxui",
+  "projectId": "talkam",
+  "name": "Talkam",
+  "oneLiner": "Talk to a mentor",
+  "category": "Product Design",
+  "thumbnails": [
+    "/case-studies/talkam/thumbnail-1.png",
+    "/case-studies/talkam/thumbnail-2.png"
+  ],
+  "logo": "/case-studies/talkam/logo.png",
+  "blocks": [
+    {
+      "type": "coverImage",
+      "src": "/case-studies/talkam/talkam-uxui/cover.png",
+      "alt": "Talkam's cover image"
+    },
+    {
+      "type": "grid",
+      "columns": 2,
+      "items": [
+        {
+          "type": "meta",
+          "fields": [
+            {
+              "label": "Industry",
+              "value": "Edtech"
+            },
+            {
+              "label": "What I did",
+              "value": "Research, User experience, User interface"
+            },
+            {
+              "label": "Platform",
+              "value": "Mobile app"
+            }
+          ]
+        },
+        {
+          "type": "text",
+          "body": [
+            [
+              "Talk’am is a student-focused digital counseling and mentorship platform for support and empowerment. It connects students with professional counselors and mentors through real-time chat, session booking, and an integrated chatbot."
+            ],
+            [
+              "Existing support networks may not always provide the privacy, availability, understanding, or practical insights students need to make informed decisions and navigate these experiences."
+            ]
+          ],
+          "heading": "Talk and Connect"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "Students often face stress, anxiety, or personal challenges, but they have limited access to support and mentorship."
+        ]
+      ],
+      "variant": "pullQuote"
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "Schools still rely heavily on manual processes for counselling, such as paper forms and appointment slips. Many students do not seek counselling due to time constraints and discomfort with in-person interactions. ",
+          {
+            "text": "Ghazali & Aman, et al. 2022.",
+            "emphasis": true
+          }
+        ]
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "The problem isn't necessarily that students have nobody to talk to. Rather, it is that having someone to talk to does not always mean having access to the right guidance at the right time. Issues can range from financial challenges, social and relationship life, career decisions, and personal development. First, I needed the knowledge of a few things:"
+        ],
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            [
+              "How often do students encounter situations where they need advice or guidance?"
+            ],
+            [
+              "Who do they usually approach when facing personal, financial, social, or career-related challenges?"
+            ],
+            [
+              "Are there situations in which they prefer not to approach friends, family, or lecturers?"
+            ],
+            [
+              "What makes advice trustworthy, relatable, and useful to them?"
+            ],
+            [
+              "Have students ever made decisions without guidance because they did not know whom to approach?"
+            ],
+            [
+              "What gaps do students perceive in the support systems available at their institutions?"
+            ]
+          ]
+        },
+        [
+          "Student interviews — Interviewed 15 students from different years of study and backgrounds."
+        ],
+        [
+          "Student surveys — Surveyed approximately 120 students."
+        ],
+        [
+          "Existing support analysis — Reviewed the support already available to students, such as academic advisers, student associations, and student affairs offices."
+        ]
+      ],
+      "heading": "What do students think?"
+    },
+    {
+      "type": "marqueeGrid",
+      "columns": 2,
+      "images": [
+        {
+          "src": "/case-studies/talkam/talkam-uxui/talkam_image.png",
+          "alt": "Image of a users",
+          "caption": "Talkam"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/user_flow.png",
+          "alt": "Image of user flow",
+          "caption": "User flow"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/IA_Sitemap.png",
+          "alt": "Image of a Sitemap",
+          "caption": "Info. Architecture & Sitemap"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/system_architecture.png",
+          "alt": "Image of system architecture",
+          "caption": "System Architecture"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
+        {
+          "type": "list",
+          "ordered": true,
+          "items": [
+            [
+              "Students regularly need advice beyond academics"
+            ],
+            [
+              "Students primarily depend on people they already know."
+            ],
+            [
+              "The right person is not always accessible"
+            ],
+            [
+              "Students value relatable experience"
+            ]
+          ]
+        },
+        [
+          "The research suggests that university students regularly encounter decisions and challenges that require practical guidance, but access to relevant, trustworthy, and relatable advice is inconsistent."
+        ],
+        [
+          "Students primarily rely on friends, family, and people within their immediate environment. These sources can be valuable, but they may not always have the experience, availability, neutrality, or privacy required for every situation."
+        ]
+      ],
+      "heading": "Key findings"
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "It's difficult to find the right person to talk to when navigating unfamiliar situations."
+        ]
+      ],
+      "variant": "pullQuote"
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "Ask → Connect → Learn → Decide Rather than making decisions for students, such a system could give them access to people, experiences, and perspectives relevant to the situation they are facing."
+        ],
+        [
+          "It indicates a potential opportunity to make relevant guidance easier to find, more approachable, and more accessible to students."
+        ]
+      ],
+      "heading": "The gap"
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "An agent called NobiBot serves as the first line of entry for students, offering a confidential space for their concerns. It enhances human counselors by assessing needs and providing timely responses."
+        ],
+        [
+          "Over 70% of Nigerians speak and understand Pidgin English, compared with 57% who speak English. This approach will widen the target audience and ensure more reach."
+        ]
+      ],
+      "heading": "Feature 1: The Pidgin-Speaking Agent"
+    },
+    {
+      "type": "imageGrid",
+      "columns": 2,
+      "images": [
+        {
+          "src": "/case-studies/talkam/talkam-uxui/chatbot_empty.png",
+          "alt": "Image of a ui screen",
+          "caption": "Chatbot empty chat"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/chatbot.png",
+          "alt": "Image of a ui screen",
+          "caption": "NobiBot chatting"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "Talkam makes the right people available. Students can browse through a catalogue of experts and professionals in their respective fields and book a 1-on-1 session. Browse the list, check availability, and send a request, which would have to be accepted by the mentor. Mentors are ranked based on the number of sessions they have completed."
+        ]
+      ],
+      "heading": "Feature 2: Book a mentor"
+    },
+    {
+      "type": "imageGrid",
+      "columns": 2,
+      "images": [
+        {
+          "src": "/case-studies/talkam/talkam-uxui/mentor_list.png",
+          "alt": "Image of a ui screen",
+          "caption": "List of mentors"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/availability_request.png",
+          "alt": "Image of a ui screen",
+          "caption": "Availability slot & Request"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "Students who rely on friends, family, and people may not always have the privacy required for every situation. Interacting with strangers raises many security issues; users must be kept safe during and after sessions. Borrowing the priest-penitent model, mentors and mentees use pseudonyms and avatars on the platform to create a safer space. The real identities of each user are unknown. To enforce this, users are only allowed to sign up with pseudonyms and no email."
+        ]
+      ],
+      "heading": "Feature 3: Designing for anonymity"
+    },
+    {
+      "type": "imageGrid",
+      "columns": 2,
+      "images": [
+        {
+          "src": "/case-studies/talkam/talkam-uxui/signup.png",
+          "alt": "Image of a ui screen",
+          "caption": "Signup screen"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/joining_chat.png",
+          "alt": "Image of a ui screen",
+          "caption": "Joining chat"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "Texting gives students the option of being anonymous but can also lack the context and different modes of communication required for convos. Chat has to handle these without overwhelming the user. Replying to a section of text, recording audio, transcribing said audio before or after it's sent."
+        ]
+      ],
+      "heading": "Feature 4: Designing for real convos"
+    },
+    {
+      "type": "imageGrid",
+      "columns": 2,
+      "images": [
+        {
+          "src": "/case-studies/talkam/talkam-uxui/transcribed_audio.png",
+          "alt": "Image of a ui screen",
+          "caption": "Transcribed audio"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/chat_features.png",
+          "alt": "Image of a ui screen",
+          "caption": "Chat features"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "Traditional push notifications and emails will not work for Talkam because users sign up with just a username and password. To solve this, I integrated the system with users' device calendars, allowing reminders and session alerts to sync directly. This keeps users informed without needing extra contact information."
+        ]
+      ],
+      "heading": "Challenges"
+    },
+    {
+      "type": "marqueeGrid",
+      "columns": 2,
+      "images": [
+        {
+          "src": "/case-studies/talkam/talkam-uxui/request_mentor.png",
+          "alt": "Image of a ui screen",
+          "caption": "Request a mentor"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/mentor_action.png",
+          "alt": "Image of a ui components",
+          "caption": "Mentor accepts request"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/entering_chat.png",
+          "alt": "Image of a ui screen",
+          "caption": "Pre session"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/signup_login.png",
+          "alt": "Image of a ui screen",
+          "caption": "Home, sign up and login"
+        },
+        {
+          "src": "/case-studies/talkam/talkam-uxui/notification_settings.png",
+          "alt": "Image of a ui screen",
+          "caption": "Notification center and Settings"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "body": [
+        [
+          "That will be all. Thank you for reading 👍. Check out my other works"
+        ]
+      ]
+    }
+  ]
+}

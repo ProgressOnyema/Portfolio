@@ -23,11 +23,8 @@ export default function About() {
       <Grid className="items-start pt-12 sm:pt-16">
         <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
           <div className="flex w-full max-w-[800px] flex-col gap-4">
-            <h1 className="text-h1-bold">
-              I take <em>it</em> personal
-            </h1>
             <p className="text-h3 text-text-primary">
-              Whatever stage of the game the product is in, I guarantee
+              I take <em>it</em> personal —— Whatever stage of the game the product is in, I guarantee
               to bring in a set of skills to contribute to its growth.
             </p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-2 pt-4">
