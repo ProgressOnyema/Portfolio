@@ -29,7 +29,7 @@ export default function About() {
             </p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-2 pt-4">
               {SKILLS.map((skill) => (
-                <p key={skill} className="font-mono text-[16px] leading-[1.5] text-text-muted">
+                <p key={skill} className="text-mono-tag text-text-muted">
                   {skill}
                 </p>
               ))}
