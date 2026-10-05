@@ -31,7 +31,7 @@ export default function ImageGrid({ block }: { block: ImageGridBlockData }) {
             />
           </div>
           {image.caption && (
-            <figcaption className="text-body-sm-base text-text-muted">
+            <figcaption className="text-mono-caption text-text-muted">
               {image.caption}
             </figcaption>
           )}
