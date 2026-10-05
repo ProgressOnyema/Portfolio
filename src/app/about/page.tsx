@@ -1,7 +1,14 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Grid from "@/components/Grid";
 import ContactSection from "@/components/ContactSection";
 import { EafcIcon } from "@/components/EafcIcon";
+
+export const metadata: Metadata = {
+  title: "About — Onyema Miracle",
+  description:
+    "Brand and product designer who takes it personal — strategy, branding, UX/UI, interaction, and frontend development.",
+};
 
 const SKILLS = ["Strategy", "Branding", "UX/UI Design", "Interaction", "Frontend Development"];
 
@@ -21,7 +28,7 @@ export default function About() {
             </h1>
             <p className="text-h3 text-text-primary">
               Whatever stage of the game the product is in, I guarantee
-              to bring in a set skills to contribute to its growth.
+              to bring in a set of skills to contribute to its growth.
             </p>
             <div className="flex flex-wrap items-center gap-x-8 gap-y-2 pt-4">
               {SKILLS.map((skill) => (
@@ -78,7 +85,7 @@ export default function About() {
               alt=""
               width={26}
               height={35}
-              className="inline-block align-middle -mr-1 sm:w-[36x] sm:h-[45px]"
+              className="inline-block align-middle -mr-1 sm:w-[36px] sm:h-[45px]"
               style={{ transform: `rotate(${(i - 1.5) * 7}deg)` }}
             />
           ))}
