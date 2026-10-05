@@ -18,7 +18,7 @@ export default function ContactSection() {
             projects
           </p>
           <div className="flex flex-col gap-1">
-            <p className="text-body-reg-base text-text-body sm:text-h3">
+            <p className="font-mono text-[14px] leading-[1.5] text-text-body sm:text-[16px]">
               Write to me:
             </p>
             <AppLink variant="email" href={EMAIL}>
