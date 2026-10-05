@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     "Brand and product designer who takes it personal — strategy, branding, UX/UI, interaction, and full stack development.",
 };
 
-const SKILLS = ["Strategy", "Branding", "UX/UI Design", "Interaction", "Full Stack Development"];
+const SKILLS = ["Strategy", "Branding", "UX/UI Design", "Interaction", "Full Stack Dev."];
 
 const BOOKS = ["book01", "book02", "book03", "book04"];
 const FILMS = ["film01", "film02", "film03", "film04"];
@@ -20,7 +20,7 @@ export default function About() {
   return (
     <main className="flex flex-1 flex-col">
       {/* Bio */}
-      <Grid className="items-start pt-12 sm:pt-16">
+      <Grid className="items-start pt-4 sm:pt-8">
         <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
           <div className="flex w-full max-w-[800px] flex-col item-start gap-4">
             <p className="text-h3 text-text-primary">

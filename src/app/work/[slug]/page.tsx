@@ -57,7 +57,7 @@ export default async function ProjectDetail({
 
   return (
     <main className="flex flex-1 flex-col">
-      <Grid className="pt-8 sm:pt-12">
+      <Grid className="pt-4 sm:pt-8">
         <div className="col-span-4 flex flex-col gap-2 sm:col-span-12">
           <div className="flex items-center gap-3">
             {/* logoAlternate — a second, distinct logo slot from the small
@@ -77,7 +77,7 @@ export default async function ProjectDetail({
               so it's flipped for "back". */}
           <Link
             href="/#work"
-            className="group mb-2 inline-flex items-center gap-2 self-start text-mono-nav text-text-muted transition-colors hover:text-text-primary"
+            className="group mb-8 inline-flex items-center gap-2 self-start text-mono-nav text-text-muted transition-colors hover:text-text-primary"
           >
             <ArrowIcon className="rotate-180 transition-transform group-hover:-translate-x-0.5" />
             <span>Back</span>
