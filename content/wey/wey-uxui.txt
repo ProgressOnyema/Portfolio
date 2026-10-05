@@ -146,6 +146,8 @@ Body: Most Lagos commuters plan their trips in what they often refer to as *blen
 [MARQUEE-GRID]
 - src: /case-studies/wey/wey-uxui/screens.png | alt: Image of a ui screen | caption: Screens
 - src: /case-studies/wey/wey-uxui/components.png | alt: Image of a ui components | caption: Components
+- src: /case-studies/wey/wey-uxui/updating_fare.png | alt: Image of a ui ui screen | caption: Updating fare
+- src: /case-studies/wey/wey-uxui/create_post.png | alt: Image of a ui screen | caption: Creating post
 [/MARQUEE-GRID]
 
 [TEXT]

@@ -105,8 +105,8 @@ To aid users in selection and to reduce cognitive load, products are grouped in 
 [/TEXT]
 
 [IMAGE-GRID:2]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-8.png | alt: UI screen showing prepacked packages | caption: Prepacked packages
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-9.png | alt: UI screen for packing yourself | caption: Pick them yourself
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/packed_1.png | alt: UI screen showing prepacked packages | caption: Prepacked packages
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/packed_2.png | alt: UI screen for packing yourself | caption: Pick them yourself
 [/IMAGE-GRID]
 
 [TEXT]
@@ -117,8 +117,8 @@ Users can add or remove products from these prepacked packages to suit their nee
 [/TEXT]
 
 [IMAGE-GRID:2]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-10.png | alt: UI screen for health categories | caption: Health category pills
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-11.png | alt: UI screen for products in cart | caption: Products in cart
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_1.png | alt: UI screen for health categories | caption: Health category pills
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_2.png | alt: UI screen for products in cart | caption: Products in cart
 [/IMAGE-GRID]
 
 [TEXT]
@@ -129,8 +129,8 @@ Payment is required before delivery to avoid complications. Multiple payment met
 [/TEXT]
 
 [IMAGE-GRID:2]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-12.png | alt: UI screen for delivery | caption: Address details
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-13.png | alt: UI screen for payment method | caption: Payment options
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/delivery_1.png | alt: UI screen for delivery | caption: Address details
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/delivery_2.png | alt: UI screen for payment method | caption: Payment options
 [/IMAGE-GRID]
 
 [TEXT]
@@ -141,13 +141,13 @@ I always found myself going back to competitive audits I did to see how potentia
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-14.png | alt: UI screens | caption: Confirm checkout
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-15.png | alt: UI screens | caption: Home screen
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-16.png | alt: UI screens | caption: Pick your own - Home screen
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-17.png | alt: UI screens | caption: Prepacked - Fitness pack
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-18.png | alt: UI screens | caption: Payment sheet
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-19.png | alt: UI screens | caption: Success message
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-20.png | alt: UI screens | caption: Track delivery
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/confirm_checkout.png | alt: UI screens | caption: Confirm checkout
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/home.png | alt: UI screens | caption: Home screen
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/pack_your_own.png | alt: UI screens | caption: Pick your own - Home screen
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/prepacked.png | alt: UI screens | caption: Prepacked - Fitness pack
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/payment_sheet.png | alt: UI screens | caption: Payment sheet
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/success.png | alt: UI screens | caption: Success message
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/track_delivery.png | alt: UI screens | caption: Track delivery
 [/MARQUEE-GRID]
 
 [TEXT]
