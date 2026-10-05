@@ -4,7 +4,7 @@ import WorkGrid from "@/components/WorkGrid";
 import ContactSection from "@/components/ContactSection";
 import { projects } from "@/lib/data/projects";
 
-const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Frontend Development"];
+const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Full Stack Development"];
 
 const STATS = ["3+ Years Experience", "10+ Projects Completed", "4+ Design Systems"];
 // `image` is the credential's preview shown on hover (see ListItem).
@@ -24,7 +24,7 @@ export default function Home() {
             <div className="flex flex-col gap-4">
               <p className="text-h3 text-text-primary">
                 Onyema Miracle —— I build products from the ground up, 
-                taking ideas from initial research through design to prototyping.
+                taking ideas from initial research through design to shipping 🚀.
               </p>
               <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
                 {HERO_TAGS.map((tag) => (

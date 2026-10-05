@@ -7,10 +7,10 @@ import { EafcIcon } from "@/components/EafcIcon";
 export const metadata: Metadata = {
   title: "About — Onyema Miracle",
   description:
-    "Brand and product designer who takes it personal — strategy, branding, UX/UI, interaction, and frontend development.",
+    "Brand and product designer who takes it personal — strategy, branding, UX/UI, interaction, and full stack development.",
 };
 
-const SKILLS = ["Strategy", "Branding", "UX/UI Design", "Interaction", "Frontend Development"];
+const SKILLS = ["Strategy", "Branding", "UX/UI Design", "Interaction", "Full Stack Development"];
 
 const BOOKS = ["book01", "book02", "book03", "book04"];
 const FILMS = ["film01", "film02", "film03", "film04"];
