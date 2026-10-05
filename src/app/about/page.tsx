@@ -22,12 +22,12 @@ export default function About() {
       {/* Bio */}
       <Grid className="items-start pt-12 sm:pt-16">
         <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
-          <div className="flex w-full max-w-[800px] flex-col gap-4">
+          <div className="flex w-full max-w-[800px] flex-col item-start gap-4">
             <p className="text-h3 text-text-primary">
               I take <em>it</em> personal —— Whatever stage of the game the product is in, I guarantee
               to bring in a set of skills to contribute to its growth.
             </p>
-            <div className="flex flex-wrap items-center gap-x-8 gap-y-2 pt-4">
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
               {SKILLS.map((skill) => (
                 <p key={skill} className="text-mono-tag text-text-muted">
                   {skill}

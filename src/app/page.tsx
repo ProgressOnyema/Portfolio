@@ -4,7 +4,7 @@ import WorkGrid from "@/components/WorkGrid";
 import ContactSection from "@/components/ContactSection";
 import { projects } from "@/lib/data/projects";
 
-const HERO_TAGS = ["Strategy", "Brand Design", "UX/UI Design", "Interaction", "Full Stack Development"];
+const HERO_TAGS = ["Strategy", "Branding", "UX/UI Design", "Interaction", "Full Stack Development"];
 
 const STATS = ["3+ Years Experience", "10+ Projects Completed", "4+ Design Systems"];
 // `image` is the credential's preview shown on hover (see ListItem).
@@ -20,19 +20,17 @@ export default function Home() {
           so the fixed-width decorative box never overflows a grid track */}
       <Grid className="items-start pt-12 sm:pt-16">
         <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
-          <div className="flex w-full max-w-[763px] flex-col items-start gap-8">
-            <div className="flex flex-col gap-4">
-              <p className="text-h3 text-text-primary">
-                Onyema Miracle —— I build products from the ground up, 
-                taking ideas from initial research through design to shipping 🚀.
-              </p>
-              <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
-                {HERO_TAGS.map((tag) => (
-                  <p key={tag} className="text-mono-tag text-text-muted">
-                    {tag}
-                  </p>
-                ))}
-              </div>
+          <div className="flex w-full max-w-[800px] flex-col items-start gap-4">
+            <p className="text-h3 text-text-primary">
+              Onyema Miracle —— I build products from the ground up, 
+              taking ideas from initial research through design to shipping 🚀.
+            </p>
+            <div className="flex flex-wrap items-center gap-x-8 gap-y-2">
+              {HERO_TAGS.map((tag) => (
+                <p key={tag} className="text-mono-tag text-text-muted">
+                  {tag}
+                </p>
+              ))}
             </div>
           </div>
         </div>
