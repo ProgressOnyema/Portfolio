@@ -26,8 +26,8 @@ export default function Home() {
                 Product and Brand designer
               </h1>
               <p className="text-h3 text-text-primary">
-                Onyema Miracle —— I build products from the ground up;
-                from research, brand identity, uxui to prototype.
+                Onyema Miracle —— I build products from the ground up, 
+                taking ideas from initial research through design to prototyping.
               </p>
               <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
                 {HERO_TAGS.map((tag) => (
@@ -41,13 +41,11 @@ export default function Home() {
         </div>
       </Grid>
 
-      {/* Work — replaces the old "Featured Projects" preview. The
-          standalone /work page has been dissolved; its full
-          category-filterable project listing (WorkGrid) now lives here
-          instead, so this is the site's one project listing rather than
-          a preview linking out to a second one. scroll-mt offsets the
-          fixed h-[106px] header so Navbar's "Work" link (/#work) lands
-          below it, not underneath it. */}
+      {/* Work — the site's one project listing: the full
+          category-filterable WorkGrid lives here (there is no standalone
+          /work page; only /work/[slug] case studies). scroll-mt offsets
+          the fixed h-[106px] header so a /#work anchor lands below it,
+          not underneath it. */}
       <div id="work" className="scroll-mt-[106px]">
         <WorkGrid projects={projects} />
       </div>
