@@ -39,7 +39,7 @@ Body: Navigating Lagos can be challenging, particularly when travelling to an un
 
 [TEXT]
 Heading: How do Lagos commuters move?
-Body: To understand how Lagos commuters plan journeys to unfamiliar destinations or to any destination at all, how they choose between different routes, what challenges they encounter, and how they currently solve those challenges. To answer these questions, I had to ask a few questions: 
+Body: I wanted to understand how Lagos commuters plan journeys to unfamiliar destinations or to any destination at all, how they choose between different routes, what challenges they encounter, and how they currently solve those challenges. To answer these, I asked a few questions: 
 1. How frequently do Lagos commuters travel to unfamiliar areas?
 2. How do they currently figure out how to get there?
 3. What makes choosing a route difficult?
@@ -55,7 +55,7 @@ Participants included students, full-time employees, and freelancers living in a
 
 [MARQUEE-GRID]
 - src: /case-studies/wey/wey-uxui/Danfo.png | alt: Image of a Danfo | caption: Danfo
-- src: /case-studies/wey/wey-uxui/keke.jpg | alt: Image of a tricycle | caption: Tricycle (Keke)
+- src: /case-studies/wey/wey-uxui/Keke.jpg | alt: Image of a tricycle | caption: Tricycle (Keke)
 - src: /case-studies/wey/wey-uxui/user_flow.png | alt: Image of a user flow | caption: User flow
 - src: /case-studies/wey/wey-uxui/user_research.png | alt: Image of a user research | caption: User research
 [/MARQUEE-GRID]
@@ -69,12 +69,12 @@ Body: 1. Travelling to unfamiliar areas is common.
 
 Before leaving, most used Google Maps to locate their destination and understand what area it was in, following a simple process of *Where is it?* → *What area is it in?* → *How do I get there?*
 
-During the journey, especially at bus stops or in unfamiliar neighbourhoods, participants often switched from digital tools to asking drivers, conductors, or other passengers questions such as *"Where can I get a bus going to...?"*, *"Does this bus pass through...?"*, or *“Where do I stop?"* This shows that route discovery isn't a one-time activity that happens before a journey, but an ongoing process that continues as commuters navigate unfamiliar routes and locations.
+During the journey, especially at bus stops or in unfamiliar neighbourhoods, participants often switched from digital tools to asking drivers, conductors, or other passengers questions such as *"Where can I get a bus going to...?"*, *"Does this bus pass through...?"*, or *"Where do I stop?"* This shows that route discovery isn't a one-time activity that happens before a journey, but an ongoing process that continues as commuters navigate unfamiliar routes and locations.
 [/TEXT]
 
 [TEXT]
 Heading: The gap
-Body: This presents an opportunity to create a journey-planning experience designed specifically around the realities of moving through Lagos. Instead of simply answering “Where is this place?", the experience should help commuters understand “What exactly should I do to get there?” by providing practical information such as 
+Body: This presents an opportunity to create a journey-planning experience designed specifically around the realities of moving through Lagos. Instead of simply answering “Where is this place?”, the experience should help commuters understand “What exactly should I do to get there?” by providing practical information such as 
 1. Which transport to take
 2. Where to board, where to change, where to get off
 3. Approximate journey time 
@@ -104,7 +104,7 @@ When a user inputs a destination that requires a transfer, the system automatica
 Heading: User Gets Recommended Routes
 Body: Leveraging the multi-leg logic, the system determines whether a second leg of the journey is needed and provides a comprehensive map of the entire trip.
 
-Alternative routes, Approximate journey time, estimated cost, Number of transfers, and Walking distance are available to the user. Users can then choose which option fits there need at the present.
+Alternative routes, Approximate journey time, estimated cost, Number of transfers, and Walking distance are available to the user. Users can then choose which option fits their need at the present.
 
 Users who prioritize convenience can check out third-party rides. 
 [/TEXT]
@@ -140,7 +140,7 @@ One card, any location.
 
 [TEXT]
 Heading: Challenges
-Body: Most Lagos commuters plan their trips in what they often refer to as *blended commutes.* They start with public transport and end with a ride-hailing service, in a bid to save money and afford some sort of convenience. Designing the multi-leg logic to mirror this real-life scenario, fitting all that information on a page and not overwhelming the user, was a challenge
+Body: Most Lagos commuters plan their trips in what they often refer to as *blended commutes.* They start with public transport and end with a ride-hailing service, in a bid to save money and afford some sort of convenience. Designing the multi-leg logic to mirror this real-life scenario, fitting all that information on a page and not overwhelming the user, was a challenge.
 [/TEXT]
 
 [MARQUEE-GRID]
