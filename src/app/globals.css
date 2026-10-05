@@ -32,6 +32,9 @@
   --border-hairline: 1px;
 
   --font-body: "Inter", sans-serif;
+  /* Technical face for small utility text (nav, tags, captions, subnav).
+     Headings and body copy stay on --font-body. */
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /*
@@ -60,6 +63,7 @@
   --color-inverse-surface-bg: var(--color-inverse-surface-bg);
   --color-inverse-text-primary: var(--color-inverse-text-primary);
   --font-sans: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 /* Belt-and-suspenders guard against horizontal overflow: several sections
@@ -201,11 +205,11 @@ body * {
    several other components (ProjectWidget names, MetaBlock labels,
    Button text, etc.) that don't scale down to 14px on mobile. */
 .text-subnav {
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 16px;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 14px;
   line-height: 1.4;
-  letter-spacing: -0.16px;
+  letter-spacing: 0;
 }
 
 .text-subnav-base {
@@ -225,12 +229,46 @@ body * {
 }
 
 .text-label {
-  font-family: var(--font-body);
-  font-weight: 600;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.48px;
+  text-transform: uppercase;
+}
+
+/* Monospace utility styles — JetBrains Mono, sized ~1-2px under the Inter
+   styles they replace since mono runs wider. */
+.text-mono-nav {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.text-mono-nav-strong {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.text-mono-tag {
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0;
+}
+
+.text-mono-caption {
+  font-family: var(--font-mono);
+  font-weight: 400;
   font-size: 13px;
   line-height: 1.5;
-  letter-spacing: 0.52px;
-  text-transform: uppercase;
+  letter-spacing: 0;
 }
 
 /* Project Detail's one-liner (the subtitle under the project name).
@@ -283,8 +321,8 @@ body * {
     letter-spacing: -0.3px;
   }
   .text-subnav {
-    font-size: 14px;
-    letter-spacing: -0.14px;
+    font-size: 13px;
+    letter-spacing: 0;
   }
   .text-label {
     font-size: 11px;
