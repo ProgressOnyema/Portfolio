@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import Grid from "@/components/Grid";
+import { ArrowIcon } from "@/components/Icons";
 import Subnav from "@/components/Subnav";
 import ContactSection from "@/components/ContactSection";
 import BlockRenderer from "@/components/case-study/BlockRenderer";
@@ -71,6 +73,15 @@ export default async function ProjectDetail({
                 mark, which should never get cropped. */}
             {/* <h1 className="text-h2-bold sm:text-h1-bold">{project.name}</h1> */}
           </div>
+          {/* Back to the work grid on the home page. ArrowIcon points right,
+              so it's flipped for "back". */}
+          <Link
+            href="/#work"
+            className="group mb-2 inline-flex items-center gap-2 self-start text-mono-nav text-text-muted transition-colors hover:text-text-primary"
+          >
+            <ArrowIcon className="rotate-180 transition-transform group-hover:-translate-x-0.5" />
+            <span>Back</span>
+          </Link>
           {/* .text-project-oneliner, not the shared .text-h3 (used by
               Home/About): this one drops to Body Regular/Base (16px) on
               mobile rather than Body Large/Base (20px), per the
