@@ -28,7 +28,7 @@ export default function Home() {
               </p>
               <div className="flex flex-wrap items-center gap-x-[22px] gap-y-2">
                 {HERO_TAGS.map((tag) => (
-                  <p key={tag} className="text-body-reg-base text-text-muted">
+                  <p key={tag} className="text-mono-tag text-text-muted">
                     {tag}
                   </p>
                 ))}
