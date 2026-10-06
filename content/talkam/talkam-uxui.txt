@@ -3,12 +3,12 @@
 [NAME: Talkam]
 [ONE-LINER: Talk to a mentor]
 [CATEGORY: Product Design]
-[THUMBNAIL-1: /case-studies/talkam/thumbnail-1.png]
-[THUMBNAIL-2: /case-studies/talkam/thumbnail-2.png]
-[LOGO: /case-studies/talkam/logo.png]
+[THUMBNAIL-1: /case-studies/talkam/thumbnail-1.webp]
+[THUMBNAIL-2: /case-studies/talkam/thumbnail-2.webp]
+[LOGO: /case-studies/talkam/logo.webp]
 
 [COVER-IMAGE]
-src: /case-studies/talkam/talkam-uxui/cover.png 
+src: /case-studies/talkam/talkam-uxui/cover.webp 
 alt: Talkam's cover image
 [/COVER-IMAGE]
 
@@ -54,11 +54,11 @@ Existing support analysis — Reviewed the support already available to students
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/talkam/talkam-uxui/user_flow.png | alt: Image of user flow | caption: User flow
-- src: /case-studies/talkam/talkam-uxui/IA_Sitemap.png | alt: Image of a Sitemap | caption: Info. Architecture & Sitemap
-- src: /case-studies/talkam/talkam-uxui/system_architecture.png | alt: Image of system architecture | caption: System Architecture
-- src: /case-studies/talkam/talkam-uxui/sequence.png | alt: Image of sequence diagram | caption: Sequence diagram
-- src: /case-studies/talkam/talkam-uxui/usecase.png | alt: Image of use case diagram | caption: Use case
+- src: /case-studies/talkam/talkam-uxui/user_flow.webp | alt: Image of user flow | caption: User flow
+- src: /case-studies/talkam/talkam-uxui/IA_Sitemap.webp | alt: Image of a Sitemap | caption: Info. Architecture & Sitemap
+- src: /case-studies/talkam/talkam-uxui/system_architecture.webp | alt: Image of system architecture | caption: System Architecture
+- src: /case-studies/talkam/talkam-uxui/sequence.webp | alt: Image of sequence diagram | caption: Sequence diagram
+- src: /case-studies/talkam/talkam-uxui/usecase.webp | alt: Image of use case diagram | caption: Use case
 [/MARQUEE-GRID]
 
 [TEXT]
@@ -93,8 +93,8 @@ Over 70% of Nigerians speak and understand Pidgin English, compared with 57% who
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/talkam/talkam-uxui/chatbot_empty.png | alt: Image of a ui screen | caption: Chatbot empty chat
-- src: /case-studies/talkam/talkam-uxui/chatbot.png | alt: Image of a ui screen | caption: NobiBot chatting
+- src: /case-studies/talkam/talkam-uxui/chatbot_empty.webp | alt: Image of a ui screen | caption: Chatbot empty chat
+- src: /case-studies/talkam/talkam-uxui/chatbot.webp | alt: Image of a ui screen | caption: NobiBot chatting
 [/IMAGE-GRID]
 
 [TEXT]
@@ -104,8 +104,8 @@ Browse the list, check availability, and send a request, which would have to be 
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/talkam/talkam-uxui/mentor_list.png | alt: Image of a ui screen | caption: List of mentors
-- src: /case-studies/talkam/talkam-uxui/availability_request.png | alt: Image of a ui screen | caption: Availability slot & Request
+- src: /case-studies/talkam/talkam-uxui/mentor_list.webp | alt: Image of a ui screen | caption: List of mentors
+- src: /case-studies/talkam/talkam-uxui/availability_request.webp | alt: Image of a ui screen | caption: Availability slot & Request
 [/IMAGE-GRID]
 
 [TEXT]
@@ -115,8 +115,8 @@ Borrowing the priest-penitent model, mentors and mentees use pseudonyms and avat
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/talkam/talkam-uxui/signup.png | alt: Image of a ui screen | caption: Signup screen
-- src: /case-studies/talkam/talkam-uxui/joining_chat.png | alt: Image of a ui screen | caption: Joining chat
+- src: /case-studies/talkam/talkam-uxui/signup.webp | alt: Image of a ui screen | caption: Signup screen
+- src: /case-studies/talkam/talkam-uxui/joining_chat.webp | alt: Image of a ui screen | caption: Joining chat
 [/IMAGE-GRID]
 
 [TEXT]
@@ -126,8 +126,8 @@ Replying to a section of text, recording audio, transcribing said audio before o
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/talkam/talkam-uxui/transcribed_audio.png | alt: Image of a ui screen | caption: Transcribed audio
-- src: /case-studies/talkam/talkam-uxui/chat_features.png | alt: Image of a ui screen | caption: Chat features
+- src: /case-studies/talkam/talkam-uxui/transcribed_audio.webp | alt: Image of a ui screen | caption: Transcribed audio
+- src: /case-studies/talkam/talkam-uxui/chat_features.webp | alt: Image of a ui screen | caption: Chat features
 [/IMAGE-GRID]
 
 [TEXT]
@@ -136,11 +136,11 @@ Body: Traditional push notifications and emails will not work for Talkam because
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/talkam/talkam-uxui/request_mentor.png | alt: Image of a ui screen | caption: Request a mentor
-- src: /case-studies/talkam/talkam-uxui/mentor_action.png | alt: Image of a ui components | caption: Mentor accepts request
-- src: /case-studies/talkam/talkam-uxui/entering_chat.png | alt: Image of a ui screen | caption: Pre session
-- src: /case-studies/talkam/talkam-uxui/signup_login.png | alt: Image of a ui screen | caption: Home, sign up and login
-- src: /case-studies/talkam/talkam-uxui/notification_settings.png | alt: Image of a ui screen | caption: Notification center and Settings
+- src: /case-studies/talkam/talkam-uxui/request_mentor.webp | alt: Image of a ui screen | caption: Request a mentor
+- src: /case-studies/talkam/talkam-uxui/mentor_action.webp | alt: Image of a ui components | caption: Mentor accepts request
+- src: /case-studies/talkam/talkam-uxui/entering_chat.webp | alt: Image of a ui screen | caption: Pre session
+- src: /case-studies/talkam/talkam-uxui/signup_login.webp | alt: Image of a ui screen | caption: Home, sign up and login
+- src: /case-studies/talkam/talkam-uxui/notification_settings.webp | alt: Image of a ui screen | caption: Notification center and Settings
 [/MARQUEE-GRID]
 
 [TEXT]

@@ -5,14 +5,14 @@
   "oneLiner": "Cheapest farm produce to your plate",
   "category": "Product Design",
   "thumbnails": [
-    "/case-studies/buy-and-bite/thumbnail-1.png",
-    "/case-studies/buy-and-bite/thumbnail-2.png"
+    "/case-studies/buy-and-bite/thumbnail-1.webp",
+    "/case-studies/buy-and-bite/thumbnail-2.webp"
   ],
-  "logo": "/case-studies/buy-and-bite/logo.png",
+  "logo": "/case-studies/buy-and-bite/logo.webp",
   "blocks": [
     {
       "type": "coverImage",
-      "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/cover.png",
+      "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/cover.webp",
       "alt": "Buy and Bite homepage"
     },
     {
@@ -100,37 +100,37 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-1.jpg",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-1.webp",
           "alt": "Picture of bulk onions in Mile12 market",
           "caption": "Shots of Mile12 market"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-2.jpg",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-2.webp",
           "alt": "Picture of tomato baskets in Mile12 market",
           "caption": "Shots of Mile12 market"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-3.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-3.webp",
           "alt": "Competitive audit report",
           "caption": "Competitive audit"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-4.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-4.webp",
           "alt": "Info. Architecture and sitemap",
           "caption": "Info. Architecture & sitemap"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-5.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-5.webp",
           "alt": "Wireframes",
           "caption": "HI-FI Wireframe"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-6.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-6.webp",
           "alt": "User journeys",
           "caption": "User journeys"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-7.jpeg",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-7.webp",
           "alt": "Storyboard",
           "caption": "Big-picture storyboard"
         }
@@ -208,12 +208,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/packed_1.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/packed_1.webp",
           "alt": "UI screen showing prepacked packages",
           "caption": "Prepacked packages"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/packed_2.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/packed_2.webp",
           "alt": "UI screen for packing yourself",
           "caption": "Pick them yourself"
         }
@@ -236,12 +236,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_1.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_1.webp",
           "alt": "UI screen for health categories",
           "caption": "Health category pills"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_2.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_2.webp",
           "alt": "UI screen for products in cart",
           "caption": "Products in cart"
         }
@@ -264,12 +264,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/delivery_1.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/delivery_1.webp",
           "alt": "UI screen for delivery",
           "caption": "Address details"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/delivery_2.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/delivery_2.webp",
           "alt": "UI screen for payment method",
           "caption": "Payment options"
         }
@@ -292,37 +292,37 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/confirm_checkout.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/confirm_checkout.webp",
           "alt": "UI screens",
           "caption": "Confirm checkout"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/home.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/home.webp",
           "alt": "UI screens",
           "caption": "Home screen"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/pack_your_own.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/pack_your_own.webp",
           "alt": "UI screens",
           "caption": "Pick your own - Home screen"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/prepacked.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/prepacked.webp",
           "alt": "UI screens",
           "caption": "Prepacked - Fitness pack"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/payment_sheet.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/payment_sheet.webp",
           "alt": "UI screens",
           "caption": "Payment sheet"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/success.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/success.webp",
           "alt": "UI screens",
           "caption": "Success message"
         },
         {
-          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/track_delivery.png",
+          "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/track_delivery.webp",
           "alt": "UI screens",
           "caption": "Track delivery"
         }

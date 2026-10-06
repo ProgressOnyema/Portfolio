@@ -5,14 +5,14 @@
   "oneLiner": "Talk to a mentor",
   "category": "Product Design",
   "thumbnails": [
-    "/case-studies/talkam/thumbnail-1.png",
-    "/case-studies/talkam/thumbnail-2.png"
+    "/case-studies/talkam/thumbnail-1.webp",
+    "/case-studies/talkam/thumbnail-2.webp"
   ],
-  "logo": "/case-studies/talkam/logo.png",
+  "logo": "/case-studies/talkam/logo.webp",
   "blocks": [
     {
       "type": "coverImage",
-      "src": "/case-studies/talkam/talkam-uxui/cover.png",
+      "src": "/case-studies/talkam/talkam-uxui/cover.webp",
       "alt": "Talkam's cover image"
     },
     {
@@ -118,27 +118,27 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/talkam/talkam-uxui/user_flow.png",
+          "src": "/case-studies/talkam/talkam-uxui/user_flow.webp",
           "alt": "Image of user flow",
           "caption": "User flow"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/IA_Sitemap.png",
+          "src": "/case-studies/talkam/talkam-uxui/IA_Sitemap.webp",
           "alt": "Image of a Sitemap",
           "caption": "Info. Architecture & Sitemap"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/system_architecture.png",
+          "src": "/case-studies/talkam/talkam-uxui/system_architecture.webp",
           "alt": "Image of system architecture",
           "caption": "System Architecture"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/sequence.png",
+          "src": "/case-studies/talkam/talkam-uxui/sequence.webp",
           "alt": "Image of sequence diagram",
           "caption": "Sequence diagram"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/usecase.png",
+          "src": "/case-studies/talkam/talkam-uxui/usecase.webp",
           "alt": "Image of use case diagram",
           "caption": "Use case"
         }
@@ -212,12 +212,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/talkam/talkam-uxui/chatbot_empty.png",
+          "src": "/case-studies/talkam/talkam-uxui/chatbot_empty.webp",
           "alt": "Image of a ui screen",
           "caption": "Chatbot empty chat"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/chatbot.png",
+          "src": "/case-studies/talkam/talkam-uxui/chatbot.webp",
           "alt": "Image of a ui screen",
           "caption": "NobiBot chatting"
         }
@@ -237,12 +237,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/talkam/talkam-uxui/mentor_list.png",
+          "src": "/case-studies/talkam/talkam-uxui/mentor_list.webp",
           "alt": "Image of a ui screen",
           "caption": "List of mentors"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/availability_request.png",
+          "src": "/case-studies/talkam/talkam-uxui/availability_request.webp",
           "alt": "Image of a ui screen",
           "caption": "Availability slot & Request"
         }
@@ -262,12 +262,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/talkam/talkam-uxui/signup.png",
+          "src": "/case-studies/talkam/talkam-uxui/signup.webp",
           "alt": "Image of a ui screen",
           "caption": "Signup screen"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/joining_chat.png",
+          "src": "/case-studies/talkam/talkam-uxui/joining_chat.webp",
           "alt": "Image of a ui screen",
           "caption": "Joining chat"
         }
@@ -287,12 +287,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/talkam/talkam-uxui/transcribed_audio.png",
+          "src": "/case-studies/talkam/talkam-uxui/transcribed_audio.webp",
           "alt": "Image of a ui screen",
           "caption": "Transcribed audio"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/chat_features.png",
+          "src": "/case-studies/talkam/talkam-uxui/chat_features.webp",
           "alt": "Image of a ui screen",
           "caption": "Chat features"
         }
@@ -312,27 +312,27 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/talkam/talkam-uxui/request_mentor.png",
+          "src": "/case-studies/talkam/talkam-uxui/request_mentor.webp",
           "alt": "Image of a ui screen",
           "caption": "Request a mentor"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/mentor_action.png",
+          "src": "/case-studies/talkam/talkam-uxui/mentor_action.webp",
           "alt": "Image of a ui components",
           "caption": "Mentor accepts request"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/entering_chat.png",
+          "src": "/case-studies/talkam/talkam-uxui/entering_chat.webp",
           "alt": "Image of a ui screen",
           "caption": "Pre session"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/signup_login.png",
+          "src": "/case-studies/talkam/talkam-uxui/signup_login.webp",
           "alt": "Image of a ui screen",
           "caption": "Home, sign up and login"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/notification_settings.png",
+          "src": "/case-studies/talkam/talkam-uxui/notification_settings.webp",
           "alt": "Image of a ui screen",
           "caption": "Notification center and Settings"
         }

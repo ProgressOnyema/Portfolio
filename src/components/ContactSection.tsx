@@ -45,7 +45,7 @@ export default function ContactSection() {
           separate Footer component. */}
       <Grid className="pb-8 sm:pb-12">
         <p className="text-body-sm-base col-span-4 text-text-primary sm:col-span-12">
-          ©'{year} Onyema Miracle.
+          ©{"'"}{year} Onyema Miracle.
         </p>
       </Grid>
     </>

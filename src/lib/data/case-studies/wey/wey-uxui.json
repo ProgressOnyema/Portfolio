@@ -5,15 +5,15 @@
   "oneLiner": "How to move",
   "category": "Product Design",
   "thumbnails": [
-    "/case-studies/wey/thumbnail-1.png",
-    "/case-studies/wey/thumbnail-2.png"
+    "/case-studies/wey/thumbnail-1.webp",
+    "/case-studies/wey/thumbnail-2.webp"
   ],
-  "logo": "/case-studies/wey/logo.png",
+  "logo": "/case-studies/wey/logo.webp",
   "logoAlternate": "/case-studies/wey/logo-alt.svg",
   "blocks": [
     {
       "type": "coverImage",
-      "src": "/case-studies/wey/wey-uxui/cover.png",
+      "src": "/case-studies/wey/wey-uxui/cover.webp",
       "alt": "Wey's cover image"
     },
     {
@@ -112,22 +112,22 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/Danfo.png",
+          "src": "/case-studies/wey/wey-uxui/Danfo.webp",
           "alt": "Image of a Danfo",
           "caption": "Danfo"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/Keke.jpg",
+          "src": "/case-studies/wey/wey-uxui/Keke.webp",
           "alt": "Image of a tricycle",
           "caption": "Tricycle (Keke)"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/user_flow.png",
+          "src": "/case-studies/wey/wey-uxui/user_flow.webp",
           "alt": "Image of a user flow",
           "caption": "User flow"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/user_research.png",
+          "src": "/case-studies/wey/wey-uxui/user_research.webp",
           "alt": "Image of a user research",
           "caption": "User research"
         }
@@ -257,7 +257,7 @@
       "columns": 1,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/multi_leg.png",
+          "src": "/case-studies/wey/wey-uxui/multi_leg.webp",
           "alt": "Image of a multi-leg logic",
           "caption": "Multi-leg logic"
         }
@@ -283,12 +283,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/location_input.png",
+          "src": "/case-studies/wey/wey-uxui/location_input.webp",
           "alt": "Image of a ui screen",
           "caption": "Location input"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/finding_route.png",
+          "src": "/case-studies/wey/wey-uxui/finding_route.webp",
           "alt": "Image of ui screen",
           "caption": "Finding route & Recommended route"
         }
@@ -311,12 +311,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/route_detail.png",
+          "src": "/case-studies/wey/wey-uxui/route_detail.webp",
           "alt": "Image of a ui screen",
           "caption": "Route detail"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/route_timeline.png",
+          "src": "/case-studies/wey/wey-uxui/route_timeline.webp",
           "alt": "Image of a ui screen",
           "caption": "Route timeline & Fare update"
         }
@@ -339,12 +339,12 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/cards.png",
+          "src": "/case-studies/wey/wey-uxui/cards.webp",
           "alt": "Image of a ui screen",
           "caption": "Wey cards"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/card.png",
+          "src": "/case-studies/wey/wey-uxui/card.webp",
           "alt": "Image of a ui screen",
           "caption": "Digital card"
         }
@@ -369,22 +369,22 @@
       "columns": 2,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/screens.png",
+          "src": "/case-studies/wey/wey-uxui/screens.webp",
           "alt": "Image of a ui screen",
           "caption": "Screens"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/components.png",
+          "src": "/case-studies/wey/wey-uxui/components.webp",
           "alt": "Image of a ui components",
           "caption": "Components"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/updating_fare.png",
+          "src": "/case-studies/wey/wey-uxui/updating_fare.webp",
           "alt": "Image of a ui ui screen",
           "caption": "Updating fare"
         },
         {
-          "src": "/case-studies/wey/wey-uxui/create_post.png",
+          "src": "/case-studies/wey/wey-uxui/create_post.webp",
           "alt": "Image of a ui screen",
           "caption": "Creating post"
         }

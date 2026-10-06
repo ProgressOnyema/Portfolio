@@ -3,13 +3,13 @@
 [NAME: Wey]
 [ONE-LINER: How to move]
 [CATEGORY: Product Design]
-[THUMBNAIL-1: /case-studies/wey/thumbnail-1.png]
-[THUMBNAIL-2: /case-studies/wey/thumbnail-2.png]
-[LOGO: /case-studies/wey/logo.png]
+[THUMBNAIL-1: /case-studies/wey/thumbnail-1.webp]
+[THUMBNAIL-2: /case-studies/wey/thumbnail-2.webp]
+[LOGO: /case-studies/wey/logo.webp]
 [LOGO-ALTERNATE: /case-studies/wey/logo-alt.svg]
 
 [COVER-IMAGE]
-src: /case-studies/wey/wey-uxui/cover.png 
+src: /case-studies/wey/wey-uxui/cover.webp 
 alt: Wey's cover image
 [/COVER-IMAGE]
 
@@ -54,10 +54,10 @@ Participants included students, full-time employees, and freelancers living in a
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/wey/wey-uxui/Danfo.png | alt: Image of a Danfo | caption: Danfo
-- src: /case-studies/wey/wey-uxui/Keke.jpg | alt: Image of a tricycle | caption: Tricycle (Keke)
-- src: /case-studies/wey/wey-uxui/user_flow.png | alt: Image of a user flow | caption: User flow
-- src: /case-studies/wey/wey-uxui/user_research.png | alt: Image of a user research | caption: User research
+- src: /case-studies/wey/wey-uxui/Danfo.webp | alt: Image of a Danfo | caption: Danfo
+- src: /case-studies/wey/wey-uxui/Keke.webp | alt: Image of a tricycle | caption: Tricycle (Keke)
+- src: /case-studies/wey/wey-uxui/user_flow.webp | alt: Image of a user flow | caption: User flow
+- src: /case-studies/wey/wey-uxui/user_research.webp | alt: Image of a user research | caption: User research
 [/MARQUEE-GRID]
 
 [TEXT]
@@ -97,7 +97,7 @@ When a user inputs a destination that requires a transfer, the system automatica
 [/TEXT]
 
 [IMAGE-GRID: 1]
-- src: /case-studies/wey/wey-uxui/multi_leg.png | alt: Image of a multi-leg logic | caption: Multi-leg logic
+- src: /case-studies/wey/wey-uxui/multi_leg.webp | alt: Image of a multi-leg logic | caption: Multi-leg logic
 [/IMAGE-GRID]
 
 [TEXT]
@@ -110,8 +110,8 @@ Users who prioritize convenience can check out third-party rides.
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/wey/wey-uxui/location_input.png | alt: Image of a ui screen | caption: Location input
-- src: /case-studies/wey/wey-uxui/finding_route.png | alt: Image of ui screen | caption: Finding route & Recommended route
+- src: /case-studies/wey/wey-uxui/location_input.webp | alt: Image of a ui screen | caption: Location input
+- src: /case-studies/wey/wey-uxui/finding_route.webp | alt: Image of ui screen | caption: Finding route & Recommended route
 [/IMAGE-GRID]
 
 [TEXT]
@@ -122,8 +122,8 @@ For each route, users can post real-time information about that specific route, 
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/wey/wey-uxui/route_detail.png | alt: Image of a ui screen | caption: Route detail
-- src: /case-studies/wey/wey-uxui/route_timeline.png | alt: Image of a ui screen | caption: Route timeline & Fare update
+- src: /case-studies/wey/wey-uxui/route_detail.webp | alt: Image of a ui screen | caption: Route detail
+- src: /case-studies/wey/wey-uxui/route_timeline.webp | alt: Image of a ui screen | caption: Route timeline & Fare update
 [/IMAGE-GRID]
 
 [TEXT]
@@ -134,8 +134,8 @@ One card, any location.
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/wey/wey-uxui/cards.png | alt: Image of a ui screen | caption: Wey cards
-- src: /case-studies/wey/wey-uxui/card.png | alt: Image of a ui screen | caption: Digital card
+- src: /case-studies/wey/wey-uxui/cards.webp | alt: Image of a ui screen | caption: Wey cards
+- src: /case-studies/wey/wey-uxui/card.webp | alt: Image of a ui screen | caption: Digital card
 [/IMAGE-GRID]
 
 [TEXT]
@@ -144,10 +144,10 @@ Body: Most Lagos commuters plan their trips in what they often refer to as *blen
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/wey/wey-uxui/screens.png | alt: Image of a ui screen | caption: Screens
-- src: /case-studies/wey/wey-uxui/components.png | alt: Image of a ui components | caption: Components
-- src: /case-studies/wey/wey-uxui/updating_fare.png | alt: Image of a ui ui screen | caption: Updating fare
-- src: /case-studies/wey/wey-uxui/create_post.png | alt: Image of a ui screen | caption: Creating post
+- src: /case-studies/wey/wey-uxui/screens.webp | alt: Image of a ui screen | caption: Screens
+- src: /case-studies/wey/wey-uxui/components.webp | alt: Image of a ui components | caption: Components
+- src: /case-studies/wey/wey-uxui/updating_fare.webp | alt: Image of a ui ui screen | caption: Updating fare
+- src: /case-studies/wey/wey-uxui/create_post.webp | alt: Image of a ui screen | caption: Creating post
 [/MARQUEE-GRID]
 
 [TEXT]

@@ -3,13 +3,13 @@
 [NAME: Buy and Bite]
 [ONE-LINER: Cheapest farm produce to your plate]
 [CATEGORY: Product Design]
-[THUMBNAIL-1: /case-studies/buy-and-bite/thumbnail-1.png]
-[THUMBNAIL-2: /case-studies/buy-and-bite/thumbnail-2.png]
-[LOGO: /case-studies/buy-and-bite/logo.png]
+[THUMBNAIL-1: /case-studies/buy-and-bite/thumbnail-1.webp]
+[THUMBNAIL-2: /case-studies/buy-and-bite/thumbnail-2.webp]
+[LOGO: /case-studies/buy-and-bite/logo.webp]
 
 
 [COVER-IMAGE]
-src: /case-studies/buy-and-bite/buy-and-bite-uxui/cover.png 
+src: /case-studies/buy-and-bite/buy-and-bite-uxui/cover.webp 
 alt: Buy and Bite homepage
 [/COVER-IMAGE]
 
@@ -58,13 +58,13 @@ In Nigeria specifically, middlemen buy directly from farmers at a discount to ma
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-1.jpg | alt: Picture of bulk onions in Mile12 market | caption: Shots of Mile12 market 
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-2.jpg | alt: Picture of tomato baskets in Mile12 market | caption: Shots of Mile12 market
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-3.png | alt: Competitive audit report | caption: Competitive audit
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-4.png | alt: Info. Architecture and sitemap | caption: Info. Architecture & sitemap
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-5.png | alt: Wireframes | caption: HI-FI Wireframe
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-6.png | alt: User journeys | caption: User journeys
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-7.jpeg | alt: Storyboard | caption: Big-picture storyboard
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-1.webp | alt: Picture of bulk onions in Mile12 market | caption: Shots of Mile12 market 
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-2.webp | alt: Picture of tomato baskets in Mile12 market | caption: Shots of Mile12 market
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-3.webp | alt: Competitive audit report | caption: Competitive audit
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-4.webp | alt: Info. Architecture and sitemap | caption: Info. Architecture & sitemap
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-5.webp | alt: Wireframes | caption: HI-FI Wireframe
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-6.webp | alt: User journeys | caption: User journeys
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/image-7.webp | alt: Storyboard | caption: Big-picture storyboard
 [/MARQUEE-GRID]
 
 [TEXT]
@@ -105,8 +105,8 @@ To aid users in selection and to reduce cognitive load, products are grouped in 
 [/TEXT]
 
 [IMAGE-GRID:2]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/packed_1.png | alt: UI screen showing prepacked packages | caption: Prepacked packages
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/packed_2.png | alt: UI screen for packing yourself | caption: Pick them yourself
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/packed_1.webp | alt: UI screen showing prepacked packages | caption: Prepacked packages
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/packed_2.webp | alt: UI screen for packing yourself | caption: Pick them yourself
 [/IMAGE-GRID]
 
 [TEXT]
@@ -117,8 +117,8 @@ Users can add or remove products from these prepacked packages to suit their nee
 [/TEXT]
 
 [IMAGE-GRID:2]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_1.png | alt: UI screen for health categories | caption: Health category pills
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_2.png | alt: UI screen for products in cart | caption: Products in cart
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_1.webp | alt: UI screen for health categories | caption: Health category pills
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_2.webp | alt: UI screen for products in cart | caption: Products in cart
 [/IMAGE-GRID]
 
 [TEXT]
@@ -129,8 +129,8 @@ Payment is required before delivery to avoid complications. Multiple payment met
 [/TEXT]
 
 [IMAGE-GRID:2]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/delivery_1.png | alt: UI screen for delivery | caption: Address details
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/delivery_2.png | alt: UI screen for payment method | caption: Payment options
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/delivery_1.webp | alt: UI screen for delivery | caption: Address details
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/delivery_2.webp | alt: UI screen for payment method | caption: Payment options
 [/IMAGE-GRID]
 
 [TEXT]
@@ -141,13 +141,13 @@ I always found myself going back to competitive audits I did to see how potentia
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/confirm_checkout.png | alt: UI screens | caption: Confirm checkout
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/home.png | alt: UI screens | caption: Home screen
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/pack_your_own.png | alt: UI screens | caption: Pick your own - Home screen
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/prepacked.png | alt: UI screens | caption: Prepacked - Fitness pack
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/payment_sheet.png | alt: UI screens | caption: Payment sheet
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/success.png | alt: UI screens | caption: Success message
-- src: /case-studies/buy-and-bite/buy-and-bite-uxui/track_delivery.png | alt: UI screens | caption: Track delivery
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/confirm_checkout.webp | alt: UI screens | caption: Confirm checkout
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/home.webp | alt: UI screens | caption: Home screen
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/pack_your_own.webp | alt: UI screens | caption: Pick your own - Home screen
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/prepacked.webp | alt: UI screens | caption: Prepacked - Fitness pack
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/payment_sheet.webp | alt: UI screens | caption: Payment sheet
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/success.webp | alt: UI screens | caption: Success message
+- src: /case-studies/buy-and-bite/buy-and-bite-uxui/track_delivery.webp | alt: UI screens | caption: Track delivery
 [/MARQUEE-GRID]
 
 [TEXT]
