@@ -13,12 +13,12 @@ import Lenis from "lenis";
    native scroll behavior underneath is already perfectly accessible on
    its own — there's no degraded fallback needed, just "don't smooth it."
 
-   No anchor-link / in-page hash handling here: nothing on the site links
-   to a same-page #hash today (see Subnav, ContactSection), so there's
-   nothing for Lenis to intercept. If that changes, Lenis's own
-   `anchors` option (or a manual `lenis.scrollTo`) needs to be wired up
-   too, or clicking such a link will desync Lenis's virtual scroll
-   position from the browser's real one. */
+   Hash links: there are no same-page #hash links, so Lenis's `anchors`
+   option isn't needed. The one hash link is the case-study "Back" link,
+   which goes to /#work from another route; Next.js performs that scroll
+   natively on arrival and Lenis follows native scroll events. If that
+   ever jumps or snaps back (check desktop and mobile), wire up Lenis's
+   `anchors` option or a manual `lenis.scrollTo` for it. */
 export default function SmoothScroll() {
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;

@@ -27,7 +27,13 @@ export async function generateMetadata({
   const description =
     project.oneLiner ?? `${project.name}: a ${project.category.toLowerCase()} case study by Onyema Miracle.`;
 
-  return { title, description, openGraph: { title, description } };
+  // The Open Graph / Twitter image comes from ./opengraph-image.tsx.
+  return {
+    title,
+    description,
+    openGraph: { title, description },
+    twitter: { card: "summary_large_image", title, description },
+  };
 }
 
 export default async function ProjectDetail({
@@ -59,25 +65,12 @@ export default async function ProjectDetail({
     <main className="flex flex-1 flex-col">
       <Grid className="pt-4 sm:pt-8">
         <div className="col-span-4 flex flex-col gap-2 sm:col-span-12">
-          <div className="flex items-center gap-3">
-            {/* logoAlternate — a second, distinct logo slot from the small
-                one in ProjectWidget's own meta row (see its type comment).
-                Optional with no placeholder fallback, so most projects
-                simply won't show one here. Plain <img>, not next/image:
-                this is authored as an SVG, and next/image's optimizer
-                refuses to serve SVGs unless dangerouslyAllowSVG is set in
-                next.config.ts (a site-wide security setting, not worth
-                enabling for one field). object-contain, not object-cover
-                like the other two logo/thumbnail images on this type —
-                those are photos meant to fill their box; this is a logo
-                mark, which should never get cropped. */}
-            {/* <h1 className="text-h2-bold sm:text-h1-bold">{project.name}</h1> */}
-          </div>
           {/* Back to the work grid on the home page. ArrowIcon points right,
-              so it's flipped for "back". */}
+              so it's flipped for "back". mt-2 keeps the spacing the old
+              (now removed) empty logo/heading row used to add. */}
           <Link
             href="/#work"
-            className="group mb-8 inline-flex items-center gap-2 self-start text-mono-nav text-text-muted transition-colors hover:text-text-primary"
+            className="group mt-2 mb-8 inline-flex items-center gap-2 self-start text-mono-nav text-text-muted transition-colors hover:text-text-primary"
           >
             <ArrowIcon className="rotate-180 transition-transform group-hover:-translate-x-0.5" />
             <span>Back</span>

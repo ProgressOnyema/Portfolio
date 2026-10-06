@@ -2,8 +2,7 @@ import { ButtonSocial } from "./Button";
 import AppLink from "./Link";
 import Grid from "./Grid";
 import { LinkedInIcon, BehanceIcon, GitHubIcon } from "./Icons";
-
-const EMAIL = "progressonyema5@gmail.com";
+import { EMAIL } from "@/lib/site";
 
 export default function ContactSection() {
   const year = new Date().getFullYear() % 100;

@@ -6,13 +6,14 @@ import { usePathname } from "next/navigation";
 import NavItem from "./NavItem";
 import ThemeToggle from "./ThemeToggle";
 import { MobileNavIcon, CloseIcon } from "./Icons";
+import { EMAIL } from "@/lib/site";
 
 const LINKS = [
   { href: "/", label: "Home" },
   { href: "/about", label: "Me" },
 ];
 
-const CONTACT_HREF = "mailto:progressonyema5@gmail.com";
+const CONTACT_HREF = `mailto:${EMAIL}`;
 // Opens in a new tab rather than routing, like Contact — not a page.
 const RESUME_HREF = "/resume.pdf";
 

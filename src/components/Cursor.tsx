@@ -21,7 +21,12 @@ import { useEffect, useRef } from "react";
    feel - not gated behind prefers-reduced-motion since it only moves in
    direct response to the user's own mouse input, unlike Lenis's
    autoplaying inertia (SmoothScroll.tsx) which continues after input
-   stops. */
+   stops.
+
+   The requestAnimationFrame loop only runs while the dot is still
+   catching up to the pointer: it starts on mouse movement and stops once
+   position and scale have settled, so there is no per-frame work while
+   the pointer is idle. */
 
 const CLICKABLE =
   'a, button, input, select, textarea, label, summary, [role="button"], [role="link"], [tabindex]:not([tabindex="-1"])';
@@ -42,10 +47,17 @@ export default function Cursor() {
     let y = 0;
     let scale = 1;
     let hasMoved = false;
-    let frameId: number;
+    let running = false;
+    let frameId = 0;
 
     function isClickable(target: EventTarget | null) {
       return target instanceof Element && Boolean(target.closest(CLICKABLE));
+    }
+
+    function start() {
+      if (running) return;
+      running = true;
+      frameId = requestAnimationFrame(raf);
     }
 
     function handleMove(e: MouseEvent) {
@@ -65,6 +77,7 @@ export default function Cursor() {
       // and without this the cursor stayed hidden after coming back
       // because the opacity=1 write used to live only inside !hasMoved.
       dot!.style.opacity = "1";
+      start();
     }
 
     function handleLeave() {
@@ -73,6 +86,7 @@ export default function Cursor() {
       // last known position.
       dot!.style.opacity = "0";
       targetScale = 1;
+      start();
     }
 
     function raf() {
@@ -80,12 +94,20 @@ export default function Cursor() {
       y += (targetY - y) * 0.2;
       scale += (targetScale - scale) * 0.2;
       dot!.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%) scale(${scale})`;
+
+      const settled =
+        Math.abs(targetX - x) < 0.05 &&
+        Math.abs(targetY - y) < 0.05 &&
+        Math.abs(targetScale - scale) < 0.002;
+      if (settled) {
+        running = false;
+        return;
+      }
       frameId = requestAnimationFrame(raf);
     }
 
     window.addEventListener("mousemove", handleMove);
     document.addEventListener("mouseleave", handleLeave);
-    frameId = requestAnimationFrame(raf);
 
     return () => {
       window.removeEventListener("mousemove", handleMove);
