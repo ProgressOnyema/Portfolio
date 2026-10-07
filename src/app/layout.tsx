@@ -3,12 +3,29 @@ import Navbar from "@/components/Navbar";
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 import "./globals.css";
 
+const title = "Onyema Miracle — Brand + Product Designer";
+const description =
+  "I conceptualize, ideate, and design brand identities from the ground up, then bring that same attention to detail into product design and code.";
+
 export const metadata: Metadata = {
-  title: "Onyema Miracle — Brand + Product Designer",
-  description:
-    "I conceptualize, ideate, and design brand identities from the ground up, then bring that same attention to detail into product design and code.",
+  metadataBase: new URL(SITE_URL),
+  title,
+  description,
+  openGraph: {
+    type: "website",
+    siteName: SITE_NAME,
+    title,
+    description,
+    locale: "en",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

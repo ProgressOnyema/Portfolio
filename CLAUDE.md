@@ -94,10 +94,11 @@ reason as `.text-subnav` below — it shares `.text-h3`'s desktop metrics
 but drops further, to *Body Regular/Base* (16px), on mobile, which
 `.text-h3` itself doesn't do.
 
-Font: Inter, loaded via a `<link>` tag in `layout.tsx`, not `next/font`.
-This was a build-environment workaround (the original dev sandbox
-couldn't reach Google Fonts at build time) but works identically in any
-real environment — no need to change it, though switching to
+Fonts: Inter (body/headings) and JetBrains Mono (nav, tags, captions),
+loaded via a single Google Fonts `<link>` tag in `layout.tsx`, not
+`next/font`. This was a build-environment workaround (the original dev
+sandbox couldn't reach Google Fonts at build time) but works identically
+in any real environment — no need to change it, though switching to
 `next/font/google` for self-hosting is a fine one-line swap if wanted.
 
 ## Theme system
@@ -112,7 +113,7 @@ flash of the wrong theme.
 `Set` of listeners + a `setTheme()` that mutates the DOM attribute and
 notifies listeners).
 - `src/components/ThemeToggle.tsx` — reads the store via
-`**useSyncExternalStore`**, not `useState`+`useEffect`. This is
+`useSyncExternalStore`, not `useState`+`useEffect`. This is
 deliberate: the effect-based version caused a React "cascading renders"
 warning (setting state right after mount forces an extra render pass on
 top of hydration). `useSyncExternalStore` is the correct tool for
@@ -129,7 +130,7 @@ real bugs — see "Known deviations" below).
 
 - 4 columns / 16px gutter below the `sm` breakpoint (640px)
 - 12 columns / 24px gutter at `sm` and up
-- 24px side margin at `sm`, **88px at `lg*`* (1024px+)
+- 24px side margin at `sm`, **88px at `lg`** (1024px+)
 
 **The 88px margin is a deliberate deviation from Figma's 96px**, per
 explicit instruction — don't "fix" it back to 96 without checking with
@@ -138,19 +139,39 @@ the person first.
 `Grid` takes an optional `gap` prop to override the default gutter for a
 specific section.
 
+## Site constants, metadata & SEO
+
+- `src/lib/site.ts` — `SITE_NAME`, `EMAIL` and `SITE_URL`. The email
+address lives here only (Navbar and ContactSection import it). `SITE_URL`
+reads `NEXT_PUBLIC_SITE_URL`, falls back to Vercel's production domain
+(`VERCEL_PROJECT_PRODUCTION_URL`), then `http://localhost:3000`.
+- `src/app/layout.tsx` sets `metadataBase`, default title/description,
+and the `openGraph` / `twitter` defaults.
+- `src/app/opengraph-image.tsx` (site default) and
+`src/app/work/[slug]/opengraph-image.tsx` (per case study) generate the
+link-preview image at build time with `next/og` — text-only, so there is
+no binary asset to maintain. Dropping an `opengraph-image.png` next to
+either file would replace the generated one.
+- `src/app/sitemap.ts` and `src/app/robots.ts` — the sitemap lists Home,
+About and every case study from `projects`.
+- `src/app/not-found.tsx` — custom 404 (a short message, a Back-home
+link, then `ContactSection`).
+- `favicon.ico` in `src/app/` is the site icon — check it's the real one
+and not the create-next-app default.
+
 ## Component library — `src/components/`
 
 All pulled from the Figma Components page unless noted:
 
-- `**Navbar` + `NavItem`** — fixed to the top (`position: fixed`). Desktop
+- **`Navbar` + `NavItem`** — fixed to the top (`position: fixed`). Desktop
 links are right-aligned (not centered — an explicit later change).
 Labels: Home, **Me** (routes to `/about` — relabeled from "About"),
 **Resume** (`/resume.pdf`, `target="_blank"` — opens the PDF rather
-than routing, same as Contact; not yet uploaded, so this 404s until
-`public/resume.pdf` exists. Replaced the earlier "Work" nav item,
-which briefly linked to `/#work` after `/work` was dissolved into
-Home's Work section — that in-page anchor link has since been
-dropped in favor of this), Contact (`mailto:`, not a NavItem). Neither
+than routing, same as Contact; `public/resume.pdf` is in place.
+Replaced the earlier "Work" nav item, which briefly linked to `/#work`
+after `/work` was dissolved into Home's Work section — that in-page
+anchor link was dropped in favor of this), Contact (`mailto:` built
+from `EMAIL` in `src/lib/site.ts`, not a NavItem). Neither
 Resume nor Contact highlights as active via `isActive`, which only
 tracks routed `pathname` — appropriate here since neither is really a
 "page" you're currently on. `ThemeToggle` sits inline in
@@ -168,15 +189,15 @@ state) **per direct instruction**: the icon swaps to a `CloseIcon` (X,
 in `Icons.tsx`) while open, and a fixed full-page overlay (`bg-black/50`,
 `z-40`, sits under the header's `z-50`) renders behind the dropdown,
 dimming the rest of the page and closing the menu on click.
-- `**Button.tsx`** — `ButtonPrimary` and `ButtonSocial`. Real hover
+- **`Button.tsx`** — `ButtonPrimary` and `ButtonSocial`. Real hover
 states from Figma (e.g. `ButtonSocial` literally shrinks 79×69 →
 59.25×51.75 on hover, not just a color change).
-- `**Link.tsx**` (`AppLink`) — `view-work` / `open-resume` / `email`
+- **`Link.tsx`** (`AppLink`) — `view-work` / `open-resume` / `email`
 variants. The Figma source's ImageLeft/ImageRight hover states appear
 to have a variant-wiring bug (hover renders the wrong content type) —
 implemented consistent behavior (hover just mutes the color) instead of
 replicating that.
-- `**Subnav.tsx**` — **this is an interactive tab component, not a
+- **`Subnav.tsx`** — **this is an interactive tab component, not a
 breadcrumb.** Clicking a category (Product Design / Branding /
 Development) filters the visible projects. `onSelect` is optional —
 when omitted (tab mode, used on the project detail page), it renders as
@@ -187,12 +208,12 @@ two grayed out. `onSelect` mode (the home page's Work section) always
 shows all three, since
 it's filtering across every project rather than describing one
 project's own categories.
-- `**ListItem.tsx`** — Short/Small/Long width variants x active/inactive
+- **`ListItem.tsx`** — Short/Small/Long width variants x active/inactive
 background state.
-- `**ExperienceDesc.tsx**` — not currently used anywhere (About's
+- **`ExperienceDesc.tsx`** — not currently used anywhere (About's
 Experience section was removed from the design), but built and kept in
 case it returns.
-- `**ProjectWidget.tsx**` — the project "folder" card. Sizes: `default`
+- **`ProjectWidget.tsx`** — the project "folder" card. Sizes: `default`
 (347px), `lg` (405.5px — **not 386px**, a spec correction applied late
 in the build). `full` (fills its grid column) exists in `SIZE_CLASSES`
 but is currently unused — Home used it for the old Featured Projects
@@ -200,7 +221,7 @@ section, which has been dissolved into the Work section (`size="lg"`,
 same as the rest of Work). Internally
 it's a real layered illustration: `FolderBackIcon` + two overlapping
 "paint texture" images + `FolderCoverIcon`, all positioned by
-percentage so the layout scales across sizes. `**folder_back** and
+percentage so the layout scales across sizes. **`folder_back` and
 `folder_cover` are theme-aware inline SVG components** bound to
 `surface-bg-alt` via `currentColor` (their fill was originally assumed
 to be a static color; it's actually the theme token, so they invert
@@ -211,15 +232,16 @@ placeholder's two-layer arrangement, `object-cover` since a real
 thumbnail's aspect ratio won't naturally match the Figma slot's ~2:1
 box) and `logo` (the small 39x39 image next to the name, also
 `object-cover`). `logoAlternate` is a separate, unrelated field on the
-same type — not rendered by this component at all, only consumed by
-the ProjectDetail page header (`/work/[slug]`) where it sits beside
-`<h1>{project.name}</h1>`; no placeholder fallback, so it's simply
-omitted when a project doesn't set one. Development-category projects
+same type — not rendered by this component at all. **It is currently
+not rendered anywhere:** the ProjectDetail header that used to show it
+beside an `<h1>` was removed when the page headings were merged into the
+one-liner line (Wey still sets `LOGO-ALTERNATE` in its content file).
+Either render it again or drop the field. Development-category projects
 automatically get a third tag chip, `"DEV"`, derived from `category`
 rather than requiring it in each project's `tags` array. `hideMeta`
 (default `false`) hides the logo/name/one-liner row below the folder
 artwork — used by the case-study page's "Next Project" list.
-- `**Icons.tsx`** — every icon (LinkedIn, Behance, arrow/chevron,
+- **`Icons.tsx`** — every icon (LinkedIn, Behance, arrow/chevron,
 document/PDF, hamburger, close/X, dark/light mode) is inlined as a React
 component with `fill="currentColor"`, not referenced via `<img src>`.
 This is deliberate: an externally-loaded SVG can't inherit `currentColor`
@@ -231,39 +253,43 @@ being inlined. `CloseIcon` is the exception — it has no Figma source
 rather than `fill`. `EafcIcon.tsx` is separate (too complex to retype as
 clean JSX) — it stores the raw SVG markup as a string and renders via
 `dangerouslySetInnerHTML`.
-- `**ContactSection.tsx**` — shared between Home and About (identical
+- **`ContactSection.tsx`** — shared between Home and About (identical
 pattern in Figma), rather than duplicated. Also doubles as the site's
-footer — since it renders at the bottom of every page — and now carries
-a `© {year} Onyema Miracle. All rights reserved.` line beneath the main
-contact content (`.text-label`, `text-text-muted`). There's no separate
-`Footer.tsx`; this is deliberate rather than a gap.
-- `**WorkGrid.tsx**` — client component owning the Subnav tab state and
+footer — since it renders at the bottom of every page — and carries a
+`©'YY Onyema Miracle.` line beneath the main contact content
+(`.text-body-sm-base`). The email address comes from `EMAIL` in
+`src/lib/site.ts`. There's no separate `Footer.tsx`; this is deliberate
+rather than a gap.
+- **`WorkGrid.tsx`** — client component owning the Subnav tab state and
 the filtered project grid together, since they need to share state
 across what would otherwise be two separate page sections. Was the
 standalone `/work` page's own component; that page has been dissolved
 and WorkGrid now renders as Home's Work section instead (replacing the
-old Featured Projects preview). Still wrapped in `id="work"` in
-page.tsx (harmless, currently unlinked) — Navbar briefly pointed a
-"Work" item at `/#work` for this, but that nav item has since been
-replaced by "Resume" (see Navbar entry above).
+old Featured Projects preview). It is wrapped in `id="work"` in
+page.tsx, and that anchor **is** linked: the case-study page's "Back"
+link goes to `/#work`.
 
 ## Pages
 
-- `**/**` (Home) — Hero (with a hero tag row: Strategy, Brand Design,
-UX/UI Design, Interaction, Frontend Development), Work (`WorkGrid` —
+- **`/`** (Home) — Hero (with a hero tag row — see `src/app/page.tsx` for
+the current labels), Work (`WorkGrid` —
 Subnav tabs + filtered `ProjectWidget` grid, `size="lg"`; this is the
 former standalone `/work` page, dissolved into Home in place of what
 used to be a "Featured Projects" preview linking out to it — see
 WorkGrid.tsx above), stats/credentials (`ListItem` short/long
 columns), `ContactSection`.
-- `**/about`** — Bio, then one flowing paragraph mixing text and inline
+- **`/about`** — Bio, then one flowing paragraph mixing text and inline
 icon images ("Fun Facts" — no heading, just prose; see below), Skills
 tags (now inline in the hero section, not a separate block — moved
 there directly by the project owner), `ContactSection`. No Experience
 or Certifications section (removed from the design).
-- `**/work/[slug]**` — case study detail page. Statically generated via
+- **`/work/[slug]`** — case study detail page. Statically generated via
 `generateStaticParams` from `src/lib/data/projects.ts`. Real 404 via
-`notFound()` for unknown slugs. Ends with a "Next Project" list before
+`notFound()` for unknown slugs. Starts with a "Back" link to `/#work`,
+then a single `Project — one-liner` line (a `<p>`; the old `<h1>` was
+removed per direct instruction, so these pages currently have no `<h1>`
+— worth revisiting for SEO/accessibility). Ends with a "Next Project"
+list before
 `ContactSection`: every *other* project (`getOtherProjects()` in
 `src/lib/data/projects.ts` — same one-card-per-project order as
 `getFeaturedProjects()`, current project filtered out; renders nothing
@@ -295,7 +321,11 @@ one real `<p>` with inline-block images mixed directly into the text
 flow, not separate flex-wrapped blocks — the earlier flex-block version
 looked "scattered" because each phrase/icon-group wrapped as its own
 rigid unit instead of reflowing like real prose. If you need to touch
-this section, keep it as inline content, not flex items.
+this section, keep it as inline content, not flex items. The icon
+groups are the nouns of the sentence, so the books and films groups are
+wrapped in `role="img"` spans with a short `aria-label` (the individual
+images keep `alt=""`), and the artists group is `aria-hidden` because
+it sits right before "to others' perspectives".
 
 ## Case study block system
 
@@ -373,24 +403,31 @@ readers don't announce every image twice.
 Real case studies are **not** hand-written as TypeScript — they're
 authored as tagged plain-text files and parsed into JSON:
 
-1. Write `content/<slug>.txt` using the tag syntax in `content/README.md`
-  (full grammar reference — read it before writing a new case study).
-2. Put real images in `public/case-studies/<slug>/`.
+1. Write `content/<project-id>/<slug>.txt` using the tag syntax in
+  `content/README.md` (full grammar reference — read it before writing
+  a new case study). A project with several case studies (UI/UX,
+  Branding, Development) groups them under one `<project-id>` folder and
+  shares a `PROJECT-ID`.
+2. Put real images in `public/case-studies/<project-id>/<slug>/` (or
+  alongside, for project-level thumbnails). Use `.webp`, at most ~2400px
+  wide — oversized images were a real load-time problem before.
 3. `scripts/parse-case-study.mjs` (a hand-written recursive-descent
   parser, no dependencies) turns the `.txt` into
-   `src/lib/data/case-studies/<slug>.json`.
+   `src/lib/data/case-studies/<project-id>/<slug>.json`.
 4. `scripts/parse-all-case-studies.mjs` batch-runs the parser over every
   `.txt` in `content/`, wired as `predev`/`prebuild` npm hooks — JSON
    regenerates automatically, editing the `.txt` is the only manual step.
-5. `src/lib/data/projects.ts` loads every JSON file in
+   The generated JSON is also committed, so re-run `npm run parse-content`
+   and commit it alongside any `.txt` change.
+5. `src/lib/data/projects.ts` loads every JSON file under
   `src/lib/data/case-studies/` at build time (via `fs`, safe because this
-   only runs in server/build context) and merges it into the placeholder
-   project list — a matching `slug` overrides a placeholder, a new slug
-   gets appended.
+   only runs in server/build context). There are no placeholder projects
+   any more — the site shows exactly the case studies that have JSON.
 
-`content/buy-and-bite.txt` is a real working example (transcribed from a
-reference screenshot, verified end-to-end: parses, builds, and renders
-correctly at `/work/buy-and-bite`) — use it as a template.
+Three real case studies exist: `buy-and-bite` (slug `buy-and-bite-uxui`;
+its content file is named `buy-and-bite-uiux.txt`, so file name and slug
+differ by a transposition), `talkam` (`talkam-uxui`) and `wey`
+(`wey-uxui`). Use any of them as a template.
 
 The parser warns (doesn't fail the build) about any referenced image path
 that doesn't exist yet under `public/`.
@@ -421,30 +458,35 @@ folder illustration textures were not.
 
 ## Known gaps / not-yet-done
 
-- Only one real case study exists (`buy-and-bite`); the other 6 projects
-in `src/lib/data/projects.ts` are full placeholders (name, one-liner,
-tags, blocks — all generic).
-- The placeholder `video` block references a path with no real video file
-behind it — renders structurally fine, just won't play anything.
-- Vercel has not been connected — deployment is explicitly on hold per
-direct instruction ("we are still building"). Pushing to GitHub does
-not currently put anything live.
+- Case-study pages have no `<h1>` (removed per direct instruction when
+the heading was merged into the one-liner line).
+- `logoAlternate` is supported by the type and set by Wey's content, but
+nothing renders it (see the ProjectWidget entry above).
+- The "Back" link goes to `/#work` from another route while Lenis smooth
+scroll is active — verify it lands correctly on desktop and mobile (see
+the comment in `SmoothScroll.tsx`).
+- Deployment: the target host is Vercel. Set `NEXT_PUBLIC_SITE_URL` there
+(see README) and record the live URL here once it exists.
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
 - About's Skills section grid position (`col-start-4`/`span-8`) is an
 approximation — Figma's pixel offset for that section doesn't map
 cleanly onto the 12-column grid.
+- Some unreferenced images are still in `public/case-studies/` (Wey's
+`404_page`, `Data_modelling`, `IA_Sitemap`, `home`, `keyboard`,
+`update_fare`; Talkam's `talkam_image`) — use them or remove them.
 
 ## Git workflow notes
 
 Repo: `https://github.com/ProgressOnyema/Portfolio`. The project owner
 also edits and pushes directly to `main` sometimes (not just this agent),
 so **always pull before pushing** and expect occasional non-fast-forward
-rejections — rebase, don't force-push. Commit messages in this repo's
-history are written to explain *why*, especially for anything in the
-"deviations" list above — read recent `git log` before assuming current
-behavior is a bug.
+rejections — rebase, don't force-push. Larger changes have also gone in
+as pull requests from short-lived branches. Commit messages in this
+repo's history are written to explain *why*, especially for anything in
+the "deviations" list above — read recent `git log` before assuming
+current behavior is a bug.
 
 ## Environment quirks worth knowing
 

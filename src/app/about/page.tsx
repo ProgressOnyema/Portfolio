@@ -22,7 +22,7 @@ export default function About() {
       {/* Bio */}
       <Grid className="items-start pt-4 sm:pt-8">
         <div className="col-span-4 flex flex-col items-start gap-8 sm:col-span-12 sm:flex-col sm:gap-12">
-          <div className="flex w-full max-w-[800px] flex-col item-start gap-4">
+          <div className="flex w-full max-w-[800px] flex-col items-start gap-4">
             <p className="text-h3 text-text-primary">
               I take <em>it</em> personal —— Whatever stage of the game the product is in, I guarantee
               to bring in a set of skills to contribute to its growth.
@@ -41,7 +41,15 @@ export default function About() {
       {/* Fun facts — one flowing sentence: a single <p> with inline images,
           not separate flex blocks (which was the cause of the scattered
           look — each phrase/icon-group was wrapping as its own rigid unit
-          instead of reflowing together like real prose) */}
+          instead of reflowing together like real prose).
+
+          Accessibility: the icon groups are the nouns of the sentence, so
+          each group is wrapped in a role="img" span with a short label
+          (the individual images stay alt=""), which makes a screen reader
+          read "reading books, watching films, and listening to others'
+          perspectives". The artist icons sit right before "to others'
+          perspectives" and would make the grammar wrong if labelled, so
+          that group is aria-hidden. */}
       <Grid className="pt-24 sm:pt-40">
         <p className="col-span-4 text-h1-bold sm:text-h2-bold lg:text-center sm:text-left [text-wrap:pretty] sm:col-span-10 sm:col-start-2">
           I am a 6&apos;2&quot; gorgeous male. I always look out for blues{" "}
@@ -61,42 +69,50 @@ export default function About() {
             className="inline-block align-middle scale-x-[-1] rounded-full sm:w-[50px] sm:h-[51px]"
           />{" "}
           or digitally{" "}
-          <EafcIcon className="inline-block align-middle h-[34px] w-[69px] text-text-primary sm:h-[44px] sm:w-[89px]" />{" "}
+          <span role="img" aria-label="EA Sports FC">
+            <EafcIcon className="inline-block align-middle h-[34px] w-[69px] text-text-primary sm:h-[44px] sm:w-[89px]" />
+          </span>{" "}
           I also enjoy reading{" "}
-          {BOOKS.map((book, i) => (
-            <Image
-              key={book}
-              src={`/about_page_assets/${book}.png`}
-              alt=""
-              width={28}
-              height={35}
-              className="inline-block align-middle -mr-1 sm:w-[38px] sm:h-[45px]"
-              style={{ transform: `rotate(${(i - 1.5) * 6}deg)` }}
-            />
-          ))}
+          <span role="img" aria-label="books">
+            {BOOKS.map((book, i) => (
+              <Image
+                key={book}
+                src={`/about_page_assets/${book}.png`}
+                alt=""
+                width={28}
+                height={35}
+                className="inline-block align-middle -mr-1 sm:w-[38px] sm:h-[45px]"
+                style={{ transform: `rotate(${(i - 1.5) * 6}deg)` }}
+              />
+            ))}
+          </span>
           , watching{" "}
-          {FILMS.map((film, i) => (
-            <Image
-              key={film}
-              src={`/about_page_assets/${film}.png`}
-              alt=""
-              width={26}
-              height={35}
-              className="inline-block align-middle -mr-1 sm:w-[36px] sm:h-[45px]"
-              style={{ transform: `rotate(${(i - 1.5) * 7}deg)` }}
-            />
-          ))}
+          <span role="img" aria-label="films">
+            {FILMS.map((film, i) => (
+              <Image
+                key={film}
+                src={`/about_page_assets/${film}.png`}
+                alt=""
+                width={26}
+                height={35}
+                className="inline-block align-middle -mr-1 sm:w-[36px] sm:h-[45px]"
+                style={{ transform: `rotate(${(i - 1.5) * 7}deg)` }}
+              />
+            ))}
+          </span>
           , and listening{" "}
-          {ARTISTS.map((artist) => (
-            <Image
-              key={artist}
-              src={`/about_page_assets/${artist}.png`}
-              alt=""
-              width={32}
-              height={32}
-              className="inline-block align-middle rounded-full -mr-2 sm:w-[42px] sm:h-[42px]"
-            />
-          ))}
+          <span aria-hidden="true">
+            {ARTISTS.map((artist) => (
+              <Image
+                key={artist}
+                src={`/about_page_assets/${artist}.png`}
+                alt=""
+                width={32}
+                height={32}
+                className="inline-block align-middle rounded-full -mr-2 sm:w-[42px] sm:h-[42px]"
+              />
+            ))}
+          </span>
           {" "}to others&apos; perspectives.
         </p>
       </Grid>
