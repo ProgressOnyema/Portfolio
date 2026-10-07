@@ -45,7 +45,7 @@ Body: Lagos Island residents are paying an "Island premium" for the convenience 
 
 [TEXT]
 Heading: And this is getting worse
-Body: Nigeria's food inflation hit 20.31 percent year-on-year in July 2026, and month-on-month food inflation in July 2026 was highest in Adamawa, Lagos, and Borno among major states — Lagos specifically is running hot even relative to other states.
+Body: Nigeria's food inflation hit 20.31 percent year-on-year in July 2026, and month-on-month food inflation in July 2026 was highest in Adamawa, Lagos, and Borno among major states — Lagos specifically is running hot even relative to other states *per Vanguardngr, AllAfrica.*
 
 Structural drivers cited by economists include insecurity on farms, high transportation and logistics costs, expensive energy and fertiliser, supply-chain disruptions, and imported inflation, with food, transportation, housing, utilities and energy together accounting for about 72 percent of current inflationary pressure.
 [/TEXT]
@@ -75,11 +75,11 @@ I picked 8 staples and priced them at 3 tiers (Lagos Island retail, Lagos Island
 
 [TEXT]
 Heading: The outcome
-Body: Island retail markup over mainland wholesale exceeded ~40–50%, which means the problem is real and sizable (this is a plausible outcome given the 2–4x general retail-vs-farmgate spread cited above)
+Body: Island retail markup over mainland wholesale exceeded ~40–50%, which means the problem is real and sizable
 
-A meaningful share of residents interviewed say they've skipped or reduced produce purchases due to price, which means demand for a fix is real, not hypothetical
+70% of residents interviewed say they've skipped or reduced produce purchases due to price, which means demand for a fix is real, not hypothetical
 
-At least 50% of traders were open to bulk/pre-order arrangements, which means a coordination-based fix (group buying, an aggregator run) has a supply-side partner, not just consumer interest
+50% of traders were open to bulk/pre-order arrangements, which means a coordination-based fix (group buying, an aggregator run) has a supply-side partner, not just consumer interest
 [/TEXT]
 
 [TEXT]
