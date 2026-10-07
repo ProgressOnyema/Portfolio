@@ -231,12 +231,10 @@ in the same two-layer position — **not one flat image**, matches the
 placeholder's two-layer arrangement, `object-cover` since a real
 thumbnail's aspect ratio won't naturally match the Figma slot's ~2:1
 box) and `logo` (the small 39x39 image next to the name, also
-`object-cover`). `logoAlternate` is a separate, unrelated field on the
-same type — not rendered by this component at all. **It is currently
-not rendered anywhere:** the ProjectDetail header that used to show it
-beside an `<h1>` was removed when the page headings were merged into the
-one-liner line (Wey still sets `LOGO-ALTERNATE` in its content file).
-Either render it again or drop the field. Development-category projects
+`object-cover`). The old `logoAlternate` field has been removed — the
+ProjectDetail header that used to show it was dropped earlier and
+nothing else rendered it, so the field and its content entries were
+cleaned out. Development-category projects
 automatically get a third tag chip, `"DEV"`, derived from `category`
 rather than requiring it in each project's `tags` array. `hideMeta`
 (default `false`) hides the logo/name/one-liner row below the folder
@@ -285,10 +283,12 @@ there directly by the project owner), `ContactSection`. No Experience
 or Certifications section (removed from the design).
 - **`/work/[slug]`** — case study detail page. Statically generated via
 `generateStaticParams` from `src/lib/data/projects.ts`. Real 404 via
-`notFound()` for unknown slugs. Starts with a "Back" link to `/#work`,
-then a single `Project — one-liner` line (a `<p>`; the old `<h1>` was
-removed per direct instruction, so these pages currently have no `<h1>`
-— worth revisiting for SEO/accessibility). Ends with a "Next Project"
+`notFound()` for unknown slugs. Starts with a "Back" link to `/#work`
+(verified to land correctly on the Work section under Lenis smooth
+scroll — see the comment in `SmoothScroll.tsx`), then a single
+`Project —— one-liner` line rendered as the page's `<h1>`
+(`.text-project-oneliner`; only rendered when the project has a
+`oneLiner`). Ends with a "Next Project"
 list before
 `ContactSection`: every *other* project (`getOtherProjects()` in
 `src/lib/data/projects.ts` — same one-card-per-project order as
