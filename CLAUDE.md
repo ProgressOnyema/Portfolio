@@ -156,8 +156,8 @@ either file would replace the generated one.
 About and every case study from `projects`.
 - `src/app/not-found.tsx` — custom 404 (a short message, a Back-home
 link, then `ContactSection`).
-- `favicon.ico` in `src/app/` is the site icon — check it's the real one
-and not the create-next-app default.
+- `favicon.ico` in `src/app/` is the site icon — confirmed to be the real
+one (not the create-next-app default), good to go for now.
 
 ## Component library — `src/components/`
 
@@ -458,24 +458,15 @@ folder illustration textures were not.
 
 ## Known gaps / not-yet-done
 
-- Case-study pages have no `<h1>` (removed per direct instruction when
-the heading was merged into the one-liner line).
-- `logoAlternate` is supported by the type and set by Wey's content, but
-nothing renders it (see the ProjectWidget entry above).
-- The "Back" link goes to `/#work` from another route while Lenis smooth
-scroll is active — verify it lands correctly on desktop and mobile (see
-the comment in `SmoothScroll.tsx`).
 - Deployment: the target host is Vercel. Set `NEXT_PUBLIC_SITE_URL` there
-(see README) and record the live URL here once it exists.
+(see README) and record the live URL here once it exists. The site is
+not live yet, so this is still open.
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
 - About's Skills section grid position (`col-start-4`/`span-8`) is an
 approximation — Figma's pixel offset for that section doesn't map
 cleanly onto the 12-column grid.
-- Some unreferenced images are still in `public/case-studies/` (Wey's
-`404_page`, `Data_modelling`, `IA_Sitemap`, `home`, `keyboard`,
-`update_fare`; Talkam's `talkam_image`) — use them or remove them.
 
 ## Git workflow notes
 
