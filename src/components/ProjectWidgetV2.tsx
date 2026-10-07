@@ -4,20 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "./Icons";
-import type { ProjectCategory } from "./ProjectWidget";
-
-export type ProjectWidgetV2Data = {
-  slug: string;
-  name: string;
-  category: ProjectCategory;
-  /** Same meaning as on ProjectWidgetData: every category a merged
-   *  multi-case-study card represents, so all of its tag pills show. */
-  caseStudyCategories?: ProjectCategory[];
-  /** The UI screens that slide inside the card, in slide order (the Figma
-   *  design has four). Use raw screen exports — the phone bezel is drawn
-   *  here, so images shouldn't carry their own frame. */
-  screens: string[];
-};
+import type { ProjectCategory, ProjectWidgetData } from "./ProjectWidget";
 
 // Same tag logic as ProjectWidget.tsx (not exported there, so mirrored
 // here): pills come strictly from category, ordered UX/UI, BRAND, /DEV.
@@ -35,21 +22,72 @@ const CATEGORY_PILL: Record<ProjectCategory, string> = {
 const CARD_W = 411;
 const cqw = (px: number) => `calc(100cqw * ${px / CARD_W})`;
 
-// Hover-only controls fade in with the card's hover or keyboard focus.
-// `!` on the transition utilities is required: globals.css has an
-// unlayered `body, body * { transition: ... }` rule that otherwise beats
-// Tailwind's layered utilities (same reason as ProjectWidget/Button).
-// On touch devices there is no hover, so controls stay visible.
+// Controls on hover-capable devices fade in with the widget's hover or
+// keyboard focus. `!` on the transition utilities is required: globals.css
+// has an unlayered `body, body * { transition: ... }` rule that otherwise
+// beats Tailwind's layered utilities (same reason as ProjectWidget/Button).
 const REVEAL =
-  "opacity-0 !transition-opacity !duration-200 group-hover/card:opacity-100 group-focus-within/card:opacity-100 [@media(hover:none)]:opacity-100";
+  "opacity-0 !transition-opacity !duration-200 group-hover/card:opacity-100 group-focus-within/card:opacity-100";
 
 const ARROW_BUTTON =
   "absolute z-10 grid place-items-center rounded-full bg-surface-bg text-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary disabled:invisible";
 
 const SWIPE_THRESHOLD = 40;
 
-export default function ProjectWidgetV2({ project }: { project: ProjectWidgetV2Data }) {
-  const { screens } = project;
+const PLACEHOLDER_SCREEN = "/folder-assets/folder_image1.png";
+
+function Dots({
+  count,
+  index,
+  onSelect,
+  className,
+  style,
+}: {
+  count: number;
+  index: number;
+  onSelect: (i: number) => void;
+  className?: string;
+  style?: React.CSSProperties;
+}) {
+  return (
+    // Each dot is 8px; the button's 2px padding widens the tap target
+    // without changing the 4px visual gap between dots.
+    <div className={className} style={style}>
+      {Array.from({ length: count }, (_, i) => (
+        <button
+          key={i}
+          type="button"
+          onClick={() => onSelect(i)}
+          aria-label={`Show screen ${i + 1} of ${count}`}
+          aria-current={i === index}
+          className="p-[2px] focus-visible:outline-2 focus-visible:outline-text-primary"
+        >
+          <span
+            className={`block size-2 rounded-full !transition-colors ${
+              i === index ? "bg-text-primary" : "bg-text-muted/60"
+            }`}
+          />
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export default function ProjectWidgetV2({
+  project,
+  hideMeta = false,
+}: {
+  project: ProjectWidgetData;
+  /** Hides the logo/name/one-liner row below the card, same as
+   *  ProjectWidget's `hideMeta` (used by the case-study page's "Next
+   *  Project" list). */
+  hideMeta?: boolean;
+}) {
+  // screens → thumbnails → placeholder, so a project that hasn't been
+  // given SCREEN-n tags yet still renders.
+  const screens = project.screens?.length
+    ? project.screens
+    : (project.thumbnails ?? [PLACEHOLDER_SCREEN]);
   const count = screens.length;
   const last = count - 1;
 
@@ -61,16 +99,17 @@ export default function ProjectWidgetV2({ project }: { project: ProjectWidgetV2D
   const categories = project.caseStudyCategories ?? [project.category];
   const displayTags = CATEGORY_ORDER.filter((c) => categories.includes(c)).map((c) => CATEGORY_PILL[c]);
 
-  // Controls scale down with the card but never below a tappable size.
+  // Arrows scale down with the card but never below a tappable size.
   const arrowSize = "clamp(28px, 9.73cqw, 40px)";
   const arrowInset = "clamp(8px, 5.84cqw, 24px)";
 
   return (
-    // The container wrapper exists so the card itself can use cqw units
-    // (a container's own query units resolve against its ancestors).
-    <div className="w-full [container-type:inline-size]">
+    // Hovering anywhere on the widget (card or meta row) reveals the
+    // controls, matching ProjectWidget, whose hover animation also
+    // triggers from the whole link.
+    <div className="group/card relative flex w-full flex-col gap-4 [container-type:inline-size]">
       <div
-        className="group/card relative aspect-[411/641] w-full touch-pan-y overflow-hidden bg-surface-bg-alt"
+        className="relative aspect-[411/641] w-full touch-pan-y overflow-hidden bg-surface-bg-alt"
         style={{ borderRadius: cqw(30) }}
         role="group"
         aria-roledescription="carousel"
@@ -102,16 +141,12 @@ export default function ProjectWidgetV2({ project }: { project: ProjectWidgetV2D
               aria-label={`${i + 1} of ${count}`}
               aria-hidden={i !== index}
             >
-              {/* Phone frame: 245x529.7 with a 5.671px #131314 border,
-                  28.357px radius and a soft drop shadow (Figma
-                  "List of counsellors"). */}
+              {/* The screen sits in a portrait slot (245x529.7 of the
+                  411x641 card, centered) with no device frame. Shown
+                  whole (object-contain) so a screen is never cropped. */}
               <div
-                className="absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2 overflow-hidden border-solid border-[#131314] bg-white shadow-[0px_13.611px_24.954px_0px_rgba(0,0,0,0.25)]"
-                style={{
-                  aspectRatio: "245.001 / 529.7",
-                  borderWidth: cqw(5.671),
-                  borderRadius: cqw(28.357),
-                }}
+                className="absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2"
+                style={{ aspectRatio: "245.001 / 529.7" }}
               >
                 <Image
                   src={src}
@@ -119,18 +154,12 @@ export default function ProjectWidgetV2({ project }: { project: ProjectWidgetV2D
                   fill
                   sizes="(min-width: 640px) 260px, 60vw"
                   loading={i <= 1 ? "eager" : "lazy"}
-                  className="object-cover object-top"
+                  className="object-contain"
                 />
               </div>
             </div>
           ))}
         </div>
-
-        {/* Whole-card link (stretched-link pattern) so the slider buttons
-            below aren't nested inside an anchor. */}
-        <Link href={`/work/${project.slug}`} className="absolute inset-0 z-[1]">
-          <span className="sr-only">{project.name}</span>
-        </Link>
 
         {/* Tags — top-left, 24px / 20px in the 411x641 frame. */}
         <div
@@ -147,34 +176,20 @@ export default function ProjectWidgetV2({ project }: { project: ProjectWidgetV2D
           ))}
         </div>
 
+        {/* Hover controls — only on devices that can hover (the Figma
+            hover state): dots top-right and prev/next arrows. Touch
+            devices get the dots under the card instead, below. */}
         {count > 1 && (
-          <>
-            {/* Pagination dots — top-right, aligned with the tags. Each
-                dot is 8px; the button's padding widens the tap target
-                without changing the 4px visual gap. */}
-            <div
+          <div className="hidden [@media(hover:hover)]:block">
+            <Dots
+              count={count}
+              index={index}
+              onSelect={go}
               className={`absolute z-10 flex ${REVEAL}`}
               style={{ right: "calc(8.03% - 2px)", top: "calc(4.06% - 2px)" }}
-            >
-              {screens.map((src, i) => (
-                <button
-                  key={src}
-                  type="button"
-                  onClick={() => go(i)}
-                  aria-label={`Show screen ${i + 1} of ${count}`}
-                  aria-current={i === index}
-                  className="p-[2px] focus-visible:outline-2 focus-visible:outline-text-primary"
-                >
-                  <span
-                    className={`block size-2 rounded-full !transition-colors ${
-                      i === index ? "bg-text-primary" : "bg-text-muted/60"
-                    }`}
-                  />
-                </button>
-              ))}
-            </div>
+            />
 
-            {/* Next — right edge, 40px circle, shown on hover. */}
+            {/* Next — right edge, 40px circle. */}
             <button
               type="button"
               onClick={() => go(index + 1)}
@@ -186,9 +201,8 @@ export default function ProjectWidgetV2({ project }: { project: ProjectWidgetV2D
               <ArrowIcon />
             </button>
 
-            {/* Previous — mirror of Next; only present once there's a
-                previous screen (the Figma hover state shows Next only,
-                on the first screen). */}
+            {/* Previous — mirror of Next, hidden on the first screen (the
+                Figma hover state shows Next only, on the first screen). */}
             <button
               type="button"
               onClick={() => go(index - 1)}
@@ -199,9 +213,45 @@ export default function ProjectWidgetV2({ project }: { project: ProjectWidgetV2D
             >
               <ArrowIcon className="rotate-180" />
             </button>
-          </>
+          </div>
         )}
       </div>
+
+      {/* Touch devices: no hover, so just the dots, under the card. Swipe
+          also works. Hidden entirely on hover-capable devices. */}
+      {count > 1 && (
+        <Dots
+          count={count}
+          index={index}
+          onSelect={go}
+          className="relative z-10 flex justify-center [@media(hover:hover)]:hidden"
+        />
+      )}
+
+      {/* project_meta — identical to ProjectWidget's. */}
+      {!hideMeta && (
+        <div className="flex h-[47px] items-center gap-2">
+          <div className="relative size-[39px] shrink-0 overflow-hidden rounded-csq">
+            <Image
+              src={project.logo ?? "/folder-assets/folder_image1.png"}
+              alt=""
+              fill
+              className="rounded-md object-cover"
+              sizes="39px"
+            />
+          </div>
+          <div className="flex flex-1 flex-col justify-center overflow-hidden">
+            <p className="text-body-reg-strong truncate">{project.name}</p>
+            <p className="text-body-sm-base truncate text-text-body">{project.oneLiner}</p>
+          </div>
+        </div>
+      )}
+
+      {/* Whole-widget link (stretched-link pattern) so the slider buttons
+          aren't nested inside an anchor. Sits under the controls (z-10). */}
+      <Link href={`/work/${project.slug}`} className="absolute inset-0 z-[1]">
+        <span className="sr-only">{project.name}</span>
+      </Link>
     </div>
   );
 }
