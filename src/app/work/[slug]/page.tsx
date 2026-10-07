@@ -80,9 +80,9 @@ export default async function ProjectDetail({
               mobile rather than Body Large/Base (20px), per the
               ProjectDetail - Mobile frame. */}
           {project.oneLiner && (
-            <p className="text-text-primary text-project-oneliner">
+            <h1 className="text-text-primary text-project-oneliner">
               {project.name}{" —— "}{project.oneLiner}
-            </p>
+            </h1>
           )}
         </div>
       </Grid>

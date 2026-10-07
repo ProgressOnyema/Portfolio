@@ -9,7 +9,6 @@
     "/case-studies/wey/thumbnail-2.webp"
   ],
   "logo": "/case-studies/wey/logo.webp",
-  "logoAlternate": "/case-studies/wey/logo-alt.svg",
   "blocks": [
     {
       "type": "coverImage",
@@ -284,12 +283,12 @@
       "images": [
         {
           "src": "/case-studies/wey/wey-uxui/location_input.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image showing location input interface",
           "caption": "Location input"
         },
         {
           "src": "/case-studies/wey/wey-uxui/finding_route.webp",
-          "alt": "Image of ui screen",
+          "alt": "Image of UI skeleton loading for finding route",
           "caption": "Finding route & Recommended route"
         }
       ]
@@ -312,12 +311,12 @@
       "images": [
         {
           "src": "/case-studies/wey/wey-uxui/route_detail.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of route detail; updates, and price",
           "caption": "Route detail"
         },
         {
           "src": "/case-studies/wey/wey-uxui/route_timeline.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of a ui screen for post timeline and updating fare",
           "caption": "Route timeline & Fare update"
         }
       ]
@@ -340,12 +339,12 @@
       "images": [
         {
           "src": "/case-studies/wey/wey-uxui/cards.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of physical wey NFC smartcards",
           "caption": "Wey cards"
         },
         {
           "src": "/case-studies/wey/wey-uxui/card.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of a ui screen of the digital smartcard",
           "caption": "Digital card"
         }
       ]
@@ -370,7 +369,7 @@
       "images": [
         {
           "src": "/case-studies/wey/wey-uxui/screens.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of a ui screens",
           "caption": "Screens"
         },
         {
@@ -380,12 +379,12 @@
         },
         {
           "src": "/case-studies/wey/wey-uxui/updating_fare.webp",
-          "alt": "Image of a ui ui screen",
+          "alt": "Image of a ui screen for updating fare",
           "caption": "Updating fare"
         },
         {
           "src": "/case-studies/wey/wey-uxui/create_post.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of a ui screen flow for creating a post",
           "caption": "Creating post"
         }
       ]
@@ -397,7 +396,7 @@
           "Wey is still in development, but if you think it could potentially make an impact, share this project or reach out to collaborate."
         ],
         [
-          "Thank you for reading 👍. Check out my other works"
+          "Thank you for reading 👇. Check out my other works"
         ]
       ]
     }

@@ -6,7 +6,6 @@
 [THUMBNAIL-1: /case-studies/wey/thumbnail-1.webp]
 [THUMBNAIL-2: /case-studies/wey/thumbnail-2.webp]
 [LOGO: /case-studies/wey/logo.webp]
-[LOGO-ALTERNATE: /case-studies/wey/logo-alt.svg]
 
 [COVER-IMAGE]
 src: /case-studies/wey/wey-uxui/cover.webp 
@@ -110,8 +109,8 @@ Users who prioritize convenience can check out third-party rides.
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/wey/wey-uxui/location_input.webp | alt: Image of a ui screen | caption: Location input
-- src: /case-studies/wey/wey-uxui/finding_route.webp | alt: Image of ui screen | caption: Finding route & Recommended route
+- src: /case-studies/wey/wey-uxui/location_input.webp | alt: Image showing location input interface | caption: Location input
+- src: /case-studies/wey/wey-uxui/finding_route.webp | alt: Image of UI skeleton loading for finding route | caption: Finding route & Recommended route
 [/IMAGE-GRID]
 
 [TEXT]
@@ -122,8 +121,8 @@ For each route, users can post real-time information about that specific route, 
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/wey/wey-uxui/route_detail.webp | alt: Image of a ui screen | caption: Route detail
-- src: /case-studies/wey/wey-uxui/route_timeline.webp | alt: Image of a ui screen | caption: Route timeline & Fare update
+- src: /case-studies/wey/wey-uxui/route_detail.webp | alt: Image of route detail; updates, and price | caption: Route detail
+- src: /case-studies/wey/wey-uxui/route_timeline.webp | alt: Image of a ui screen for post timeline and updating fare | caption: Route timeline & Fare update
 [/IMAGE-GRID]
 
 [TEXT]
@@ -134,8 +133,8 @@ One card, any location.
 [/TEXT]
 
 [IMAGE-GRID: 2]
-- src: /case-studies/wey/wey-uxui/cards.webp | alt: Image of a ui screen | caption: Wey cards
-- src: /case-studies/wey/wey-uxui/card.webp | alt: Image of a ui screen | caption: Digital card
+- src: /case-studies/wey/wey-uxui/cards.webp | alt: Image of physical wey NFC smartcards | caption: Wey cards
+- src: /case-studies/wey/wey-uxui/card.webp | alt: Image of a ui screen of the digital smartcard | caption: Digital card
 [/IMAGE-GRID]
 
 [TEXT]
@@ -144,14 +143,14 @@ Body: Most Lagos commuters plan their trips in what they often refer to as *blen
 [/TEXT]
 
 [MARQUEE-GRID]
-- src: /case-studies/wey/wey-uxui/screens.webp | alt: Image of a ui screen | caption: Screens
+- src: /case-studies/wey/wey-uxui/screens.webp | alt: Image of a ui screens | caption: Screens
 - src: /case-studies/wey/wey-uxui/components.webp | alt: Image of a ui components | caption: Components
-- src: /case-studies/wey/wey-uxui/updating_fare.webp | alt: Image of a ui ui screen | caption: Updating fare
-- src: /case-studies/wey/wey-uxui/create_post.webp | alt: Image of a ui screen | caption: Creating post
+- src: /case-studies/wey/wey-uxui/updating_fare.webp | alt: Image of a ui screen for updating fare | caption: Updating fare
+- src: /case-studies/wey/wey-uxui/create_post.webp | alt: Image of a ui screen flow for creating a post | caption: Creating post
 [/MARQUEE-GRID]
 
 [TEXT]
 Body: Wey is still in development, but if you think it could potentially make an impact, share this project or reach out to collaborate.
 
-Thank you for reading 👍. Check out my other works
+Thank you for reading 👇. Check out my other works
 [/TEXT]

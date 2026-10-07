@@ -12,9 +12,9 @@ export const metadata: Metadata = {
 
 const SKILLS = ["Strategy", "Branding", "UX/UI Design", "Interaction", "Full Stack Dev."];
 
-const BOOKS = ["book01", "book02", "book03", "book04"];
-const FILMS = ["film01", "film02", "film03", "film04"];
-const ARTISTS = ["artist01", "artist02", "artist03", "artist04", "artist05"];
+const BOOKS = ["dont_make_me_think", "design_of_everyday_things", "shape_of_design", "psychology_of_money"];
+const FILMS = ["the_last_airbender", "naruto", "the_lucky_one", "vikings"];
+const ARTISTS = ["thecavemen", "jcole", "kendricklamar", "fatai", "fireboy"];
 
 export default function About() {
   return (
@@ -52,7 +52,7 @@ export default function About() {
           that group is aria-hidden. */}
       <Grid className="pt-24 sm:pt-40">
         <p className="col-span-4 text-h1-bold sm:text-h2-bold lg:text-center sm:text-left [text-wrap:pretty] sm:col-span-10 sm:col-start-2">
-          I am a 6&apos;2&quot; gorgeous male. I always look out for blues{" "}
+          Standing over 6 feet tall and well-put-together, I always look out for blues{" "}
           <Image
             src="/about_page_assets/theBlues.png"
             alt="Chelsea FC"
@@ -78,7 +78,7 @@ export default function About() {
               <Image
                 key={book}
                 src={`/about_page_assets/${book}.png`}
-                alt=""
+                alt={book}
                 width={28}
                 height={35}
                 className="inline-block align-middle -mr-1 sm:w-[38px] sm:h-[45px]"
@@ -92,7 +92,7 @@ export default function About() {
               <Image
                 key={film}
                 src={`/about_page_assets/${film}.png`}
-                alt=""
+                alt={film}
                 width={26}
                 height={35}
                 className="inline-block align-middle -mr-1 sm:w-[36px] sm:h-[45px]"
@@ -106,7 +106,7 @@ export default function About() {
               <Image
                 key={artist}
                 src={`/about_page_assets/${artist}.png`}
-                alt=""
+                alt={artist}
                 width={32}
                 height={32}
                 className="inline-block align-middle rounded-full -mr-2 sm:w-[42px] sm:h-[42px]"

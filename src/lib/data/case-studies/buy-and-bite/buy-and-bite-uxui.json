@@ -105,12 +105,12 @@
       "images": [
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-1.webp",
-          "alt": "Picture of bulk onions in Mile12 market",
+          "alt": "Image of bulk onions in Mile12 market",
           "caption": "Shots of Mile12 market"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-2.webp",
-          "alt": "Picture of tomato baskets in Mile12 market",
+          "alt": "Image of tomato baskets in Mile12 market",
           "caption": "Shots of Mile12 market"
         },
         {
@@ -297,37 +297,37 @@
       "images": [
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/confirm_checkout.webp",
-          "alt": "UI screens",
+          "alt": "UI screens for confirm checkout",
           "caption": "Confirm checkout"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/home.webp",
-          "alt": "UI screens",
+          "alt": "UI screen of home page",
           "caption": "Home screen"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/pack_your_own.webp",
-          "alt": "UI screens",
+          "alt": "UI screens for pack your own",
           "caption": "Pick your own - Home screen"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/prepacked.webp",
-          "alt": "UI screens",
+          "alt": "UI screens for prepacked fitness packs",
           "caption": "Prepacked - Fitness pack"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/payment_sheet.webp",
-          "alt": "UI screens",
+          "alt": "UI screens for payment method",
           "caption": "Payment sheet"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/success.webp",
-          "alt": "UI screens",
+          "alt": "UI screen for successful order",
           "caption": "Success message"
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/track_delivery.webp",
-          "alt": "UI screens",
+          "alt": "UI screens for tracking delivery",
           "caption": "Track delivery"
         }
       ]
@@ -342,7 +342,7 @@
           "I had to go back to the buying habits I found in the research and competitive audits to get an answer. Ultimately, I decided the platform should have multiple payment methods, and users should pay as they order."
         ],
         [
-          "That's all for now, thanks for reading 👍. Check out my other works"
+          "That's all for now, thanks for reading 👇. Check out my other works"
         ]
       ],
       "heading": "Learn. Refine. Iterate."

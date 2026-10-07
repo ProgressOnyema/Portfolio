@@ -202,7 +202,12 @@
           "An agent called NobiBot serves as the first line of entry for students, offering a confidential space for their concerns. It enhances human counselors by assessing needs and providing timely responses."
         ],
         [
-          "Over 70% of Nigerians speak and understand Pidgin English, compared with 57% who speak English. This approach will widen the target audience and ensure more reach."
+          "Over 1/3 of Nigerians speak and understand Pidgin English, compared with 53% who speak English. ",
+          {
+            "text": "The Guardian Nigeria",
+            "emphasis": true
+          },
+          " This approach will widen the target audience and ensure more reach."
         ]
       ],
       "heading": "Feature 1: The Pidgin-Speaking Agent"
@@ -213,12 +218,12 @@
       "images": [
         {
           "src": "/case-studies/talkam/talkam-uxui/chatbot_empty.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of a chatbot interface",
           "caption": "Chatbot empty chat"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/chatbot.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of chatbot interface with messages",
           "caption": "NobiBot chatting"
         }
       ]
@@ -238,12 +243,12 @@
       "images": [
         {
           "src": "/case-studies/talkam/talkam-uxui/mentor_list.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of llist of mentors interface",
           "caption": "List of mentors"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/availability_request.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of session request interface",
           "caption": "Availability slot & Request"
         }
       ]
@@ -263,12 +268,12 @@
       "images": [
         {
           "src": "/case-studies/talkam/talkam-uxui/signup.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of signup ui",
           "caption": "Signup screen"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/joining_chat.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of interface displaying rules before joining chat",
           "caption": "Joining chat"
         }
       ]
@@ -288,12 +293,12 @@
       "images": [
         {
           "src": "/case-studies/talkam/talkam-uxui/transcribed_audio.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of transcribed audio interface",
           "caption": "Transcribed audio"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/chat_features.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of chat feature ui",
           "caption": "Chat features"
         }
       ]
@@ -313,27 +318,27 @@
       "images": [
         {
           "src": "/case-studies/talkam/talkam-uxui/request_mentor.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of request mentor interface",
           "caption": "Request a mentor"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/mentor_action.webp",
-          "alt": "Image of a ui components",
+          "alt": "Image of ui interface for mentor action on requests",
           "caption": "Mentor accepts request"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/entering_chat.webp",
-          "alt": "Image of a ui screen",
+          "alt": "flow of ui screens for entering chat",
           "caption": "Pre session"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/signup_login.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of a ui screen for signup and login",
           "caption": "Home, sign up and login"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/notification_settings.webp",
-          "alt": "Image of a ui screen",
+          "alt": "Image of notification ui screen",
           "caption": "Notification center and Settings"
         }
       ]
@@ -342,7 +347,7 @@
       "type": "text",
       "body": [
         [
-          "That will be all. Thank you for reading 👍. Check out my other works"
+          "That will be all. Thank you for reading 👇. Check out my other works"
         ]
       ]
     }
