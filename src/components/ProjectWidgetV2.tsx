@@ -106,6 +106,9 @@ export default function ProjectWidgetV2({
 
   const [index, setIndex] = useState(0);
   const swipeStartX = useRef<number | null>(null);
+  // True from a handled swipe until the next pointerdown, so the click
+  // that can follow a swipe doesn't also open the project link.
+  const swiped = useRef(false);
 
   const go = (next: number) => setIndex(Math.min(Math.max(next, 0), last));
 
@@ -120,25 +123,39 @@ export default function ProjectWidgetV2({
     // Hovering anywhere on the widget (card or meta row) reveals the
     // controls, matching ProjectWidget, whose hover animation also
     // triggers from the whole link.
-    <div className="group/card relative flex w-full flex-col gap-4 [container-type:inline-size]">
+    //
+    // Swipe handlers live here, not on the inner card: the whole-widget
+    // link below sits on top of the card and is a sibling of it, so a
+    // touch on the card lands on the link and its pointer events bubble
+    // to this element, never to the card. `touch-pan-y` is applied here
+    // for the same reason — touch-action only counts on the element hit
+    // and its ancestors — and lets the page keep scrolling vertically
+    // while horizontal drags are ours.
+    <div
+      className={`group/card relative flex w-full flex-col gap-4 [container-type:inline-size] ${swipe ? "touch-pan-y" : ""}`}
+      onPointerDown={(e) => {
+        swiped.current = false;
+        if (swipe && e.pointerType === "touch") swipeStartX.current = e.clientX;
+      }}
+      onPointerUp={(e) => {
+        if (swipeStartX.current === null) return;
+        const dx = e.clientX - swipeStartX.current;
+        swipeStartX.current = null;
+        if (Math.abs(dx) > SWIPE_THRESHOLD) {
+          swiped.current = true;
+          go(index + (dx < 0 ? 1 : -1));
+        }
+      }}
+      onPointerCancel={() => {
+        swipeStartX.current = null;
+      }}
+    >
       <div
-        className={`relative aspect-[411/641] w-full overflow-hidden bg-surface-bg-alt ${swipe ? "touch-pan-y" : ""}`}
+        className="relative aspect-[411/641] w-full overflow-hidden bg-surface-bg-alt"
         style={{ borderRadius: cqw(30) }}
         role="group"
         aria-roledescription="carousel"
         aria-label={`${project.name} screens`}
-        onPointerDown={(e) => {
-          if (swipe && e.pointerType === "touch") swipeStartX.current = e.clientX;
-        }}
-        onPointerUp={(e) => {
-          if (swipeStartX.current === null) return;
-          const dx = e.clientX - swipeStartX.current;
-          swipeStartX.current = null;
-          if (Math.abs(dx) > SWIPE_THRESHOLD) go(index + (dx < 0 ? 1 : -1));
-        }}
-        onPointerCancel={() => {
-          swipeStartX.current = null;
-        }}
       >
         {/* Sliding track: one full-card-wide slide per screen. */}
         <div
@@ -274,7 +291,16 @@ export default function ProjectWidgetV2({
 
       {/* Whole-widget link (stretched-link pattern) so the slider buttons
           aren't nested inside an anchor. Sits under the controls (z-10). */}
-      <Link href={`/work/${project.slug}`} className="absolute inset-0 z-[1]">
+      <Link
+        href={`/work/${project.slug}`}
+        className="absolute inset-0 z-[1]"
+        onClick={(e) => {
+          if (swiped.current) {
+            e.preventDefault();
+            swiped.current = false;
+          }
+        }}
+      >
         <span className="sr-only">{project.name}</span>
       </Link>
     </div>
