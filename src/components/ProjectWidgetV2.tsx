@@ -79,12 +79,20 @@ function Dots({
 export default function ProjectWidgetV2({
   project,
   hideMeta = false,
+  swipe = true,
 }: {
   project: ProjectWidgetData;
   /** Hides the logo/name/one-liner row below the card, same as
    *  ProjectWidget's `hideMeta` (used by the case-study page's "Next
    *  Project" list). */
   hideMeta?: boolean;
+  /** Touch swipe between screens. Turn off when the card sits inside a
+   *  horizontally scrolling row (NextProjectsCarousel): swiping to change
+   *  screens and swiping to scroll the row are the same gesture, and the
+   *  card's `touch-pan-y` would otherwise stop the row from scrolling
+   *  when a drag starts on a card. Dots (touch) and arrows (hover) still
+   *  change screens. */
+  swipe?: boolean;
 }) {
   // Real screens when the project has [SCREEN-n] tags, otherwise empty
   // phone frames (null). THUMBNAIL-1/2 are ProjectWidget v1's two-layer
@@ -114,13 +122,13 @@ export default function ProjectWidgetV2({
     // triggers from the whole link.
     <div className="group/card relative flex w-full flex-col gap-4 [container-type:inline-size]">
       <div
-        className="relative aspect-[411/641] w-full touch-pan-y overflow-hidden bg-surface-bg-alt"
+        className={`relative aspect-[411/641] w-full overflow-hidden bg-surface-bg-alt ${swipe ? "touch-pan-y" : ""}`}
         style={{ borderRadius: cqw(30) }}
         role="group"
         aria-roledescription="carousel"
         aria-label={`${project.name} screens`}
         onPointerDown={(e) => {
-          if (e.pointerType === "touch") swipeStartX.current = e.clientX;
+          if (swipe && e.pointerType === "touch") swipeStartX.current = e.clientX;
         }}
         onPointerUp={(e) => {
           if (swipeStartX.current === null) return;
