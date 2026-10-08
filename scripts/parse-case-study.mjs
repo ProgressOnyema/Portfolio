@@ -21,9 +21,8 @@ function fail(msg, lineNum) {
   process.exit(1);
 }
 
-// Split plain text into RichSpan[] on *asterisk* markers for inline
-// emphasis (italics).
-function parseSpans(text) {
+// Split plain text into italic / plain spans on *asterisk* markers.
+function parseEmphasis(text) {
   const spans = [];
   const parts = text.split(/\*(.+?)\*/g);
   parts.forEach((part, i) => {
@@ -31,6 +30,26 @@ function parseSpans(text) {
     if (i % 2 === 1) spans.push({ text: part, emphasis: true });
     else spans.push(part);
   });
+  return spans;
+}
+
+// [label](https://url) — a source link. Links are pulled out first so
+// asterisks inside a URL are never read as emphasis; the text between
+// them is then split on *asterisks* as before. URLs must be http(s) and
+// can't contain spaces or ")" (encode a ")" as %29).
+const LINK = /\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g;
+
+// Split plain text into RichSpan[]: plain text, *italic* emphasis, and
+// [label](url) source links.
+function parseSpans(text) {
+  const spans = [];
+  let last = 0;
+  for (const match of text.matchAll(LINK)) {
+    if (match.index > last) spans.push(...parseEmphasis(text.slice(last, match.index)));
+    spans.push({ text: match[1], href: match[2] });
+    last = match.index + match[0].length;
+  }
+  if (last < text.length) spans.push(...parseEmphasis(text.slice(last)));
   return spans;
 }
 
