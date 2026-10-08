@@ -1,7 +1,8 @@
 "use client";
 
 import { useRef } from "react";
-import ProjectWidget, { type ProjectWidgetData } from "./ProjectWidget";
+import type { ProjectWidgetData } from "./ProjectWidget";
+import ProjectWidgetV2 from "./ProjectWidgetV2";
 import { ArrowIcon } from "./Icons";
 
 export default function NextProjectsCarousel({
@@ -75,7 +76,9 @@ export default function NextProjectsCarousel({
             // same width is reproduced directly with calc().
             className="w-[calc(100vw-40px)] shrink-0 snap-start sm:w-[405.5px]"
           >
-            <ProjectWidget project={project} size="lg" hideMeta />
+            {/* swipe off: the row itself scrolls horizontally by touch, so
+                the card must not claim that gesture (see ProjectWidgetV2). */}
+            <ProjectWidgetV2 project={project} hideMeta swipe={false} />
           </div>
         ))}
         <div

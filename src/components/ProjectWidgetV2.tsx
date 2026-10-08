@@ -79,12 +79,20 @@ function Dots({
 export default function ProjectWidgetV2({
   project,
   hideMeta = false,
+  swipe = true,
 }: {
   project: ProjectWidgetData;
   /** Hides the logo/name/one-liner row below the card, same as
    *  ProjectWidget's `hideMeta` (used by the case-study page's "Next
    *  Project" list). */
   hideMeta?: boolean;
+  /** Touch swipe between screens. Turn off when the card sits inside a
+   *  horizontally scrolling row (NextProjectsCarousel): swiping to change
+   *  screens and swiping to scroll the row are the same gesture, and the
+   *  card's `touch-pan-y` would otherwise stop the row from scrolling
+   *  when a drag starts on a card. Dots (touch) and arrows (hover) still
+   *  change screens. */
+  swipe?: boolean;
 }) {
   // Real screens when the project has [SCREEN-n] tags, otherwise empty
   // phone frames (null). THUMBNAIL-1/2 are ProjectWidget v1's two-layer
@@ -98,6 +106,9 @@ export default function ProjectWidgetV2({
 
   const [index, setIndex] = useState(0);
   const swipeStartX = useRef<number | null>(null);
+  // True from a handled swipe until the next pointerdown, so the click
+  // that can follow a swipe doesn't also open the project link.
+  const swiped = useRef(false);
 
   const go = (next: number) => setIndex(Math.min(Math.max(next, 0), last));
 
@@ -112,25 +123,39 @@ export default function ProjectWidgetV2({
     // Hovering anywhere on the widget (card or meta row) reveals the
     // controls, matching ProjectWidget, whose hover animation also
     // triggers from the whole link.
-    <div className="group/card relative flex w-full flex-col gap-4 [container-type:inline-size]">
+    //
+    // Swipe handlers live here, not on the inner card: the whole-widget
+    // link below sits on top of the card and is a sibling of it, so a
+    // touch on the card lands on the link and its pointer events bubble
+    // to this element, never to the card. `touch-pan-y` is applied here
+    // for the same reason — touch-action only counts on the element hit
+    // and its ancestors — and lets the page keep scrolling vertically
+    // while horizontal drags are ours.
+    <div
+      className={`group/card relative flex w-full flex-col gap-4 [container-type:inline-size] ${swipe ? "touch-pan-y" : ""}`}
+      onPointerDown={(e) => {
+        swiped.current = false;
+        if (swipe && e.pointerType === "touch") swipeStartX.current = e.clientX;
+      }}
+      onPointerUp={(e) => {
+        if (swipeStartX.current === null) return;
+        const dx = e.clientX - swipeStartX.current;
+        swipeStartX.current = null;
+        if (Math.abs(dx) > SWIPE_THRESHOLD) {
+          swiped.current = true;
+          go(index + (dx < 0 ? 1 : -1));
+        }
+      }}
+      onPointerCancel={() => {
+        swipeStartX.current = null;
+      }}
+    >
       <div
-        className="relative aspect-[411/641] w-full touch-pan-y overflow-hidden bg-surface-bg-alt"
+        className="relative aspect-[411/641] w-full overflow-hidden bg-surface-bg-alt"
         style={{ borderRadius: cqw(30) }}
         role="group"
         aria-roledescription="carousel"
         aria-label={`${project.name} screens`}
-        onPointerDown={(e) => {
-          if (e.pointerType === "touch") swipeStartX.current = e.clientX;
-        }}
-        onPointerUp={(e) => {
-          if (swipeStartX.current === null) return;
-          const dx = e.clientX - swipeStartX.current;
-          swipeStartX.current = null;
-          if (Math.abs(dx) > SWIPE_THRESHOLD) go(index + (dx < 0 ? 1 : -1));
-        }}
-        onPointerCancel={() => {
-          swipeStartX.current = null;
-        }}
       >
         {/* Sliding track: one full-card-wide slide per screen. */}
         <div
@@ -266,7 +291,16 @@ export default function ProjectWidgetV2({
 
       {/* Whole-widget link (stretched-link pattern) so the slider buttons
           aren't nested inside an anchor. Sits under the controls (z-10). */}
-      <Link href={`/work/${project.slug}`} className="absolute inset-0 z-[1]">
+      <Link
+        href={`/work/${project.slug}`}
+        className="absolute inset-0 z-[1]"
+        onClick={(e) => {
+          if (swiped.current) {
+            e.preventDefault();
+            swiped.current = false;
+          }
+        }}
+      >
         <span className="sr-only">{project.name}</span>
       </Link>
     </div>
