@@ -34,8 +34,8 @@ const ARROW_BUTTON =
 
 const SWIPE_THRESHOLD = 40;
 
-// Projects without [SCREEN-n] tags get this many plain default rectangles
-// in place of real screens, so the slider (dots, arrows, swipe) works and
+// Projects without [SCREEN-n] tags get this many empty phone frames in
+// place of real screens, so the slider (dots, arrows, swipe) works and
 // the card has its intended proportions until the real screens exist.
 const DEFAULT_SCREEN_COUNT = 4;
 
@@ -86,8 +86,8 @@ export default function ProjectWidgetV2({
    *  Project" list). */
   hideMeta?: boolean;
 }) {
-  // Real screens when the project has [SCREEN-n] tags, otherwise default
-  // rectangles (null). THUMBNAIL-1/2 are ProjectWidget v1's two-layer
+  // Real screens when the project has [SCREEN-n] tags, otherwise empty
+  // phone frames (null). THUMBNAIL-1/2 are ProjectWidget v1's two-layer
   // cover images and aren't suited to a portrait screen slot, so they're
   // deliberately not used here.
   const screens: (string | null)[] = project.screens?.length
@@ -146,28 +146,28 @@ export default function ProjectWidgetV2({
               aria-label={`${i + 1} of ${count}`}
               aria-hidden={i !== index}
             >
-              {/* The screen sits in a portrait slot (245x529.7 of the
-                  411x641 card, centered) with no device frame. Shown
-                  whole (object-contain) so a screen is never cropped. */}
+              {/* Phone frame (Figma "List of counsellors"): 245x529.7 of
+                  the 411x641 card, centered, with a 5.671px #131314
+                  bezel, 28.357px radius and a soft drop shadow. The bezel
+                  is drawn here, so screen images should be raw exports
+                  without their own device frame. With no screen supplied
+                  the frame is simply empty (white). */}
               <div
-                className="absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2"
-                style={{ aspectRatio: "245.001 / 529.7" }}
+                className="absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2 overflow-hidden border-solid border-[#131314] bg-white shadow-[0px_13.611px_24.954px_0px_rgba(0,0,0,0.25)]"
+                style={{
+                  aspectRatio: "245.001 / 529.7",
+                  borderWidth: cqw(5.671),
+                  borderRadius: cqw(28.357),
+                }}
               >
-                {src ? (
+                {src && (
                   <Image
                     src={src}
                     alt={`${project.name} screen ${i + 1} of ${count}`}
                     fill
                     sizes="(min-width: 640px) 260px, 60vw"
                     loading={i <= 1 ? "eager" : "lazy"}
-                    className="object-contain"
-                  />
-                ) : (
-                  // Default rectangle — no screen supplied yet.
-                  <div
-                    aria-hidden
-                    className="absolute inset-0 bg-surface-bg"
-                    style={{ borderRadius: cqw(20) }}
+                    className="object-cover object-top"
                   />
                 )}
               </div>
@@ -190,9 +190,23 @@ export default function ProjectWidgetV2({
           ))}
         </div>
 
+        {/* Touch devices: no hover, so just the dots, inside the card at
+            the bottom, centered in the gap under the phone frame. Swipe
+            also works. Hidden entirely on hover-capable devices. */}
+        {count > 1 && (
+          <Dots
+            count={count}
+            index={index}
+            onSelect={go}
+            className="absolute left-1/2 z-10 flex -translate-x-1/2 [@media(hover:hover)]:hidden"
+            style={{ bottom: "calc(3.4% - 2px)" }}
+          />
+        )}
+
         {/* Hover controls — only on devices that can hover (the Figma
             hover state): dots top-right and prev/next arrows. Touch
-            devices get the dots under the card instead, below. */}
+            devices get the dots at the bottom of the card instead,
+            above. */}
         {count > 1 && (
           <div className="hidden [@media(hover:hover)]:block">
             <Dots
@@ -230,17 +244,6 @@ export default function ProjectWidgetV2({
           </div>
         )}
       </div>
-
-      {/* Touch devices: no hover, so just the dots, under the card. Swipe
-          also works. Hidden entirely on hover-capable devices. */}
-      {count > 1 && (
-        <Dots
-          count={count}
-          index={index}
-          onSelect={go}
-          className="relative z-10 flex justify-center [@media(hover:hover)]:hidden"
-        />
-      )}
 
       {/* project_meta — identical to ProjectWidget's. */}
       {!hideMeta && (
