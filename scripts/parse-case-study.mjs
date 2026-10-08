@@ -10,7 +10,11 @@ import path from "node:path";
 
 const OPEN_TAG = /^\[([A-Z0-9-]+)(?::\s*(.*))?\]$/;
 const CLOSE_TAG = /^\[\/([A-Z0-9-]+)\]$/;
-const META_KEYS = ["SLUG", "PROJECT-ID", "NAME", "ONE-LINER", "CATEGORY", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO", "LOGO-ALTERNATE"];
+const META_KEYS = ["SLUG", "PROJECT-ID", "NAME", "ONE-LINER", "CATEGORY", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO"];
+// [SCREEN-1] ... [SCREEN-N] — the UI screens that slide inside the
+// ProjectWidgetV2 card. Numbered like THUMBNAIL-1/2, but open-ended.
+const SCREEN_KEY = /^SCREEN-(\d+)$/;
+const isMetaKey = (tag) => META_KEYS.includes(tag) || SCREEN_KEY.test(tag);
 
 function fail(msg, lineNum) {
   console.error(`Parse error${lineNum ? ` (line ${lineNum})` : ""}: ${msg}`);
@@ -148,7 +152,7 @@ class Parser {
         fail(`Expected a block tag, got: "${line}"`, this.i + 1);
       }
       const [, tag, arg] = open;
-      if (META_KEYS.includes(tag)) {
+      if (isMetaKey(tag)) {
         // Top-level metadata line, not a block - skip here (handled separately)
         this.next();
         continue;
@@ -306,7 +310,7 @@ function parseMeta(lines) {
   const meta = {};
   for (const line of lines) {
     const match = line.trim().match(OPEN_TAG);
-    if (match && META_KEYS.includes(match[1])) {
+    if (match && isMetaKey(match[1])) {
       meta[match[1]] = (match[2] ?? "").trim();
     }
   }
@@ -333,6 +337,12 @@ function main() {
     console.warn("Warning: both [THUMBNAIL-1] and [THUMBNAIL-2] are needed — only one was provided, so neither will be used (falls back to placeholder).");
   }
 
+  // SCREEN-1..N in numeric order, skipping blanks.
+  const screens = Object.keys(meta)
+    .filter((key) => SCREEN_KEY.test(key) && meta[key])
+    .sort((a, b) => Number(a.match(SCREEN_KEY)[1]) - Number(b.match(SCREEN_KEY)[1]))
+    .map((key) => meta[key]);
+
   const caseStudy = {
     slug: meta.SLUG,
     // Groups sibling case studies (UI/UX, Branding, Development) that
@@ -346,11 +356,8 @@ function main() {
     ...(meta["THUMBNAIL-1"] && meta["THUMBNAIL-2"]
       ? { thumbnails: [meta["THUMBNAIL-1"], meta["THUMBNAIL-2"]] }
       : {}),
+    ...(screens.length ? { screens } : {}),
     ...(meta.LOGO ? { logo: meta.LOGO } : {}),
-    // Distinct from LOGO above — see ProjectWidgetData's logoAlternate
-    // comment. Authored as an SVG in practice; rendered with a plain
-    // <img>, not next/image, by the ProjectDetail page that consumes it.
-    ...(meta["LOGO-ALTERNATE"] ? { logoAlternate: meta["LOGO-ALTERNATE"] } : {}),
     blocks,
   };
 
@@ -367,12 +374,12 @@ function main() {
   fs.writeFileSync(outPath, JSON.stringify(caseStudy, null, 2) + "\n");
 
   // Warn about any referenced local asset paths that don't exist in public/
-  // (matches src/thumbnail/logo/logoAlternate/avatar/poster fields — any
+  // (matches src/thumbnail/screens/logo/avatar/poster fields — any
   // local path starting with "/", not an external URL).
   const publicDir = path.join(process.cwd(), "public");
   const jsonStr = JSON.stringify(caseStudy);
   const pathMatches = [
-    ...jsonStr.matchAll(/"(?:src|thumbnails?|logo|logoAlternate|avatar|poster)":\s*(?:"(\/[^"]+)"|\[([^\]]+)\])/g),
+    ...jsonStr.matchAll(/"(?:src|thumbnails?|screens|logo|avatar|poster)":\s*(?:"(\/[^"]+)"|\[([^\]]+)\])/g),
   ]
     .flatMap((m) => (m[2] ? m[2].match(/"(\/[^"]+)"/g)?.map((s) => s.slice(1, -1)) ?? [] : [m[1]]))
     .filter(Boolean);

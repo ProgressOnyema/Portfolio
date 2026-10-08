@@ -32,10 +32,13 @@ example.
 [NAME: Project Name]
 [ONE-LINER: One sentence describing the project]
 [CATEGORY: Product Design]   (must be exactly: Product Design, Branding, or Development — this also drives the widget card's tag pill: UX/UI, BRAND, or /DEV. There is no separate tags field.)
-[THUMBNAIL-1: /case-studies/project-slug/thumbnail-1.jpg]  (optional — both are needed together, or neither is used)
-[THUMBNAIL-2: /case-studies/project-slug/thumbnail-2.jpg]  (the widget card shows these as two overlapping layers, same as the placeholder illustration; without them, the placeholder is used)
+[SCREEN-1: /case-studies/project-slug/screen-1.webp]   (the UI screens that slide inside the widget card — ProjectWidgetV2. Add as many as you like, numbered from 1 (the design has four). Raw screen exports without their own device frame — the card draws the phone bezel around each one and crops to fill it, from the top. Without any, the card shows four empty phone frames instead.)
+[SCREEN-2: /case-studies/project-slug/screen-2.webp]
+[SCREEN-3: /case-studies/project-slug/screen-3.webp]
+[SCREEN-4: /case-studies/project-slug/screen-4.webp]
+[THUMBNAIL-1: /case-studies/project-slug/thumbnail-1.jpg]  (optional, ProjectWidget v1 only — both are needed together, or neither is used)
+[THUMBNAIL-2: /case-studies/project-slug/thumbnail-2.jpg]  (v1 shows these as two overlapping layers, same as the placeholder illustration; without them, the placeholder is used)
 [LOGO: /case-studies/project-slug/logo.png]                (optional — the small logo next to the name on the widget card; without it, a placeholder is used)
-[LOGO-ALTERNATE: /case-studies/project-slug/logo-alt.svg]   (optional, separate from LOGO above — shown beside the project name on the ProjectDetail page header itself, not on the widget card. No placeholder fallback: omit it and the header just shows the plain name. Typically an SVG; rendered with a plain <img>, not next/image, since next/image won't optimize SVGs without a site-wide config change.)
 ```
 
 **Blocks** (in the order you want them to appear on the page):

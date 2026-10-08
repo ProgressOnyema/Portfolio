@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Grid from "./Grid";
 import Subnav from "./Subnav";
-import ProjectWidget, { type ProjectCategory, type ProjectWidgetData } from "./ProjectWidget";
+import type { ProjectCategory, ProjectWidgetData } from "./ProjectWidget";
+import ProjectWidgetV2 from "./ProjectWidgetV2";
 
 // Was the standalone /work page (its own h1 "Work /" page title, two
 // separate <Grid> blocks with page-top spacing). Now lives as a section
@@ -24,7 +25,7 @@ export default function WorkGrid({ projects }: { projects: ProjectWidgetData[] }
       </div>
       <div className="col-span-4 grid grid-cols-1 gap-x-6 gap-y-12 sm:col-span-12 sm:grid-cols-3">
         {filtered.map((project) => (
-          <ProjectWidget key={project.slug} project={project} size="lg" />
+          <ProjectWidgetV2 key={project.slug} project={project} />
         ))}
       </div>
     </Grid>

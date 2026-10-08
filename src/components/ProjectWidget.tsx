@@ -11,17 +11,16 @@ export type ProjectWidgetData = {
   category: ProjectCategory;
   /** Real cover images for the widget card, in the same two-layer
    *  arrangement as the placeholder paint-texture illustration. Falls
-   *  back to the placeholder when not provided. */
+   *  back to the placeholder when not provided. Used by ProjectWidget
+   *  (v1) only — ProjectWidgetV2 reads `screens` below. */
   thumbnails?: [string, string];
+  /** The UI screens that slide inside a ProjectWidgetV2 card, in slide
+   *  order (the Figma design has four). Raw screen exports, no device
+   *  frame. ProjectWidgetV2 shows default rectangles when absent. */
+  screens?: string[];
   /** Real logo shown next to the name/one-liner. Falls back to a
    *  placeholder image when not provided. */
   logo?: string;
-  /** A second, distinct logo shown beside the project name on the
-   *  ProjectDetail page header (/work/[slug]) — not the same slot as
-   *  `logo` above (that one's the small icon in this widget's own
-   *  meta row). No placeholder fallback: unlike `logo`, most projects
-   *  won't have one, and the header simply omits it when absent. */
-  logoAlternate?: string;
   /** When a project has multiple case studies (UI/UX, Branding,
    *  Development) collapsed into one featured-projects card, this lists
    *  every category represented so the tag pills reflect all of them
