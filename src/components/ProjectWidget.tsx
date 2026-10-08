@@ -16,7 +16,7 @@ export type ProjectWidgetData = {
   thumbnails?: [string, string];
   /** The UI screens that slide inside a ProjectWidgetV2 card, in slide
    *  order (the Figma design has four). Raw screen exports, no device
-   *  frame. ProjectWidgetV2 falls back to `thumbnails` when absent. */
+   *  frame. ProjectWidgetV2 shows default rectangles when absent. */
   screens?: string[];
   /** Real logo shown next to the name/one-liner. Falls back to a
    *  placeholder image when not provided. */

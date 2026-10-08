@@ -34,7 +34,10 @@ const ARROW_BUTTON =
 
 const SWIPE_THRESHOLD = 40;
 
-const PLACEHOLDER_SCREEN = "/folder-assets/folder_image1.png";
+// Projects without [SCREEN-n] tags get this many plain default rectangles
+// in place of real screens, so the slider (dots, arrows, swipe) works and
+// the card has its intended proportions until the real screens exist.
+const DEFAULT_SCREEN_COUNT = 4;
 
 function Dots({
   count,
@@ -83,11 +86,13 @@ export default function ProjectWidgetV2({
    *  Project" list). */
   hideMeta?: boolean;
 }) {
-  // screens → thumbnails → placeholder, so a project that hasn't been
-  // given SCREEN-n tags yet still renders.
-  const screens = project.screens?.length
+  // Real screens when the project has [SCREEN-n] tags, otherwise default
+  // rectangles (null). THUMBNAIL-1/2 are ProjectWidget v1's two-layer
+  // cover images and aren't suited to a portrait screen slot, so they're
+  // deliberately not used here.
+  const screens: (string | null)[] = project.screens?.length
     ? project.screens
-    : (project.thumbnails ?? [PLACEHOLDER_SCREEN]);
+    : Array.from({ length: DEFAULT_SCREEN_COUNT }, () => null);
   const count = screens.length;
   const last = count - 1;
 
@@ -134,7 +139,7 @@ export default function ProjectWidgetV2({
         >
           {screens.map((src, i) => (
             <div
-              key={src}
+              key={i}
               className="relative h-full w-full shrink-0"
               role="group"
               aria-roledescription="slide"
@@ -148,14 +153,23 @@ export default function ProjectWidgetV2({
                 className="absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2"
                 style={{ aspectRatio: "245.001 / 529.7" }}
               >
-                <Image
-                  src={src}
-                  alt={`${project.name} screen ${i + 1} of ${count}`}
-                  fill
-                  sizes="(min-width: 640px) 260px, 60vw"
-                  loading={i <= 1 ? "eager" : "lazy"}
-                  className="object-contain"
-                />
+                {src ? (
+                  <Image
+                    src={src}
+                    alt={`${project.name} screen ${i + 1} of ${count}`}
+                    fill
+                    sizes="(min-width: 640px) 260px, 60vw"
+                    loading={i <= 1 ? "eager" : "lazy"}
+                    className="object-contain"
+                  />
+                ) : (
+                  // Default rectangle — no screen supplied yet.
+                  <div
+                    aria-hidden
+                    className="absolute inset-0 bg-surface-bg"
+                    style={{ borderRadius: cqw(20) }}
+                  />
+                )}
               </div>
             </div>
           ))}
