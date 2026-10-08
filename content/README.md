@@ -55,6 +55,13 @@ example.
 - `[QUOTE] ... [/QUOTE]` — `Body:`, `Name:`, `Role:` (optional), `Avatar:` (optional)
 - `[CTA] ... [/CTA]` — `Label:`, `Href:`, `Style:` (primary/link)
 
+**Source links inside a `Body:`** (same places as lists — TEXT, MEDIA-TEXT, QUOTE, and list items): write `[Label](https://example.com)` anywhere in a sentence. It renders as a pill with a hairline border and a small up-right arrow, sitting inline with the text around it, and opens in a new tab. Keep the label short (the pill doesn't wrap), the URL must start with `http://` or `https://`, and it can't contain spaces or `)` (write `%29` instead).
+
+```
+Body:
+Most commuters ask other people first [Lagos transport survey](https://example.com/survey) before opening an app.
+```
+
 **Lists inside a `Body:`** (TEXT, MEDIA-TEXT, QUOTE all share this): a line starting with `- ` is a bullet item, a line starting with `1. ` (any digit) is a numbered item — consecutive lines of the same marker style become one list; a blank line, a plain paragraph line, or switching marker style (bullet <-> numbered) ends it. Unlike paragraphs, list items don't wrap — keep each one to a single line.
 
 ```
