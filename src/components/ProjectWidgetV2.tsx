@@ -125,7 +125,7 @@ export default function ProjectWidgetV2({
     // triggers from the whole link.
     //
     // Swipe handlers live here, not on the inner card: the whole-widget
-    // link below sits on top of the card as its sibling, so a
+    // link below sits on top of the card and is a sibling of it, so a
     // touch on the card lands on the link and its pointer events bubble
     // to this element, never to the card. `touch-pan-y` is applied here
     // for the same reason — touch-action only counts on the element hit
@@ -192,11 +192,19 @@ export default function ProjectWidgetV2({
                 }}
               >
                 {src && (
+                  // `unoptimized`: serve the file exactly as authored. The
+                  // optimizer re-encodes at q75 and snaps to fixed widths
+                  // (e.g. 780px -> 640px), and the browser then resamples
+                  // that a second time down to the card — measurably
+                  // softer UI text than letting the browser downscale the
+                  // original once. Screens are small WebP exports already,
+                  // so there's little to gain from re-encoding. Export
+                  // them at 2x (780px wide) — see content/README.md.
                   <Image
                     src={src}
                     alt={`${project.name} screen ${i + 1} of ${count}`}
                     fill
-                    sizes="(min-width: 640px) 260px, 60vw"
+                    unoptimized
                     loading={i <= 1 ? "eager" : "lazy"}
                     className="object-cover object-top"
                   />
