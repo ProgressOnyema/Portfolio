@@ -3,8 +3,10 @@
 [NAME: Buy and Bite]
 [ONE-LINER: Cheapest farm produce to your plate]
 [CATEGORY: Product Design]
-[THUMBNAIL-1: /case-studies/buy-and-bite/thumbnail-1.webp]
-[THUMBNAIL-2: /case-studies/buy-and-bite/thumbnail-2.webp]
+[SCREEN-1: /case-studies/buy-and-bite/screen-1.gif]
+[SCREEN-2: /case-studies/buy-and-bite/screen-2.webp]
+[SCREEN-3: /case-studies/buy-and-bite/screen-3.webp]
+[SCREEN-4: /case-studies/buy-and-bite/screen-4.webp]
 [LOGO: /case-studies/buy-and-bite/logo.webp]
 
 

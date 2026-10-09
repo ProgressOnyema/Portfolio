@@ -4,9 +4,11 @@
   "name": "Buy and Bite",
   "oneLiner": "Cheapest farm produce to your plate",
   "category": "Product Design",
-  "thumbnails": [
-    "/case-studies/buy-and-bite/thumbnail-1.webp",
-    "/case-studies/buy-and-bite/thumbnail-2.webp"
+  "screens": [
+    "/case-studies/buy-and-bite/screen-1.gif",
+    "/case-studies/buy-and-bite/screen-2.webp",
+    "/case-studies/buy-and-bite/screen-3.webp",
+    "/case-studies/buy-and-bite/screen-4.webp"
   ],
   "logo": "/case-studies/buy-and-bite/logo.webp",
   "blocks": [

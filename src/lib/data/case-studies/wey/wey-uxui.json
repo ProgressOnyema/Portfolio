@@ -4,9 +4,11 @@
   "name": "Wey",
   "oneLiner": "How to move",
   "category": "Product Design",
-  "thumbnails": [
-    "/case-studies/wey/thumbnail-1.webp",
-    "/case-studies/wey/thumbnail-2.webp"
+  "screens": [
+    "/case-studies/wey/screen-1.gif",
+    "/case-studies/wey/screen-2.webp",
+    "/case-studies/wey/screen-3.webp",
+    "/case-studies/wey/screen-4.webp"
   ],
   "logo": "/case-studies/wey/logo.webp",
   "blocks": [

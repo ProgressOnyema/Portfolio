@@ -3,8 +3,10 @@
 [NAME: Wey]
 [ONE-LINER: How to move]
 [CATEGORY: Product Design]
-[THUMBNAIL-1: /case-studies/wey/thumbnail-1.webp]
-[THUMBNAIL-2: /case-studies/wey/thumbnail-2.webp]
+[SCREEN-1: /case-studies/wey/screen-1.gif]
+[SCREEN-2: /case-studies/wey/screen-2.webp]
+[SCREEN-3: /case-studies/wey/screen-3.webp]
+[SCREEN-4: /case-studies/wey/screen-4.webp]
 [LOGO: /case-studies/wey/logo.webp]
 
 [COVER-IMAGE]
