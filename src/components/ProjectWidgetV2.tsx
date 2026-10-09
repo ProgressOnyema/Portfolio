@@ -125,7 +125,7 @@ export default function ProjectWidgetV2({
     // triggers from the whole link.
     //
     // Swipe handlers live here, not on the inner card: the whole-widget
-    // link below sits on top of the card and is a sibling of it, so a
+    // link below sits on top of the card as its sibling, so a
     // touch on the card lands on the link and its pointer events bubble
     // to this element, never to the card. `touch-pan-y` is applied here
     // for the same reason — touch-action only counts on the element hit
@@ -176,9 +176,15 @@ export default function ProjectWidgetV2({
                   bezel, 28.357px radius and a soft drop shadow. The bezel
                   is drawn here, so screen images should be raw exports
                   without their own device frame. With no screen supplied
-                  the frame is simply empty (white). */}
+                  the frame is simply empty (white). When a screen IS
+                  supplied the frame's own background is the bezel colour,
+                  not white: the background extends under the border, and
+                  where the image edge meets the inner border (and at the
+                  rounded corners) anti-aliasing lets a 1px sliver of it
+                  show through — white there read as a light outline
+                  around the screen. */}
               <div
-                className="absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2 overflow-hidden border-solid border-[#131314] bg-white shadow-[0px_13.611px_24.954px_0px_rgba(0,0,0,0.25)]"
+                className={`absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2 overflow-hidden border-solid border-[#131314] shadow-[0px_13.611px_24.954px_0px_rgba(0,0,0,0.25)] ${src ? "bg-[#131314]" : "bg-white"}`}
                 style={{
                   aspectRatio: "245.001 / 529.7",
                   borderWidth: cqw(5.671),
