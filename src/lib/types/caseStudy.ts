@@ -1,7 +1,9 @@
-// Rich text: a paragraph is an array of spans, each either plain text or
-// text with inline emphasis (italics). No markdown parser/library needed -
-// content is authored directly in this structured shape.
-export type RichSpan = string | { text: string; emphasis?: boolean };
+// Rich text: a paragraph is an array of spans, each either plain text,
+// text with inline emphasis (italics), or a source link (`href`) that
+// RichText.tsx renders as a hairline-bordered pill sitting inline with
+// the surrounding text. No markdown parser/library needed - content is
+// authored directly in this structured shape.
+export type RichSpan = string | { text: string; emphasis?: boolean; href?: string };
 export type Paragraph = RichSpan[];
 
 // A bullet or numbered list, authored as a sibling to Paragraph within a
