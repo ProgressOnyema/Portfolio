@@ -3,8 +3,10 @@
 [NAME: Talkam]
 [ONE-LINER: Talk to a mentor]
 [CATEGORY: Product Design]
-[THUMBNAIL-1: /case-studies/talkam/thumbnail-1.webp]
-[THUMBNAIL-2: /case-studies/talkam/thumbnail-2.webp]
+[SCREEN-1: /case-studies/talkam/screen-1.gif]
+[SCREEN-2: /case-studies/talkam/screen-2.webp]
+[SCREEN-3: /case-studies/talkam/screen-3.webp]
+[SCREEN-4: /case-studies/talkam/screen-4.webp]
 [LOGO: /case-studies/talkam/logo.webp]
 
 [COVER-IMAGE]
@@ -33,7 +35,7 @@ Body: Students often face stress, anxiety, or personal challenges, but they have
 [/TEXT]
 
 [TEXT]
-Body: Schools still rely heavily on manual processes for counselling, such as paper forms and appointment slips. Many students do not seek counselling due to time constraints and discomfort with in-person interactions. *Ghazali & Aman, et al. 2022.*
+Body: Schools still rely heavily on manual processes for counselling, such as paper forms and appointment slips. Many people do not seek counselling due to time constraints and discomfort with in-person interactions. *Ghazali & Aman, et al. 2022.[Ghazali & Aman, et al. 2022.](https://www.researchgate.net/publication/365688592_Perceived_corporate_social_responsibility_ethical_leadership_and_moral_reflectiveness_impact_on_pro-environmental_behavior_among_employees_of_small_and_medium_enterprises_A_double-mediation_model)
 [/TEXT]
 
 [TEXT]
@@ -89,7 +91,7 @@ It indicates a potential opportunity to make relevant guidance easier to find, m
 Heading: Feature 1: The Pidgin-Speaking Agent
 Body: An agent called NobiBot serves as the first line of entry for students, offering a confidential space for their concerns. It enhances human counselors by assessing needs and providing timely responses.
 
-Over 1/3 of Nigerians speak and understand Pidgin English, compared with 53% who speak English. *The Guardian Nigeria* This approach will widen the target audience and ensure more reach. 
+In Nigeria, Pidgin is the unofficial lingua franca across our many ethnic groups, spoken by ~75M+, compared to ~60M+ who speak English. [guardianng](https://guardian.ng/nigerian/what-is-the-only-language-common-to-most-nigerians/) This approach will widen the target audience and ensure more reach. 
 [/TEXT]
 
 [IMAGE-GRID: 2]
@@ -139,7 +141,7 @@ Body: Traditional push notifications and emails will not work for Talkam because
 - src: /case-studies/talkam/talkam-uxui/request_mentor.webp | alt: Image of request mentor interface | caption: Request a mentor
 - src: /case-studies/talkam/talkam-uxui/mentor_action.webp | alt: Image of ui interface for mentor action on requests | caption: Mentor accepts request
 - src: /case-studies/talkam/talkam-uxui/entering_chat.webp | alt: flow of ui screens for entering chat | caption: Pre session
-- src: /case-studies/talkam/talkam-uxui/signup_login.webp | alt: Image of a ui screen for signup and login | caption: Home, sign up and login
+- src: /case-studies/talkam/talkam-uxui/authentication.webp | alt: Image of a ui screen for signup and login | caption: Authentication
 - src: /case-studies/talkam/talkam-uxui/notification_settings.webp | alt: Image of notification ui screen | caption: Notification center and Settings
 [/MARQUEE-GRID]
 

@@ -8,7 +8,7 @@ import { ArrowIcon } from "@/components/Icons";
 // unlayered `body, body * { transition: ... }` rule in globals.css would
 // otherwise beat Tailwind's layered classes (same reason as Button.tsx).
 const SOURCE_PILL =
-  "mx-0.5 inline-flex items-center gap-1 whitespace-nowrap rounded-[5px] border border-border-hairline px-2 text-text-primary no-underline !transition-[background-color,border-color,color,border-radius] !duration-300 !ease-in-out hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-primary";
+  "mx-0.5 inline-flex items-center gap-1 whitespace-nowrap rounded-md border border-border-hairline px-2 text-mono-caption text-text-muted no-underline !transition-[background-color,border-color,color,border-radius] !duration-300 !ease-in-out hover:rounded-[3px] hover:border-transparent hover:bg-inverse-surface-bg hover:text-inverse-text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-text-muted";
 
 function renderSpan(span: RichSpan, i: number) {
   if (typeof span === "string") return span;

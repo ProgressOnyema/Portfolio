@@ -34,7 +34,7 @@ trade-offs, but standards. I decided to find out why farm produce prices in Lago
 
 [TEXT]
 Heading: Lagosians can't access or afford farm produce
-Body: Lagos Island has its own local markets — Sandgrouse and Sura - but they occupy a specific middle position: Sura Market serves residents in Ikoyi, VI, and nearby areas with fruits, vegetables, grains, and fish at moderate prices, cheaper than retail stores on the Island but slightly higher than the mainland wholesale hubs. Similarly, Sandgrouse Market in the heart of Lagos Island is known for fresh vegetables, fruits, grains, and dairy, and getting there early means the freshest produce before bulk buyers clear it out.
+Body: Lagos Island has its own local markets — Sandgrouse and Sura - but they occupy a specific middle position: Sura Market serves residents in Ikoyi, VI, and nearby areas with fruits, vegetables, grains, and fish at moderate prices, cheaper than retail stores on the Island but slightly higher than the mainland wholesale hubs. Similarly, Sandgrouse Market in the heart of Lagos Island is known for fresh vegetables, fruits, grains, and dairy, and getting there early means the freshest produce before bulk buyers clear it out. [lists](https://lists.ng/10-best-markets-in-lagos-to-buy-cheap-foodstuffs/)
 
 The actually cheap source is elsewhere: Mile 12 is where most traders and restaurants source fresh produce directly from Northern suppliers, with tomatoes, peppers, onions, yams, fruits, and vegetables in huge quantities, and prices are lowest when buying in bulk or early in the morning. It's on the mainland, off the Ikorodu Road axis — a real trip from the Island, not a walk.
 [/TEXT]
@@ -45,7 +45,7 @@ Body: Lagos Island residents are paying an "Island premium" for the convenience 
 
 [TEXT]
 Heading: And this is getting worse
-Body: Nigeria's food inflation hit 20.31 percent year-on-year in July 2026, and month-on-month food inflation in July 2026 was highest in Adamawa, Lagos, and Borno among major states — Lagos specifically is running hot even relative to other states *per Vanguardngr, AllAfrica.*
+Body: Nigeria's food inflation hit 20.31 percent year-on-year in July 2026, and month-on-month food inflation in July 2026 was highest in Adamawa, Lagos, and Borno among major states — Lagos specifically is running hot even relative to other states [vanguardngr](https://www.vanguardngr.com/2026/08/breaking-nigerias-headline-inflation-rate-falls-to-15-43by-elizabeth-adegbesan/)
 
 Structural drivers cited by economists include insecurity on farms, high transportation and logistics costs, expensive energy and fertiliser, supply-chain disruptions, and imported inflation, with food, transportation, housing, utilities and energy together accounting for about 72 percent of current inflationary pressure.
 [/TEXT]

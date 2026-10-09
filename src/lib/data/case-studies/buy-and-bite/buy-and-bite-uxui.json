@@ -54,7 +54,11 @@
       "type": "text",
       "body": [
         [
-          "Lagos Island has its own local markets — Sandgrouse and Sura - but they occupy a specific middle position: Sura Market serves residents in Ikoyi, VI, and nearby areas with fruits, vegetables, grains, and fish at moderate prices, cheaper than retail stores on the Island but slightly higher than the mainland wholesale hubs. Similarly, Sandgrouse Market in the heart of Lagos Island is known for fresh vegetables, fruits, grains, and dairy, and getting there early means the freshest produce before bulk buyers clear it out."
+          "Lagos Island has its own local markets — Sandgrouse and Sura - but they occupy a specific middle position: Sura Market serves residents in Ikoyi, VI, and nearby areas with fruits, vegetables, grains, and fish at moderate prices, cheaper than retail stores on the Island but slightly higher than the mainland wholesale hubs. Similarly, Sandgrouse Market in the heart of Lagos Island is known for fresh vegetables, fruits, grains, and dairy, and getting there early means the freshest produce before bulk buyers clear it out. ",
+          {
+            "text": "lists",
+            "href": "https://lists.ng/10-best-markets-in-lagos-to-buy-cheap-foodstuffs/"
+          }
         ],
         [
           "The actually cheap source is elsewhere: Mile 12 is where most traders and restaurants source fresh produce directly from Northern suppliers, with tomatoes, peppers, onions, yams, fruits, and vegetables in huge quantities, and prices are lowest when buying in bulk or early in the morning. It's on the mainland, off the Ikorodu Road axis — a real trip from the Island, not a walk."
@@ -77,8 +81,8 @@
         [
           "Nigeria's food inflation hit 20.31 percent year-on-year in July 2026, and month-on-month food inflation in July 2026 was highest in Adamawa, Lagos, and Borno among major states — Lagos specifically is running hot even relative to other states ",
           {
-            "text": "per Vanguardngr, AllAfrica.",
-            "emphasis": true
+            "text": "vanguardngr",
+            "href": "https://www.vanguardngr.com/2026/08/breaking-nigerias-headline-inflation-rate-falls-to-15-43by-elizabeth-adegbesan/"
           }
         ],
         [

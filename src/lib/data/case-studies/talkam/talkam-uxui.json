@@ -4,9 +4,11 @@
   "name": "Talkam",
   "oneLiner": "Talk to a mentor",
   "category": "Product Design",
-  "thumbnails": [
-    "/case-studies/talkam/thumbnail-1.webp",
-    "/case-studies/talkam/thumbnail-2.webp"
+  "screens": [
+    "/case-studies/talkam/screen-1.gif",
+    "/case-studies/talkam/screen-2.webp",
+    "/case-studies/talkam/screen-3.webp",
+    "/case-studies/talkam/screen-4.webp"
   ],
   "logo": "/case-studies/talkam/logo.webp",
   "blocks": [
@@ -63,10 +65,10 @@
       "type": "text",
       "body": [
         [
-          "Schools still rely heavily on manual processes for counselling, such as paper forms and appointment slips. Many students do not seek counselling due to time constraints and discomfort with in-person interactions. ",
+          "Schools still rely heavily on manual processes for counselling, such as paper forms and appointment slips. Many people do not seek counselling due to time constraints and discomfort with in-person interactions. *Ghazali & Aman, et al. 2022.",
           {
             "text": "Ghazali & Aman, et al. 2022.",
-            "emphasis": true
+            "href": "https://www.researchgate.net/publication/365688592_Perceived_corporate_social_responsibility_ethical_leadership_and_moral_reflectiveness_impact_on_pro-environmental_behavior_among_employees_of_small_and_medium_enterprises_A_double-mediation_model"
           }
         ]
       ]
@@ -202,10 +204,10 @@
           "An agent called NobiBot serves as the first line of entry for students, offering a confidential space for their concerns. It enhances human counselors by assessing needs and providing timely responses."
         ],
         [
-          "Over 1/3 of Nigerians speak and understand Pidgin English, compared with 53% who speak English. ",
+          "In Nigeria, Pidgin is the unofficial lingua franca across our many ethnic groups, spoken by ~75M+, compared to ~60M+ who speak English. ",
           {
-            "text": "The Guardian Nigeria",
-            "emphasis": true
+            "text": "guardianng",
+            "href": "https://guardian.ng/nigerian/what-is-the-only-language-common-to-most-nigerians/"
           },
           " This approach will widen the target audience and ensure more reach."
         ]
@@ -332,9 +334,9 @@
           "caption": "Pre session"
         },
         {
-          "src": "/case-studies/talkam/talkam-uxui/signup_login.webp",
+          "src": "/case-studies/talkam/talkam-uxui/authentication.webp",
           "alt": "Image of a ui screen for signup and login",
-          "caption": "Home, sign up and login"
+          "caption": "Authentication"
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/notification_settings.webp",
