@@ -213,7 +213,14 @@ background state.
 - **`ExperienceDesc.tsx`** — not currently used anywhere (About's
 Experience section was removed from the design), but built and kept in
 case it returns.
-- **`ProjectWidget.tsx`** — the project "folder" card. Sizes: `default`
+- **`ProjectWidget.tsx`** — the **v1** project "folder" card. **Superseded
+by `ProjectWidgetV2` (next entry) everywhere it was used** — the Work
+grid and the Next Project carousel — so no page renders it any more. The
+file stays because `ProjectWidgetData` / `ProjectCategory` (shared by V2
+and the case-study data types) are exported from it. It can be deleted,
+together with the v1-only `THUMBNAIL-1/2` content tags and the
+`thumbnails` field, once V1 is definitely retired; nothing else depends
+on it. Sizes: `default`
 (347px), `lg` (405.5px — **not 386px**, a spec correction applied late
 in the build). `full` (fills its grid column) exists in `SIZE_CLASSES`
 but is currently unused — Home used it for the old Featured Projects
@@ -238,7 +245,56 @@ cleaned out. Development-category projects
 automatically get a third tag chip, `"DEV"`, derived from `category`
 rather than requiring it in each project's `tags` array. `hideMeta`
 (default `false`) hides the logo/name/one-liner row below the folder
-artwork — used by the case-study page's "Next Project" list.
+artwork (V2 has the same prop).
+- **`ProjectWidgetV2.tsx`** — the current project card (Figma
+`ProjectWidget_v2`, node `280:2150`, 411×641). A `surface-bg-alt` card
+whose slider shows UI screens inside a phone frame, with the same
+logo/name/one-liner meta row as v1 underneath (`hideMeta` hides it).
+Used by `WorkGrid` and `NextProjectsCarousel`. Takes
+`ProjectWidgetData`; there is no `size` prop — it fills its grid column.
+  - **Screens:** `project.screens`, from the `[SCREEN-n]` content tags.
+  Without any, the card shows four **empty white phone frames** so the
+  slider still works. `THUMBNAIL-1/2` are deliberately **not** a
+  fallback — they're v1's wide two-layer covers and don't suit a
+  portrait slot.
+  - **Phone bezel:** drawn by the component, not the image — 245×529.7
+  slot of the card, centered, 5.671px `#131314` border, 28.357px radius,
+  soft shadow, white screen, images `object-cover object-top`, so screen
+  images should be raw exports with no device frame. It was removed once
+  and then restored per direct instruction; don't remove it again
+  without checking.
+  - **Sizing:** everything inside the card is positioned in percentages
+  or container-query units (`cqw()` helper; the outer widget is
+  `[container-type:inline-size]`), so it scales with its grid column
+  the way v1's folder does.
+  - **Slider:** a `translateX` track, one card-wide slide per screen,
+  bounded (no wrap). Next is hidden on the last screen, Previous on the
+  first. **Previous is an addition** — Figma's hover state only shows
+  Next, on the first screen.
+  - **Controls differ by device, per direct instruction.** On
+  hover-capable devices (`@media (hover: hover)`) the pagination dots
+  (top-right) and the prev/next arrows fade in on hover or keyboard
+  focus of the widget. On touch devices there is no hover, so **only
+  the dots show, inside the card at the bottom**, and horizontal swipe
+  changes screens. Fades use `!transition-*` for the usual global-rule
+  reason.
+  - **Link and swipe wiring (a real bug was fixed here):** the whole
+  widget is one stretched `Link` (`absolute inset-0 z-[1]`) sitting on
+  top of the card, with the controls at `z-10`. Because the link is the
+  card's sibling, a touch on the card lands on the link, so the swipe
+  handlers and `touch-pan-y` live on the **outer widget `div`**, not the
+  inner card — handlers on the card never received touches and swipe
+  silently did nothing on mobile. A handled swipe sets a flag so the
+  click that can follow it doesn't open the project.
+  - **`swipe` prop** (default `true`): `NextProjectsCarousel` passes
+  `false`, because that row scrolls horizontally by touch and the card's
+  own swipe / `touch-pan-y` would take that gesture away (on a phone
+  the cards are nearly full width). In the carousel, screens change
+  via the dots and arrows only.
+  - **Tags:** top-left of the card, reusing v1's pill style (`text-label`)
+  for consistency. Figma's V2 pills are ~0.79× that size (9.37px type);
+  switching is a one-class change if wanted. The category→pill maps are
+  duplicated from `ProjectWidget.tsx` (not exported there).
 - **`Icons.tsx`** — every icon (LinkedIn, Behance, arrow/chevron,
 document/PDF, hamburger, close/X, dark/light mode) is inlined as a React
 component with `fill="currentColor"`, not referenced via `<img src>`.
@@ -265,13 +321,15 @@ standalone `/work` page's own component; that page has been dissolved
 and WorkGrid now renders as Home's Work section instead (replacing the
 old Featured Projects preview). It is wrapped in `id="work"` in
 page.tsx, and that anchor **is** linked: the case-study page's "Back"
-link goes to `/#work`.
+link goes to `/#work`. It renders `ProjectWidgetV2` cards in a
+`grid-cols-1 sm:grid-cols-3` grid — one column on mobile, three from
+640px up.
 
 ## Pages
 
 - **`/`** (Home) — Hero (with a hero tag row — see `src/app/page.tsx` for
 the current labels), Work (`WorkGrid` —
-Subnav tabs + filtered `ProjectWidget` grid, `size="lg"`; this is the
+Subnav tabs + filtered `ProjectWidgetV2` grid; this is the
 former standalone `/work` page, dissolved into Home in place of what
 used to be a "Featured Projects" preview linking out to it — see
 WorkGrid.tsx above), stats/credentials (`ListItem` short/long
@@ -293,9 +351,11 @@ list before
 `ContactSection`: every *other* project (`getOtherProjects()` in
 `src/lib/data/projects.ts` — same one-card-per-project order as
 `getFeaturedProjects()`, current project filtered out; renders nothing
-for a single-project site), in `ProjectWidget`s with `hideMeta` set
+for a single-project site), in `ProjectWidgetV2`s with `hideMeta` set
 (hides the logo/name/one-liner row — the tag pills already carry the
-category, and clicking through is the point). **No heading** and
+category, and clicking through is the point) and `swipe={false}` (see
+the V2 entry above). V2 cards are taller than v1's were: about 632px at
+the carousel's 405.5px width. **No heading** and
 **genuinely full-bleed**, both per direct instruction: this section
 does not sit inside `<Grid>` (which caps at `max-w-1440` and centers),
 so the row can scroll edge-to-edge instead of being cropped at the
@@ -343,6 +403,21 @@ stacking), `mediaText` (image + heading + body as one unit), `video`,
 `stats`, `coverImage`, `quote` (testimonial with attribution — distinct
 from `text`'s `pullQuote` variant, which is just your own emphasized
 text), `cta`.
+
+**Source links.** In any `Body:` (text, mediaText and quote bodies, and
+list items) `[Label](https://example.com)` makes an inline source link.
+The parser pulls links out *before* the `*italic*` pass (so asterisks in
+a URL aren't read as emphasis); a `RichSpan` object can now carry an
+optional `href`, and `RichText.tsx` renders those as a pill: hairline
+border (`border-hairline`), 5px radius, primary text, a small up-right
+`ArrowIcon`, `target="_blank"` with `rel="noopener noreferrer"` and a
+screen-reader-only "(opens in a new tab)". Hover matches `Button` (fills
+with the inverse surface, corners tighten 5px → 3px, via `!transition-*`
+for the usual global-rule reason). The label *is* the alias — the URL is
+never shown — so keep labels short, since the pill doesn't wrap. URLs
+must be `http(s)` with no spaces or `)` (use `%29`). Not supported in
+image captions, `meta` values or stat labels (plain strings). Syntax
+reference: `content/README.md`.
 
 `BlockRenderer.tsx` exports a `renderBlock()` dispatch function used both
 by itself (top-level list) and by `GridBlock.tsx` (nested items) — the two
@@ -424,6 +499,13 @@ authored as tagged plain-text files and parsed into JSON:
    only runs in server/build context). There are no placeholder projects
    any more — the site shows exactly the case studies that have JSON.
 
+**Project-card metadata** lives in the `.txt`'s top-level tags: `SLUG`,
+`PROJECT-ID`, `NAME`, `ONE-LINER`, `CATEGORY`, `LOGO`, and
+`[SCREEN-1]…[SCREEN-N]` — any number of slider screens for
+`ProjectWidgetV2`, numbered from 1, collected in numeric order into the
+`screens` array. `THUMBNAIL-1/2` are v1-only now. `LOGO-ALTERNATE` no
+longer exists (it was removed from the type, parser and docs).
+
 Three real case studies exist: `buy-and-bite` (slug `buy-and-bite-uxui`;
 its content file is named `buy-and-bite-uiux.txt`, so file name and slug
 differ by a transposition), `talkam` (`talkam-uxui`) and `wey`
@@ -449,6 +531,11 @@ see WorkGrid.tsx and the Pages section above. Home now shows the same
 `size="lg"` Work section as the rest of the site, so this deviation
 from Figma's fixed-width `lg` cards no longer applies; no Figma update
 needed for it.
+- `ProjectWidgetV2` differs from the Figma frame in a few places (see its
+entry above): an added Previous arrow, touch devices get dots only
+(inside the card, at the bottom) instead of the hover controls, and the
+tag pills reuse v1's size instead of Figma's ~0.79× version. Per direct
+instruction or for consistency; don't "fix" them without asking.
 - `folder_image1.png`/`folder_image2.png` (the placeholder paint-texture
 illustration) are generic assets, not exported from Figma per se —
 the real illustrated artwork couldn't be downloaded from Figma's
@@ -461,6 +548,16 @@ folder illustration textures were not.
 - Deployment: the target host is Vercel. Set `NEXT_PUBLIC_SITE_URL` there
 (see README) and record the live URL here once it exists. The site is
 not live yet, so this is still open.
+- None of the three case studies has `[SCREEN-n]` tags or screen images
+yet, so every card currently shows four empty phone frames.
+- `WorkGrid` switches to three columns at `sm` (640px). With V2 that
+makes the cards only ~180–300px wide on tablets; `lg:grid-cols-3`
+(with a wider layout below) may be wanted.
+- `ProjectWidget.tsx` (v1) and `THUMBNAIL-1/2` are no longer used by any
+page — see its entry for what can be deleted.
+- `ProjectWidgetV2`'s touch swipe, dots and the hover controls were
+built and build-checked but not verified on a real device by the agent
+that wrote them; check them on a phone and with a mouse.
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
