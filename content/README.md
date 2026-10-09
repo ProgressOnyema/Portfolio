@@ -32,7 +32,7 @@ example.
 [NAME: Project Name]
 [ONE-LINER: One sentence describing the project]
 [CATEGORY: Product Design]   (must be exactly: Product Design, Branding, or Development — this also drives the widget card's tag pill: UX/UI, BRAND, or /DEV. There is no separate tags field.)
-[SCREEN-1: /case-studies/project-slug/screen-1.webp]   (the UI screens that slide inside the widget card — ProjectWidgetV2. Add as many as you like, numbered from 1 (the design has four). Raw screen exports without their own device frame — the card draws the phone bezel around each one and crops to fill it, from the top. Without any, the card shows four empty phone frames instead.)
+[SCREEN-1: /case-studies/project-slug/screen-1.webp]   (the UI screens that slide inside the widget card — ProjectWidgetV2. Add as many as you like, numbered from 1 (the design has four). Raw screen exports without their own device frame — the card draws the phone bezel around each one and crops to fill it, from the top. Export them at 2× (780px wide for a 390px-wide screen): they're served exactly as authored, not resized or re-encoded, so a larger file costs more to load and a smaller one looks soft. Without any, the card shows four empty phone frames instead.)
 [SCREEN-2: /case-studies/project-slug/screen-2.webp]
 [SCREEN-3: /case-studies/project-slug/screen-3.webp]
 [SCREEN-4: /case-studies/project-slug/screen-4.webp]

@@ -176,9 +176,15 @@ export default function ProjectWidgetV2({
                   bezel, 28.357px radius and a soft drop shadow. The bezel
                   is drawn here, so screen images should be raw exports
                   without their own device frame. With no screen supplied
-                  the frame is simply empty (white). */}
+                  the frame is simply empty (white). When a screen IS
+                  supplied the frame's own background is the bezel colour,
+                  not white: the background extends under the border, and
+                  where the image edge meets the inner border (and at the
+                  rounded corners) anti-aliasing lets a 1px sliver of it
+                  show through — white there read as a light outline
+                  around the screen. */}
               <div
-                className="absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2 overflow-hidden border-solid border-[#131314] bg-white shadow-[0px_13.611px_24.954px_0px_rgba(0,0,0,0.25)]"
+                className={`absolute left-1/2 top-1/2 w-[59.61%] -translate-x-1/2 -translate-y-1/2 overflow-hidden border-solid border-[#131314] shadow-[0px_13.611px_24.954px_0px_rgba(0,0,0,0.25)] ${src ? "bg-[#131314]" : "bg-white"}`}
                 style={{
                   aspectRatio: "245.001 / 529.7",
                   borderWidth: cqw(5.671),
@@ -186,11 +192,19 @@ export default function ProjectWidgetV2({
                 }}
               >
                 {src && (
+                  // `unoptimized`: serve the file exactly as authored. The
+                  // optimizer re-encodes at q75 and snaps to fixed widths
+                  // (e.g. 780px -> 640px), and the browser then resamples
+                  // that a second time down to the card — measurably
+                  // softer UI text than letting the browser downscale the
+                  // original once. Screens are small WebP exports already,
+                  // so there's little to gain from re-encoding. Export
+                  // them at 2x (780px wide) — see content/README.md.
                   <Image
                     src={src}
                     alt={`${project.name} screen ${i + 1} of ${count}`}
                     fill
-                    sizes="(min-width: 640px) 260px, 60vw"
+                    unoptimized
                     loading={i <= 1 ? "eager" : "lazy"}
                     className="object-cover object-top"
                   />
