@@ -122,27 +122,37 @@
         {
           "src": "/case-studies/talkam/talkam-uxui/user_flow.webp",
           "alt": "Image of user flow",
-          "caption": "User flow"
+          "caption": "User flow",
+          "width": 3840,
+          "height": 4072
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/IA_Sitemap.webp",
           "alt": "Image of a Sitemap",
-          "caption": "Info. Architecture & Sitemap"
+          "caption": "Info. Architecture & Sitemap",
+          "width": 1919,
+          "height": 1029
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/system_architecture.webp",
           "alt": "Image of system architecture",
-          "caption": "System Architecture"
+          "caption": "System Architecture",
+          "width": 3840,
+          "height": 4214
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/sequence.webp",
           "alt": "Image of sequence diagram",
-          "caption": "Sequence diagram"
+          "caption": "Sequence diagram",
+          "width": 1918,
+          "height": 1026
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/usecase.webp",
           "alt": "Image of use case diagram",
-          "caption": "Use case"
+          "caption": "Use case",
+          "width": 1344,
+          "height": 1029
         }
       ]
     },
@@ -221,12 +231,16 @@
         {
           "src": "/case-studies/talkam/talkam-uxui/chatbot_empty.webp",
           "alt": "Image of a chatbot interface",
-          "caption": "Chatbot empty chat"
+          "caption": "Chatbot empty chat",
+          "width": 2354,
+          "height": 3200
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/chatbot.webp",
           "alt": "Image of chatbot interface with messages",
-          "caption": "NobiBot chatting"
+          "caption": "NobiBot chatting",
+          "width": 2354,
+          "height": 3200
         }
       ]
     },
@@ -246,12 +260,16 @@
         {
           "src": "/case-studies/talkam/talkam-uxui/mentor_list.webp",
           "alt": "Image of llist of mentors interface",
-          "caption": "List of mentors"
+          "caption": "List of mentors",
+          "width": 2052,
+          "height": 3200
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/availability_request.webp",
           "alt": "Image of session request interface",
-          "caption": "Availability slot & Request"
+          "caption": "Availability slot & Request",
+          "width": 2400,
+          "height": 2092
         }
       ]
     },
@@ -271,12 +289,16 @@
         {
           "src": "/case-studies/talkam/talkam-uxui/signup.webp",
           "alt": "Image of signup ui",
-          "caption": "Signup screen"
+          "caption": "Signup screen",
+          "width": 2135,
+          "height": 3200
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/joining_chat.webp",
           "alt": "Image of interface displaying rules before joining chat",
-          "caption": "Joining chat"
+          "caption": "Joining chat",
+          "width": 2400,
+          "height": 1388
         }
       ]
     },
@@ -296,12 +318,16 @@
         {
           "src": "/case-studies/talkam/talkam-uxui/transcribed_audio.webp",
           "alt": "Image of transcribed audio interface",
-          "caption": "Transcribed audio"
+          "caption": "Transcribed audio",
+          "width": 2804,
+          "height": 4202
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/chat_features.webp",
           "alt": "Image of chat feature ui",
-          "caption": "Chat features"
+          "caption": "Chat features",
+          "width": 2400,
+          "height": 1037
         }
       ]
     },
@@ -321,27 +347,37 @@
         {
           "src": "/case-studies/talkam/talkam-uxui/request_mentor.webp",
           "alt": "Image of request mentor interface",
-          "caption": "Request a mentor"
+          "caption": "Request a mentor",
+          "width": 2400,
+          "height": 1299
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/mentor_action.webp",
           "alt": "Image of ui interface for mentor action on requests",
-          "caption": "Mentor accepts request"
+          "caption": "Mentor accepts request",
+          "width": 2400,
+          "height": 1336
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/entering_chat.webp",
           "alt": "flow of ui screens for entering chat",
-          "caption": "Pre session"
+          "caption": "Pre session",
+          "width": 2400,
+          "height": 1297
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/authentication.webp",
           "alt": "Image of a ui screen for signup and login",
-          "caption": "Authentication"
+          "caption": "Authentication",
+          "width": 2820,
+          "height": 1633
         },
         {
           "src": "/case-studies/talkam/talkam-uxui/notification_settings.webp",
           "alt": "Image of notification ui screen",
-          "caption": "Notification center and Settings"
+          "caption": "Notification center and Settings",
+          "width": 2400,
+          "height": 1940
         }
       ]
     },
