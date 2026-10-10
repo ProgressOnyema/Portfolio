@@ -12,8 +12,17 @@ import type { MarqueeGridBlock as MarqueeGridBlockData } from "@/lib/types/caseS
 // and a plain <img> makes the browser decode every one at full size — a
 // single marquee can add up to hundreds of MB of decoded bitmaps, which
 // mobile browsers (iOS Safari especially) respond to by dropping images,
-// so they vanish when scrolled into view and never show. next/image
-// serves each one resized to roughly its on-screen size instead.
+// so they vanish when scrolled into view and never show.
+//
+// Fixes applied here:
+// 1. next/image + `sizes` matching the fitted slot, so the optimizer
+//    serves roughly display resolution instead of the original.
+// 2. `width`/`height` are the *fitted* desktop slot (not the file's
+//    intrinsic 2400–3840px). Advertising the file size as intrinsic
+//    can make Safari allocate / prefer oversized candidates.
+// 3. `loading="eager"` — native lazy-load uses IntersectionObserver,
+//    which is unreliable for images inside a continuously transformed,
+//    overflow-hidden track; frames stay blank or get stuck unloaded.
 //
 // Images without known dimensions (a remote URL, an unreadable file) fall
 // back to a plain <img>, which uses the file's own natural size capped by
@@ -36,9 +45,10 @@ function fit(aspect: number, maxH: number) {
 export default function MarqueeGrid({ block }: { block: MarqueeGridBlockData }) {
   // The image list is rendered twice back-to-back so the CSS animation
   // (globals.css, .animate-marquee) can loop seamlessly at a -50%
-  // translateX instead of snapping back to the start. The second copy
-  // is aria-hidden with empty alt text so screen readers don't announce
-  // every image twice.
+  // translateX instead of snapping back to the start. Both copies sit in
+  // matching wrappers (with the gap as trailing padding) so each half is
+  // exactly 50% of the track. The second copy is aria-hidden with empty
+  // alt text so screen readers don't announce every image twice.
   const renderImages = (copy: "a" | "b") =>
     block.images.map((image, i) => {
       const known = image.width && image.height;
@@ -53,12 +63,14 @@ export default function MarqueeGrid({ block }: { block: MarqueeGridBlockData }) 
               <Image
                 src={image.src}
                 alt={copy === "a" ? image.alt : ""}
-                width={image.width}
-                height={image.height}
-                // The slot is exactly the fitted size at each breakpoint,
-                // so the browser picks a srcset candidate for that size
-                // (and the screen's pixel density), not the original.
+                // Fitted slot, not file intrinsic — keeps srcset/intrinsic
+                // sizing in the same ballpark as what's on screen.
+                width={desktop.w}
+                height={desktop.h}
                 sizes={`(min-width: 640px) ${desktop.w}px, ${mobile.w}px`}
+                // Lazy + transform/overflow-hidden marquees: iOS often never
+                // marks frames as intersecting, so they stay blank.
+                loading="eager"
                 className="h-(--mh) w-(--mw) object-contain sm:h-(--dh) sm:w-(--dw)"
                 style={
                   {
@@ -74,7 +86,8 @@ export default function MarqueeGrid({ block }: { block: MarqueeGridBlockData }) 
               <img
                 src={image.src}
                 alt={copy === "a" ? image.alt : ""}
-                loading="lazy"
+                loading="eager"
+                decoding="async"
                 className="max-h-[280px] max-w-[600px] object-contain sm:max-h-[360px]"
               />
             )}
@@ -96,9 +109,9 @@ export default function MarqueeGrid({ block }: { block: MarqueeGridBlockData }) 
     // margin sized to Grid's padding would only cancel the gutter and
     // still stop at the 1440 cap on wide screens.
     <div className="relative left-1/2 right-1/2 mx-[-50vw] w-screen overflow-hidden">
-      <div className="animate-marquee flex w-max gap-4 hover:[animation-play-state:paused]">
-        {renderImages("a")}
-        <div className="flex gap-4" aria-hidden="true">
+      <div className="animate-marquee flex w-max hover:[animation-play-state:paused]">
+        <div className="flex gap-4 pr-4">{renderImages("a")}</div>
+        <div className="flex gap-4 pr-4" aria-hidden="true">
           {renderImages("b")}
         </div>
       </div>

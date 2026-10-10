@@ -123,22 +123,22 @@
           "src": "/case-studies/wey/wey-uxui/Keke.webp",
           "alt": "Image of a tricycle",
           "caption": "Tricycle (Keke)",
-          "width": 2400,
-          "height": 3200
+          "width": 1800,
+          "height": 2400
         },
         {
           "src": "/case-studies/wey/wey-uxui/user_flow.webp",
           "alt": "Image of a user flow",
           "caption": "User flow",
-          "width": 3840,
-          "height": 3032
+          "width": 2400,
+          "height": 1895
         },
         {
           "src": "/case-studies/wey/wey-uxui/user_research.webp",
           "alt": "Image of a user research",
           "caption": "User research",
-          "width": 3840,
-          "height": 2770
+          "width": 2400,
+          "height": 1731
         }
       ]
     },
@@ -269,8 +269,8 @@
           "src": "/case-studies/wey/wey-uxui/multi_leg.webp",
           "alt": "Image of a multi-leg logic",
           "caption": "Multi-leg logic",
-          "width": 3952,
-          "height": 2192
+          "width": 2400,
+          "height": 1331
         }
       ]
     },
@@ -297,8 +297,8 @@
           "src": "/case-studies/wey/wey-uxui/location_input.webp",
           "alt": "Image showing location input interface",
           "caption": "Location input",
-          "width": 2395,
-          "height": 3200
+          "width": 1796,
+          "height": 2400
         },
         {
           "src": "/case-studies/wey/wey-uxui/finding_route.webp",
@@ -329,8 +329,8 @@
           "src": "/case-studies/wey/wey-uxui/route_detail.webp",
           "alt": "Image of route detail; updates, and price",
           "caption": "Route detail",
-          "width": 1590,
-          "height": 3200
+          "width": 1192,
+          "height": 2400
         },
         {
           "src": "/case-studies/wey/wey-uxui/route_timeline.webp",
@@ -368,8 +368,8 @@
           "src": "/case-studies/wey/wey-uxui/card.webp",
           "alt": "Image of a ui screen of the digital smartcard",
           "caption": "Digital card",
-          "width": 1794,
-          "height": 3200
+          "width": 1346,
+          "height": 2400
         }
       ]
     },
@@ -395,29 +395,29 @@
           "src": "/case-studies/wey/wey-uxui/screens.webp",
           "alt": "Image of a ui screens",
           "caption": "Screens",
-          "width": 5264,
-          "height": 2782
+          "width": 2399,
+          "height": 1268
         },
         {
           "src": "/case-studies/wey/wey-uxui/components.webp",
           "alt": "Image of a ui components",
           "caption": "Components",
-          "width": 3024,
-          "height": 1678
+          "width": 2400,
+          "height": 1332
         },
         {
           "src": "/case-studies/wey/wey-uxui/updating_fare.webp",
           "alt": "Image of a ui screen for updating fare",
           "caption": "Updating fare",
-          "width": 2892,
-          "height": 1688
+          "width": 2400,
+          "height": 1401
         },
         {
           "src": "/case-studies/wey/wey-uxui/create_post.webp",
           "alt": "Image of a ui screen flow for creating a post",
           "caption": "Creating post",
-          "width": 2876,
-          "height": 1688
+          "width": 2400,
+          "height": 1409
         }
       ]
     },
