@@ -112,37 +112,51 @@
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-1.webp",
           "alt": "Image of bulk onions in Mile12 market",
-          "caption": "Shots of Mile12 market"
+          "caption": "Shots of Mile12 market",
+          "width": 1000,
+          "height": 562
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-2.webp",
           "alt": "Image of tomato baskets in Mile12 market",
-          "caption": "Shots of Mile12 market"
+          "caption": "Shots of Mile12 market",
+          "width": 720,
+          "height": 480
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-3.webp",
           "alt": "Competitive audit report",
-          "caption": "Competitive audit"
+          "caption": "Competitive audit",
+          "width": 2400,
+          "height": 1256
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-4.webp",
           "alt": "Info. Architecture and sitemap",
-          "caption": "Info. Architecture & sitemap"
+          "caption": "Info. Architecture & sitemap",
+          "width": 1915,
+          "height": 1034
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-5.webp",
           "alt": "Wireframes",
-          "caption": "HI-FI Wireframe"
+          "caption": "HI-FI Wireframe",
+          "width": 2400,
+          "height": 1664
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-6.webp",
           "alt": "User journeys",
-          "caption": "User journeys"
+          "caption": "User journeys",
+          "width": 1316,
+          "height": 786
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/image-7.webp",
           "alt": "Storyboard",
-          "caption": "Big-picture storyboard"
+          "caption": "Big-picture storyboard",
+          "width": 2400,
+          "height": 1800
         }
       ]
     },
@@ -220,12 +234,16 @@
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/packed_1.webp",
           "alt": "UI screen showing prepacked packages",
-          "caption": "Prepacked packages"
+          "caption": "Prepacked packages",
+          "width": 2872,
+          "height": 2154
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/packed_2.webp",
           "alt": "UI screen for packing yourself",
-          "caption": "Pick them yourself"
+          "caption": "Pick them yourself",
+          "width": 2872,
+          "height": 2154
         }
       ]
     },
@@ -248,12 +266,16 @@
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_1.webp",
           "alt": "UI screen for health categories",
-          "caption": "Health category pills"
+          "caption": "Health category pills",
+          "width": 2872,
+          "height": 2154
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/health_conscious_2.webp",
           "alt": "UI screen for products in cart",
-          "caption": "Products in cart"
+          "caption": "Products in cart",
+          "width": 2872,
+          "height": 2154
         }
       ]
     },
@@ -276,12 +298,16 @@
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/delivery_1.webp",
           "alt": "UI screen for delivery",
-          "caption": "Address details"
+          "caption": "Address details",
+          "width": 2872,
+          "height": 2154
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/delivery_2.webp",
           "alt": "UI screen for payment method",
-          "caption": "Payment options"
+          "caption": "Payment options",
+          "width": 2872,
+          "height": 2154
         }
       ]
     },
@@ -304,37 +330,51 @@
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/confirm_checkout.webp",
           "alt": "UI screens for confirm checkout",
-          "caption": "Confirm checkout"
+          "caption": "Confirm checkout",
+          "width": 1706,
+          "height": 3484
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/home.webp",
           "alt": "UI screen of home page",
-          "caption": "Home screen"
+          "caption": "Home screen",
+          "width": 1676,
+          "height": 3512
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/pack_your_own.webp",
           "alt": "UI screens for pack your own",
-          "caption": "Pick your own - Home screen"
+          "caption": "Pick your own - Home screen",
+          "width": 2759,
+          "height": 4858
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/prepacked.webp",
           "alt": "UI screens for prepacked fitness packs",
-          "caption": "Prepacked - Fitness pack"
+          "caption": "Prepacked - Fitness pack",
+          "width": 2400,
+          "height": 994
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/payment_sheet.webp",
           "alt": "UI screens for payment method",
-          "caption": "Payment sheet"
+          "caption": "Payment sheet",
+          "width": 3166,
+          "height": 2416
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/success.webp",
           "alt": "UI screen for successful order",
-          "caption": "Success message"
+          "caption": "Success message",
+          "width": 1804,
+          "height": 3512
         },
         {
           "src": "/case-studies/buy-and-bite/buy-and-bite-uxui/track_delivery.webp",
           "alt": "UI screens for tracking delivery",
-          "caption": "Track delivery"
+          "caption": "Track delivery",
+          "width": 3432,
+          "height": 4192
         }
       ]
     },
