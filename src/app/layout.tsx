@@ -1,9 +1,10 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Navbar from "@/components/Navbar";
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SURFACE_BG } from "@/lib/theme";
 import "./globals.css";
 
 const title = "Onyema Miracle — Brand + Product Designer";
@@ -26,6 +27,12 @@ export const metadata: Metadata = {
     title,
     description,
   },
+};
+
+// Default (dark) surface; ThemeInitScript / applyThemeColor overwrite the
+// single theme-color meta to match the active light/dark choice.
+export const viewport: Viewport = {
+  themeColor: SURFACE_BG.dark,
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

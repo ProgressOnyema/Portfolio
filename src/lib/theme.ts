@@ -6,6 +6,14 @@
 
 type Theme = "light" | "dark";
 
+// `--color-surface-bg` from globals.css — keep in sync with those tokens.
+// Used by the web app manifest, <meta name="theme-color">, and the
+// theme toggle so browser chrome matches the page surface.
+export const SURFACE_BG = {
+  dark: "#161513",
+  light: "#fcfcfb",
+} as const;
+
 const listeners = new Set<() => void>();
 
 function readTheme(): Theme {
@@ -27,6 +35,17 @@ export function subscribeToTheme(callback: () => void): () => void {
   return () => listeners.delete(callback);
 }
 
+export function applyThemeColor(theme: Theme) {
+  const color = SURFACE_BG[theme];
+  let meta = document.querySelector('meta[name="theme-color"]');
+  if (!meta) {
+    meta = document.createElement("meta");
+    meta.setAttribute("name", "theme-color");
+    document.head.appendChild(meta);
+  }
+  meta.setAttribute("content", color);
+}
+
 export function setTheme(next: Theme) {
   if (next === "light") {
     document.documentElement.setAttribute("data-theme", "light");
@@ -34,5 +53,6 @@ export function setTheme(next: Theme) {
     document.documentElement.removeAttribute("data-theme");
   }
   localStorage.setItem("theme", next);
+  applyThemeColor(next);
   listeners.forEach((callback) => callback());
 }
