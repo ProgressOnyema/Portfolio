@@ -34,6 +34,12 @@ export type ImageGridImage = {
   src: string;
   alt: string;
   caption?: string;
+  /** Intrinsic pixel size, read from the file by the content parser at
+   *  build time (absent for non-local or unreadable images). MarqueeGrid
+   *  uses it to render through next/image at a resolution that matches
+   *  the display size instead of loading the original. */
+  width?: number;
+  height?: number;
 };
 
 export type ImageGridBlock = {
