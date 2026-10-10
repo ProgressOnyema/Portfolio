@@ -44,10 +44,10 @@ export default function Navbar() {
           no blur at sm+ (blur was mobile-only), but that distinction has
           been removed. */}
       <header className="fixed top-0 left-0 z-50 w-full bg-surface-bg/80 backdrop-blur-lg">
-        <nav className="mx-auto flex h-[106px] max-w-[1440px] items-center justify-end px-5 sm:px-6 lg:px-[88px]">
+        <nav className="mx-auto flex h-[80px] max-w-[1440px] items-center justify-end px-5 sm:px-6 lg:px-[88px]">
           {/* Desktop links — centered, gap-12 (48px). Theme toggle is now
               part of this same row, not separately positioned. */}
-          <div className="hidden items-center gap-12 sm:flex">
+          <div className="hidden items-center gap-8 sm:flex">
             {LINKS.map(({ href, label }) => (
               <Link key={href} href={href}>
                 <NavItem label={label} active={isActive(href)} />
