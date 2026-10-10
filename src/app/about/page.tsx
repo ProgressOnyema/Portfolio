@@ -58,7 +58,7 @@ export default function About() {
             alt="Chelsea FC"
             width={40}
             height={40}
-            className="inline-block align-middle rounded-full sm:w-[50px] sm:h-[50px]"
+            className="inline-block h-10 w-10 align-middle rounded-full sm:h-[50px] sm:w-[50px]"
           />{" "}
           when I&apos;m not playing either physically{" "}
           <Image
@@ -66,7 +66,7 @@ export default function About() {
             alt="Football"
             width={40}
             height={41}
-            className="inline-block align-middle scale-x-[-1] rounded-full sm:w-[50px] sm:h-[51px]"
+            className="inline-block h-[41px] w-10 scale-x-[-1] align-middle rounded-full sm:h-[51px] sm:w-[50px]"
           />{" "}
           or digitally{" "}
           <span role="img" aria-label="EA Sports FC">
@@ -81,7 +81,7 @@ export default function About() {
                 alt={book}
                 width={28}
                 height={35}
-                className="inline-block align-middle -mr-1 sm:w-[38px] sm:h-[45px]"
+                className="inline-block h-[35px] w-7 -mr-1 align-middle sm:h-[45px] sm:w-[38px]"
                 style={{ transform: `rotate(${(i - 1.5) * 6}deg)` }}
               />
             ))}
@@ -95,7 +95,7 @@ export default function About() {
                 alt={film}
                 width={26}
                 height={35}
-                className="inline-block align-middle -mr-1 sm:w-[36px] sm:h-[45px]"
+                className="inline-block h-[35px] w-[26px] -mr-1 align-middle sm:h-[45px] sm:w-[36px]"
                 style={{ transform: `rotate(${(i - 1.5) * 7}deg)` }}
               />
             ))}
@@ -109,7 +109,7 @@ export default function About() {
                 alt={artist}
                 width={32}
                 height={32}
-                className="inline-block align-middle rounded-full -mr-2 sm:w-[42px] sm:h-[42px]"
+                className="inline-block h-8 w-8 -mr-2 align-middle rounded-full sm:h-[42px] sm:w-[42px]"
               />
             ))}
           </span>
