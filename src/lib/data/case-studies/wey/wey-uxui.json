@@ -268,7 +268,9 @@
         {
           "src": "/case-studies/wey/wey-uxui/multi_leg.gif",
           "alt": "Image of a multi-leg logic",
-          "caption": "Multi-leg logic"
+          "caption": "Multi-leg logic",
+          "width": 1170,
+          "height": 642
         }
       ]
     },
