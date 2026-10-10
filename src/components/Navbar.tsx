@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import NavItem from "./NavItem";
 import ThemeToggle from "./ThemeToggle";
+import LocationPill from "./LocationPill";
 import { MobileNavIcon, CloseIcon } from "./Icons";
 import { EMAIL } from "@/lib/site";
 
@@ -44,7 +45,10 @@ export default function Navbar() {
           no blur at sm+ (blur was mobile-only), but that distinction has
           been removed. */}
       <header className="fixed top-0 left-0 z-50 w-full bg-surface-bg/80 backdrop-blur-lg">
-        <nav className="mx-auto flex h-[80px] max-w-[1440px] items-center justify-end px-5 sm:px-6 lg:px-[88px]">
+        <nav className="mx-auto flex h-[80px] max-w-[1440px] items-center justify-between px-5 sm:px-6 lg:px-[88px]">
+          {/* Location pill — left side at every breakpoint. */}
+          <LocationPill />
+
           {/* Desktop links — centered, gap-12 (48px). Theme toggle is now
               part of this same row, not separately positioned. */}
           <div className="hidden items-center gap-8 sm:flex">
