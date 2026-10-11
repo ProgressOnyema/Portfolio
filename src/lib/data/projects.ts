@@ -10,6 +10,13 @@ export type CaseStudy = ProjectWidgetData & {
   // one case study, so existing single-case-study projects need no change.
   projectId: string;
   blocks: Block[];
+  // True when the case study has no content blocks yet (a .txt with only
+  // the metadata tags). Such a project still gets a card — shown locked,
+  // not linked — but has no page: it is left out of `projects` below, so
+  // it gets no static route, sitemap entry or OG image, and getProject()
+  // returns undefined (the route 404s). Add blocks to the .txt and it
+  // becomes a normal, linked project automatically.
+  comingSoon?: boolean;
 };
 
 // Load any real case study JSON files (written by scripts/parse-case-study.mjs)
@@ -36,7 +43,9 @@ function loadRealCaseStudies(): CaseStudy[] {
     // Older JSON generated before PROJECT-ID existed won't have projectId —
     // fall back to the case study's own slug so it still behaves as a
     // standalone project instead of crashing the tab-lookup logic.
-    .map((project) => ({ ...project, projectId: project.projectId || project.slug }));
+    .map((project) => ({ ...project, projectId: project.projectId || project.slug }))
+    // No blocks yet = not written yet = "coming soon".
+    .map((project) => ({ ...project, comingSoon: !project.blocks?.length }));
 
   // Guard against two case studies in the same project accidentally sharing
   // a category — the tab UI can only show one case study per category, so
@@ -82,7 +91,14 @@ function withCaseStudyCategories(list: CaseStudy[]): CaseStudy[] {
   }));
 }
 
-export const projects: CaseStudy[] = withCaseStudyCategories(loadRealCaseStudies());
+// Every project including coming-soon ones — only used to build the card
+// lists (getFeaturedProjects / getOtherProjects).
+const allProjects: CaseStudy[] = withCaseStudyCategories(loadRealCaseStudies());
+
+// Projects that have a real case-study page. Everything that generates or
+// resolves pages (generateStaticParams, sitemap, OG images, getProject,
+// the subnav tabs) reads this, so coming-soon projects never get a route.
+export const projects: CaseStudy[] = allProjects.filter((p) => !p.comingSoon);
 
 export function getProject(slug: string): CaseStudy | undefined {
   return projects.find((p) => p.slug === slug);
@@ -101,15 +117,17 @@ export function getProjectCaseStudies(projectId: string): CaseStudy[] {
 // collapses to a single widget instead of one per case study. The widget
 // links to the canonical (first in CATEGORY_ORDER) case study; its tag
 // pills already cover the whole group via caseStudyCategories (see
-// withCaseStudyCategories above).
+// withCaseStudyCategories above). A project with no published case study
+// yet falls back to its own coming-soon entry, which the widget renders
+// locked and unlinked.
 export function getFeaturedProjects(): CaseStudy[] {
   const seenProjectIds = new Set<string>();
   const featured: CaseStudy[] = [];
 
-  for (const project of projects) {
+  for (const project of allProjects) {
     if (seenProjectIds.has(project.projectId)) continue;
     seenProjectIds.add(project.projectId);
-    featured.push(getProjectCaseStudies(project.projectId)[0]);
+    featured.push(getProjectCaseStudies(project.projectId)[0] ?? project);
   }
 
   return featured;
