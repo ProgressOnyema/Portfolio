@@ -266,11 +266,11 @@
       "columns": 1,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/multi_leg.webp",
+          "src": "/case-studies/wey/wey-uxui/multi_leg.gif",
           "alt": "Image of a multi-leg logic",
           "caption": "Multi-leg logic",
-          "width": 800,
-          "height": 439
+          "width": 1170,
+          "height": 642
         }
       ]
     },
@@ -297,8 +297,8 @@
           "src": "/case-studies/wey/wey-uxui/location_input.webp",
           "alt": "Image showing location input interface",
           "caption": "Location input",
-          "width": 1796,
-          "height": 2400
+          "width": 2498,
+          "height": 3338
         },
         {
           "src": "/case-studies/wey/wey-uxui/finding_route.webp",

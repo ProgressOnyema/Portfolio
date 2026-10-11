@@ -19,7 +19,7 @@ alt: Buy and Bite homepage
 [META]
 Industry: Agri-commerce / Logistics & Delivery
 What I did: Research, User experience, User interface
-Platform: Mobile app + Print
+Platform: Mobile app
 [/META]
 [TEXT]
 Heading: Good food, better distribution.
