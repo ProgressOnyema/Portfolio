@@ -251,7 +251,9 @@ artwork (V2 has the same prop).
 whose slider shows UI screens inside a phone frame, with the same
 logo/name/one-liner meta row as v1 underneath (`hideMeta` hides it).
 Used by `WorkGrid` and `NextProjectsCarousel`. Takes
-`ProjectWidgetData`; there is no `size` prop — it fills its grid column.
+`ProjectWidgetData` (plus the optional `comingSoon` flag — see the
+Coming soon bullet below); there is no `size` prop — it fills its grid
+column.
   - **Screens:** `project.screens`, from the `[SCREEN-n]` content tags.
   Without any, the card shows four **empty white phone frames** so the
   slider still works. `THUMBNAIL-1/2` are deliberately **not** a
@@ -295,6 +297,23 @@ Used by `WorkGrid` and `NextProjectsCarousel`. Takes
   for consistency. Figma's V2 pills are ~0.79× that size (9.37px type);
   switching is a one-class change if wanted. The category→pill maps are
   duplicated from `ProjectWidget.tsx` (not exported there).
+  - **Coming soon (`comingSoon`):** for a project whose case study isn't
+  written yet. The card gets a **padlock chip** (`LockIcon`, with a
+  screen-reader-only "Coming soon") as the *first* item of the tag row,
+  before the UX/UI / BRAND / /DEV pills, in the same pill style so it
+  stretches to their height. The stretched `Link` is **not rendered**, so
+  the card can't open a case-study page that doesn't exist; the slider
+  (dots, arrows, swipe) still works. This was added per direct
+  instruction — the padlock-before-tags position and the no-link
+  behavior are both intentional. `ProjectWidgetV2Data` (exported from the
+  component) is `ProjectWidgetData & { comingSoon?: boolean }`;
+  `ProjectWidgetData` in `ProjectWidget.tsx` was deliberately left
+  untouched. How a project becomes coming soon, and what that does to
+  routing, is under "Coming-soon projects" in the content pipeline below.
+- **`LockIcon.tsx`** — the padlock for the coming-soon chip (`currentColor`,
+decorative, `aria-hidden`). Lives in its own file rather than
+`Icons.tsx`; fine to move into `Icons.tsx` to match the "every icon
+lives there" convention.
 - **`Icons.tsx`** — every icon (LinkedIn, Behance, arrow/chevron,
 document/PDF, hamburger, close/X, dark/light mode) is inlined as a React
 component with `fill="currentColor"`, not referenced via `<img src>`.
@@ -323,7 +342,7 @@ old Featured Projects preview). It is wrapped in `id="work"` in
 page.tsx, and that anchor **is** linked: the case-study page's "Back"
 link goes to `/#work`. It renders `ProjectWidgetV2` cards in a
 `grid-cols-1 sm:grid-cols-3` grid — one column on mobile, three from
-640px up.
+640px up. Coming-soon projects are in this grid too (locked, unlinked).
 
 ## Pages
 
@@ -341,7 +360,8 @@ there directly by the project owner), `ContactSection`. No Experience
 or Certifications section (removed from the design).
 - **`/work/[slug]`** — case study detail page. Statically generated via
 `generateStaticParams` from `src/lib/data/projects.ts`. Real 404 via
-`notFound()` for unknown slugs. Starts with a "Back" link to `/#work`
+`notFound()` for unknown slugs — and for coming-soon projects, which
+aren't in the exported `projects` list. Starts with a "Back" link to `/#work`
 (verified to land correctly on the Work section under Lenis smooth
 scroll — see the comment in `SmoothScroll.tsx`), then a single
 `Project —— one-liner` line rendered as the page's `<h1>`
@@ -506,6 +526,27 @@ authored as tagged plain-text files and parsed into JSON:
 `screens` array. `THUMBNAIL-1/2` are v1-only now. `LOGO-ALTERNATE` no
 longer exists (it was removed from the type, parser and docs).
 
+**Coming-soon projects.** A `.txt` with the metadata tags above and **no
+content blocks** is a "coming soon" project. There is deliberately no
+flag for it: `src/lib/data/projects.ts` sets `comingSoon` on any case
+study whose `blocks` array is empty (the parser needed no change), so
+adding blocks later turns it into a normal linked project with nothing
+to switch off. Consequences, all in `projects.ts`: the module keeps an
+internal `allProjects` list and exports `projects` as only the ones
+*with* content. Everything that generates or resolves pages reads
+`projects` — `generateStaticParams`, the sitemap, the per-case-study OG
+image, `getProject()` (so `/work/<slug>` 404s) and the subnav tabs via
+`getProjectCaseStudies()` — so a coming-soon project gets no route.
+`getFeaturedProjects()` (and therefore `getOtherProjects()`) iterate
+`allProjects` instead, so the card still shows in the Work grid and the
+Next Project carousel, falling back to the project's own coming-soon
+entry when it has no published case study. If a project has both a
+written case study and a coming-soon one, the card links to the written
+one, and its tag pills (`caseStudyCategories`, computed over
+`allProjects`) include the coming-soon category too. Remember a
+metadata-only `.txt` still needs `npm run parse-content` and the
+generated JSON committed, like any other.
+
 Three real case studies exist: `buy-and-bite` (slug `buy-and-bite-uxui`;
 its content file is named `buy-and-bite-uiux.txt`, so file name and slug
 differ by a transposition), `talkam` (`talkam-uxui`) and `wey`
@@ -536,6 +577,9 @@ entry above): an added Previous arrow, touch devices get dots only
 (inside the card, at the bottom) instead of the hover controls, and the
 tag pills reuse v1's size instead of Figma's ~0.79× version. Per direct
 instruction or for consistency; don't "fix" them without asking.
+- The coming-soon state (padlock chip before the tags, no link) has no
+Figma frame — it was specified directly by the project owner. Don't
+remove the lock or re-add the link without checking.
 - `folder_image1.png`/`folder_image2.png` (the placeholder paint-texture
 illustration) are generic assets, not exported from Figma per se —
 the real illustrated artwork couldn't be downloaded from Figma's
@@ -558,6 +602,10 @@ page — see its entry for what can be deleted.
 - `ProjectWidgetV2`'s touch swipe, dots and the hover controls were
 built and build-checked but not verified on a real device by the agent
 that wrote them; check them on a phone and with a mouse.
+- The coming-soon state (`comingSoon`, `LockIcon`) was written without a
+local build or a visual check — run `npm run build` and look at the
+chip in both themes. No coming-soon project exists in `content/` yet;
+add a metadata-only `.txt` to see it.
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
