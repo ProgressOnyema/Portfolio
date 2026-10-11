@@ -266,11 +266,11 @@
       "columns": 1,
       "images": [
         {
-          "src": "/case-studies/wey/wey-uxui/multi_leg.gif",
+          "src": "/case-studies/wey/wey-uxui/multi_leg.webp",
           "alt": "Image of a multi-leg logic",
           "caption": "Multi-leg logic",
-          "width": 1170,
-          "height": 642
+          "width": 800,
+          "height": 439
         }
       ]
     },
