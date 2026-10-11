@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowIcon } from "./Icons";
+import { LockIcon } from "./LockIcon";
 import type { ProjectCategory, ProjectWidgetData } from "./ProjectWidget";
 
 // Same tag logic as ProjectWidget.tsx (not exported there, so mirrored
@@ -13,6 +14,14 @@ const CATEGORY_PILL: Record<ProjectCategory, string> = {
   "Product Design": "UX/UI",
   Branding: "BRAND",
   Development: "/DEV",
+};
+
+// A project card, plus the coming-soon flag set by src/lib/data/projects.ts
+// for case studies that have no content blocks yet.
+export type ProjectWidgetV2Data = ProjectWidgetData & {
+  /** Shows a padlock chip before the tag pills and renders the card
+   *  without a link: there is no case-study page to open yet. */
+  comingSoon?: boolean;
 };
 
 // Figma ProjectWidget_v2 (node 280:2150) is a 411x641 card. Everything
@@ -81,7 +90,7 @@ export default function ProjectWidgetV2({
   hideMeta = false,
   swipe = true,
 }: {
-  project: ProjectWidgetData;
+  project: ProjectWidgetV2Data;
   /** Hides the logo/name/one-liner row below the card, same as
    *  ProjectWidget's `hideMeta` (used by the case-study page's "Next
    *  Project" list). */
@@ -214,11 +223,21 @@ export default function ProjectWidgetV2({
           ))}
         </div>
 
-        {/* Tags — top-left, 24px / 20px in the 411x641 frame. */}
+        {/* Tags — top-left, 24px / 20px in the 411x641 frame. For a
+            coming-soon project a padlock chip comes first, before the
+            tag pills. It's a flex item like the pills, so it stretches
+            to the same height; the icon is decorative and the chip
+            carries a screen-reader-only "Coming soon". */}
         <div
           className="pointer-events-none absolute z-[2] flex gap-1"
           style={{ left: "5.84%", top: "3.12%" }}
         >
+          {project.comingSoon && (
+            <span className="flex items-center rounded-[5px] bg-surface-bg px-2 py-1 text-text-muted">
+              <LockIcon className="size-3" />
+              <span className="sr-only">Coming soon</span>
+            </span>
+          )}
           {displayTags.map((tag) => (
             <span
               key={tag}
@@ -304,19 +323,24 @@ export default function ProjectWidgetV2({
       )}
 
       {/* Whole-widget link (stretched-link pattern) so the slider buttons
-          aren't nested inside an anchor. Sits under the controls (z-10). */}
-      <Link
-        href={`/work/${project.slug}`}
-        className="absolute inset-0 z-[1]"
-        onClick={(e) => {
-          if (swiped.current) {
-            e.preventDefault();
-            swiped.current = false;
-          }
-        }}
-      >
-        <span className="sr-only">{project.name}</span>
-      </Link>
+          aren't nested inside an anchor. Sits under the controls (z-10).
+          Not rendered for a coming-soon project: there is no case-study
+          page to open, so the card is just a locked, non-clickable
+          preview (the slider controls still work). */}
+      {!project.comingSoon && (
+        <Link
+          href={`/work/${project.slug}`}
+          className="absolute inset-0 z-[1]"
+          onClick={(e) => {
+            if (swiped.current) {
+              e.preventDefault();
+              swiped.current = false;
+            }
+          }}
+        >
+          <span className="sr-only">{project.name}</span>
+        </Link>
+      )}
     </div>
   );
 }
