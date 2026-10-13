@@ -2,7 +2,7 @@ import Grid from "@/components/Grid";
 import ListItem from "@/components/ListItem";
 import WorkGrid from "@/components/WorkGrid";
 import ContactSection from "@/components/ContactSection";
-import { projects } from "@/lib/data/projects";
+import { allProjects } from "@/lib/data/projects";
 
 const HERO_TAGS = ["Strategy", "Branding", "UX/UI Design", "Interaction", "Full Stack Dev."];
 
@@ -38,11 +38,13 @@ export default function Home() {
 
       {/* Work — the site's one project listing: the full
           category-filterable WorkGrid lives here (there is no standalone
-          /work page; only /work/[slug] case studies). scroll-mt offsets
+          /work page; only /work/[slug] case studies). It gets `allProjects`,
+          not `projects`, so coming-soon projects show too (locked, no
+          link). scroll-mt offsets
           the fixed h-[106px] header so a /#work anchor lands below it,
           not underneath it. */}
       <div id="work" className="scroll-mt-[106px]">
-        <WorkGrid projects={projects} />
+        <WorkGrid projects={allProjects} />
       </div>
 
       {/* Stats + credentials — 4:8 column ratio matches the 350:703 short:long widths */}
