@@ -1,7 +1,7 @@
 [SLUG: tdc-brand]
 [PROJECT-ID: tdc]
 [NAME: tdc]
-[ONE-LINER: Fruit cakes everyday]
+[ONE-LINER: Fruit cakes anytime]
 [CATEGORY: Branding]
 [SCREEN-1: /case-studies/tdc/screen-1.gif]
 [SCREEN-2: /case-studies/tdc/screen-2.webp]

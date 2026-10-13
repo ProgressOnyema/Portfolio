@@ -1,0 +1,8 @@
+[SLUG: tapr-brand]
+[PROJECT-ID: tapr]
+[NAME: tapr]
+[ONE-LINER: One card, pay across Africa]
+[CATEGORY: Branding]
+[SCREEN-1: /case-studies/tapr/screen-1.gif]
+[SCREEN-2: /case-studies/tapr/screen-2.webp]
+[LOGO: /case-studies/tapr/logo.webp]

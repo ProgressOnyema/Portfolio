@@ -1,0 +1,13 @@
+{
+  "slug": "tapr-brand",
+  "projectId": "tapr",
+  "name": "tapr",
+  "oneLiner": "One card, pay across Africa",
+  "category": "Branding",
+  "screens": [
+    "/case-studies/tapr/screen-1.gif",
+    "/case-studies/tapr/screen-2.webp"
+  ],
+  "logo": "/case-studies/tapr/logo.webp",
+  "blocks": []
+}
