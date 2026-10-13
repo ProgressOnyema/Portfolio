@@ -91,9 +91,11 @@ function withCaseStudyCategories(list: CaseStudy[]): CaseStudy[] {
   }));
 }
 
-// Every project including coming-soon ones — only used to build the card
-// lists (getFeaturedProjects / getOtherProjects).
-const allProjects: CaseStudy[] = withCaseStudyCategories(loadRealCaseStudies());
+// Every project including coming-soon ones — used wherever a card is
+// shown: the home page's category-filtered WorkGrid (src/app/page.tsx)
+// and getFeaturedProjects / getOtherProjects below. Do NOT use it for
+// anything that generates or resolves pages; use `projects` for that.
+export const allProjects: CaseStudy[] = withCaseStudyCategories(loadRealCaseStudies());
 
 // Projects that have a real case-study page. Everything that generates or
 // resolves pages (generateStaticParams, sitemap, OG images, getProject,
