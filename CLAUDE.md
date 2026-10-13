@@ -342,15 +342,21 @@ old Featured Projects preview). It is wrapped in `id="work"` in
 page.tsx, and that anchor **is** linked: the case-study page's "Back"
 link goes to `/#work`. It renders `ProjectWidgetV2` cards in a
 `grid-cols-1 sm:grid-cols-3` grid — one column on mobile, three from
-640px up. Coming-soon projects are in this grid too (locked, unlinked).
+640px up. **`page.tsx` passes it `allProjects`, not `projects`**, so
+coming-soon projects are in this grid too (locked, unlinked). The grid
+lists every case study (not one card per project), filtered by the
+active category tab, so a coming-soon project only appears under its own
+category's tab (tdc is Branding, so it's under the Branding tab, not the
+default Product Design one). Passing `projects` here was a real bug: it
+silently hid every coming-soon project.
 
 ## Pages
 
 - **`/`** (Home) — Hero (with a hero tag row — see `src/app/page.tsx` for
 the current labels), Work (`WorkGrid` —
-Subnav tabs + filtered `ProjectWidgetV2` grid; this is the
-former standalone `/work` page, dissolved into Home in place of what
-used to be a "Featured Projects" preview linking out to it — see
+Subnav tabs + filtered `ProjectWidgetV2` grid, fed `allProjects`; this
+is the former standalone `/work` page, dissolved into Home in place of
+what used to be a "Featured Projects" preview linking out to it — see
 WorkGrid.tsx above), stats/credentials (`ListItem` short/long
 columns), `ContactSection`.
 - **`/about`** — Bio, then one flowing paragraph mixing text and inline
@@ -531,26 +537,32 @@ content blocks** is a "coming soon" project. There is deliberately no
 flag for it: `src/lib/data/projects.ts` sets `comingSoon` on any case
 study whose `blocks` array is empty (the parser needed no change), so
 adding blocks later turns it into a normal linked project with nothing
-to switch off. Consequences, all in `projects.ts`: the module keeps an
-internal `allProjects` list and exports `projects` as only the ones
-*with* content. Everything that generates or resolves pages reads
-`projects` — `generateStaticParams`, the sitemap, the per-case-study OG
-image, `getProject()` (so `/work/<slug>` 404s) and the subnav tabs via
-`getProjectCaseStudies()` — so a coming-soon project gets no route.
-`getFeaturedProjects()` (and therefore `getOtherProjects()`) iterate
-`allProjects` instead, so the card still shows in the Work grid and the
-Next Project carousel, falling back to the project's own coming-soon
-entry when it has no published case study. If a project has both a
-written case study and a coming-soon one, the card links to the written
-one, and its tag pills (`caseStudyCategories`, computed over
-`allProjects`) include the coming-soon category too. Remember a
-metadata-only `.txt` still needs `npm run parse-content` and the
-generated JSON committed, like any other.
+to switch off. Consequences, all in `projects.ts`: the module exports
+two lists. **`allProjects`** is everything, coming soon included; use it
+wherever a *card* is shown — the home page's `WorkGrid` (`page.tsx`
+passes it directly) and, internally, `getFeaturedProjects()` (and so
+`getOtherProjects()`, i.e. the Next Project carousel). **`projects`** is
+only the ones *with* content; use it for anything that generates or
+resolves *pages* — `generateStaticParams`, the sitemap, the
+per-case-study OG image, `getProject()` (so `/work/<slug>` 404s) and the
+subnav tabs via `getProjectCaseStudies()` — so a coming-soon project gets
+no route. Mixing them up is the failure mode to watch for: handing
+`projects` to a card list hides coming-soon projects (this happened once
+with `WorkGrid`), and handing `allProjects` to a page generator would
+create routes with no content. `getFeaturedProjects()` falls back to the
+project's own coming-soon entry when it has no published case study. If
+a project has both a written case study and a coming-soon one, the card
+links to the written one, and its tag pills (`caseStudyCategories`,
+computed over `allProjects`) include the coming-soon category too.
+Remember a metadata-only `.txt` still needs `npm run parse-content` and
+the generated JSON committed, like any other.
 
-Three real case studies exist: `buy-and-bite` (slug `buy-and-bite-uxui`;
-its content file is named `buy-and-bite-uiux.txt`, so file name and slug
-differ by a transposition), `talkam` (`talkam-uxui`) and `wey`
-(`wey-uxui`). Use any of them as a template.
+Four case studies exist. Three are written: `buy-and-bite` (slug
+`buy-and-bite-uxui`; its content file is named `buy-and-bite-uiux.txt`,
+so file name and slug differ by a transposition), `talkam`
+(`talkam-uxui`) and `wey` (`wey-uxui`) — use any of them as a template.
+The fourth, `tdc` (slug `tdc-brand`, category Branding), is metadata-only,
+so it's the site's coming-soon project.
 
 The parser warns (doesn't fail the build) about any referenced image path
 that doesn't exist yet under `public/`.
@@ -592,8 +604,8 @@ folder illustration textures were not.
 - Deployment: the target host is Vercel. Set `NEXT_PUBLIC_SITE_URL` there
 (see README) and record the live URL here once it exists. The site is
 not live yet, so this is still open.
-- None of the three case studies has `[SCREEN-n]` tags or screen images
-yet, so every card currently shows four empty phone frames.
+- None of the three written case studies has `[SCREEN-n]` tags or screen
+images yet, so their cards currently show four empty phone frames.
 - `WorkGrid` switches to three columns at `sm` (640px). With V2 that
 makes the cards only ~180–300px wide on tablets; `lg:grid-cols-3`
 (with a wider layout below) may be wanted.
@@ -602,10 +614,12 @@ page — see its entry for what can be deleted.
 - `ProjectWidgetV2`'s touch swipe, dots and the hover controls were
 built and build-checked but not verified on a real device by the agent
 that wrote them; check them on a phone and with a mouse.
-- The coming-soon state (`comingSoon`, `LockIcon`) was written without a
-local build or a visual check — run `npm run build` and look at the
-chip in both themes. No coming-soon project exists in `content/` yet;
-add a metadata-only `.txt` to see it.
+- The coming-soon state (`comingSoon`, `LockIcon`, the `allProjects` /
+`projects` split) was written without a local build or a visual check —
+run `npm run build` and look at the `tdc` card (Branding tab) in both
+themes. Its screens and logo (`/case-studies/tdc/screen-1.gif`,
+`screen-2.webp`, `logo.webp`) need to exist under `public/`, or the
+parser warns and the images 404.
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
