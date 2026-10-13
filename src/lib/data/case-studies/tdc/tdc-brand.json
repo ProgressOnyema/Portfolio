@@ -1,0 +1,13 @@
+{
+  "slug": "tdc-brand",
+  "projectId": "tdc",
+  "name": "tdc",
+  "oneLiner": "Cheapest farm produce to your plate",
+  "category": "Branding",
+  "screens": [
+    "/case-studies/tdc/screen-1.gif",
+    "/case-studies/tdc/screen-2.webp"
+  ],
+  "logo": "/case-studies/tdc/logo.webp",
+  "blocks": []
+}
