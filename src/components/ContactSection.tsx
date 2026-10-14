@@ -1,6 +1,7 @@
 import { ButtonSocial } from "./Button";
 import AppLink from "./Link";
 import Grid from "./Grid";
+import CopyEmailButton from "./CopyEmailButton";
 import { LinkedInIcon, BehanceIcon, GitHubIcon } from "./Icons";
 import { EMAIL } from "@/lib/site";
 
@@ -20,9 +21,12 @@ export default function ContactSection() {
             <p className="font-mono text-[14px] leading-[1.5] text-text-body sm:text-[16px]">
               Write to me:
             </p>
-            <AppLink variant="email" href={EMAIL}>
-              {EMAIL}
-            </AppLink>
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <AppLink variant="email" href={EMAIL}>
+                {EMAIL}
+              </AppLink>
+              <CopyEmailButton />
+            </div>
           </div>
         </div>
 

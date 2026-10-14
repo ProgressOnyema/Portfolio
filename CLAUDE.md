@@ -120,7 +120,11 @@ top of hydration). `useSyncExternalStore` is the correct tool for
 external mutable state like a DOM attribute and also keeps multiple
 toggle instances (desktop nav + mobile dropdown) in sync for free.
 Styled as a plain nav item (muted text, hover to primary) — explicitly
-*not* a bordered button, per direct instruction.
+*not* a bordered button, per direct instruction. The icon shows the
+theme you'd switch **to**: `MoonIcon` while light, `SunIcon` while dark
+(pixel-art Noun Project glyphs from `NounProjectIcons.tsx` — see the
+component library below), at `size-6` on mobile and `size-5` from `sm`
+up.
 
 ## Layout system — `src/components/Grid.tsx`
 
@@ -142,7 +146,8 @@ specific section.
 ## Site constants, metadata & SEO
 
 - `src/lib/site.ts` — `SITE_NAME`, `EMAIL` and `SITE_URL`. The email
-address lives here only (Navbar and ContactSection import it). `SITE_URL`
+address lives here only (Navbar, ContactSection and CopyEmailButton
+import it). `SITE_URL`
 reads `NEXT_PUBLIC_SITE_URL`, falls back to Vercel's production domain
 (`VERCEL_PROJECT_PRODUCTION_URL`), then `http://localhost:3000`.
 - `src/app/layout.tsx` sets `metadataBase`, default title/description,
@@ -314,9 +319,26 @@ column.
 decorative, `aria-hidden`). Lives in its own file rather than
 `Icons.tsx`; fine to move into `Icons.tsx` to match the "every icon
 lives there" convention.
-- **`Icons.tsx`** — every icon (LinkedIn, Behance, arrow/chevron,
-document/PDF, hamburger, close/X, dark/light mode) is inlined as a React
+- **`NounProjectIcons.tsx`** — `SunIcon`, `MoonIcon` and `CopyIcon`,
+inlined from the Noun Project SVGs the owner added to `public/icons/`
+(`sun.svg`, `moon.svg`, `copy_icon.svg`), recoloured with `currentColor`
+and `aria-hidden`, in a square `0 0 100 100` viewBox. The source files
+are exported sprite sheets: `sun.svg`/`moon.svg` carry about a dozen
+`display:none` layers beside the one visible glyph, and every file has a
+baked-in credit `<text>` below the artwork (hence its `0 0 100 125`
+viewBox) — only the visible glyph was kept, and the original files in
+`public/icons/` are untouched. Sun and moon are pixel art on a 6px grid
+(`shapeRendering="crispEdges"`), so they look cleanest at sizes near
+16px multiples. **Attribution:** sun/moon are by Ilaria Bernareggi and
+the copy icon by Skye Selbiger, "from the Noun Project"; the credit is
+kept in a comment in the file, but removing it from the SVGs doesn't
+remove the licence requirement (see Known gaps).
+- **`Icons.tsx`** — every Figma-sourced icon (LinkedIn, Behance, GitHub,
+arrow/chevron, document/PDF, hamburger, close/X, and the v1 folder
+artwork) is inlined as a React
 component with `fill="currentColor"`, not referenced via `<img src>`.
+The old Figma `DarkModeIcon` / `LightModeIcon` were deleted when the
+theme toggle moved to the Noun Project sun/moon.
 This is deliberate: an externally-loaded SVG can't inherit `currentColor`
 from the page, which breaks theme/hover adaptation. The original Figma
 assets were hardcoded to specific hex colors (that happened to match
@@ -332,7 +354,18 @@ footer — since it renders at the bottom of every page — and carries a
 `©'YY Onyema Miracle.` line beneath the main contact content
 (`.text-body-sm-base`). The email address comes from `EMAIL` in
 `src/lib/site.ts`. There's no separate `Footer.tsx`; this is deliberate
-rather than a gap.
+rather than a gap. It stays a server component; the interactive copy
+button beside the email is its own client component (next entry).
+- **`CopyEmailButton.tsx`** — client component rendered beside the
+`mailto:` link in `ContactSection`. Clicking the `CopyIcon` button
+copies `EMAIL` (from `src/lib/site.ts`) to the clipboard with
+`navigator.clipboard.writeText`, falling back to a hidden-textarea
+`document.execCommand("copy")` where the Clipboard API is missing or
+rejects (it needs a secure context). A short "Copied" label ("Couldn't
+copy" on failure) shows for 2 seconds in a `role="status"` polite live
+region so screen readers hear it; the button's `aria-label` is "Copy
+email address". Uses `!transition-colors` for the usual global-rule
+reason. Added per direct instruction.
 - **`WorkGrid.tsx`** — client component owning the Subnav tab state and
 the filtered project grid together, since they need to share state
 across what would otherwise be two separate page sections. Was the
@@ -346,9 +379,9 @@ link goes to `/#work`. It renders `ProjectWidgetV2` cards in a
 coming-soon projects are in this grid too (locked, unlinked). The grid
 lists every case study (not one card per project), filtered by the
 active category tab, so a coming-soon project only appears under its own
-category's tab (tdc is Branding, so it's under the Branding tab, not the
-default Product Design one). Passing `projects` here was a real bug: it
-silently hid every coming-soon project.
+category's tab (tdc and tapr are Branding, so they're under the
+Branding tab, not the default Product Design one). Passing `projects`
+here was a real bug: it silently hid every coming-soon project.
 
 ## Pages
 
@@ -557,12 +590,13 @@ computed over `allProjects`) include the coming-soon category too.
 Remember a metadata-only `.txt` still needs `npm run parse-content` and
 the generated JSON committed, like any other.
 
-Four case studies exist. Three are written: `buy-and-bite` (slug
+Five case studies exist. Three are written: `buy-and-bite` (slug
 `buy-and-bite-uxui`; its content file is named `buy-and-bite-uiux.txt`,
 so file name and slug differ by a transposition), `talkam`
 (`talkam-uxui`) and `wey` (`wey-uxui`) — use any of them as a template.
-The fourth, `tdc` (slug `tdc-brand`, category Branding), is metadata-only,
-so it's the site's coming-soon project.
+The other two, `tdc` (slug `tdc-brand`) and `tapr` (slug `tapr-brand`),
+are both category Branding and metadata-only, so they're the site's
+coming-soon projects.
 
 The parser warns (doesn't fail the build) about any referenced image path
 that doesn't exist yet under `public/`.
@@ -592,6 +626,11 @@ instruction or for consistency; don't "fix" them without asking.
 - The coming-soon state (padlock chip before the tags, no link) has no
 Figma frame — it was specified directly by the project owner. Don't
 remove the lock or re-add the link without checking.
+- The theme toggle's sun/moon and the copy-email button's icon are
+Noun Project pixel-art / line icons the owner supplied, not the Figma
+icons (the Figma `DarkModeIcon`/`LightModeIcon` were removed), and the
+copy-email button has no Figma frame. Per direct instruction; don't
+swap them back.
 - `folder_image1.png`/`folder_image2.png` (the placeholder paint-texture
 illustration) are generic assets, not exported from Figma per se —
 the real illustrated artwork couldn't be downloaded from Figma's
@@ -616,10 +655,19 @@ built and build-checked but not verified on a real device by the agent
 that wrote them; check them on a phone and with a mouse.
 - The coming-soon state (`comingSoon`, `LockIcon`, the `allProjects` /
 `projects` split) was written without a local build or a visual check —
-run `npm run build` and look at the `tdc` card (Branding tab) in both
-themes. Its screens and logo (`/case-studies/tdc/screen-1.gif`,
+run `npm run build` and look at the `tdc` and `tapr` cards (Branding
+tab) in both themes. Their screens and logos
+(`/case-studies/tdc/…` and `/case-studies/tapr/…`: `screen-1.gif`,
 `screen-2.webp`, `logo.webp`) need to exist under `public/`, or the
 parser warns and the images 404.
+- The Noun Project icons (`NounProjectIcons.tsx`) and `CopyEmailButton`
+were written without a local build or a visual check: look at the
+pixel sun/moon at both toggle sizes in both themes, and click the copy
+button over https and on a phone. **Credit:** if these icons are on the
+free Noun Project (CC BY) licence, the credit (Ilaria Bernareggi for
+sun/moon, Skye Selbiger for copy) must be shown somewhere visible on the
+site; it currently exists only as a code comment. Nothing on the site
+shows it yet.
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.

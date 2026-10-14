@@ -1,7 +1,7 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { DarkModeIcon, LightModeIcon } from "./Icons";
+import { MoonIcon, SunIcon } from "./NounProjectIcons";
 import { getServerThemeSnapshot, getThemeSnapshot, setTheme, subscribeToTheme } from "@/lib/theme";
 
 export default function ThemeToggle() {
@@ -14,10 +14,14 @@ export default function ThemeToggle() {
       aria-label="Toggle color theme"
       className="flex items-center justify-center text-text-muted transition-colors hover:text-text-primary"
     >
+      {/* Shows the theme you'd switch TO: moon while light, sun while dark
+          (same as the icons it replaced). The pixel-art glyphs sit on a 6px
+          grid in a 100px box, so 24px / 20px keep the squares near whole
+          pixels. */}
       {theme === "light" ? (
-        <DarkModeIcon className="h-6 w-6 sm:h-4 w-4" />
+        <MoonIcon className="size-6 sm:size-5" />
       ) : (
-        <LightModeIcon className="h-8 w-auto sm:h-4 w-auto" />
+        <SunIcon className="size-6 sm:size-5" />
       )}
     </button>
   );
