@@ -15,6 +15,9 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title,
   description,
+  // The Open Graph image comes from src/app/opengraph-image.tsx, which
+  // serves public/open_graph_img.webp (a file-based image always wins over
+  // `openGraph.images`). Twitter/X gets the same file explicitly.
   openGraph: {
     type: "website",
     siteName: SITE_NAME,
@@ -26,6 +29,14 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
+    images: [
+      {
+        url: "/open_graph_img.webp",
+        width: 2528,
+        height: 1174,
+        alt: title,
+      },
+    ],
   },
 };
 

@@ -1,43 +1,25 @@
-import { ImageResponse } from "next/og";
+import { readFile } from "node:fs/promises";
+import path from "node:path";
 
 // Default Open Graph image for the site (used for link previews on
-// LinkedIn, WhatsApp, X, etc.). Generated at build time, text-only, so
-// there is no binary asset to maintain. Replace with a designed image by
-// dropping an opengraph-image.png in this folder instead.
+// LinkedIn, WhatsApp, X, etc.): the designed image in
+// public/open_graph_img.webp, served as-is. This used to be a generated,
+// text-only card (next/og).
+//
+// Why this file still exists instead of a plain <meta> in layout.tsx: in
+// the App Router an opengraph-image file always overrides
+// `openGraph.images` from metadata, so a leftover generated one would
+// hide the real image. Serving the file from here keeps one source of
+// truth. To replace the image, overwrite public/open_graph_img.webp and
+// update `size` below to its new dimensions. If you move to a .png/.jpg,
+// delete this file and drop it in as src/app/opengraph-image.png instead.
 export const alt = "Onyema Miracle — Brand + Product Designer";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+export const size = { width: 2528, height: 1174 };
+export const contentType = "image/webp";
 
-export default function Image() {
-  return new ImageResponse(
-    (
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          width: "100%",
-          height: "100%",
-          background: "#0b0b0b",
-          color: "#f5f5f5",
-          padding: 80,
-          fontFamily: "sans-serif",
-        }}
-      >
-        <div style={{ display: "flex", fontSize: 28, letterSpacing: 4, color: "#9a9a9a" }}>
-          PORTFOLIO
-        </div>
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 96, fontWeight: 700 }}>Onyema Miracle</div>
-          <div style={{ display: "flex", fontSize: 44, color: "#bdbdbd", marginTop: 16 }}>
-            Brand + Product Designer
-          </div>
-        </div>
-        <div style={{ display: "flex", fontSize: 28, color: "#9a9a9a" }}>
-          Strategy · Branding · UX/UI · Interaction · Full Stack
-        </div>
-      </div>
-    ),
-    { ...size }
-  );
+export default async function Image() {
+  const file = await readFile(path.join(process.cwd(), "public", "open_graph_img.webp"));
+  return new Response(new Uint8Array(file), {
+    headers: { "Content-Type": contentType },
+  });
 }
