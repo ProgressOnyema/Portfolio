@@ -9,7 +9,7 @@ import "./globals.css";
 
 const title = "Onyema Miracle — Brand + Product Designer";
 const description =
-  "I conceptualize, ideate, and design brand identities from the ground up, then bring that same attention to detail into product design and code.";
+  "I build products from the ground up, taking ideas from initial research through design to shipping 🚀 — strategy, branding, UX/UI, interaction, and full stack development.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
