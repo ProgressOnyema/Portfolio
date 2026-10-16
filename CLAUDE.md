@@ -151,12 +151,36 @@ import it). `SITE_URL`
 reads `NEXT_PUBLIC_SITE_URL`, falls back to Vercel's production domain
 (`VERCEL_PROJECT_PRODUCTION_URL`), then `http://localhost:3000`.
 - `src/app/layout.tsx` sets `metadataBase`, default title/description,
-and the `openGraph` / `twitter` defaults.
-- `src/app/opengraph-image.tsx` (site default) and
-`src/app/work/[slug]/opengraph-image.tsx` (per case study) generate the
-link-preview image at build time with `next/og` — text-only, so there is
-no binary asset to maintain. Dropping an `opengraph-image.png` next to
-either file would replace the generated one.
+and the `openGraph` / `twitter` defaults. It points `twitter.images` at
+`/open_graph_img.webp` explicitly; the Open Graph image itself comes
+from `opengraph-image.tsx` (next bullet), not from `openGraph.images`.
+- **Open Graph images** (link previews on LinkedIn, WhatsApp, X, etc.).
+In the App Router an `opengraph-image` *file* always overrides
+`openGraph.images` from metadata, which is why both images below are
+served by `opengraph-image.tsx` files rather than set in `layout.tsx`.
+  - **Site default** — `src/app/opengraph-image.tsx` serves the designed
+  image `public/open_graph_img.webp` (2528×1174, ≈2.15:1) as-is, with
+  `size` set to those dimensions and `contentType` `image/webp`. It
+  replaced a generated text-only `next/og` card. To change the image,
+  overwrite the .webp and update `size`. If it moves to a .png/.jpg,
+  delete the .tsx and add `src/app/opengraph-image.png` instead. The
+  subject is centred, so the 1.91:1 crop Facebook/LinkedIn apply is safe.
+  - **Per case study** — `src/app/work/[slug]/opengraph-image.tsx` serves
+  the case study's **cover image**: the first top-level `coverImage`
+  block (the `[COVER-IMAGE]` tag; always the first block in the real
+  content), read from `public/` and returned as-is with its own
+  `Content-Type` header. Only local paths ending .webp/.png/.jpg/.jpeg/
+  .gif that resolve inside `public/` are served. With no cover, a remote
+  URL or an unreadable file it falls back to the old generated text card
+  (category, name, one-liner on a dark background), so every case study
+  gets a preview. Its exported `contentType` stays `image/png` (the
+  fallback card's type), so for a webp cover the `og:image:type` meta tag
+  disagrees with the real type; scrapers go by the header. It only runs
+  for `projects` (published) — coming-soon projects have no page and no
+  preview.
+  - **WebP caveat:** the covers and the site image are all WebP, which
+  some link scrapers (LinkedIn in particular) may ignore. If previews
+  are missing there, export PNG/JPG versions.
 - `src/app/sitemap.ts` and `src/app/robots.ts` — the sitemap lists Home,
 About and every case study from `projects`.
 - `src/app/not-found.tsx` — custom 404 (a short message, a Back-home
@@ -501,7 +525,9 @@ so the image touches both screen edges below `sm`. Rounded corners are
 `sm:rounded-md` only, for the same reason — rounding a full-bleed edge
 would look wrong. `coverImage` is always a top-level block in the real
 content (never nested inside a `grid` block's columns), so this doesn't
-fight with any column layout.
+fight with any column layout. It is also the case study's Open Graph
+image (see "Open Graph images" above), which is why the preview code
+only looks at top-level blocks.
 
 **`imageGrid`** (`ImageGrid.tsx`) — the classic static layout: a real
 CSS grid, `grid-cols-1` on mobile regardless of `columns`, then the
@@ -631,6 +657,10 @@ Noun Project pixel-art / line icons the owner supplied, not the Figma
 icons (the Figma `DarkModeIcon`/`LightModeIcon` were removed), and the
 copy-email button has no Figma frame. Per direct instruction; don't
 swap them back.
+- Link previews use the owner's own images — `public/open_graph_img.webp`
+for the site, each case study's cover for its page — not generated text
+cards (those remain only as the case-study fallback). Per direct
+instruction; don't go back to generated cards.
 - `folder_image1.png`/`folder_image2.png` (the placeholder paint-texture
 illustration) are generic assets, not exported from Figma per se —
 the real illustrated artwork couldn't be downloaded from Figma's
@@ -668,6 +698,14 @@ free Noun Project (CC BY) licence, the credit (Ilaria Bernareggi for
 sun/moon, Skye Selbiger for copy) must be shown somewhere visible on the
 site; it currently exists only as a code comment. Nothing on the site
 shows it yet.
+- The two `opengraph-image.tsx` files that serve images directly
+(site default and per case study) were written without a local build or
+a deploy check, and rely on a plain `Response` being accepted from a
+metadata image route. After deploying, open `/opengraph-image` and
+`/work/<slug>/opengraph-image`, view-source for the `og:image` /
+`twitter:image` tags, and run a link through the LinkedIn / Facebook /
+X preview tools. If the WebP images don't show on some network, switch
+to PNG/JPG (see Open Graph images above).
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
