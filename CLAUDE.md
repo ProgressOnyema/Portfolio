@@ -152,25 +152,28 @@ reads `NEXT_PUBLIC_SITE_URL`, falls back to Vercel's production domain
 (`VERCEL_PROJECT_PRODUCTION_URL`), then `http://localhost:3000`. The
 Open Graph / Twitter image URLs are made absolute from it, so if neither
 env var is set on the host every preview image points at
-`localhost:3000`.
+`localhost:3000`. (On the live deployment the emitted `og:image` URLs
+are `https://miracleonyema.vercel.app/…`, so one of the first two is
+resolving correctly.)
 - `src/app/layout.tsx` sets `metadataBase`, default title/description,
 and the `openGraph` / `twitter` defaults. It points `twitter.images` at
-`/open_graph_img.webp` explicitly; the Open Graph image itself comes
+`/open_graph_img.jpg` explicitly; the Open Graph image itself comes
 from `opengraph-image.tsx` (next bullet), not from `openGraph.images`.
 - **Open Graph images** (link previews on LinkedIn, WhatsApp, X, etc.).
 In the App Router an `opengraph-image` *file* always overrides
 `openGraph.images` from metadata, which is why both images below are
 served by `opengraph-image.tsx` files rather than set in `layout.tsx`.
   - **Site default** — `src/app/opengraph-image.tsx` serves the designed
-  image `public/open_graph_img.webp` (2528×1174, ≈2.15:1) as-is, with
-  `size` set to those dimensions and `contentType` `image/webp`. It
-  replaced a generated text-only `next/og` card. To change the image,
-  overwrite the .webp and update `size`. If it moves to a .png/.jpg,
-  delete the .tsx and add `src/app/opengraph-image.png` instead. The
-  subject is centred, so the 1.91:1 crop Facebook/LinkedIn apply is safe.
-  `public/` also holds `open_graph_img.png` and `open_graph_img.jpg`
-  (added by the owner), but **nothing references them yet** — the route
-  and `twitter.images` still use the .webp.
+  image `public/open_graph_img.jpg` (2528×1174, ≈2.15:1) as-is, with
+  `size` set to those dimensions and `contentType` `image/jpeg`. It is
+  the **JPEG on purpose**: LinkedIn doesn't support WebP (it was first
+  built on the .webp, which is why LinkedIn showed no usable image).
+  `public/` also holds `open_graph_img.png` and `open_graph_img.webp`
+  of the same artwork, unreferenced. It replaced a generated text-only
+  `next/og` card. To change the image, overwrite the .jpg and update
+  `size`. To use the file convention directly instead, delete the .tsx
+  and add `src/app/opengraph-image.jpg`/`.png`. The subject is centred,
+  so the 1.91:1 crop Facebook/LinkedIn apply is safe.
   - **Per case study** — `src/app/work/[slug]/opengraph-image.tsx` serves
   the case study's **cover image**: the first top-level `coverImage`
   block (the `[COVER-IMAGE]` tag; always the first block in the real
@@ -191,11 +194,16 @@ served by `opengraph-image.tsx` files rather than set in `layout.tsx`.
   at build), and an image library such as `sharp` isn't a direct
   dependency. It only runs for `projects` (published) — coming-soon
   projects have no page and no preview.
-  - **WebP caveat:** the site image and the case-study covers are WebP,
-  which some link scrapers (LinkedIn in particular) may ignore. For case
-  studies, add `cover.jpg`/`cover.png` beside each `cover.webp` (none
-  exist yet). For the site image, point the route and `twitter.images`
-  at the existing PNG/JPG.
+  - **WebP caveat:** the case-study covers are WebP, which LinkedIn (and
+  some other scrapers) don't read. Add `cover.jpg`/`cover.png` beside
+  each `cover.webp` (none exist yet) — until then case-study links
+  serve the WebP and may show no image on LinkedIn.
+  - **Link-preview caches:** LinkedIn (and Facebook/X) keep their own
+  copy of a URL's preview for days, so after changing an image or
+  deploying a fix, re-scrape each URL (LinkedIn Post Inspector, Facebook
+  Sharing Debugger) — an old text-card preview showing after a fix is
+  usually the cache, not the site. Check what the site really serves
+  first (the `og:image` tag and the image URL it names).
 - `src/app/sitemap.ts` and `src/app/robots.ts` — the sitemap lists Home,
 About and every case study from `projects`.
 - `src/app/not-found.tsx` — custom 404 (a short message, a Back-home
@@ -675,7 +683,7 @@ Noun Project pixel-art / line icons the owner supplied, not the Figma
 icons (the Figma `DarkModeIcon`/`LightModeIcon` were removed), and the
 copy-email button has no Figma frame. Per direct instruction; don't
 swap them back.
-- Link previews use the owner's own images — `public/open_graph_img.webp`
+- Link previews use the owner's own images — `public/open_graph_img.jpg`
 for the site, each case study's cover for its page — not generated text
 cards (those remain only as the case-study fallback). Per direct
 instruction; don't go back to generated cards.
@@ -688,10 +696,11 @@ folder illustration textures were not.
 
 ## Known gaps / not-yet-done
 
-- Deployment: the target host is Vercel. Set `NEXT_PUBLIC_SITE_URL` there
-(see README) and record the live URL here once it exists. The site is
-not live yet, so this is still open. Until it's set, the absolute
-`og:image` / `twitter:image` URLs point at `localhost:3000`.
+- Deployment: the site is live on Vercel (project `portfolio`, linked to
+this repo's `main`; production domain `miracleonyema.vercel.app`, no
+custom domain seen). Confirm `NEXT_PUBLIC_SITE_URL` is set there (see
+README) so absolute URLs use the final domain, and update it if a custom
+domain is added.
 - None of the three written case studies has `[SCREEN-n]` tags or screen
 images yet, so their cards currently show four empty phone frames.
 - `WorkGrid` switches to three columns at `sm` (640px). With V2 that
@@ -717,13 +726,13 @@ Selbiger for copy) must be shown somewhere visible on the site; it
 currently exists only as a code comment. Nothing on the site shows it
 yet.
 - Open Graph images: both `opengraph-image.tsx` files build and serve
-correctly when run locally (`next build` + `next start`, requesting the
-routes), but the previews themselves haven't been checked through the
-LinkedIn / Facebook / X preview tools, which needs a deployed URL. If a
-WebP image doesn't show on some network, switch to PNG/JPG (see Open
-Graph images above). None of the case-study `cover.jpg`/`.png`
-siblings exist yet, and the site image still points at the .webp even
-though `open_graph_img.png` / `.jpg` are in `public/`.
+correctly (checked locally with `next build` + `next start`, and the
+live route returns the real image), but no preview has been confirmed
+through the LinkedIn / Facebook / X tools yet. The site image is a JPEG;
+the case-study covers are still WebP because no `cover.jpg`/`.png`
+siblings exist, so LinkedIn may show no image for case-study links until
+they're added. After deploying either change, re-scrape each URL (see
+the link-preview cache note under Open Graph images).
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
@@ -745,7 +754,10 @@ current behavior is a bug.
 **Run `npm run build` before merging anything.** A type error that only
 shows up in `next build` (not in the editor) once left `main`
 unbuildable because a PR was merged unbuilt — see the case-study OG
-route. Cloning the repo and building it takes about a minute.
+route. Cloning the repo and building it takes about a minute. Vercel
+builds every push to `main`, and a failed build leaves the previous
+deployment live, so a broken `main` can look fine on the site while
+nothing new ships.
 
 ## Environment quirks worth knowing
 
