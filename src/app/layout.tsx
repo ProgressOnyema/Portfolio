@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   title,
   description,
   // The Open Graph image comes from src/app/opengraph-image.tsx, which
-  // serves public/open_graph_img.webp (a file-based image always wins over
+  // serves public/open_graph_img.jpg (a file-based image always wins over
   // `openGraph.images`). Twitter/X gets the same file explicitly.
   openGraph: {
     type: "website",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/open_graph_img.webp",
+        url: "/open_graph_img.jpg",
         width: 2528,
         height: 1174,
         alt: title,
