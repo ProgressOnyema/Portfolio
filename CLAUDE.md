@@ -149,7 +149,10 @@ specific section.
 address lives here only (Navbar, ContactSection and CopyEmailButton
 import it). `SITE_URL`
 reads `NEXT_PUBLIC_SITE_URL`, falls back to Vercel's production domain
-(`VERCEL_PROJECT_PRODUCTION_URL`), then `http://localhost:3000`.
+(`VERCEL_PROJECT_PRODUCTION_URL`), then `http://localhost:3000`. The
+Open Graph / Twitter image URLs are made absolute from it, so if neither
+env var is set on the host every preview image points at
+`localhost:3000`.
 - `src/app/layout.tsx` sets `metadataBase`, default title/description,
 and the `openGraph` / `twitter` defaults. It points `twitter.images` at
 `/open_graph_img.webp` explicitly; the Open Graph image itself comes
@@ -165,22 +168,34 @@ served by `opengraph-image.tsx` files rather than set in `layout.tsx`.
   overwrite the .webp and update `size`. If it moves to a .png/.jpg,
   delete the .tsx and add `src/app/opengraph-image.png` instead. The
   subject is centred, so the 1.91:1 crop Facebook/LinkedIn apply is safe.
+  `public/` also holds `open_graph_img.png` and `open_graph_img.jpg`
+  (added by the owner), but **nothing references them yet** — the route
+  and `twitter.images` still use the .webp.
   - **Per case study** — `src/app/work/[slug]/opengraph-image.tsx` serves
   the case study's **cover image**: the first top-level `coverImage`
   block (the `[COVER-IMAGE]` tag; always the first block in the real
   content), read from `public/` and returned as-is with its own
-  `Content-Type` header. Only local paths ending .webp/.png/.jpg/.jpeg/
+  `Content-Type` header. If the cover is `cover.webp` it first looks for
+  a `cover.jpg` / `.jpeg` / `.png` in the same folder and serves that
+  instead (scrapers often ignore WebP) — drop one beside the .webp, no
+  content change needed. Only local paths ending .webp/.png/.jpg/.jpeg/
   .gif that resolve inside `public/` are served. With no cover, a remote
   URL or an unreadable file it falls back to the old generated text card
-  (category, name, one-liner on a dark background), so every case study
-  gets a preview. Its exported `contentType` stays `image/png` (the
-  fallback card's type), so for a webp cover the `og:image:type` meta tag
-  disagrees with the real type; scrapers go by the header. It only runs
-  for `projects` (published) — coming-soon projects have no page and no
-  preview.
-  - **WebP caveat:** the covers and the site image are all WebP, which
-  some link scrapers (LinkedIn in particular) may ignore. If previews
-  are missing there, export PNG/JPG versions.
+  (category, name, one-liner on a dark 1200×630 background), so every
+  case study gets a preview. It deliberately does **not** export `size`
+  or `contentType`: those are static, so they would put a wrong
+  width/height/type in the tags for covers of another size or format.
+  Next still emits `og:image:type` as `image/png`, which scrapers ignore
+  in favour of the real Content-Type header. It can't convert a WebP
+  cover to PNG on the fly: next/og (Satori) can't decode WebP (it throws
+  at build), and an image library such as `sharp` isn't a direct
+  dependency. It only runs for `projects` (published) — coming-soon
+  projects have no page and no preview.
+  - **WebP caveat:** the site image and the case-study covers are WebP,
+  which some link scrapers (LinkedIn in particular) may ignore. For case
+  studies, add `cover.jpg`/`cover.png` beside each `cover.webp` (none
+  exist yet). For the site image, point the route and `twitter.images`
+  at the existing PNG/JPG.
 - `src/app/sitemap.ts` and `src/app/robots.ts` — the sitemap lists Home,
 About and every case study from `projects`.
 - `src/app/not-found.tsx` — custom 404 (a short message, a Back-home
@@ -570,7 +585,10 @@ authored as tagged plain-text files and parsed into JSON:
   shares a `PROJECT-ID`.
 2. Put real images in `public/case-studies/<project-id>/<slug>/` (or
   alongside, for project-level thumbnails). Use `.webp`, at most ~2400px
-  wide — oversized images were a real load-time problem before.
+  wide — oversized images were a real load-time problem before. (The
+  cover is the exception worth a second file: add a `cover.jpg`/`.png`
+  beside `cover.webp` so link previews work on scrapers that ignore
+  WebP — see "Open Graph images".)
 3. `scripts/parse-case-study.mjs` (a hand-written recursive-descent
   parser, no dependencies) turns the `.txt` into
    `src/lib/data/case-studies/<project-id>/<slug>.json`.
@@ -672,7 +690,8 @@ folder illustration textures were not.
 
 - Deployment: the target host is Vercel. Set `NEXT_PUBLIC_SITE_URL` there
 (see README) and record the live URL here once it exists. The site is
-not live yet, so this is still open.
+not live yet, so this is still open. Until it's set, the absolute
+`og:image` / `twitter:image` URLs point at `localhost:3000`.
 - None of the three written case studies has `[SCREEN-n]` tags or screen
 images yet, so their cards currently show four empty phone frames.
 - `WorkGrid` switches to three columns at `sm` (640px). With V2 that
@@ -684,28 +703,27 @@ page — see its entry for what can be deleted.
 built and build-checked but not verified on a real device by the agent
 that wrote them; check them on a phone and with a mouse.
 - The coming-soon state (`comingSoon`, `LockIcon`, the `allProjects` /
-`projects` split) was written without a local build or a visual check —
-run `npm run build` and look at the `tdc` and `tapr` cards (Branding
-tab) in both themes. Their screens and logos
-(`/case-studies/tdc/…` and `/case-studies/tapr/…`: `screen-1.gif`,
-`screen-2.webp`, `logo.webp`) need to exist under `public/`, or the
-parser warns and the images 404.
+`projects` split) was written without a visual check — look at the
+`tdc` and `tapr` cards (Branding tab) in both themes. Their screens and
+logos (`/case-studies/tdc/…` and `/case-studies/tapr/…`:
+`screen-1.gif`, `screen-2.webp`, `logo.webp`) need to exist under
+`public/`, or the parser warns and the images 404.
 - The Noun Project icons (`NounProjectIcons.tsx`) and `CopyEmailButton`
-were written without a local build or a visual check: look at the
-pixel sun/moon at both toggle sizes in both themes, and click the copy
-button over https and on a phone. **Credit:** if these icons are on the
-free Noun Project (CC BY) licence, the credit (Ilaria Bernareggi for
-sun/moon, Skye Selbiger for copy) must be shown somewhere visible on the
-site; it currently exists only as a code comment. Nothing on the site
-shows it yet.
-- The two `opengraph-image.tsx` files that serve images directly
-(site default and per case study) were written without a local build or
-a deploy check, and rely on a plain `Response` being accepted from a
-metadata image route. After deploying, open `/opengraph-image` and
-`/work/<slug>/opengraph-image`, view-source for the `og:image` /
-`twitter:image` tags, and run a link through the LinkedIn / Facebook /
-X preview tools. If the WebP images don't show on some network, switch
-to PNG/JPG (see Open Graph images above).
+were written without a visual check: look at the pixel sun/moon at both
+toggle sizes in both themes, and click the copy button over https and
+on a phone. **Credit:** if these icons are on the free Noun Project
+(CC BY) licence, the credit (Ilaria Bernareggi for sun/moon, Skye
+Selbiger for copy) must be shown somewhere visible on the site; it
+currently exists only as a code comment. Nothing on the site shows it
+yet.
+- Open Graph images: both `opengraph-image.tsx` files build and serve
+correctly when run locally (`next build` + `next start`, requesting the
+routes), but the previews themselves haven't been checked through the
+LinkedIn / Facebook / X preview tools, which needs a deployed URL. If a
+WebP image doesn't show on some network, switch to PNG/JPG (see Open
+Graph images above). None of the case-study `cover.jpg`/`.png`
+siblings exist yet, and the site image still points at the .webp even
+though `open_graph_img.png` / `.jpg` are in `public/`.
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
@@ -724,6 +742,11 @@ repo's history are written to explain *why*, especially for anything in
 the "deviations" list above — read recent `git log` before assuming
 current behavior is a bug.
 
+**Run `npm run build` before merging anything.** A type error that only
+shows up in `next build` (not in the editor) once left `main`
+unbuildable because a PR was merged unbuilt — see the case-study OG
+route. Cloning the repo and building it takes about a minute.
+
 ## Environment quirks worth knowing
 
 - Figma MCP tools sometimes need a literal fresh fetch — cached
@@ -733,3 +756,10 @@ recent Figma edits by a short window.
 page node IDs can fail with "nothing selected" — this means the tool
 wants a live Figma desktop app selection; retry with a specific child
 frame's node ID instead of the canvas root.
+- `next/og` (`ImageResponse`, Satori) can't decode **WebP** images —
+embedding one as an `<img>` throws `TypeError: ... is not iterable` at
+build. Use PNG/JPG, or serve the file directly with a plain `Response`
+(what the OG routes do).
+- With TypeScript 5.7+ typed arrays, a `Uint8Array` from `readFile` must
+be typed `Uint8Array<ArrayBuffer>` (not the default `ArrayBufferLike`) to
+be accepted as a `Response` body.
