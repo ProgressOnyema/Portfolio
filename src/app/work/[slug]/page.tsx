@@ -80,14 +80,19 @@ export default async function ProjectDetail({
               mobile rather than Body Large/Base (20px), per the
               ProjectDetail - Mobile frame. */}
           {project.oneLiner && (
-            <h1 className="text-text-primary text-project-oneliner">
-              {project.name}{" —— "}{project.oneLiner}
-            </h1>
+            <div>
+              <h1 className="text-h3-bold sm:text-h2-bold text-text-primary pb-2">
+              {project.name}
+              </h1>
+              <p className="text-project-oneliner">
+                {project.oneLiner}
+              </p>
+            </div>
           )}
         </div>
       </Grid>
 
-      <Grid className="gap-y-8 pt-8 sm:pt-16">
+      <Grid className="gap-y-8 pt-12 sm:pt-16">
         <div className="col-span-4 sm:col-span-12">
           <Subnav active={project.category} hrefs={siblingHrefs} />
         </div>
