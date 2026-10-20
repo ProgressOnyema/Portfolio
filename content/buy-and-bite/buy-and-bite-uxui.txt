@@ -1,6 +1,6 @@
 [SLUG: buy-and-bite-uxui]
 [PROJECT-ID: buy-and-bite]
-[NAME: Buy and Bite]
+[NAME: Buy and bite]
 [ONE-LINER: Cheapest farm produce to your plate]
 [CATEGORY: Product Design]
 [SCREEN-1: /case-studies/buy-and-bite/screen-1.gif]
