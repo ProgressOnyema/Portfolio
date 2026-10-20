@@ -194,10 +194,12 @@ served by `opengraph-image.tsx` files rather than set in `layout.tsx`.
   at build), and an image library such as `sharp` isn't a direct
   dependency. It only runs for `projects` (published) — coming-soon
   projects have no page and no preview.
-  - **WebP caveat:** the case-study covers are WebP, which LinkedIn (and
-  some other scrapers) don't read. Add `cover.jpg`/`cover.png` beside
-  each `cover.webp` (none exist yet) — until then case-study links
-  serve the WebP and may show no image on LinkedIn.
+  - **Cover formats:** the three written case studies each have a
+  `cover.webp` (what the page shows) and a `cover.png` beside it (added
+  by the owner, no .jpg), so the preview route serves the PNG, which
+  LinkedIn reads. A *new* case study's preview falls back to its WebP
+  until a `cover.png`/`.jpg` is added next to the cover, and LinkedIn
+  (and some other scrapers) may show no image until then.
   - **Link-preview caches:** LinkedIn (and Facebook/X) keep their own
   copy of a URL's preview for days, so after changing an image or
   deploying a fix, re-scrape each URL (LinkedIn Post Inspector, Facebook
@@ -463,24 +465,34 @@ category, and clicking through is the point) and `swipe={false}` (see
 the V2 entry above). V2 cards are taller than v1's were: about 632px at
 the carousel's 405.5px width. **No heading** and
 **genuinely full-bleed**, both per direct instruction: this section
-does not sit inside `<Grid>` (which caps at `max-w-1440` and centers),
-so the row can scroll edge-to-edge instead of being cropped at the
-page's own column width. Left padding matches `Grid`'s *effective* left
-inset, not just its raw `88px` gutter at `lg`: `lg:pl-[max(88px,
-calc((100vw-1440px)/2+88px))]` — the same value `Grid` itself arrives
-at once `mx-auto` starts centering its `max-w-1440` box on screens
-wider than 1440px, so the first card lines up with the rest of the page
-at *any* width, not just below the 1440px cap (a plain `lg:pl-[88px]`
-would drift out of alignment on wide monitors). No right padding, so
-scrolling runs to the actual viewport edge, and the row ends with a
-spacer div using that same `max()`/`calc()` value so the last card gets
-equivalent breathing room on the way out. It also carries
-`.no-scrollbar` (a small utility in `globals.css`) so the row stays
-scrollable — drag, trackpad, touch swipe — without showing the
-browser's own scrollbar chrome. No Figma frame exists for this section
-(see "Project_detail has never had real content designed in Figma"
-above) — it was designed independently, same as the rest of the
-case-study block system.
+(`NextProjectsCarousel.tsx`) does not sit inside `<Grid>` (which caps at
+`max-w-1440` and centers), so the row can scroll edge-to-edge instead of
+being cropped at the page's own column width. **The scroll box spans the
+full viewport width, and the wrapper around it deliberately has no
+horizontal padding.** Grid's left inset is padding *inside* the scroll
+row instead — `pl-5 sm:pl-6 lg:pl-[max(88px,calc((100vw-1440px)/2+88px))]`,
+the same value `Grid` itself arrives at once `mx-auto` starts centering
+its `max-w-1440` box on screens wider than 1440px, so the first card
+lines up with the rest of the page at *any* width (a plain
+`lg:pl-[88px]` would drift out of alignment on wide monitors) — plus
+`scroll-pl-5` for the mobile snap point. Putting that inset on the
+wrapper instead (as it once was) shrank the scroll box, so cards were
+clipped 88px in from the screen edge (20px on mobile) rather than sliding
+off the real edge; don't move it back. **Peek of the next project, per
+direct instruction:** mobile cards are `calc(100vw-92px)` wide (20px
+inset + 24px gap + 48px peek), so a 48px sliver of the next project shows
+beside the main one; from `sm` up the cards are a fixed 405.5px and
+whatever doesn't fit at the right edge is the peek. (A peek was once
+removed, commit `ca26b19`, then restored on request — don't remove it
+again without checking.) No right padding, so scrolling runs to the
+actual viewport edge, and the row ends with a spacer div using the same
+`max()`/`calc()` value so the last card gets equivalent breathing room on
+the way out. It also carries `.no-scrollbar` (a small utility in
+`globals.css`) so the row stays scrollable — drag, trackpad, touch swipe
+— without showing the browser's own scrollbar chrome. No Figma frame
+exists for this section (see "Project_detail has never had real content
+designed in Figma" above) — it was designed independently, same as the
+rest of the case-study block system.
 
 **About's "Fun Facts" paragraph** (`src/app/about/page.tsx`) is built as
 one real `<p>` with inline-block images mixed directly into the text
@@ -594,9 +606,10 @@ authored as tagged plain-text files and parsed into JSON:
 2. Put real images in `public/case-studies/<project-id>/<slug>/` (or
   alongside, for project-level thumbnails). Use `.webp`, at most ~2400px
   wide — oversized images were a real load-time problem before. (The
-  cover is the exception worth a second file: add a `cover.jpg`/`.png`
+  cover is the exception worth a second file: add a `cover.png`/`.jpg`
   beside `cover.webp` so link previews work on scrapers that ignore
-  WebP — see "Open Graph images".)
+  WebP — see "Open Graph images". The three written case studies
+  already have a `cover.png`.)
 3. `scripts/parse-case-study.mjs` (a hand-written recursive-descent
   parser, no dependencies) turns the `.txt` into
    `src/lib/data/case-studies/<project-id>/<slug>.json`.
@@ -687,6 +700,10 @@ swap them back.
 for the site, each case study's cover for its page — not generated text
 cards (those remain only as the case-study fallback). Per direct
 instruction; don't go back to generated cards.
+- The Next Project carousel shows a peek of the next card (48px on
+mobile) and bleeds to the screen edge — see the `/work/[slug]` entry
+above. Per direct instruction; don't revert to the narrower inset scroll
+box or full-width mobile cards.
 - `folder_image1.png`/`folder_image2.png` (the placeholder paint-texture
 illustration) are generic assets, not exported from Figma per se —
 the real illustrated artwork couldn't be downloaded from Figma's
@@ -710,7 +727,10 @@ makes the cards only ~180–300px wide on tablets; `lg:grid-cols-3`
 page — see its entry for what can be deleted.
 - `ProjectWidgetV2`'s touch swipe, dots and the hover controls were
 built and build-checked but not verified on a real device by the agent
-that wrote them; check them on a phone and with a mouse.
+that wrote them; check them on a phone and with a mouse. The same goes
+for touch-scrolling and snapping in the Next Project carousel: its
+layout was measured in headless Chromium (390/768/1024/1440px wide) but
+not tried on a real touch device.
 - The coming-soon state (`comingSoon`, `LockIcon`, the `allProjects` /
 `projects` split) was written without a visual check — look at the
 `tdc` and `tapr` cards (Branding tab) in both themes. Their screens and
@@ -728,11 +748,11 @@ yet.
 - Open Graph images: both `opengraph-image.tsx` files build and serve
 correctly (checked locally with `next build` + `next start`, and the
 live route returns the real image), but no preview has been confirmed
-through the LinkedIn / Facebook / X tools yet. The site image is a JPEG;
-the case-study covers are still WebP because no `cover.jpg`/`.png`
-siblings exist, so LinkedIn may show no image for case-study links until
-they're added. After deploying either change, re-scrape each URL (see
-the link-preview cache note under Open Graph images).
+through the LinkedIn / Facebook / X tools yet. The site image is a JPEG
+and the case-study previews are served from the `cover.png` siblings
+(WebP is only the fallback for a case study that lacks one). After
+deploying either change, re-scrape each URL (see the link-preview cache
+note under Open Graph images).
 - About's Fun Facts text size on mobile (scales H1 down to H2 size) is an
 own-judgment call — no mobile Figma frame exists for that section to
 confirm against.
@@ -775,3 +795,11 @@ build. Use PNG/JPG, or serve the file directly with a plain `Response`
 - With TypeScript 5.7+ typed arrays, a `Uint8Array` from `readFile` must
 be typed `Uint8Array<ArrayBuffer>` (not the default `ArrayBufferLike`) to
 be accepted as a `Response` body.
+- Checking layout without a browser installed: in a scratch folder,
+`npm i puppeteer-core @sparticuz/chromium` gives a working headless
+Chromium straight from the npm registry. Against `next build` + `next
+start` it can measure `getBoundingClientRect()` at several viewport sizes
+and take screenshots — that's how the Next Project carousel's clipping
+and peek were verified. (Don't `pkill -f "<pattern>"` from a shell
+command that itself contains the pattern — it kills your own shell; use
+`kill $(pgrep -f "[p]attern")`.)
