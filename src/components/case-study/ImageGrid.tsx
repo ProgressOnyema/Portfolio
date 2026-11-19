@@ -56,7 +56,6 @@ export default function ImageGrid({ block }: { block: ImageGridBlockData }) {
                     type="image/webp"
                   />
                 )}
-                {/* eslint-disable-next-line @next/next/no-img-element -- see comment above: plain <img> keeps animated GIFs animated */}
                 <img
                   src={image.src}
                   alt={image.alt}

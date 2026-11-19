@@ -1,9 +1,6 @@
 import type { MetadataRoute } from "next";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME } from "@/lib/site";
 import { SURFACE_BG } from "@/lib/theme";
-
-const description =
-  "I conceptualize, ideate, and design brand identities from the ground up, then bring that same attention to detail into product design and code.";
 
 // Dark is the site default (see globals.css / ThemeInitScript). The HTML
 // <meta name="theme-color"> is updated at runtime when the user toggles
@@ -12,7 +9,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: SITE_NAME,
     short_name: SITE_NAME,
-    description,
+    description: SITE_DESCRIPTION,
     start_url: "/",
     display: "standalone",
     background_color: SURFACE_BG.dark,

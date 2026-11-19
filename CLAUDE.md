@@ -145,9 +145,10 @@ specific section.
 
 ## Site constants, metadata & SEO
 
-- `src/lib/site.ts` — `SITE_NAME`, `EMAIL` and `SITE_URL`. The email
-address lives here only (Navbar, ContactSection and CopyEmailButton
-import it). `SITE_URL`
+- `src/lib/site.ts` — `SITE_NAME`, `EMAIL`, `SITE_DESCRIPTION` and
+`SITE_URL`. The email address lives here only (Navbar, ContactSection
+and CopyEmailButton import it). `SITE_DESCRIPTION` is the one site
+description, used by both `layout.tsx` metadata and `manifest.ts`. `SITE_URL`
 reads `NEXT_PUBLIC_SITE_URL`, falls back to Vercel's production domain
 (`VERCEL_PROJECT_PRODUCTION_URL`), then `http://localhost:3000`. The
 Open Graph / Twitter image URLs are made absolute from it, so if neither
@@ -211,7 +212,10 @@ About and every case study from `projects`.
 - `src/app/not-found.tsx` — custom 404 (a short message, a Back-home
 link, then `ContactSection`).
 - `favicon.ico` in `src/app/` is the site icon — confirmed to be the real
-one (not the create-next-app default), good to go for now.
+one (not the create-next-app default), good to go for now. `icon1.png`
+and `apple-icon.png` beside it are picked up by Next's file convention.
+- `src/app/manifest.ts` — web app manifest (dark surface colors, the
+`web-app-manifest-192x192.png`/`512x512.png` icons in `public/`).
 
 ## Component library — `src/components/`
 
@@ -415,6 +419,16 @@ copy" on failure) shows for 2 seconds in a `role="status"` polite live
 region so screen readers hear it; the button's `aria-label` is "Copy
 email address". Uses `!transition-colors` for the usual global-rule
 reason. Added per direct instruction.
+- **`LocationPill.tsx`** — small "Lagos, Nigeria" pill with a green dot,
+rendered in the `Navbar`. Hard-coded on purpose (geolocation would show
+the visitor's own location).
+- **`Cursor.tsx`** — custom cursor, rendered once in `layout.tsx`: a
+white circle with `mix-blend-mode: difference` that trails the mouse and
+grows over clickable elements. Only on `(hover: hover) and (pointer:
+fine)` devices; native cursors are hidden by a matching rule in
+`globals.css`. Its rAF loop stops when the circle settles.
+- **`SmoothScroll.tsx`** — Lenis smooth scrolling, rendered once in
+`layout.tsx`; skipped under `prefers-reduced-motion`.
 - **`WorkGrid.tsx`** — client component owning the Subnav tab state and
 the filtered project grid together, since they need to share state
 across what would otherwise be two separate page sections. Was the
@@ -451,10 +465,10 @@ or Certifications section (removed from the design).
 `notFound()` for unknown slugs — and for coming-soon projects, which
 aren't in the exported `projects` list. Starts with a "Back" link to `/#work`
 (verified to land correctly on the Work section under Lenis smooth
-scroll — see the comment in `SmoothScroll.tsx`), then a single
-`Project —— one-liner` line rendered as the page's `<h1>`
-(`.text-project-oneliner`; only rendered when the project has a
-`oneLiner`). Ends with a "Next Project"
+scroll — see the comment in `SmoothScroll.tsx`), then the project name
+as the page's `<h1>` (`.text-h3-bold`, `.text-h2-bold` from `sm`) with
+the one-liner in a `<p>` below it (`.text-project-oneliner`); both only
+render when the project has a `oneLiner`. Ends with a "Next Project"
 list before
 `ContactSection`: every *other* project (`getOtherProjects()` in
 `src/lib/data/projects.ts` — same one-card-per-project order as
@@ -656,12 +670,11 @@ Remember a metadata-only `.txt` still needs `npm run parse-content` and
 the generated JSON committed, like any other.
 
 Five case studies exist. Three are written: `buy-and-bite` (slug
-`buy-and-bite-uxui`; its content file is named `buy-and-bite-uiux.txt`,
-so file name and slug differ by a transposition), `talkam`
-(`talkam-uxui`) and `wey` (`wey-uxui`) — use any of them as a template.
-The other two, `tdc` (slug `tdc-brand`) and `tapr` (slug `tapr-brand`),
-are both category Branding and metadata-only, so they're the site's
-coming-soon projects.
+`buy-and-bite-uxui`), `talkam` (`talkam-uxui`) and `wey` (`wey-uxui`) —
+use any of them as a template; each has four `[SCREEN-n]` tags. The
+other two, `tdc` (slug `tdc-brand`) and `tapr` (slug `tapr-brand`), are
+both category Branding and metadata-only (two screens each), so they're
+the site's coming-soon projects. Every file name matches its slug.
 
 The parser warns (doesn't fail the build) about any referenced image path
 that doesn't exist yet under `public/`.
@@ -718,8 +731,6 @@ this repo's `main`; production domain `miracleonyema.vercel.app`, no
 custom domain seen). Confirm `NEXT_PUBLIC_SITE_URL` is set there (see
 README) so absolute URLs use the final domain, and update it if a custom
 domain is added.
-- None of the three written case studies has `[SCREEN-n]` tags or screen
-images yet, so their cards currently show four empty phone frames.
 - `WorkGrid` switches to three columns at `sm` (640px). With V2 that
 makes the cards only ~180–300px wide on tablets; `lg:grid-cols-3`
 (with a wider layout below) may be wanted.
@@ -733,10 +744,8 @@ layout was measured in headless Chromium (390/768/1024/1440px wide) but
 not tried on a real touch device.
 - The coming-soon state (`comingSoon`, `LockIcon`, the `allProjects` /
 `projects` split) was written without a visual check — look at the
-`tdc` and `tapr` cards (Branding tab) in both themes. Their screens and
-logos (`/case-studies/tdc/…` and `/case-studies/tapr/…`:
-`screen-1.gif`, `screen-2.webp`, `logo.webp`) need to exist under
-`public/`, or the parser warns and the images 404.
+`tdc` and `tapr` cards (Branding tab) in both themes. (Their screen and
+logo images are in `public/case-studies/`.)
 - The Noun Project icons (`NounProjectIcons.tsx`) and `CopyEmailButton`
 were written without a visual check: look at the pixel sun/moon at both
 toggle sizes in both themes, and click the copy button over https and

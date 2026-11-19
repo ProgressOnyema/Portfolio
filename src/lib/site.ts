@@ -2,6 +2,8 @@
 
 export const SITE_NAME = "Onyema Miracle";
 export const EMAIL = "progressonyema5@gmail.com";
+export const SITE_DESCRIPTION =
+  "I build products from the ground up, taking ideas from initial research through design to shipping 🚀 — strategy, branding, UX/UI, interaction, and full stack development.";
 
 // Absolute origin used for metadataBase, the sitemap, robots.txt and the
 // generated Open Graph images. Set NEXT_PUBLIC_SITE_URL to the production

@@ -3,13 +3,12 @@ import Navbar from "@/components/Navbar";
 import Cursor from "@/components/Cursor";
 import SmoothScroll from "@/components/SmoothScroll";
 import { ThemeInitScript } from "@/components/ThemeInitScript";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 import { SURFACE_BG } from "@/lib/theme";
 import "./globals.css";
 
 const title = "Onyema Miracle — Brand + Product Designer";
-const description =
-  "I build products from the ground up, taking ideas from initial research through design to shipping 🚀 — strategy, branding, UX/UI, interaction, and full stack development.";
+const description = SITE_DESCRIPTION;
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
