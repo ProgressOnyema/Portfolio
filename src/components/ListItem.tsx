@@ -32,7 +32,10 @@ export default function ListItem({
 
   return (
     <div
-      className={`group relative ${text} w-full ${maxWidth} border-b border-border-hairline px-2 py-4 text-text-primary !transition-colors !duration-300 !ease-out hover:bg-surface-bg-alt ${
+      // !font-mono: swaps only the family (to JetBrains Mono) and keeps the
+      // type style's size/weight; `!` is needed because the .text-* type
+      // classes are unlayered and would beat a plain utility.
+      className={`group relative ${text} !font-mono w-full ${maxWidth} border-b border-border-hairline px-2 py-4 text-text-primary !transition-colors !duration-300 !ease-out hover:bg-surface-bg-alt ${
         active ? "bg-surface-bg-alt" : "bg-surface-bg"
       } ${className}`}
     >

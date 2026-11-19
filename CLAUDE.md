@@ -267,7 +267,11 @@ shows all three, since
 it's filtering across every project rather than describing one
 project's own categories.
 - **`ListItem.tsx`** — Short/Small/Long width variants x active/inactive
-background state.
+background state. Text is set in JetBrains Mono (`!font-mono` over the
+type class, keeping its size/weight — the Google Fonts link loads mono up
+to 700 for this), per direct instruction. A pill restyle (rounded,
+`surface-bg-alt` background) was tried and reverted on request — the flat
+hairline-divided rows are intended.
 - **`ExperienceDesc.tsx`** — not currently used anywhere (About's
 Experience section was removed from the design), but built and kept in
 case it returns.
