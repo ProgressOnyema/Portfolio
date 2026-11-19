@@ -4,6 +4,5 @@
 [ONE-LINER: Never miss kickoff!]
 [CATEGORY: Shipped]
 [SCREEN-1: /case-studies/gameday/screen-1.gif]
-[SCREEN-2: /case-studies/gameday/screen-2.webp]
 [LOGO: /case-studies/gameday/logo_icon.webp]
 [LIVE-URL: https://usegameday.vercel.app]
