@@ -39,6 +39,7 @@ example.
 [THUMBNAIL-1: /case-studies/project-slug/thumbnail-1.jpg]  (optional, ProjectWidget v1 only — both are needed together, or neither is used)
 [THUMBNAIL-2: /case-studies/project-slug/thumbnail-2.jpg]  (v1 shows these as two overlapping layers, same as the placeholder illustration; without them, the placeholder is used)
 [LOGO: /case-studies/project-slug/logo.png]                (optional — the small logo next to the name on the widget card; without it, a placeholder is used)
+[LIVE-URL: https://example.com]                             (optional — the live product; the widget card shows a "Visit ↗" pill that opens it in a new tab. Must be http(s) with no spaces. Meant for Shipped projects)
 ```
 
 **Blocks** (in the order you want them to appear on the page):

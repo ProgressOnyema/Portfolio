@@ -10,7 +10,7 @@ import path from "node:path";
 
 const OPEN_TAG = /^\[([A-Z0-9-]+)(?::\s*(.*))?\]$/;
 const CLOSE_TAG = /^\[\/([A-Z0-9-]+)\]$/;
-const META_KEYS = ["SLUG", "PROJECT-ID", "NAME", "ONE-LINER", "CATEGORY", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO"];
+const META_KEYS = ["SLUG", "PROJECT-ID", "NAME", "ONE-LINER", "CATEGORY", "THUMBNAIL-1", "THUMBNAIL-2", "LOGO", "LIVE-URL"];
 // [SCREEN-1] ... [SCREEN-N] — the UI screens that slide inside the
 // ProjectWidgetV2 card. Numbered like THUMBNAIL-1/2, but open-ended.
 const SCREEN_KEY = /^SCREEN-(\d+)$/;
@@ -409,6 +409,11 @@ function main() {
   const parser = new Parser(lines);
   const blocks = parser.parseBlockList(null);
 
+  // [LIVE-URL] — the live product; the card shows a "Visit" pill for it.
+  if (meta["LIVE-URL"] && !/^https?:\/\/\S+$/.test(meta["LIVE-URL"])) {
+    fail(`[LIVE-URL] must be an http(s) URL with no spaces, got "${meta["LIVE-URL"]}"`);
+  }
+
   if (meta["THUMBNAIL-1"] && !meta["THUMBNAIL-2"] || !meta["THUMBNAIL-1"] && meta["THUMBNAIL-2"]) {
     console.warn("Warning: both [THUMBNAIL-1] and [THUMBNAIL-2] are needed — only one was provided, so neither will be used (falls back to placeholder).");
   }
@@ -434,6 +439,7 @@ function main() {
       : {}),
     ...(screens.length ? { screens } : {}),
     ...(meta.LOGO ? { logo: meta.LOGO } : {}),
+    ...(meta["LIVE-URL"] ? { liveUrl: meta["LIVE-URL"] } : {}),
     blocks,
   };
 

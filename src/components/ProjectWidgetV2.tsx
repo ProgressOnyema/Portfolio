@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowIcon } from "./Icons";
 import { LockIcon } from "./LockIcon";
 import type { ProjectCategory, ProjectWidgetData } from "./ProjectWidget";
+import { SOURCE_PILL } from "./case-study/RichText";
 
 // Same tag logic as ProjectWidget.tsx (not exported there, so mirrored
 // here): pills come strictly from category, ordered UX/UI, BRAND, SHIPPED.
@@ -319,6 +320,20 @@ export default function ProjectWidgetV2({
             <p className="text-body-reg-strong truncate">{project.name}</p>
             <p className="text-body-sm-base truncate text-text-body">{project.oneLiner}</p>
           </div>
+          {/* Live product link ([LIVE-URL]). Same pill as case-study
+              source links; z-10 lifts it above the stretched card Link. */}
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${SOURCE_PILL} relative z-10 shrink-0`}
+            >
+              Visit
+              <ArrowIcon className="-rotate-45" />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          )}
         </div>
       )}
 

@@ -21,6 +21,9 @@ export type ProjectWidgetData = {
   /** Real logo shown next to the name/one-liner. Falls back to a
    *  placeholder image when not provided. */
   logo?: string;
+  /** The live product's URL ([LIVE-URL] tag). ProjectWidgetV2 shows a
+   *  "Visit" pill that opens it in a new tab. */
+  liveUrl?: string;
   /** When a project has multiple case studies (UI/UX, Branding,
    *  Shipped) collapsed into one featured-projects card, this lists
    *  every category represented so the tag pills reflect all of them

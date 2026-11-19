@@ -313,6 +313,11 @@ artwork (V2 has the same prop).
 (60% opacity, matching the navbar's `LocationPill`, per direct instruction)
 whose slider shows UI screens inside a phone frame, with the same
 logo/name/one-liner meta row as v1 underneath (`hideMeta` hides it).
+When the project has a `liveUrl` (`[LIVE-URL]` tag — Shipped projects,
+per direct instruction) the meta row ends with a "Visit ↗" link to the
+live product, styled with `SOURCE_PILL` exported from `RichText.tsx`, at
+`z-10` above the stretched card link. It's in the meta row, so the Next
+Project carousel (`hideMeta`) doesn't show it.
 Used by `WorkGrid` and `NextProjectsCarousel`. Takes
 `ProjectWidgetData` (plus the optional `comingSoon` flag — see the
 Coming soon bullet below); there is no `size` prop — it fills its grid
@@ -643,7 +648,8 @@ authored as tagged plain-text files and parsed into JSON:
    any more — the site shows exactly the case studies that have JSON.
 
 **Project-card metadata** lives in the `.txt`'s top-level tags: `SLUG`,
-`PROJECT-ID`, `NAME`, `ONE-LINER`, `CATEGORY`, `LOGO`, and
+`PROJECT-ID`, `NAME`, `ONE-LINER`, `CATEGORY`, `LOGO`, optional
+`LIVE-URL` (http(s) only — the parser fails otherwise), and
 `[SCREEN-1]…[SCREEN-N]` — any number of slider screens for
 `ProjectWidgetV2`, numbered from 1, collected in numeric order into the
 `screens` array. `THUMBNAIL-1/2` are v1-only now. `LOGO-ALTERNATE` no

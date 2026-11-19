@@ -1,0 +1,14 @@
+{
+  "slug": "gameday-shipped",
+  "projectId": "gameday",
+  "name": "Gameday",
+  "oneLiner": "Never miss kickoff!",
+  "category": "Shipped",
+  "screens": [
+    "/case-studies/gameday/screen-1.gif",
+    "/case-studies/gameday/screen-2.webp"
+  ],
+  "logo": "/case-studies/gameday/logo_icon.webp",
+  "liveUrl": "https://usegameday.vercel.app",
+  "blocks": []
+}
