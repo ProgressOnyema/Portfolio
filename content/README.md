@@ -31,7 +31,7 @@ example.
 [PROJECT-ID: project-slug]  (optional — see "Multiple case studies per project" below)
 [NAME: Project Name]
 [ONE-LINER: One sentence describing the project]
-[CATEGORY: Product Design]   (must be exactly: Product Design, Branding, or Development — this also drives the widget card's tag pill: UX/UI, BRAND, or /DEV. There is no separate tags field.)
+[CATEGORY: Product Design]   (must be exactly: Product Design, Branding, or Shipped — this also drives the widget card's tag pill: UX/UI, BRAND, or SHIPPED. There is no separate tags field.)
 [SCREEN-1: /case-studies/project-slug/screen-1.webp]   (the UI screens that slide inside the widget card — ProjectWidgetV2. Add as many as you like, numbered from 1 (the design has four). Raw screen exports without their own device frame — the card draws the phone bezel around each one and crops to fill it, from the top. Export them at 2× (780px wide for a 390px-wide screen): they're served exactly as authored, not resized or re-encoded, so a larger file costs more to load and a smaller one looks soft. Without any, the card shows four empty phone frames instead.)
 [SCREEN-2: /case-studies/project-slug/screen-2.webp]
 [SCREEN-3: /case-studies/project-slug/screen-3.webp]
@@ -105,13 +105,13 @@ it's added as a new project automatically.
 ## Multiple case studies per project
 
 A project can have more than one case study — e.g. Buy and Bite has a
-Product Design, a Branding, and a Development write-up, grouped together
+Product Design, a Branding, and a Shipped write-up, grouped together
 in `content/buy-and-bite/`:
 
 ```
 content/buy-and-bite/buy-and-bite.txt        [SLUG: buy-and-bite]        [CATEGORY: Product Design]
 content/buy-and-bite/buy-and-bite-brand.txt  [SLUG: buy-and-bite-brand]  [CATEGORY: Branding]
-content/buy-and-bite/buy-and-bite-dev.txt    [SLUG: buy-and-bite-dev]    [CATEGORY: Development]
+content/buy-and-bite/buy-and-bite-shipped.txt    [SLUG: buy-and-bite-shipped]    [CATEGORY: Shipped]
 ```
 
 ...each with `[PROJECT-ID: buy-and-bite]`. That's what makes the subnav
@@ -122,7 +122,7 @@ inert. Rules:
   (pick one slug and stick with it, usually the first case study's slug
   — it doesn't have to match the folder name, but it's clearest if it does).
 - Each one still needs a **different `[CATEGORY]`** — one Product Design,
-  one Branding, one Development. Two case studies with the same
+  one Branding, one Shipped. Two case studies with the same
   `PROJECT-ID` and the same `CATEGORY` will both parse, but only one is
   reachable from the tabs (the parser logs a warning at build time if this
   happens).
@@ -134,10 +134,10 @@ inert. Rules:
   showing as inert, greyed-out text.
 - The homepage's featured-projects grid shows one card per project, not
   one per case study — it links to the first case study in Product
-  Design / Branding / Development order. Its tag pills, and every other
+  Design / Branding / Shipped order. Its tag pills, and every other
   card for this project on `/work` under any tab, show every category
   the project has a case study for (e.g. Buy and Bite's card always shows
-  all three: UX/UI, BRAND, /DEV), not just the category of that one card.
+  all three: UX/UI, BRAND, SHIPPED), not just the category of that one card.
 - Grouping into a folder (`content/<project-id>/`) is purely
   organizational — it's `[PROJECT-ID]` that actually links the case
   studies together, not the folder. But keeping them in one folder is

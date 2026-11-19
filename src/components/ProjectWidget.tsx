@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FolderBackIcon, FolderCoverIcon } from "./Icons";
 
-export type ProjectCategory = "Product Design" | "Branding" | "Development";
+export type ProjectCategory = "Product Design" | "Branding" | "Shipped";
 
 export type ProjectWidgetData = {
   slug: string;
@@ -22,9 +22,9 @@ export type ProjectWidgetData = {
    *  placeholder image when not provided. */
   logo?: string;
   /** When a project has multiple case studies (UI/UX, Branding,
-   *  Development) collapsed into one featured-projects card, this lists
+   *  Shipped) collapsed into one featured-projects card, this lists
    *  every category represented so the tag pills reflect all of them
-   *  (e.g. the /DEV pill shows even though `category` itself is Product
+   *  (e.g. the SHIPPED pill shows even though `category` itself is Product
    *  Design). Omit for a normal single-case-study widget. */
   caseStudyCategories?: ProjectCategory[];
 };
@@ -54,14 +54,14 @@ const COVER_STYLE = {
   height: "33%",
 };
 
-const CATEGORY_ORDER: ProjectCategory[] = ["Product Design", "Branding", "Development"];
+const CATEGORY_ORDER: ProjectCategory[] = ["Product Design", "Branding", "Shipped"];
 
 // Every widget's tag pills come strictly from category — never free-text
 // tags — so only these three labels can ever appear.
 const CATEGORY_PILL: Record<ProjectCategory, string> = {
   "Product Design": "UX/UI",
   Branding: "BRAND",
-  Development: "/DEV",
+  Shipped: "SHIPPED",
 };
 
 export default function ProjectWidget({
@@ -77,9 +77,9 @@ export default function ProjectWidget({
   hideMeta?: boolean;
 }) {
   // For a merged multi-case-study widget, caseStudyCategories carries every
-  // category in the group, so e.g. the /DEV pill still shows even when the
-  // representative case study itself isn't the Development one. Ordered and
-  // deduped so pills are always UX/UI, then BRAND, then /DEV.
+  // category in the group, so e.g. the SHIPPED pill still shows even when the
+  // representative case study itself isn't the Shipped one. Ordered and
+  // deduped so pills are always UX/UI, then BRAND, then SHIPPED.
   const categories = project.caseStudyCategories ?? [project.category];
   const displayTags = CATEGORY_ORDER.filter((c) => categories.includes(c)).map((c) => CATEGORY_PILL[c]);
 

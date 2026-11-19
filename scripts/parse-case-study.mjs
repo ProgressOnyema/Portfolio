@@ -421,7 +421,7 @@ function main() {
 
   const caseStudy = {
     slug: meta.SLUG,
-    // Groups sibling case studies (UI/UX, Branding, Development) that
+    // Groups sibling case studies (UI/UX, Branding, Shipped) that
     // belong to the same underlying project so the case-study page can
     // tab between them. Defaults to the slug itself, so a case study with
     // no siblings behaves exactly as before.

@@ -195,7 +195,7 @@ body * {
   letter-spacing: -0.3px;
 }
 
-/* Subnav's category tabs (Product Design / Branding / Development): the
+/* Subnav's category tabs (Product Design / Branding / Shipped): the
    whole row shares one weight (Semi Bold) at both breakpoints — only
    color (primary vs. muted) distinguishes the active tab, confirmed
    against both the desktop Subnav instance (88:740, Body Regular/Strong:

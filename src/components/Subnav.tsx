@@ -3,7 +3,7 @@
 import Link from "next/link";
 import type { ProjectCategory } from "./ProjectWidget";
 
-const CATEGORIES: ProjectCategory[] = ["Product Design", "Branding", "Development"];
+const CATEGORIES: ProjectCategory[] = ["Product Design", "Branding", "Shipped"];
 
 export default function Subnav({
   active,

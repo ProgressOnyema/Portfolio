@@ -48,7 +48,7 @@ export default async function ProjectDetail({
     notFound();
   }
 
-  // Sibling case studies (UI/UX, Branding, Development) sharing this
+  // Sibling case studies (UI/UX, Branding, Shipped) sharing this
   // project's projectId, so the subnav can tab between them. A project
   // with only one case study gets an empty map here and the subnav
   // renders its other two categories as inert, same as before.

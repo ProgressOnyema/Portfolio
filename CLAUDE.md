@@ -257,7 +257,7 @@ implemented consistent behavior (hover just mutes the color) instead of
 replicating that.
 - **`Subnav.tsx`** — **this is an interactive tab component, not a
 breadcrumb.** Clicking a category (Product Design / Branding /
-Development) filters the visible projects. `onSelect` is optional —
+Shipped) filters the visible projects. `onSelect` is optional —
 when omitted (tab mode, used on the project detail page), it renders as
 read-only links via `hrefs` instead of a filter, and **only shows the
 categories a project actually has a case study for** — a
@@ -299,8 +299,8 @@ box) and `logo` (the small 39x39 image next to the name, also
 `object-cover`). The old `logoAlternate` field has been removed — the
 ProjectDetail header that used to show it was dropped earlier and
 nothing else rendered it, so the field and its content entries were
-cleaned out. Development-category projects
-automatically get a third tag chip, `"DEV"`, derived from `category`
+cleaned out. Shipped-category projects
+automatically get a third tag chip, `"SHIPPED"`, derived from `category`
 rather than requiring it in each project's `tags` array. `hideMeta`
 (default `false`) hides the logo/name/one-liner row below the folder
 artwork (V2 has the same prop).
@@ -358,7 +358,7 @@ column.
   - **Coming soon (`comingSoon`):** for a project whose case study isn't
   written yet. The card gets a **padlock chip** (`LockIcon`, with a
   screen-reader-only "Coming soon") as the *first* item of the tag row,
-  before the UX/UI / BRAND / /DEV pills, in the same pill style so it
+  before the UX/UI / BRAND / SHIPPED pills, in the same pill style so it
   stretches to their height. The stretched `Link` is **not rendered**, so
   the card can't open a case-study page that doesn't exist; the slider
   (dots, arrows, swipe) still works. This was added per direct
@@ -615,7 +615,7 @@ authored as tagged plain-text files and parsed into JSON:
 1. Write `content/<project-id>/<slug>.txt` using the tag syntax in
   `content/README.md` (full grammar reference — read it before writing
   a new case study). A project with several case studies (UI/UX,
-  Branding, Development) groups them under one `<project-id>` folder and
+  Branding, Shipped) groups them under one `<project-id>` folder and
   shares a `PROJECT-ID`.
 2. Put real images in `public/case-studies/<project-id>/<slug>/` (or
   alongside, for project-level thumbnails). Use `.webp`, at most ~2400px

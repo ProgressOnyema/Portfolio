@@ -4,7 +4,7 @@ import type { ProjectWidgetData } from "@/components/ProjectWidget";
 import type { Block } from "@/lib/types/caseStudy";
 
 export type CaseStudy = ProjectWidgetData & {
-  // Groups sibling case studies (UI/UX, Branding, Development) that belong
+  // Groups sibling case studies (UI/UX, Branding, Shipped) that belong
   // to the same underlying project, so the case-study page can tab between
   // them. Defaults to the case study's own slug when a project only has
   // one case study, so existing single-case-study projects need no change.
@@ -67,7 +67,7 @@ function loadRealCaseStudies(): CaseStudy[] {
 
 // Canonical left-to-right order for tag pills and tabs, independent of
 // whatever order projects happen to appear in the data.
-const CATEGORY_ORDER: CaseStudy["category"][] = ["Product Design", "Branding", "Development"];
+const CATEGORY_ORDER: CaseStudy["category"][] = ["Product Design", "Branding", "Shipped"];
 
 // Stamps every case study with the full set of categories its project has
 // a case study for (caseStudyCategories), so any card showing that case
@@ -115,7 +115,7 @@ export function getProjectCaseStudies(projectId: string): CaseStudy[] {
 }
 
 // One card per project for the homepage's featured-projects grid — a
-// project with multiple case studies (UI/UX, Branding, Development)
+// project with multiple case studies (UI/UX, Branding, Shipped)
 // collapses to a single widget instead of one per case study. The widget
 // links to the canonical (first in CATEGORY_ORDER) case study; its tag
 // pills already cover the whole group via caseStudyCategories (see

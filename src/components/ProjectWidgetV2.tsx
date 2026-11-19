@@ -8,12 +8,12 @@ import { LockIcon } from "./LockIcon";
 import type { ProjectCategory, ProjectWidgetData } from "./ProjectWidget";
 
 // Same tag logic as ProjectWidget.tsx (not exported there, so mirrored
-// here): pills come strictly from category, ordered UX/UI, BRAND, /DEV.
-const CATEGORY_ORDER: ProjectCategory[] = ["Product Design", "Branding", "Development"];
+// here): pills come strictly from category, ordered UX/UI, BRAND, SHIPPED.
+const CATEGORY_ORDER: ProjectCategory[] = ["Product Design", "Branding", "Shipped"];
 const CATEGORY_PILL: Record<ProjectCategory, string> = {
   "Product Design": "UX/UI",
   Branding: "BRAND",
-  Development: "/DEV",
+  Shipped: "SHIPPED",
 };
 
 // A project card, plus the coming-soon flag set by src/lib/data/projects.ts
