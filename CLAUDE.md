@@ -309,7 +309,8 @@ rather than requiring it in each project's `tags` array. `hideMeta`
 (default `false`) hides the logo/name/one-liner row below the folder
 artwork (V2 has the same prop).
 - **`ProjectWidgetV2.tsx`** — the current project card (Figma
-`ProjectWidget_v2`, node `280:2150`, 411×641). A `surface-bg-alt` card
+`ProjectWidget_v2`, node `280:2150`, 411×641). A `surface-bg-alt/60` card
+(60% opacity, matching the navbar's `LocationPill`, per direct instruction)
 whose slider shows UI screens inside a phone frame, with the same
 logo/name/one-liner meta row as v1 underneath (`hideMeta` hides it).
 Used by `WorkGrid` and `NextProjectsCarousel`. Takes

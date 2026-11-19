@@ -160,7 +160,7 @@ export default function ProjectWidgetV2({
       }}
     >
       <div
-        className="relative aspect-[411/641] w-full overflow-hidden bg-surface-bg-alt"
+        className="relative aspect-[411/641] w-full overflow-hidden bg-surface-bg-alt/60"
         style={{ borderRadius: cqw(30) }}
         role="group"
         aria-roledescription="carousel"
